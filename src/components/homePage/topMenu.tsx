@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
+import { ThemeToggle } from '@/components/ui/theme-toggle';
 
 interface TopMenuProps {
   sections: string[];
@@ -48,7 +49,7 @@ export default function TopMenu({ sections }: TopMenuProps) {
 
   return (
     <nav className={`fixed top-0 left-0 right-0 w-full z-50 transition-transform duration-300 ${isVisible ? 'translate-y-0' : '-translate-y-full'}`}>
-      <div className="bg-background backdrop-blur-sm border-b border-border w-full">
+      <div className="bg-background/80 backdrop-blur-sm border-b border-border w-full">
         <div className="w-full px-4">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center space-x-3">
@@ -89,6 +90,7 @@ export default function TopMenu({ sections }: TopMenuProps) {
               <Button variant="default" size="sm" onClick={() => handleButtonClick('Contato')}>
                 Contato
               </Button>
+              <ThemeToggle className="ml-2" />
             </div>
           </div>
         </div>
