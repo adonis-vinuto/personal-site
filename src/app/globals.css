@@ -78,6 +78,43 @@ body {
 }
 
 /* Gradientes personalizados para tema claro */
+.gradient-top-menu {
+  position: relative;
+  background: linear-gradient(135deg, 
+    #4b5eaa 0%, 
+    #3a4578 20%, 
+    #1c2526 40%, 
+    #1c2526 60%, 
+    #3a4578 80%, 
+    #4b5eaa 100%
+  );
+}
+
+.gradient-top-menu::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, 
+    #1c2526 0%, 
+    #3a4578 20%, 
+    #4b5eaa 40%, 
+    #4b5eaa 60%, 
+    #3a4578 80%, 
+    #1c2526 100%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  pointer-events: none;
+}
+
+.gradient-top-menu > * {
+  position: relative;
+  z-index: 1;
+}
+
 .gradient-bio {
   background: linear-gradient(135deg, #f5f5f5 0%, #e5e7eb 100%);
 }
@@ -103,8 +140,12 @@ body {
 }
 
 /* Gradientes personalizados para tema escuro */
+.dark .gradient-top-menu::before {
+  opacity: 1;
+}
+
 .dark .gradient-bio {
-  background: linear-gradient(135deg, #1c2526 0%, #4b5eaa 100%);
+  background: linear-gradient(135deg, #d3d3d3 0%, #1c2526 100%);
 }
 
 .dark .gradient-projetos {
