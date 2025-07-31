@@ -16,6 +16,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Adonis Vinuto",
   description: "Adonis G. G. Vinuto",
+  icons: {
+    icon: '/favicon.svg',
+  },
 };
 
 export default function RootLayout({
@@ -35,4 +38,3 @@ export default function RootLayout({
     </html>
   );
 }
-
