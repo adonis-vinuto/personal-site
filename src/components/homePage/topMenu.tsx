@@ -91,16 +91,15 @@ export default function TopMenu({ sections }: TopMenuProps) {
                 </Badge>
               </div>
             </div>
-            <div className="flex items-center space-x-2">
+            <div className="flex items-center space-x-1">
               {sections.map((section, index) => (
-                <Button
+                <button
                   key={section}
-                  variant={index === activeSection ? 'default' : 'ghost'}
-                  size="sm"
+                  className={`nav-button ${index === activeSection ? 'active' : ''}`}
                   onClick={() => scrollToSection(index)}
                 >
                   {section}
-                </Button>
+                </button>
               ))}
             </div>
             <div className="flex items-center space-x-2">
