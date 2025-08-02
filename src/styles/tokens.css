@@ -1,0 +1,292 @@
+/* ===================================================================
+   TOKENS.CSS - DESIGN TOKENS SEMÂNTICOS (VERSÃO MELHORADA)
+   ================================================================= */
+
+/* 
+  Este arquivo centraliza todos os tokens de design do projeto usando
+  nomenclatura semântica para facilitar manutenção e escalabilidade.
+  
+  Estrutura:
+  1. Cores base (paletas nomeadas)
+  2. Tokens semânticos (:root - tema claro)
+  3. Sobrescritas para tema escuro (.dark)
+  4. Dimensões e outros tokens
+*/
+
+:root {
+  /* ===================================================================
+     PALETAS DE CORES BASE - NOMEADAS SEMANTICAMENTE
+     ================================================================= */
+  
+  /* Cores Fundamentais */
+  --white: #ffffff;
+  --black: #000000;
+  
+  /* Paleta Amber - Cor Principal */
+  --amber-50: #fefce8;
+  --amber-100: #fef3c7;
+  --amber-200: #fde68a;
+  --amber-300: #fcd34d;
+  --amber-400: #fbbf24;
+  --amber-500: #f59e0b;
+  --amber-600: #d97706;
+  --amber-700: #b45309;
+  --amber-800: #92400e;
+  --amber-900: #78350f;
+  
+  /* Paleta Neutra - Grays */
+  --neutral-50: #f9fafb;
+  --neutral-100: #f3f4f6;
+  --neutral-200: #e5e7eb;
+  --neutral-300: #d1d5db;
+  --neutral-400: #9ca3af;
+  --neutral-500: #6b7280;
+  --neutral-600: #4b5563;
+  --neutral-700: #374151;
+  --neutral-800: #1f2937;
+  --neutral-900: #111827;
+  
+  /* Cores Personalizadas do Projeto */
+  --savoy-blue: #4b5eaa;
+  --ash-gray: #a8b5b2;
+  --gunmetal: #1c2526;
+  --timberwolf: #d3d3d3;
+  --white-smoke: #f5f5f5;
+  --eerie-black: #1a1a1a;
+  --anti-flash-white: #e5e7eb;
+  --slate-gray: #6b7280;
+  
+  /* Cores de Estado */
+  --success: #22c55e;
+  --warning: #f59e0b;
+  --error: #ef4444;
+  --info: #3b82f6;
+  
+  /* ===================================================================
+     TOKENS SEMÂNTICOS - TEMA CLARO
+     ================================================================= */
+  
+  /* Backgrounds Hierárquicos */
+  --background: var(--white-smoke);
+  --background-secondary: var(--white);
+  --background-tertiary: var(--neutral-50);
+  --background-muted: var(--neutral-100);
+  
+  /* Foregrounds Hierárquicos */
+  --foreground: var(--eerie-black);
+  --foreground-secondary: var(--neutral-700);
+  --foreground-muted: var(--slate-gray);
+  --foreground-subtle: var(--neutral-400);
+  
+  /* Componentes Base */
+  --card: var(--white);
+  --card-foreground: var(--eerie-black);
+  
+  --popover: var(--white);
+  --popover-foreground: var(--eerie-black);
+  
+  /* Cores de Ação */
+  --primary: var(--amber-400);
+  --primary-foreground: var(--eerie-black);
+  
+  --secondary: var(--anti-flash-white);
+  --secondary-foreground: var(--eerie-black);
+  
+  /* Estados de Interação */
+  --muted: var(--anti-flash-white);
+  --muted-foreground: var(--slate-gray);
+  
+  --accent: var(--anti-flash-white);
+  --accent-foreground: var(--eerie-black);
+  
+  /* Feedback States */
+  --destructive: var(--error);
+  --destructive-foreground: var(--white);
+  
+  --success-bg: var(--success);
+  --success-foreground: var(--white);
+  
+  --warning-bg: var(--warning);
+  --warning-foreground: var(--eerie-black);
+  
+  /* Bordas e Contornos */
+  --border: var(--anti-flash-white);
+  --border-secondary: var(--neutral-300);
+  --border-muted: var(--neutral-200);
+  
+  --input: var(--anti-flash-white);
+  --ring: var(--slate-gray);
+  
+  /* Sidebar */
+  --sidebar: var(--neutral-50);
+  --sidebar-foreground: var(--eerie-black);
+  --sidebar-primary: var(--amber-400);
+  --sidebar-primary-foreground: var(--eerie-black);
+  --sidebar-accent: var(--anti-flash-white);
+  --sidebar-accent-foreground: var(--eerie-black);
+  --sidebar-border: var(--anti-flash-white);
+  --sidebar-ring: var(--slate-gray);
+  
+  /* Charts */
+  --chart-1: var(--amber-400);
+  --chart-2: var(--slate-gray);
+  --chart-3: var(--eerie-black);
+  --chart-4: var(--white-smoke);
+  --chart-5: var(--anti-flash-white);
+  
+  /* ===================================================================
+     GRADIENTES PERSONALIZADOS - TEMA CLARO
+     ================================================================= */
+  
+  --gradient-primary: var(--savoy-blue);
+  --gradient-secondary: #3a4578;
+  --gradient-tertiary: var(--gunmetal);
+  --gradient-light: var(--neutral-50);
+  --gradient-medium: var(--neutral-200);
+  --gradient-dark: var(--neutral-500);
+  --gradient-accent: var(--amber-400);
+  
+  /* ===================================================================
+     DIMENSÕES E OUTROS TOKENS
+     ================================================================= */
+  
+  --radius: 0.625rem;
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  
+  /* Sombras */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  
+  /* Transições */
+  --transition-fast: 150ms ease;
+  --transition-normal: 200ms ease;
+  --transition-slow: 300ms ease;
+}
+
+/* ===================================================================
+   TEMA ESCURO - SOBRESCRITAS SEMÂNTICAS
+   ================================================================= */
+
+.dark {
+  /* Backgrounds Hierárquicos */
+  --background: var(--gunmetal);
+  --background-secondary: var(--savoy-blue);
+  --background-tertiary: var(--neutral-700);
+  --background-muted: var(--neutral-800);
+  
+  /* Foregrounds Hierárquicos */
+  --foreground: var(--white);
+  --foreground-secondary: var(--timberwolf);
+  --foreground-muted: var(--ash-gray);
+  --foreground-subtle: var(--neutral-400);
+  
+  /* Componentes Base */
+  --card: var(--savoy-blue);
+  --card-foreground: var(--white);
+  
+  --popover: var(--savoy-blue);
+  --popover-foreground: var(--white);
+  
+  /* Cores de Ação */
+  --primary: var(--timberwolf);
+  --primary-foreground: var(--gunmetal);
+  
+  --secondary: var(--ash-gray);
+  --secondary-foreground: var(--white);
+  
+  /* Estados de Interação */
+  --muted: var(--ash-gray);
+  --muted-foreground: var(--timberwolf);
+  
+  --accent: var(--ash-gray);
+  --accent-foreground: var(--white);
+  
+  /* Feedback States */
+  --destructive: var(--error);
+  --destructive-foreground: var(--white);
+  
+  --success-bg: var(--success);
+  --success-foreground: var(--white);
+  
+  --warning-bg: var(--warning);
+  --warning-foreground: var(--gunmetal);
+  
+  /* Bordas e Contornos */
+  --border: var(--savoy-blue);
+  --border-secondary: var(--ash-gray);
+  --border-muted: var(--neutral-600);
+  
+  --input: var(--savoy-blue);
+  --ring: var(--ash-gray);
+  
+  /* Sidebar */
+  --sidebar: var(--savoy-blue);
+  --sidebar-foreground: var(--white);
+  --sidebar-primary: var(--timberwolf);
+  --sidebar-primary-foreground: var(--gunmetal);
+  --sidebar-accent: var(--ash-gray);
+  --sidebar-accent-foreground: var(--white);
+  --sidebar-border: var(--savoy-blue);
+  --sidebar-ring: var(--ash-gray);
+  
+  /* Charts */
+  --chart-1: var(--savoy-blue);
+  --chart-2: var(--ash-gray);
+  --chart-3: var(--timberwolf);
+  --chart-4: var(--white);
+  --chart-5: var(--gunmetal);
+  
+  /* Sombras para tema escuro */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
+  --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.4), 0 1px 2px -1px rgb(0 0 0 / 0.4);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.4), 0 2px 4px -2px rgb(0 0 0 / 0.4);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.4), 0 4px 6px -4px rgb(0 0 0 / 0.4);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.4), 0 8px 10px -6px rgb(0 0 0 / 0.4);
+}
+
+/* ===================================================================
+   DOCUMENTAÇÃO DE USO
+   ================================================================= */
+
+/*
+  COMO USAR OS TOKENS SEMÂNTICOS:
+
+  1. CORES DE FUNDO:
+     - var(--background) - Fundo principal
+     - var(--background-secondary) - Fundo secundário
+     - var(--card) - Fundo de cards/componentes
+
+  2. CORES DE TEXTO:
+     - var(--foreground) - Texto principal
+     - var(--foreground-muted) - Texto secundário
+     - var(--muted-foreground) - Texto sutil
+
+  3. CORES DE AÇÃO:
+     - var(--primary) - Cor principal de ação
+     - var(--secondary) - Cor secundária
+     - var(--accent) - Cor de destaque
+
+  4. BORDAS E CONTORNOS:
+     - var(--border) - Bordas padrão
+     - var(--ring) - Contornos de foco
+
+  5. FEEDBACK:
+     - var(--destructive) - Ações destrutivas
+     - var(--success-bg) - Sucesso
+     - var(--warning-bg) - Avisos
+
+  EXEMPLO DE USO:
+  .meu-componente {
+    background: var(--card);
+    color: var(--card-foreground);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+  }
+*/

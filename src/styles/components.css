@@ -1,0 +1,509 @@
+/* ===================================================================
+   COMPONENTS.CSS - ESTILOS COMPATÍVEIS COM TAILWIND CSS V4
+   ================================================================= */
+
+/* 
+  Este arquivo contém estilos de componentes usando CSS nativo
+  e tokens semânticos, sem @layer ou @apply que não são suportados
+  no Tailwind CSS v4.
+*/
+
+/* ===================================================================
+   ESTILOS BASE
+   ================================================================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border-color: var(--border);
+  outline-color: var(--ring);
+  outline-offset: 2px;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-snap-type: y mandatory;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  background-color: var(--background);
+  color: var(--foreground);
+  line-height: 1.5;
+}
+
+/* Tipografia base */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--foreground);
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+p {
+  color: var(--foreground);
+  line-height: 1.6;
+}
+
+a {
+  color: var(--primary);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+a:hover {
+  color: var(--primary);
+  opacity: 0.8;
+}
+
+/* ===================================================================
+   LAYOUT COMPONENTS
+   ================================================================= */
+
+.section {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  scroll-snap-align: start;
+}
+
+.navigation {
+  position: fixed;
+  top: 50%;
+  right: 2rem;
+  transform: translateY(-50%);
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* ===================================================================
+   NAVIGATION COMPONENTS
+   ================================================================= */
+
+/* Navigation Dots */
+.nav-dot {
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 50%;
+  border: 2px solid var(--muted-foreground);
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.nav-dot.active {
+  background: var(--primary);
+  border-color: var(--primary);
+}
+
+.nav-dot:hover {
+  border-color: var(--primary);
+  background: var(--muted);
+}
+
+/* Navigation Buttons - Minimalistas */
+.nav-button {
+  background: transparent !important;
+  border: none !important;
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 0.75rem 1rem;
+  position: relative;
+  transition: all 0.3s ease;
+  border-radius: 0;
+  color: var(--foreground);
+}
+
+.nav-button::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: var(--primary);
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+
+.nav-button:hover {
+  background: transparent !important;
+  transform: translateY(-2px);
+  color: var(--primary);
+}
+
+.nav-button:hover::after {
+  width: 80%;
+}
+
+.nav-button.active {
+  background: transparent !important;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.nav-button.active::after {
+  width: 100%;
+  height: 3px;
+}
+
+/* ===================================================================
+   CARD COMPONENTS
+   ================================================================= */
+
+.card {
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  background: var(--card);
+  color: var(--card-foreground);
+}
+
+.card-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+  padding: 1.5rem;
+}
+
+.card-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.025em;
+  color: var(--foreground);
+}
+
+.card-description {
+  font-size: 0.875rem;
+  color: var(--muted-foreground);
+}
+
+.card-content {
+  padding: 1.5rem;
+  padding-top: 0;
+}
+
+.card-footer {
+  display: flex;
+  align-items: center;
+  padding: 1.5rem;
+  padding-top: 0;
+}
+
+/* ===================================================================
+   BUTTON COMPONENTS
+   ================================================================= */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius);
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all var(--transition-fast);
+  cursor: pointer;
+  border: none;
+  padding: 0.5rem 1rem;
+  height: 2.5rem;
+}
+
+.btn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--ring);
+  outline-offset: 2px;
+}
+
+.btn:disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: var(--primary-foreground);
+}
+
+.btn-primary:hover {
+  opacity: 0.9;
+}
+
+.btn-secondary {
+  background: var(--secondary);
+  color: var(--secondary-foreground);
+}
+
+.btn-secondary:hover {
+  opacity: 0.8;
+}
+
+.btn-outline {
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--foreground);
+}
+
+.btn-outline:hover {
+  background: var(--accent);
+  color: var(--accent-foreground);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--foreground);
+}
+
+.btn-ghost:hover {
+  background: var(--accent);
+  color: var(--accent-foreground);
+}
+
+/* ===================================================================
+   INPUT COMPONENTS
+   ================================================================= */
+
+.input {
+  display: flex;
+  height: 2.5rem;
+  width: 100%;
+  border-radius: var(--radius);
+  border: 1px solid var(--input);
+  background: var(--background);
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  color: var(--foreground);
+  transition: all var(--transition-fast);
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--ring);
+  box-shadow: 0 0 0 2px var(--ring);
+}
+
+.input:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.input::placeholder {
+  color: var(--muted-foreground);
+}
+
+/* ===================================================================
+   GRADIENT SECTIONS
+   ================================================================= */
+
+.gradient-top-menu {
+  position: relative;
+  background: linear-gradient(135deg, 
+    var(--gradient-primary) 0%, 
+    var(--gradient-secondary) 20%, 
+    var(--gradient-tertiary) 40%, 
+    var(--gradient-tertiary) 60%, 
+    var(--gradient-secondary) 80%, 
+    var(--gradient-primary) 100%
+  );
+}
+
+.gradient-top-menu::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  background: linear-gradient(135deg, 
+    var(--gradient-tertiary) 0%, 
+    var(--gradient-secondary) 20%, 
+    var(--gradient-primary) 40%, 
+    var(--gradient-primary) 60%, 
+    var(--gradient-secondary) 80%, 
+    var(--gradient-tertiary) 100%
+  );
+}
+
+.gradient-top-menu > * {
+  position: relative;
+  z-index: 10;
+}
+
+.gradient-bio {
+  background: linear-gradient(135deg, 
+    var(--background-tertiary) 0%, 
+    var(--secondary) 100%
+  );
+}
+
+.gradient-projetos {
+  background: linear-gradient(135deg, 
+    var(--background-secondary) 0%, 
+    var(--background-tertiary) 100%
+  );
+}
+
+.gradient-carreira {
+  background: linear-gradient(135deg, 
+    var(--background-tertiary) 0%, 
+    var(--secondary) 100%
+  );
+}
+
+.gradient-hobbys {
+  background: linear-gradient(135deg, 
+    var(--secondary) 0%, 
+    var(--muted-foreground) 100%
+  );
+}
+
+.gradient-blog {
+  background: linear-gradient(135deg, 
+    var(--muted-foreground) 0%, 
+    var(--primary) 100%
+  );
+}
+
+.gradient-contato {
+  background: linear-gradient(135deg, 
+    var(--primary) 0%, 
+    var(--foreground) 100%
+  );
+}
+
+/* ===================================================================
+   TEMA ESCURO - SOBRESCRITAS
+   ================================================================= */
+
+.dark .gradient-top-menu::before {
+  opacity: 1;
+}
+
+.dark .gradient-bio {
+  background: linear-gradient(135deg, 
+    var(--timberwolf) 0%, 
+    var(--background) 100%
+  );
+}
+
+.dark .gradient-projetos {
+  background: linear-gradient(135deg, 
+    var(--background) 0%, 
+    var(--ash-gray) 100%
+  );
+}
+
+.dark .gradient-carreira {
+  background: linear-gradient(135deg, 
+    var(--savoy-blue) 0%, 
+    var(--ash-gray) 100%
+  );
+}
+
+.dark .gradient-hobbys {
+  background: linear-gradient(135deg, 
+    var(--ash-gray) 0%, 
+    var(--timberwolf) 100%
+  );
+}
+
+.dark .gradient-blog {
+  background: linear-gradient(135deg, 
+    var(--timberwolf) 0%, 
+    var(--white) 100%
+  );
+}
+
+.dark .gradient-contato {
+  background: linear-gradient(135deg, 
+    var(--white) 0%, 
+    var(--background) 100%
+  );
+}
+
+/* ===================================================================
+   RESPONSIVE DESIGN
+   ================================================================= */
+
+@media (max-width: 768px) {
+  .navigation {
+    right: 1rem;
+  }
+
+  .nav-dot {
+    width: 0.625rem;
+    height: 0.625rem;
+  }
+  
+  .nav-button {
+    font-size: 0.875rem;
+    padding: 0.5rem 0.75rem;
+  }
+
+  .section {
+    padding: 0 1rem;
+  }
+
+  .card {
+    margin: 0 1rem;
+  }
+
+  .card-header,
+  .card-content,
+  .card-footer {
+    padding: 1rem;
+  }
+
+  .card-content {
+    padding-top: 0;
+  }
+
+  .card-footer {
+    padding-top: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-button {
+    font-size: 0.75rem;
+    padding: 0.375rem 0.5rem;
+  }
+
+  .card-title {
+    font-size: 1.25rem;
+  }
+}
+
+/* ===================================================================
+   UTILITY CLASSES
+   ================================================================= */
+
+.text-balance {
+  text-wrap: balance;
+}
+
+.transition-smooth {
+  transition: all var(--transition-normal);
+}
+
+.focus-ring:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--ring);
+  outline-offset: 2px;
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}

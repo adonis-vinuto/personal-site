@@ -1,368 +1,114 @@
+/* ===================================================================
+   GLOBALS.CSS - ARQUIVO PRINCIPAL (TAILWIND CSS V4 COMPATÍVEL)
+   ================================================================= */
+
+/* 
+  Este arquivo é o ponto de entrada principal para todos os estilos
+  do projeto. Ele importa as diretivas compatíveis com Tailwind CSS v4
+  e nossa estrutura modular personalizada.
+*/
+
+/* ===================================================================
+   TAILWIND CSS V4 - IMPORTS COMPATÍVEIS
+   ================================================================= */
+
 @import "tailwindcss/preflight";
 @import "tailwindcss/utilities";
 
 /* ===================================================================
-   SISTEMA DE CORES ESCALÁVEL - Padronização Inicial - Adonis 01/08/2025
-   =================================================================== 
-*/
+   ESTRUTURA MODULAR PERSONALIZADA
+   ================================================================= */
 
-:root {
-  /* === PALETA DE CORES ESCALÁVEL === */
-  
-  /* Cores Base */
-  --color-white: #ffffff;
-  --color-black: #000000;
-  
-  /* Paleta Principal - Amber */
-  --color-primary-50: #fefce8;
-  --color-primary-100: #fef3c7;
-  --color-primary-200: #fde68a;
-  --color-primary-300: #fcd34d;
-  --color-primary-400: #fbbf24;
-  --color-primary-500: #f59e0b;
-  --color-primary-600: #d97706;
-  --color-primary-700: #b45309;
-  --color-primary-800: #92400e;
-  --color-primary-900: #78350f;
-  
-  /* Paleta Neutra */
-  --color-neutral-50: #f9fafb;
-  --color-neutral-100: #f3f4f6;
-  --color-neutral-200: #e5e7eb;
-  --color-neutral-300: #d1d5db;
-  --color-neutral-400: #9ca3af;
-  --color-neutral-500: #6b7280;
-  --color-neutral-600: #4b5563;
-  --color-neutral-700: #374151;
-  --color-neutral-800: #1f2937;
-  --color-neutral-900: #111827;
-  
-  /* Cores de Acento Personalizadas */
-  --color-savoy-blue: #4b5eaa;
-  --color-ash-gray: #a8b5b2;
-  --color-gunmetal: #1c2526;
-  --color-timberwolf: #d3d3d3;
-  
-  /* === CORES PARA GRADIENTES === */
-  --gradient-primary: var(--color-savoy-blue);
-  --gradient-secondary: #3a4578;
-  --gradient-tertiary: var(--color-gunmetal);
-  --gradient-light: var(--color-neutral-50);
-  --gradient-medium: var(--color-neutral-200);
-  --gradient-dark: var(--color-neutral-500);
-  --gradient-accent: var(--color-primary-400);
-}
+/* Tokens de design centralizados */
+@import "../styles/tokens.css";
+
+/* Componentes personalizados */
+@import "../styles/components.css";
 
 /* ===================================================================
-   DEMAIS CONFIGURAÇÕES
-   ===================================================================
-*/
+   DOCUMENTAÇÃO DE USO
+   ================================================================= */
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+/*
+  COMO FUNCIONA ESTA ESTRUTURA:
 
-html {
-  scroll-behavior: smooth;
-  scroll-snap-type: y mandatory;
-}
+  1. @tailwind base
+     - Inclui o Preflight (reset CSS)
+     - Estilos base do Tailwind
+     - Nossos estilos @layer base
 
-body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
-}
+  2. @tailwind components
+     - Classes de componentes do Tailwind
+     - Nossos estilos @layer components
+     - Plugins de terceiros
 
-.section {
-  height: 100vh;
-  scroll-snap-align: start;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-}
+  3. @tailwind utilities
+     - Classes utilitárias do Tailwind
+     - Nossos estilos @layer utilities
+     - Responsividade e estados
 
-.navigation {
-  position: fixed;
-  top: 50%;
-  right: 2rem;
-  transform: translateY(-50%);
-  z-index: 1000;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
+  4. tokens.css
+     - Variáveis CSS centralizadas
+     - Tokens semânticos para temas
+     - Paletas de cores organizadas
 
-.nav-dot {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  border: 2px solid var(--muted-foreground);
-  background: transparent;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
+  5. components.css
+     - Componentes personalizados
+     - Estilos usando @layer
+     - Responsividade e temas
 
-.nav-dot.active {
-  background: var(--primary);
-  border-color: var(--primary);
-}
+  EXEMPLO DE COMO USAR:
 
-.nav-dot:hover {
-  border-color: var(--primary);
-  background: var(--muted);
-}
+  // Em um componente React
+  import { theme, cn } from '@/styles/theme'
 
-@media (max-width: 768px) {
-  .navigation {
-    right: 1rem;
+  export function Card({ children, variant = 'default' }) {
+    return (
+      <div className={cn(
+        theme.card.base,
+        variant === 'elevated' && theme.card.variants.elevated
+      )}>
+        {children}
+      </div>
+    )
   }
 
-  .nav-dot {
-    width: 10px;
-    height: 10px;
-  }
-}
+  // Usando classes Tailwind que consomem nossos tokens
+  <div className="bg-primary text-primary-foreground p-4 rounded-lg">
+    <h2 className="text-foreground text-xl font-bold">Título</h2>
+    <p className="text-muted-foreground">Descrição</p>
+  </div>
 
-/* Tema claro */
-.gradient-top-menu {
-  position: relative;
-  background: linear-gradient(135deg, 
-    #4b5eaa 0%, 
-    #3a4578 20%, 
-    #1c2526 40%, 
-    #1c2526 60%, 
-    #3a4578 80%, 
-    #4b5eaa 100%
-  );
-}
+  // Usando componentes CSS personalizados
+  <button className="btn btn-primary">
+    Clique aqui
+  </button>
 
-.gradient-top-menu::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(135deg, 
-    #1c2526 0%, 
-    #3a4578 20%, 
-    #4b5eaa 40%, 
-    #4b5eaa 60%, 
-    #3a4578 80%, 
-    #1c2526 100%
-  );
-  opacity: 0;
-  transition: opacity 0.3s ease-in-out;
-  pointer-events: none;
-}
+  MUDANÇA DE TEMA:
 
-.gradient-top-menu > * {
-  position: relative;
-  z-index: 1;
-}
+  // Tema claro (padrão)
+  document.documentElement.classList.remove('dark')
 
-.gradient-bio {
-  background: linear-gradient(135deg, #f5f5f5 0%, #e5e7eb 100%);
-}
+  // Tema escuro
+  document.documentElement.classList.add('dark')
 
-.gradient-projetos {
-  background: linear-gradient(135deg, #ffffff 0%, #f5f5f5 100%);
-}
+  MUDANÇA DE COR PRINCIPAL:
 
-.gradient-carreira {
-  background: linear-gradient(135deg, #f5f5f5 0%, #e5e7eb 100%);
-}
+  // Em tokens.css, altere:
+  --primary: var(--amber-400); // Para amber
+  --primary: var(--blue-500);  // Para azul
+  --primary: var(--green-500); // Para verde
 
-.gradient-hobbys {
-  background: linear-gradient(135deg, #e5e7eb 0%, #6b7280 100%);
-}
+  BENEFÍCIOS DESTA ESTRUTURA:
 
-.gradient-blog {
-  background: linear-gradient(135deg, #6b7280 0%, #fbbf24 100%);
-}
-
-.gradient-contato {
-  background: linear-gradient(135deg, #fbbf24 0%, #1a1a1a 100%);
-}
-
-/* Tema escuro */
-.dark .gradient-top-menu::before {
-  opacity: 1;
-}
-
-.dark .gradient-bio {
-  background: linear-gradient(135deg, #d3d3d3 0%, #1c2526 100%);
-}
-
-.dark .gradient-projetos {
-  background: linear-gradient(135deg, #1c2526 0%, #a8b5b2 100%);
-}
-
-.dark .gradient-carreira {
-  background: linear-gradient(135deg, #4b5eaa 0%, #a8b5b2 100%);
-}
-
-.dark .gradient-hobbys {
-  background: linear-gradient(135deg, #a8b5b2 0%, #d3d3d3 100%);
-}
-
-.dark .gradient-blog {
-  background: linear-gradient(135deg, #d3d3d3 0%, #ffffff 100%);
-}
-
-.dark .gradient-contato {
-  background: linear-gradient(135deg, #ffffff 0%, #1c2526 100%);
-}
-
-:root {
-  --radius: 0.625rem;
-  /* Tema claro */
-  --background: #f5f5f5; /* white_smoke */
-  --foreground: #1a1a1a; /* eerie_black */
-  --card: #ffffff; /* white */
-  --card-foreground: #1a1a1a; /* eerie_black */
-  --popover: #ffffff; /* white */
-  --popover-foreground: #1a1a1a; /* eerie_black */
-  --primary: #fbbf24; /* amber */
-  --primary-foreground: #1a1a1a; /* eerie_black */
-  --secondary: #e5e7eb; /* anti_flash_white */
-  --secondary-foreground: #1a1a1a; /* eerie_black */
-  --muted: #e5e7eb; /* anti_flash_white */
-  --muted-foreground: #6b7280; /* slate_gray */
-  --accent: #e5e7eb; /* anti_flash_white */
-  --accent-foreground: #1a1a1a; /* eerie_black */
-  --destructive: #ef4444; /* red-500 */
-  --destructive-foreground: #ffffff; /* white */
-  --border: #e5e7eb; /* anti_flash_white */
-  --input: #e5e7eb; /* anti_flash_white */
-  --ring: #6b7280; /* slate_gray */
-  --chart-1: #fbbf24; /* amber */
-  --chart-2: #6b7280; /* slate_gray */
-  --chart-3: #1a1a1a; /* eerie_black */
-  --chart-4: #f5f5f5; /* white_smoke */
-  --chart-5: #e5e7eb; /* anti_flash_white */
-  --sidebar: #f9f9f9; /* white_smoke.700 */
-  --sidebar-foreground: #1a1a1a; /* eerie_black */
-  --sidebar-primary: #fbbf24; /* amber */
-  --sidebar-primary-foreground: #1a1a1a; /* eerie_black */
-  --sidebar-accent: #e5e7eb; /* anti_flash_white */
-  --sidebar-accent-foreground: #1a1a1a; /* eerie_black */
-  --sidebar-border: #e5e7eb; /* anti_flash_white */
-  --sidebar-ring: #6b7280; /* slate_gray */
-}
-
-.dark {
-  /* Tema escuro */
-  --background: #1c2526; /* gunmetal */
-  --foreground: #ffffff; /* white */
-  --card: #4b5eaa; /* savoy_blue */
-  --card-foreground: #ffffff; /* white */
-  --popover: #4b5eaa; /* savoy_blue */
-  --popover-foreground: #ffffff; /* white */
-  --primary: #d3d3d3; /* timberwolf */
-  --primary-foreground: #1c2526; /* gunmetal */
-  --secondary: #a8b5b2; /* ash_gray */
-  --secondary-foreground: #ffffff; /* white */
-  --muted: #a8b5b2; /* ash_gray */
-  --muted-foreground: #d3d3d3; /* timberwolf */
-  --accent: #a8b5b2; /* ash_gray */
-  --accent-foreground: #ffffff; /* white */
-  --destructive: #ef4444; /* red-500 */
-  --destructive-foreground: #ffffff; /* white */
-  --border: #4b5eaa; /* savoy_blue */
-  --input: #4b5eaa; /* savoy_blue */
-  --ring: #a8b5b2; /* ash_gray */
-  --chart-1: #4b5eaa; /* savoy_blue */
-  --chart-2: #a8b5b2; /* ash_gray */
-  --chart-3: #d3d3d3; /* timberwolf */
-  --chart-4: #ffffff; /* white */
-  --chart-5: #1c2526; /* gunmetal */
-  --sidebar: #4b5eaa; /* savoy_blue */
-  --sidebar-foreground: #ffffff; /* white */
-  --sidebar-primary: #d3d3d3; /* timberwolf */
-  --sidebar-primary-foreground: #1c2526; /* gunmetal */
-  --sidebar-accent: #a8b5b2; /* ash_gray */
-  --sidebar-accent-foreground: #ffffff; /* white */
-  --sidebar-border: #4b5eaa; /* savoy_blue */
-  --sidebar-ring: #a8b5b2; /* ash_gray */
-}
-
-/* ===================================================================
-   ESTILIZAÇÃO GERAL
-   =================================================================== 
+  ✅ Escalabilidade máxima
+  ✅ Manutenção simplificada
+  ✅ Performance otimizada
+  ✅ Compatibilidade total com Tailwind
+  ✅ Temas nativos (claro/escuro)
+  ✅ Tokens semânticos
+  ✅ Organização profissional
+  ✅ Reutilização de código
+  ✅ Tipagem TypeScript (theme.ts)
+  ✅ Padrões da indústria
 */
-
-* {
-  border-color: var(--border);
-  outline-color: var(--ring);
-  outline-offset: 2px;
-}
-
-body {
-  background-color: var(--background);
-  color: var(--foreground);
-}
-
-.nav-button {
-  background: transparent !important;
-  border: none !important;
-  color: inherit;
-  font-weight: 600;
-  font-size: 1rem;
-  padding: 0.75rem 1rem;
-  position: relative;
-  transition: all 0.3s ease;
-  border-radius: 0 !important;
-}
-
-.nav-button::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  width: 0;
-  height: 2px;
-  background: var(--primary);
-  transition: all 0.3s ease;
-  transform: translateX(-50%);
-}
-
-.nav-button:hover {
-  background: transparent !important;
-  color: var(--primary);
-  transform: translateY(-1px);
-}
-
-.nav-button:hover::after {
-  width: 80%;
-}
-
-.nav-button.active {
-  background: transparent !important;
-  color: var(--primary);
-  font-weight: 700;
-}
-
-.nav-button.active::after {
-  width: 100%;
-  height: 3px;
-}
-
-/* Tema escuro */
-.dark .nav-button {
-  color: var(--foreground);
-}
-
-.dark .nav-button:hover {
-  color: var(--primary);
-}
-
-.dark .nav-button.active {
-  color: var(--primary);
-}
