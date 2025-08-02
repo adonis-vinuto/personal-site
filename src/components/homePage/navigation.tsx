@@ -43,4 +43,3 @@ export default function Navigation({ sections }: NavigationProps) {
     </nav>
   );
 }
-

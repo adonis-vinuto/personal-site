@@ -12,7 +12,7 @@ export default function KeyboardNavigation({ totalSections }: KeyboardNavigation
       const currentScrollY = window.scrollY;
       const windowHeight = window.innerHeight;
       const currentSection = Math.round(currentScrollY / windowHeight);
-      
+
       switch (e.key) {
         case 'ArrowDown':
         case 'j':
@@ -24,7 +24,7 @@ export default function KeyboardNavigation({ totalSections }: KeyboardNavigation
             });
           }
           break;
-          
+
         case 'ArrowUp':
         case 'k':
           e.preventDefault();
@@ -35,7 +35,7 @@ export default function KeyboardNavigation({ totalSections }: KeyboardNavigation
             });
           }
           break;
-          
+
         case 'Home':
           e.preventDefault();
           window.scrollTo({
@@ -43,7 +43,7 @@ export default function KeyboardNavigation({ totalSections }: KeyboardNavigation
             behavior: 'smooth'
           });
           break;
-          
+
         case 'End':
           e.preventDefault();
           window.scrollTo({
@@ -51,7 +51,7 @@ export default function KeyboardNavigation({ totalSections }: KeyboardNavigation
             behavior: 'smooth'
           });
           break;
-          
+
         // Navegação direta por números
         case '1':
         case '2':
@@ -77,4 +77,3 @@ export default function KeyboardNavigation({ totalSections }: KeyboardNavigation
 
   return null; // Este componente não renderiza nada visualmente
 }
-
