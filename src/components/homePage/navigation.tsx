@@ -17,7 +17,7 @@ export default function Navigation({ sections }: NavigationProps) {
       setActiveSection(Math.min(currentSection, sections.length - 1));
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, [sections.length]);
 
