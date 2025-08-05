@@ -1,248 +1,355 @@
 /* ===================================================================
-   TOKENS.CSS - DESIGN TOKENS SEMÂNTICOS (VERSÃO MELHORADA)
+   TOKENS.CSS - DESIGN TOKENS MONOCROMÁTICOS (VERSÃO 2.0)
    ================================================================= */
 
 /* 
-  Este arquivo centraliza todos os tokens de design do projeto usando
-  nomenclatura semântica para facilitar manutenção e escalabilidade.
+  Sistema monocromático elegante com foco em tipografia e hierarquia visual.
+  Paleta baseada em tons de preto, branco e cinza para máxima versatilidade.
   
   Estrutura:
-  1. Cores base (paletas nomeadas)
-  2. Tokens semânticos (:root - tema claro)
-  3. Sobrescritas para tema escuro (.dark)
-  4. Dimensões e outros tokens
+  1. Importação de fontes
+  2. Paleta monocromática base
+  3. Tokens tipográficos
+  4. Tokens semânticos (tema claro)
+  5. Sobrescritas para tema escuro
+  6. Dimensões e outros tokens
 */
+
+/* ===================================================================
+   IMPORTAÇÃO DE FONTES
+   ================================================================= */
+
+/* Fontes serão importadas via layout.tsx do Next.js */
 
 :root {
   /* ===================================================================
-     PALETAS DE CORES BASE - NOMEADAS SEMANTICAMENTE
+     PALETA MONOCROMÁTICA BASE
      ================================================================= */
   
-  /* Cores Fundamentais */
-  --white: #ffffff;
-  --black: #000000;
+  /* Escala de Cinzas Profissionais */
+  --pure-white: #ffffff;
+  --ghost-white: #fafafa;
+  --light-gray: #f5f5f5;
+  --silver: #e5e5e5;
+  --medium-gray: #a0a0a0;
+  --dark-gray: #6b6b6b;
+  --charcoal: #2a2a2a;
+  --near-black: #1a1a1a;
+  --pure-black: #000000;
   
-  /* Paleta Amber - Cor Principal */
-  --amber-50: #fefce8;
-  --amber-100: #fef3c7;
-  --amber-200: #fde68a;
-  --amber-300: #fcd34d;
-  --amber-400: #fbbf24;
-  --amber-500: #f59e0b;
-  --amber-600: #d97706;
-  --amber-700: #b45309;
-  --amber-800: #92400e;
-  --amber-900: #78350f;
+  /* Tons Intermediários para Transições */
+  --gray-50: #fafafa;
+  --gray-100: #f5f5f5;
+  --gray-200: #e5e5e5;
+  --gray-300: #d4d4d4;
+  --gray-400: #a3a3a3;
+  --gray-500: #737373;
+  --gray-600: #525252;
+  --gray-700: #404040;
+  --gray-800: #262626;
+  --gray-900: #171717;
   
-  /* Paleta Neutra - Grays */
-  --neutral-50: #f9fafb;
-  --neutral-100: #f3f4f6;
-  --neutral-200: #e5e7eb;
-  --neutral-300: #d1d5db;
-  --neutral-400: #9ca3af;
-  --neutral-500: #6b7280;
-  --neutral-600: #4b5563;
-  --neutral-700: #374151;
-  --neutral-800: #1f2937;
-  --neutral-900: #111827;
+  /* ===================================================================
+     SISTEMA TIPOGRÁFICO ESTRUTURADO
+     ================================================================= */
   
-  /* Cores Personalizadas do Projeto */
-  --savoy-blue: #4b5eaa;
-  --ash-gray: #a8b5b2;
-  --gunmetal: #1c2526;
-  --timberwolf: #d3d3d3;
-  --white-smoke: #f5f5f5;
-  --eerie-black: #1a1a1a;
-  --anti-flash-white: #e5e7eb;
-  --slate-gray: #6b7280;
+  /* Famílias de Fontes */
+  --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  --font-display: 'Playfair Display', 'Times New Roman', serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
   
-  /* Cores de Estado */
-  --success: #22c55e;
-  --warning: #f59e0b;
-  --error: #ef4444;
-  --info: #3b82f6;
+  /* Hero Title - Playfair Display */
+  --font-hero: var(--font-display);
+  --size-hero: clamp(2.5rem, 5vw, 4rem);
+  --weight-hero: 700;
+  --line-height-hero: 1.1;
+  --letter-spacing-hero: -0.02em;
+  
+  /* H1 - Inter Bold */
+  --font-h1: var(--font-primary);
+  --size-h1: clamp(2rem, 4vw, 3rem);
+  --weight-h1: 700;
+  --line-height-h1: 1.2;
+  --letter-spacing-h1: -0.015em;
+  
+  /* H2 - Inter Semibold */
+  --font-h2: var(--font-primary);
+  --size-h2: clamp(1.5rem, 3vw, 2.25rem);
+  --weight-h2: 600;
+  --line-height-h2: 1.3;
+  --letter-spacing-h2: -0.01em;
+  
+  /* H3 - Inter Medium */
+  --font-h3: var(--font-primary);
+  --size-h3: clamp(1.25rem, 2.5vw, 1.75rem);
+  --weight-h3: 500;
+  --line-height-h3: 1.4;
+  --letter-spacing-h3: -0.005em;
+  
+  /* H4 - Inter Medium */
+  --font-h4: var(--font-primary);
+  --size-h4: clamp(1.125rem, 2vw, 1.5rem);
+  --weight-h4: 500;
+  --line-height-h4: 1.4;
+  --letter-spacing-h4: 0;
+  
+  /* Body Large - Lead Text */
+  --font-body-large: var(--font-primary);
+  --size-body-large: clamp(1.125rem, 2vw, 1.25rem);
+  --weight-body-large: 400;
+  --line-height-body-large: 1.6;
+  --letter-spacing-body-large: 0;
+  
+  /* Body Regular - Parágrafo */
+  --font-body: var(--font-primary);
+  --size-body: clamp(0.875rem, 1.5vw, 1rem);
+  --weight-body: 400;
+  --line-height-body: 1.7;
+  --letter-spacing-body: 0;
+  
+  /* Body Small - Detalhes */
+  --font-body-small: var(--font-primary);
+  --size-body-small: clamp(0.75rem, 1.2vw, 0.875rem);
+  --weight-body-small: 400;
+  --line-height-body-small: 1.5;
+  --letter-spacing-body-small: 0.01em;
+  
+  /* Caption - Legendas */
+  --font-caption: var(--font-primary);
+  --size-caption: 0.75rem;
+  --weight-caption: 500;
+  --line-height-caption: 1.4;
+  --letter-spacing-caption: 0.05em;
+  --text-transform-caption: uppercase;
+  
+  /* Code - Código */
+  --font-code: var(--font-mono);
+  --size-code: 0.875rem;
+  --weight-code: 400;
+  --line-height-code: 1.6;
+  --letter-spacing-code: 0;
+  
+  /* Button Text */
+  --font-button: var(--font-primary);
+  --size-button: 0.875rem;
+  --weight-button: 500;
+  --line-height-button: 1;
+  --letter-spacing-button: 0.025em;
   
   /* ===================================================================
      TOKENS SEMÂNTICOS - TEMA CLARO
      ================================================================= */
   
   /* Backgrounds Hierárquicos */
-  --background: var(--white-smoke);
-  --background-secondary: var(--white);
-  --background-tertiary: var(--neutral-50);
-  --background-muted: var(--neutral-100);
+  --background: var(--pure-white);
+  --background-secondary: var(--ghost-white);
+  --background-tertiary: var(--light-gray);
+  --background-muted: var(--silver);
+  --background-subtle: var(--gray-100);
   
   /* Foregrounds Hierárquicos */
-  --foreground: var(--eerie-black);
-  --foreground-secondary: var(--neutral-700);
-  --foreground-muted: var(--slate-gray);
-  --foreground-subtle: var(--neutral-400);
+  --foreground: var(--pure-black);
+  --foreground-secondary: var(--near-black);
+  --foreground-muted: var(--dark-gray);
+  --foreground-subtle: var(--medium-gray);
+  --foreground-disabled: var(--gray-400);
   
   /* Componentes Base */
-  --card: var(--white);
-  --card-foreground: var(--eerie-black);
+  --card: var(--pure-white);
+  --card-foreground: var(--pure-black);
   
-  --popover: var(--white);
-  --popover-foreground: var(--eerie-black);
+  --popover: var(--pure-white);
+  --popover-foreground: var(--pure-black);
   
   /* Cores de Ação */
-  --primary: var(--amber-400);
-  --primary-foreground: var(--eerie-black);
+  --primary: var(--pure-black);
+  --primary-foreground: var(--pure-white);
   
-  --secondary: var(--anti-flash-white);
-  --secondary-foreground: var(--eerie-black);
+  --secondary: var(--light-gray);
+  --secondary-foreground: var(--pure-black);
   
   /* Estados de Interação */
-  --muted: var(--anti-flash-white);
-  --muted-foreground: var(--slate-gray);
+  --muted: var(--light-gray);
+  --muted-foreground: var(--dark-gray);
   
-  --accent: var(--anti-flash-white);
-  --accent-foreground: var(--eerie-black);
+  --accent: var(--silver);
+  --accent-foreground: var(--pure-black);
   
-  /* Feedback States */
-  --destructive: var(--error);
-  --destructive-foreground: var(--white);
+  /* Feedback States (mantendo funcionalidade) */
+  --destructive: #dc2626;
+  --destructive-foreground: var(--pure-white);
   
-  --success-bg: var(--success);
-  --success-foreground: var(--white);
+  --success: #16a34a;
+  --success-foreground: var(--pure-white);
   
-  --warning-bg: var(--warning);
-  --warning-foreground: var(--eerie-black);
+  --warning: #ca8a04;
+  --warning-foreground: var(--pure-white);
+  
+  --info: #2563eb;
+  --info-foreground: var(--pure-white);
   
   /* Bordas e Contornos */
-  --border: var(--anti-flash-white);
-  --border-secondary: var(--neutral-300);
-  --border-muted: var(--neutral-200);
+  --border: var(--silver);
+  --border-secondary: var(--gray-300);
+  --border-muted: var(--gray-200);
   
-  --input: var(--anti-flash-white);
-  --ring: var(--slate-gray);
+  --input: var(--light-gray);
+  --ring: var(--dark-gray);
   
   /* Sidebar */
-  --sidebar: var(--neutral-50);
-  --sidebar-foreground: var(--eerie-black);
-  --sidebar-primary: var(--amber-400);
-  --sidebar-primary-foreground: var(--eerie-black);
-  --sidebar-accent: var(--anti-flash-white);
-  --sidebar-accent-foreground: var(--eerie-black);
-  --sidebar-border: var(--anti-flash-white);
-  --sidebar-ring: var(--slate-gray);
+  --sidebar: var(--ghost-white);
+  --sidebar-foreground: var(--pure-black);
+  --sidebar-primary: var(--pure-black);
+  --sidebar-primary-foreground: var(--pure-white);
+  --sidebar-accent: var(--light-gray);
+  --sidebar-accent-foreground: var(--pure-black);
+  --sidebar-border: var(--silver);
+  --sidebar-ring: var(--dark-gray);
   
-  /* Charts */
-  --chart-1: var(--amber-400);
-  --chart-2: var(--slate-gray);
-  --chart-3: var(--eerie-black);
-  --chart-4: var(--white-smoke);
-  --chart-5: var(--anti-flash-white);
+  /* Charts (tons de cinza) */
+  --chart-1: var(--gray-900);
+  --chart-2: var(--gray-700);
+  --chart-3: var(--gray-500);
+  --chart-4: var(--gray-300);
+  --chart-5: var(--gray-100);
   
   /* ===================================================================
-     GRADIENTES PERSONALIZADOS - TEMA CLARO
+     GRADIENTES MONOCROMÁTICOS POR SEÇÃO
      ================================================================= */
   
-  --gradient-primary: var(--savoy-blue);
-  --gradient-secondary: #3a4578;
-  --gradient-tertiary: var(--gunmetal);
-  --gradient-light: var(--neutral-50);
-  --gradient-medium: var(--neutral-200);
-  --gradient-dark: var(--neutral-500);
-  --gradient-accent: var(--amber-400);
+  /* Seção Bio - Claro para médio */
+  --gradient-bio-start: var(--ghost-white);
+  --gradient-bio-end: var(--light-gray);
+  
+  /* Seção Projetos - Médio claro */
+  --gradient-projetos-start: var(--light-gray);
+  --gradient-projetos-end: var(--silver);
+  
+  /* Seção Carreira - Escuro */
+  --gradient-carreira-start: var(--charcoal);
+  --gradient-carreira-end: var(--dark-gray);
+  
+  /* Seção Hobbys - Muito claro */
+  --gradient-hobbys-start: var(--pure-white);
+  --gradient-hobbys-end: var(--ghost-white);
+  
+  /* Seção Blog - Médio escuro */
+  --gradient-blog-start: var(--dark-gray);
+  --gradient-blog-end: var(--charcoal);
+  
+  /* Seção Contato - Muito escuro */
+  --gradient-contato-start: var(--near-black);
+  --gradient-contato-end: var(--pure-black);
   
   /* ===================================================================
      DIMENSÕES E OUTROS TOKENS
      ================================================================= */
   
-  --radius: 0.625rem;
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
+  --radius: 0.5rem;
+  --radius-sm: calc(var(--radius) - 2px);
+  --radius-md: var(--radius);
+  --radius-lg: calc(var(--radius) + 2px);
   --radius-xl: calc(var(--radius) + 4px);
   
-  /* Sombras */
+  /* Sombras Sutis */
   --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
   --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
   --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
   --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
   --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
   
-  /* Transições */
-  --transition-fast: 150ms ease;
-  --transition-normal: 200ms ease;
-  --transition-slow: 300ms ease;
+  /* Transições Suaves */
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 350ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-bounce: 400ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
 /* ===================================================================
-   TEMA ESCURO - SOBRESCRITAS SEMÂNTICAS
+   TEMA ESCURO - SOBRESCRITAS MONOCROMÁTICAS
    ================================================================= */
 
 .dark {
-  /* Backgrounds Hierárquicos */
-  --background: var(--gunmetal);
-  --background-secondary: var(--savoy-blue);
-  --background-tertiary: var(--neutral-700);
-  --background-muted: var(--neutral-800);
+  /* Backgrounds Hierárquicos Invertidos */
+  --background: var(--pure-black);
+  --background-secondary: var(--near-black);
+  --background-tertiary: var(--charcoal);
+  --background-muted: var(--dark-gray);
+  --background-subtle: var(--gray-800);
   
-  /* Foregrounds Hierárquicos */
-  --foreground: var(--white);
-  --foreground-secondary: var(--timberwolf);
-  --foreground-muted: var(--ash-gray);
-  --foreground-subtle: var(--neutral-400);
+  /* Foregrounds Hierárquicos Invertidos */
+  --foreground: var(--pure-white);
+  --foreground-secondary: var(--ghost-white);
+  --foreground-muted: var(--light-gray);
+  --foreground-subtle: var(--medium-gray);
+  --foreground-disabled: var(--gray-600);
   
   /* Componentes Base */
-  --card: var(--savoy-blue);
-  --card-foreground: var(--white);
+  --card: var(--near-black);
+  --card-foreground: var(--pure-white);
   
-  --popover: var(--savoy-blue);
-  --popover-foreground: var(--white);
+  --popover: var(--near-black);
+  --popover-foreground: var(--pure-white);
   
   /* Cores de Ação */
-  --primary: var(--timberwolf);
-  --primary-foreground: var(--gunmetal);
+  --primary: var(--pure-white);
+  --primary-foreground: var(--pure-black);
   
-  --secondary: var(--ash-gray);
-  --secondary-foreground: var(--white);
+  --secondary: var(--charcoal);
+  --secondary-foreground: var(--pure-white);
   
   /* Estados de Interação */
-  --muted: var(--ash-gray);
-  --muted-foreground: var(--timberwolf);
+  --muted: var(--charcoal);
+  --muted-foreground: var(--light-gray);
   
-  --accent: var(--ash-gray);
-  --accent-foreground: var(--white);
-  
-  /* Feedback States */
-  --destructive: var(--error);
-  --destructive-foreground: var(--white);
-  
-  --success-bg: var(--success);
-  --success-foreground: var(--white);
-  
-  --warning-bg: var(--warning);
-  --warning-foreground: var(--gunmetal);
+  --accent: var(--dark-gray);
+  --accent-foreground: var(--pure-white);
   
   /* Bordas e Contornos */
-  --border: var(--savoy-blue);
-  --border-secondary: var(--ash-gray);
-  --border-muted: var(--neutral-600);
+  --border: var(--dark-gray);
+  --border-secondary: var(--gray-600);
+  --border-muted: var(--gray-700);
   
-  --input: var(--savoy-blue);
-  --ring: var(--ash-gray);
+  --input: var(--charcoal);
+  --ring: var(--light-gray);
   
   /* Sidebar */
-  --sidebar: var(--savoy-blue);
-  --sidebar-foreground: var(--white);
-  --sidebar-primary: var(--timberwolf);
-  --sidebar-primary-foreground: var(--gunmetal);
-  --sidebar-accent: var(--ash-gray);
-  --sidebar-accent-foreground: var(--white);
-  --sidebar-border: var(--savoy-blue);
-  --sidebar-ring: var(--ash-gray);
+  --sidebar: var(--near-black);
+  --sidebar-foreground: var(--pure-white);
+  --sidebar-primary: var(--pure-white);
+  --sidebar-primary-foreground: var(--pure-black);
+  --sidebar-accent: var(--charcoal);
+  --sidebar-accent-foreground: var(--pure-white);
+  --sidebar-border: var(--dark-gray);
+  --sidebar-ring: var(--light-gray);
   
-  /* Charts */
-  --chart-1: var(--savoy-blue);
-  --chart-2: var(--ash-gray);
-  --chart-3: var(--timberwolf);
-  --chart-4: var(--white);
-  --chart-5: var(--gunmetal);
+  /* Charts (tons de cinza invertidos) */
+  --chart-1: var(--gray-100);
+  --chart-2: var(--gray-300);
+  --chart-3: var(--gray-500);
+  --chart-4: var(--gray-700);
+  --chart-5: var(--gray-900);
   
-  /* Sombras para tema escuro */
+  /* Gradientes Invertidos para Tema Escuro */
+  --gradient-bio-start: var(--charcoal);
+  --gradient-bio-end: var(--dark-gray);
+  
+  --gradient-projetos-start: var(--dark-gray);
+  --gradient-projetos-end: var(--medium-gray);
+  
+  --gradient-carreira-start: var(--ghost-white);
+  --gradient-carreira-end: var(--light-gray);
+  
+  --gradient-hobbys-start: var(--near-black);
+  --gradient-hobbys-end: var(--charcoal);
+  
+  --gradient-blog-start: var(--light-gray);
+  --gradient-blog-end: var(--ghost-white);
+  
+  --gradient-contato-start: var(--pure-white);
+  --gradient-contato-end: var(--ghost-white);
+  
+  /* Sombras mais intensas para tema escuro */
   --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
   --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.4), 0 1px 2px -1px rgb(0 0 0 / 0.4);
   --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.4), 0 2px 4px -2px rgb(0 0 0 / 0.4);
@@ -255,38 +362,56 @@
    ================================================================= */
 
 /*
-  COMO USAR OS TOKENS SEMÂNTICOS:
-
-  1. CORES DE FUNDO:
-     - var(--background) - Fundo principal
-     - var(--background-secondary) - Fundo secundário
-     - var(--card) - Fundo de cards/componentes
-
-  2. CORES DE TEXTO:
-     - var(--foreground) - Texto principal
-     - var(--foreground-muted) - Texto secundário
-     - var(--muted-foreground) - Texto sutil
-
-  3. CORES DE AÇÃO:
-     - var(--primary) - Cor principal de ação
-     - var(--secondary) - Cor secundária
-     - var(--accent) - Cor de destaque
-
-  4. BORDAS E CONTORNOS:
-     - var(--border) - Bordas padrão
-     - var(--ring) - Contornos de foco
-
-  5. FEEDBACK:
-     - var(--destructive) - Ações destrutivas
-     - var(--success-bg) - Sucesso
-     - var(--warning-bg) - Avisos
-
+  SISTEMA TIPOGRÁFICO:
+  
+  1. TÍTULOS:
+     - Hero: var(--font-hero) var(--size-hero) var(--weight-hero)
+     - H1: var(--font-h1) var(--size-h1) var(--weight-h1)
+     - H2: var(--font-h2) var(--size-h2) var(--weight-h2)
+     - H3: var(--font-h3) var(--size-h3) var(--weight-h3)
+  
+  2. CORPO:
+     - Lead: var(--font-body-large) var(--size-body-large)
+     - Regular: var(--font-body) var(--size-body)
+     - Small: var(--font-body-small) var(--size-body-small)
+  
+  3. ESPECIAIS:
+     - Caption: var(--font-caption) var(--size-caption)
+     - Code: var(--font-code) var(--size-code)
+     - Button: var(--font-button) var(--size-button)
+  
+  PALETA MONOCROMÁTICA:
+  
+  1. BACKGROUNDS:
+     - Principal: var(--background)
+     - Secundário: var(--background-secondary)
+     - Cards: var(--card)
+  
+  2. TEXTOS:
+     - Principal: var(--foreground)
+     - Secundário: var(--foreground-muted)
+     - Sutil: var(--foreground-subtle)
+  
+  3. AÇÕES:
+     - Primária: var(--primary)
+     - Secundária: var(--secondary)
+     - Destaque: var(--accent)
+  
   EXEMPLO DE USO:
-  .meu-componente {
-    background: var(--card);
-    color: var(--card-foreground);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
+  
+  .hero-title {
+    font-family: var(--font-hero);
+    font-size: var(--size-hero);
+    font-weight: var(--weight-hero);
+    line-height: var(--line-height-hero);
+    letter-spacing: var(--letter-spacing-hero);
+    color: var(--foreground);
+  }
+  
+  .section-bio {
+    background: linear-gradient(135deg, 
+      var(--gradient-bio-start) 0%, 
+      var(--gradient-bio-end) 100%
+    );
   }
 */

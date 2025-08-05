@@ -20,28 +20,70 @@ export default function Home() {
       <Navigation sections={sections} />
       <KeyboardNavigation totalSections={sections.length} />
 
-      <Section id="bio" className="gradient-bio">
+      {/* Bio - Claro para médio */}
+      <Section
+        id="bio"
+        className="bg-gradient-to-br from-ghost-white to-light-gray text-foreground"
+      >
         <Bio />
       </Section>
 
-      <Section id="projetos" className="gradient-projetos">
+      {/* Projetos - Médio claro */}
+      <Section
+        id="projetos"
+        className="bg-gradient-to-br from-light-gray to-silver text-foreground"
+      >
         <Projetos />
       </Section>
 
-      <Section id="carreira" className="gradient-carreira">
+      {/* Carreira - Escuro */}
+      <Section
+        id="carreira"
+        className="bg-gradient-to-br from-charcoal to-dark-gray text-white"
+      >
         <Carreira />
       </Section>
 
-      <Section id="hobbys" className="gradient-hobbys">
+      {/* Hobbys - Muito claro */}
+      <Section
+        id="hobbys"
+        className="bg-gradient-to-br from-white to-ghost-white text-foreground"
+      >
         <Hobbys />
       </Section>
 
-      <Section id="blog" className="gradient-blog">
+      {/* Blog - Médio escuro */}
+      <Section
+        id="blog"
+        className="bg-gradient-to-br from-dark-gray to-charcoal text-white"
+      >
         <Blog />
       </Section>
 
-      <Section id="contato" className="gradient-contato">
-        <Contato />
+      {/* Contato - Muito escuro (preparado para footer) */}
+      <Section
+        id="contato"
+        className="bg-gradient-to-br from-near-black to-black text-white footer-section"
+      >
+        <div className="footer-content">
+          <Contato />
+        </div>
+
+        {/* Área preparada para footer futuro */}
+        <div className="footer-info border-t border-white/10 bg-black/20 backdrop-blur-sm">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+              <p className="text-sm text-white/60">
+                © 2024 Adonis Vinuto. Todos os direitos reservados.
+              </p>
+              <div className="flex items-center space-x-4 text-sm text-white/60">
+                <span>Desenvolvido com ❤️</span>
+                <span>•</span>
+                <span>Next.js & Tailwind CSS</span>
+              </div>
+            </div>
+          </div>
+        </div>
       </Section>
     </main>
   );

@@ -1,11 +1,11 @@
 /* ===================================================================
-   GLOBALS.CSS - ARQUIVO PRINCIPAL (TAILWIND CSS V4 COMPATÍVEL)
+   GLOBALS.CSS - ARQUIVO PRINCIPAL MONOCROMÁTICO (VERSÃO 2.0)
    ================================================================= */
 
 /* 
   Este arquivo é o ponto de entrada principal para todos os estilos
-  do projeto. Ele importa as diretivas compatíveis com Tailwind CSS v4
-  e nossa estrutura modular personalizada.
+  do projeto monocromático. Ele importa as diretivas compatíveis com 
+  Tailwind CSS v4 e nossa estrutura modular personalizada.
 */
 
 /* ===================================================================
@@ -30,31 +30,31 @@
    ================================================================= */
 
 /*
+  SISTEMA MONOCROMÁTICO:
+
+  Este sistema foi redesenhado para usar apenas tons de preto, branco e cinza,
+  criando uma identidade visual elegante e atemporal.
+
   COMO FUNCIONA ESTA ESTRUTURA:
 
-  1. @tailwind base
+  1. @tailwind preflight
      - Inclui o Preflight (reset CSS)
      - Estilos base do Tailwind
      - Nossos estilos @layer base
 
-  2. @tailwind components
-     - Classes de componentes do Tailwind
-     - Nossos estilos @layer components
-     - Plugins de terceiros
-
-  3. @tailwind utilities
+  2. @tailwind utilities
      - Classes utilitárias do Tailwind
      - Nossos estilos @layer utilities
      - Responsividade e estados
 
-  4. tokens.css
-     - Variáveis CSS centralizadas
+  3. tokens.css
+     - Variáveis CSS centralizadas monocromáticas
+     - Sistema tipográfico estruturado
      - Tokens semânticos para temas
-     - Paletas de cores organizadas
 
-  5. components.css
+  4. components.css
      - Componentes personalizados
-     - Estilos usando @layer
+     - Estilos usando CSS nativo
      - Responsividade e temas
 
   EXEMPLO DE COMO USAR:
@@ -74,15 +74,15 @@
   }
 
   // Usando classes Tailwind que consomem nossos tokens
-  <div className="bg-primary text-primary-foreground p-4 rounded-lg">
+  <div className="bg-background text-foreground p-4 rounded-lg">
     <h2 className="text-foreground text-xl font-bold">Título</h2>
     <p className="text-muted-foreground">Descrição</p>
   </div>
 
-  // Usando componentes CSS personalizados
-  <button className="btn btn-primary">
-    Clique aqui
-  </button>
+  // Usando tipografia estruturada
+  <h1 className={theme.typography.hero}>Título Principal</h1>
+  <p className={theme.typography.lead}>Texto de destaque</p>
+  <p className={theme.typography.body}>Texto normal</p>
 
   MUDANÇA DE TEMA:
 
@@ -92,15 +92,29 @@
   // Tema escuro
   document.documentElement.classList.add('dark')
 
-  MUDANÇA DE COR PRINCIPAL:
+  SISTEMA TIPOGRÁFICO:
 
-  // Em tokens.css, altere:
-  --primary: var(--amber-400); // Para amber
-  --primary: var(--blue-500);  // Para azul
-  --primary: var(--green-500); // Para verde
+  // Hierarquia clara com 3 famílias de fontes:
+  - Inter: Fonte principal para interface
+  - JetBrains Mono: Fonte monoespaçada para código
+  - Playfair Display: Fonte display para títulos principais
+
+  PALETA MONOCROMÁTICA:
+
+  // Escala de cinzas profissionais:
+  - Pure White (#ffffff)
+  - Ghost White (#fafafa)
+  - Light Gray (#f5f5f5)
+  - Silver (#e5e5e5)
+  - Medium Gray (#a0a0a0)
+  - Dark Gray (#6b6b6b)
+  - Charcoal (#2a2a2a)
+  - Near Black (#1a1a1a)
+  - Pure Black (#000000)
 
   BENEFÍCIOS DESTA ESTRUTURA:
 
+  ✅ Elegância atemporal
   ✅ Escalabilidade máxima
   ✅ Manutenção simplificada
   ✅ Performance otimizada
@@ -109,6 +123,7 @@
   ✅ Tokens semânticos
   ✅ Organização profissional
   ✅ Reutilização de código
-  ✅ Tipagem TypeScript (theme.ts)
+  ✅ Tipografia hierárquica
+  ✅ Acessibilidade melhorada
   ✅ Padrões da indústria
 */
