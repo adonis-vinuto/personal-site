@@ -32,10 +32,16 @@ export default function TopMenu({ sections }: TopMenuProps) {
   };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 w-full z-50 bg-background/80 backdrop-blur-md border-b border-border">
-      <div className="w-full px-4 sm:px-6 lg:px-8">
+    <nav
+      className="fixed top-0 left-0 right-0 w-full z-50 bg-background/80 backdrop-blur-md border-b border-border"
+      style={{ height: '80px' }}
+    >
+      <div className="w-full px-4 sm:px-6 lg:px-8" style={{ height: '100%' }}>
 
-        <div className="relative flex items-center justify-between h-28">
+        <div
+          className="relative flex items-center justify-between"
+          style={{ height: '80px', minHeight: '80px', maxHeight: '80px' }}
+        >
 
           {/* Placeholder invisível à esquerda para balancear o layout */}
           <div className="w-1/3" />
