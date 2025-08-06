@@ -34,10 +34,14 @@ export default function TopMenu({ sections }: TopMenuProps) {
   return (
     <nav className="fixed top-0 left-0 right-0 w-full z-50 bg-background/80 backdrop-blur-md border-b border-border">
       <div className="w-full px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-center h-16 relative">
 
-          {/* Navegação Principal - Centralizada */}
-          <div className="flex items-center space-x-1">
+        <div className="relative flex items-center justify-between h-28">
+
+          {/* Placeholder invisível à esquerda para balancear o layout */}
+          <div className="w-1/3" />
+
+          {/* Navegação Principal - Centralizada visualmente */}
+          <div className="absolute left-1/2 transform -translate-x-1/2 flex items-center space-x-1">
             {sections.map((section, index) => (
               <Button
                 key={section}
@@ -50,9 +54,13 @@ export default function TopMenu({ sections }: TopMenuProps) {
             ))}
           </div>
 
-          {/* Toggle de Tema - Posição Absoluta no Canto Direito */}
-          <div className="absolute right-0 flex items-center">
-            <ThemeToggle />
+          <div className="flex items-center justify-end">
+            <div
+              className="mr-6 sm:mr-8 lg:mr-10"
+              style={{ marginRight: '1rem', marginTop: '0.5rem' }}
+            >
+              <ThemeToggle />
+            </div>
           </div>
         </div>
       </div>

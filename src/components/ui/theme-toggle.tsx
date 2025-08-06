@@ -64,7 +64,7 @@ interface ThemeToggleProps {
 
 export function ThemeToggle({
     className = '',
-    variant = 'outline',
+    variant = 'secondary',
     size = 'icon'
 }: ThemeToggleProps) {
     const { theme, toggleTheme, mounted } = useTheme();
