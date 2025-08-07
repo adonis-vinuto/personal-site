@@ -312,6 +312,11 @@ a:hover {
 .nav-button.active::after {
   width: 100%;
   height: 2px;
+  transform: translateX(-50%) scaleX(1) !important;
+}
+
+.nav-button.active::before {
+  opacity: 0.1 !important;
 }
 
 /* ===================================================================
