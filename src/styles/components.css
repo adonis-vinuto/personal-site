@@ -746,3 +746,40 @@ a:hover {
   0% { transform: translateX(-100%); }
   100% { transform: translateX(100%); }
 }
+
+/* ===================================================================
+   PATTERNS LATERAIS NO MENU
+   ================================================================= */
+
+.menu-with-side-patterns {
+  position: fixed !important;
+}
+
+.menu-with-side-patterns::before,
+.menu-with-side-patterns::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 400px;
+  background-color: var(--pattern-bg);
+  background-image: var(--pattern-image);
+  background-size: var(--pattern-size);
+  background-repeat: var(--pattern-repeat);
+  transition: all 500ms ease-in-out;
+  z-index: 1;
+}
+
+.menu-with-side-patterns::before {
+  left: 0;
+}
+
+.menu-with-side-patterns::after {
+  right: 0;
+}
+
+/* Garantir que o conteúdo do menu fique acima dos patterns */
+.menu-with-side-patterns > div {
+  position: relative;
+  z-index: 10;
+}

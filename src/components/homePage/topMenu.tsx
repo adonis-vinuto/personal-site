@@ -105,16 +105,18 @@ export default function TopMenu({ sections }: TopMenuProps) {
 
   return (
     <nav
-      className="fixed top-0 left-0 right-0 w-full z-50 backdrop-blur-md border-b border-border transition-all duration-500 ease-in-out"
+      className="fixed top-0 left-0 right-0 w-full z-50 backdrop-blur-md border-b border-border transition-all duration-500 ease-in-out menu-with-side-patterns"
       style={{
         height: '80px',
         minHeight: '80px',
         maxHeight: '80px',
-        backgroundColor: currentPattern.backgroundColor,
-        backgroundImage: currentPattern.backgroundImage,
-        backgroundSize: currentPattern.backgroundSize,
-        backgroundRepeat: currentPattern.backgroundRepeat
-      }}>
+        backgroundColor: 'var(--background)',
+        position: 'relative',
+        '--pattern-bg': currentPattern.backgroundColor,
+        '--pattern-image': currentPattern.backgroundImage,
+        '--pattern-size': currentPattern.backgroundSize,
+        '--pattern-repeat': currentPattern.backgroundRepeat
+      } as React.CSSProperties}>
 
       <div className="w-full px-4 sm:px-6 lg:px-8" style={{ height: '100%' }}>
 
