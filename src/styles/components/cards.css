@@ -1,0 +1,592 @@
+/* 
+  ===================================================================
+  CARDS.CSS - SISTEMA COMPLETO DE CARDS
+  ===================================================================
+*/
+
+/* 
+  ===================================================================
+  CARD BASE - Estrutura Fundamental
+  ===================================================================
+*/
+
+.card {
+  /* Estrutura visual */
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  background: var(--card);
+  color: var(--card-foreground);
+  
+  /* Comportamento */
+  transition: var(--transition-enter);
+  position: relative;
+  overflow: hidden;
+  
+  /* Garante que o card seja um container de formatação */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Hover suave no card inteiro */
+.card:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(calc(var(--space-1) * -1));
+}
+
+/* Card clicável */
+.card-clickable {
+  cursor: pointer;
+}
+
+.card-clickable:active {
+  transform: translateY(0);
+  transition: transform var(--transition-fast);
+}
+
+/* 
+  ===================================================================
+  ANATOMIA DO CARD - Partes Estruturais
+  ===================================================================
+*/
+
+/* Header do card - contém título e meta informações */
+.card-header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-6);
+  
+  /* Permite layouts flexíveis no header */
+  position: relative;
+}
+
+/* Header com ação (botão ou menu no canto) */
+.card-header-with-action {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: start;
+  gap: var(--space-4);
+}
+
+/* Título do card */
+.card-title {
+  font-family: var(--font-h3);
+  font-size: var(--size-h3);
+  font-weight: var(--weight-h3);
+  line-height: var(--line-height-h3);
+  letter-spacing: var(--letter-spacing-h3);
+  color: var(--foreground);
+  
+  /* Previne quebra desnecessária em títulos */
+  text-wrap: balance;
+}
+
+/* Descrição/subtítulo do card */
+.card-description {
+  font-family: var(--font-body-small);
+  font-size: var(--size-body-small);
+  font-weight: var(--weight-body-small);
+  line-height: var(--line-height-body-small);
+  color: var(--foreground-tertiary);
+  
+  /* Limita a altura da descrição para manter cards uniformes */
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Meta informações (data, autor, tags) */
+.card-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--size-caption);
+  color: var(--foreground-quaternary);
+  margin-top: var(--space-1);
+}
+
+.card-meta-divider {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--foreground-quaternary);
+}
+
+/* Conteúdo principal do card */
+.card-content {
+  padding: var(--space-6);
+  padding-top: 0;
+  
+  /* Permite que o conteúdo cresça e empurre o footer para baixo */
+  flex: 1;
+}
+
+/* Footer do card - ações e informações secundárias */
+.card-footer {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-6);
+  padding-top: 0;
+  
+  /* Auto margem para empurrar footer para o fim em cards flex */
+  margin-top: auto;
+}
+
+/* Footer com separador visual */
+.card-footer-bordered {
+  border-top: 1px solid var(--border);
+  padding-top: var(--space-6);
+  margin-top: var(--space-6);
+}
+
+/* 
+  ===================================================================
+  CARD COM IMAGEM - Variações com Mídia Visual
+  ===================================================================
+*/
+
+/* Container da imagem */
+.card-image {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  
+  /* Proporção padrão 16:9 */
+  aspect-ratio: 16 / 9;
+  
+  /* Remove padding do container normal */
+  padding: 0;
+}
+
+/* Imagem no topo do card */
+.card-image-top {
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  border-bottom: 1px solid var(--border);
+}
+
+/* Imagem ocupando card inteiro (background) */
+.card-image-full {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+/* Conteúdo sobre imagem */
+.card-image-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(0, 0, 0, 0.8) 100%
+  );
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: var(--space-6);
+  color: white;
+  z-index: 1;
+}
+
+/* Imagem em si */
+.card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-slow);
+}
+
+/* Zoom na imagem ao hover do card */
+.card:hover .card-image img {
+  transform: scale(1.05);
+}
+
+/* Badge/tag sobre a imagem */
+.card-image-badge {
+  position: absolute;
+  top: var(--space-4);
+  left: var(--space-4);
+  padding: var(--space-1) var(--space-3);
+  background: var(--background);
+  color: var(--foreground);
+  border-radius: var(--radius);
+  font-size: var(--size-caption);
+  font-weight: var(--weight-caption);
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.9);
+  z-index: 2;
+}
+
+/* 
+  ===================================================================
+  VARIANTES DE CARD - Diferentes Estilos Visuais
+  ===================================================================
+*/
+
+/* Card elevado - maior destaque */
+.card-elevated {
+  box-shadow: var(--shadow-lg);
+  border: none;
+}
+
+.card-elevated:hover {
+  box-shadow: var(--shadow-xl);
+  transform: translateY(calc(var(--space-2) * -1));
+}
+
+/* Card outline - apenas borda */
+.card-outlined {
+  box-shadow: none;
+  border: 2px solid var(--border);
+  background: transparent;
+}
+
+.card-outlined:hover {
+  border-color: var(--foreground-tertiary);
+  background: var(--accent);
+}
+
+/* Card ghost - sem borda ou sombra */
+.card-ghost {
+  box-shadow: none;
+  border: none;
+  background: transparent;
+}
+
+.card-ghost:hover {
+  background: var(--accent);
+}
+
+/* Card com gradiente */
+.card-gradient {
+  background: linear-gradient(
+    135deg,
+    var(--card) 0%,
+    var(--accent) 100%
+  );
+  border: none;
+}
+
+/* Card escuro (para seções claras) */
+.card-dark {
+  background: var(--foreground);
+  color: var(--background);
+  border-color: var(--foreground);
+}
+
+.card-dark .card-title {
+  color: var(--background);
+}
+
+.card-dark .card-description {
+  color: var(--background);
+  opacity: 0.8;
+}
+
+/* 
+  ===================================================================
+  TAMANHOS DE CARD - Variações de Dimensão
+  ===================================================================
+*/
+
+/* Card pequeno */
+.card-sm {
+  /* Reduz padding proporcionalmente */
+  .card-header,
+  .card-content,
+  .card-footer {
+    padding: var(--space-4);
+  }
+  
+  .card-content,
+  .card-footer {
+    padding-top: 0;
+  }
+  
+  .card-title {
+    font-size: var(--size-h4);
+  }
+}
+
+/* Card grande */
+.card-lg {
+  /* Aumenta padding proporcionalmente */
+  .card-header,
+  .card-content,
+  .card-footer {
+    padding: var(--space-8);
+  }
+  
+  .card-content,
+  .card-footer {
+    padding-top: 0;
+  }
+  
+  .card-title {
+    font-size: var(--size-h2);
+  }
+  
+  .card-description {
+    font-size: var(--size-body);
+  }
+}
+
+/* 
+  ===================================================================
+  CARDS ESPECIALIZADOS - Casos de Uso Específicos
+  ===================================================================
+*/
+
+/* Card de estatística */
+.card-stat {
+  text-align: center;
+  padding: var(--space-6);
+}
+
+.card-stat-value {
+  font-size: var(--size-h1);
+  font-weight: var(--weight-h1);
+  color: var(--primary);
+  line-height: 1;
+  margin-bottom: var(--space-2);
+}
+
+.card-stat-label {
+  font-size: var(--size-body-small);
+  color: var(--foreground-tertiary);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-caption);
+}
+
+.card-stat-change {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  margin-top: var(--space-3);
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius);
+  font-size: var(--size-caption);
+  font-weight: var(--weight-caption);
+}
+
+.card-stat-change.positive {
+  background: var(--success);
+  color: var(--success-foreground);
+}
+
+.card-stat-change.negative {
+  background: var(--destructive);
+  color: var(--destructive-foreground);
+}
+
+/* Card de perfil/usuário */
+.card-profile {
+  text-align: center;
+  padding: var(--space-6);
+}
+
+.card-profile-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin: 0 auto var(--space-4);
+  border: 3px solid var(--border);
+  overflow: hidden;
+}
+
+.card-profile-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card-profile-name {
+  font-size: var(--size-h4);
+  font-weight: var(--weight-h4);
+  margin-bottom: var(--space-1);
+}
+
+.card-profile-role {
+  color: var(--foreground-tertiary);
+  font-size: var(--size-body-small);
+  margin-bottom: var(--space-4);
+}
+
+/* Card de feature/recurso */
+.card-feature {
+  text-align: center;
+  padding: var(--space-8);
+  border: 2px solid transparent;
+  transition: all var(--transition-enter);
+}
+
+.card-feature:hover {
+  border-color: var(--primary);
+  transform: translateY(calc(var(--space-1) * -1));
+}
+
+.card-feature-icon {
+  width: 48px;
+  height: 48px;
+  margin: 0 auto var(--space-4);
+  padding: var(--space-3);
+  border-radius: var(--radius);
+  background: var(--accent);
+  color: var(--accent-foreground);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-feature-icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+/* 
+  ===================================================================
+  CARD GRID - Layout de Múltiplos Cards
+  ===================================================================
+*/
+
+.card-grid {
+  display: grid;
+  gap: var(--space-6);
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}
+
+/* Variações de grid */
+.card-grid-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.card-grid-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.card-grid-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+/* Cards em lista (vertical) */
+.card-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+/* Card horizontal (para listas) */
+.card-horizontal {
+  flex-direction: row;
+  
+  .card-image {
+    width: 200px;
+    flex-shrink: 0;
+  }
+  
+  .card-header,
+  .card-content,
+  .card-footer {
+    padding: var(--space-4);
+  }
+}
+
+/* 
+  ===================================================================
+  ESTADOS E INTERAÇÕES - Feedback Visual
+  ===================================================================
+*/
+
+/* Card selecionado */
+.card-selected {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(var(--primary), 0.1);
+}
+
+/* Card desabilitado */
+.card-disabled {
+  opacity: 0.5;
+  pointer-events: none;
+  cursor: not-allowed;
+}
+
+/* Card com loading */
+.card-loading {
+  position: relative;
+  overflow: hidden;
+}
+
+.card-loading::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--card);
+  opacity: 0.8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+/* Skeleton loading para cards */
+.card-skeleton {
+  animation: skeleton-pulse 2s ease-in-out infinite;
+}
+
+@keyframes skeleton-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* 
+  ===================================================================
+  RESPONSIVIDADE - Adaptações Mobile
+  ===================================================================
+*/
+
+@media (max-width: 768px) {
+  /* Cards ocupam largura total em mobile */
+  .card {
+    margin: 0 var(--space-4);
+  }
+  
+  /* Ajusta padding em telas menores */
+  .card-header,
+  .card-content,
+  .card-footer {
+    padding: var(--space-4);
+  }
+  
+  /* Grid responsivo */
+  .card-grid-2,
+  .card-grid-3,
+  .card-grid-4 {
+    grid-template-columns: 1fr;
+  }
+  
+  /* Card horizontal vira vertical em mobile */
+  .card-horizontal {
+    flex-direction: column;
+    
+    .card-image {
+      width: 100%;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  /* Padding ainda menor em telas muito pequenas */
+  .card-header,
+  .card-content,
+  .card-footer {
+    padding: var(--space-3);
+  }
+  
+  .card-title {
+    font-size: var(--size-h4);
+  }
+}
