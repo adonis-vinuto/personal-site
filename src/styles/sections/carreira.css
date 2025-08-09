@@ -1,0 +1,151 @@
+/* 
+  ===================================================================
+  CARREIRA.CSS - CUSTOMIZAÇÕES PARA A SEÇÃO CARREIRA
+  ===================================================================
+*/
+
+/* 
+  ===================================================================
+  SEÇÃO CARREIRA - CONFIGURAÇÃO BASE
+  ===================================================================
+*/
+
+#carreira,
+.section-carreira {
+  /* Gradiente escuro */
+  background: linear-gradient(135deg,
+    var(--gray-6) 0%,    /* charcoal */
+    var(--gray-5) 100%); /* dark gray */
+  
+  /* Texto claro para contraste */
+  color: var(--gray-0);
+}
+
+/* 
+  ===================================================================
+  CUSTOMIZAÇÕES DE COMPONENTES
+  ===================================================================
+*/
+
+/* Cards na seção escura */
+#carreira .card,
+.section-carreira .card {
+  background: rgba(0, 0, 0, 0.3);
+  border-color: rgba(255, 255, 255, 0.1);
+  color: var(--gray-0);
+  backdrop-filter: blur(10px);
+}
+
+#carreira .card:hover,
+.section-carreira .card:hover {
+  background: rgba(0, 0, 0, 0.4);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Títulos */
+#carreira h1,
+#carreira h2,
+#carreira h3,
+#carreira .card-title,
+.section-carreira h1,
+.section-carreira h2,
+.section-carreira h3,
+.section-carreira .card-title {
+  color: var(--gray-0);
+}
+
+/* Textos secundários */
+#carreira .text-muted,
+#carreira .card-description,
+.section-carreira .text-muted,
+.section-carreira .card-description {
+  color: var(--gray-3);
+}
+
+/* Botões invertidos */
+#carreira .btn,
+#carreira .btn-primary,
+.section-carreira .btn,
+.section-carreira .btn-primary {
+  background: var(--gray-0);
+  color: var(--gray-8);
+  border-color: var(--gray-0);
+}
+
+#carreira .btn:hover,
+#carreira .btn-primary:hover,
+.section-carreira .btn:hover,
+.section-carreira .btn-primary:hover {
+  background: var(--gray-1);
+  transform: translateY(-2px);
+}
+
+/* Botões outline */
+#carreira .btn-outline,
+.section-carreira .btn-outline {
+  background: transparent;
+  color: var(--gray-0);
+  border-color: var(--gray-0);
+}
+
+#carreira .btn-outline:hover,
+.section-carreira .btn-outline:hover {
+  background: var(--gray-0);
+  color: var(--gray-8);
+}
+
+/* Links */
+#carreira a,
+.section-carreira a {
+  color: var(--gray-1);
+  border-bottom-color: var(--gray-4);
+}
+
+#carreira a:hover,
+.section-carreira a:hover {
+  color: var(--gray-0);
+  border-bottom-color: var(--gray-0);
+}
+
+/* Badges */
+#carreira .badge,
+.section-carreira .badge {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--gray-0);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Divisores */
+#carreira .divide-y > * + *,
+.section-carreira .divide-y > * + * {
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Forms */
+#carreira .input,
+#carreira .textarea,
+#carreira .select,
+.section-carreira .input,
+.section-carreira .textarea,
+.section-carreira .select {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: var(--gray-0);
+}
+
+#carreira .input::placeholder,
+#carreira .textarea::placeholder,
+.section-carreira .input::placeholder,
+.section-carreira .textarea::placeholder {
+  color: var(--gray-4);
+}
+
+#carreira .input:focus,
+#carreira .textarea:focus,
+#carreira .select:focus,
+.section-carreira .input:focus,
+.section-carreira .textarea:focus,
+.section-carreira .select:focus {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: var(--gray-0);
+}

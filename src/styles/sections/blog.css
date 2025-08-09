@@ -1,0 +1,104 @@
+/* 
+  ===================================================================
+  BLOG.CSS - CUSTOMIZAÇÕES PARA A SEÇÃO BLOG
+  ===================================================================
+*/
+
+/* 
+  ===================================================================
+  SEÇÃO BLOG - CONFIGURAÇÃO BASE
+  ===================================================================
+*/
+
+#blog,
+.section-blog {
+  /* Gradiente médio escuro */
+  background: linear-gradient(135deg,
+    var(--gray-5) 0%,    /* dark gray */
+    var(--gray-6) 100%); /* charcoal */
+  
+  /* Texto claro */
+  color: var(--gray-0);
+}
+
+/* 
+  ===================================================================
+  CUSTOMIZAÇÕES DE COMPONENTES
+  ===================================================================
+*/
+
+/* Cards de post */
+#blog .card,
+.section-blog .card {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.1);
+  color: var(--gray-0);
+  backdrop-filter: blur(5px);
+}
+
+#blog .card:hover,
+.section-blog .card:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+/* Títulos */
+#blog h1,
+#blog h2,
+#blog h3,
+#blog .card-title,
+.section-blog h1,
+.section-blog h2,
+.section-blog h3,
+.section-blog .card-title {
+  color: var(--gray-0);
+}
+
+/* Meta informações (data, autor) */
+#blog .card-meta,
+#blog .text-muted,
+.section-blog .card-meta,
+.section-blog .text-muted {
+  color: var(--gray-3);
+}
+
+/* Botões */
+#blog .btn,
+.section-blog .btn {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--gray-0);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+#blog .btn:hover,
+.section-blog .btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Links */
+#blog a,
+.section-blog a {
+  color: var(--gray-2);
+  border-bottom-color: var(--gray-4);
+}
+
+#blog a:hover,
+.section-blog a:hover {
+  color: var(--gray-0);
+  border-bottom-color: var(--gray-2);
+}
+
+/* Tags/Categories */
+#blog .badge,
+.section-blog .badge {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--gray-1);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+/* Divisores */
+#blog .divide-y > * + *,
+.section-blog .divide-y > * + * {
+  border-color: rgba(255, 255, 255, 0.08);
+}
