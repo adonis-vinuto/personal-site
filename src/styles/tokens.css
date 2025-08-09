@@ -1,6 +1,6 @@
 /* 
    ===================================================================
-   TOKENS.CSS - SISTEMA MODULAR DE CORES, TIPOGRAFIA E DIMENSÕES
+   TOKENS.CSS - SISTEMA MODULAR HARMONIZADO
    ===================================================================
 */
 
@@ -172,16 +172,16 @@
 
    /* 
       ===================================================================
-      PALETAS POR SEÇÃO - SISTEMA PREPARADO PARA EXPANSÃO
+      PALETAS POR SEÇÃO - SISTEMA HARMONIZADO
       ===================================================================
    */
 
    /* =====  SEÇÃO BIO  ===== */
-   --bio-ultra-light: var(--gray-0);           /* Futuro: #faf9f7 (warm white) */
-   --bio-light: var(--gray-1);                 /* Futuro: #f4f3f0 (cream) */
-   --bio-medium: var(--gray-2);                /* Futuro: #e8e6e1 (warm gray) */
-   --bio-dark: var(--gray-5);                  /* Futuro: #8b7355 (warm dark) */
-   --bio-ultra-dark: var(--gray-8);            /* Futuro: #5c4a37 (warm black) */
+   --bio-ultra-light: var(--gray-0);           
+   --bio-light: var(--gray-1);                 
+   --bio-medium: var(--gray-2);                
+   --bio-dark: var(--gray-5);                  
+   --bio-ultra-dark: var(--gray-8);            
 
    /* Tokens Semânticos da Bio */
    --bio-background: var(--bio-ultra-light);
@@ -191,11 +191,11 @@
    --bio-accent: var(--bio-medium);
 
    /* =====  SEÇÃO PROJETOS  ===== */
-   --projetos-ultra-light: var(--gray-1);      /* Futuro: #f0f4f8 (cool white) */
-   --projetos-light: var(--gray-2);            /* Futuro: #e2e8f0 (cool light) */
-   --projetos-medium: var(--gray-3);           /* Futuro: #cbd5e0 (cool medium) */
-   --projetos-dark: var(--gray-5);             /* Futuro: #4a5568 (cool dark) */
-   --projetos-ultra-dark: var(--gray-7);       /* Futuro: #2d3748 (cool black) */
+   --projetos-ultra-light: var(--gray-1);      
+   --projetos-light: var(--gray-2);            
+   --projetos-medium: var(--gray-3);           
+   --projetos-dark: var(--gray-5);             
+   --projetos-ultra-dark: var(--gray-7);       
 
    /* Tokens Semânticos dos Projetos */
    --projetos-background: var(--projetos-ultra-light);
@@ -205,11 +205,11 @@
    --projetos-accent: var(--projetos-medium);
 
    /* =====  SEÇÃO CARREIRA  ===== */
-   --carreira-ultra-light: var(--gray-6);      /* Futuro: #1a202c (dark blue) */
-   --carreira-light: var(--gray-5);            /* Futuro: #2d3748 (slate) */
-   --carreira-medium: var(--gray-4);           /* Futuro: #4a5568 (medium slate) */
-   --carreira-dark: var(--gray-2);             /* Futuro: #e2e8f0 (light text) */
-   --carreira-ultra-dark: var(--gray-0);       /* Futuro: #f7fafc (white text) */
+   --carreira-ultra-light: var(--gray-6);      
+   --carreira-light: var(--gray-5);            
+   --carreira-medium: var(--gray-4);           
+   --carreira-dark: var(--gray-2);             
+   --carreira-ultra-dark: var(--gray-0);       
 
    /* Tokens Semânticos da Carreira */
    --carreira-background: var(--carreira-ultra-light);
@@ -219,11 +219,11 @@
    --carreira-accent: var(--carreira-medium);
 
    /* =====  SEÇÃO HOBBYS  ===== */
-   --hobbys-ultra-light: var(--gray-0);        /* Futuro: #fffbf0 (warm white) */
-   --hobbys-light: var(--gray-1);              /* Futuro: #fef5e7 (cream) */
-   --hobbys-medium: var(--gray-2);             /* Futuro: #fbd38d (warm accent) */
-   --hobbys-dark: var(--gray-6);               /* Futuro: #c05621 (warm dark) */
-   --hobbys-ultra-dark: var(--gray-8);         /* Futuro: #9c4221 (warm black) */
+   --hobbys-ultra-light: var(--gray-0);        
+   --hobbys-light: var(--gray-1);              
+   --hobbys-medium: var(--gray-2);             
+   --hobbys-dark: var(--gray-6);               
+   --hobbys-ultra-dark: var(--gray-8);         
 
    /* Tokens Semânticos dos Hobbys */
    --hobbys-background: var(--hobbys-ultra-light);
@@ -233,11 +233,11 @@
    --hobbys-accent: var(--hobbys-medium);
 
    /* =====  SEÇÃO BLOG  ===== */
-   --blog-ultra-light: var(--gray-5);          /* Futuro: #2a4365 (blue dark) */
-   --blog-light: var(--gray-4);                /* Futuro: #3182ce (blue medium) */
-   --blog-medium: var(--gray-3);               /* Futuro: #63b3ed (blue accent) */
-   --blog-dark: var(--gray-1);                 /* Futuro: #bee3f8 (blue light) */
-   --blog-ultra-dark: var(--gray-0);           /* Futuro: #ebf8ff (blue white) */
+   --blog-ultra-light: var(--gray-5);          
+   --blog-light: var(--gray-4);                
+   --blog-medium: var(--gray-3);               
+   --blog-dark: var(--gray-1);                 
+   --blog-ultra-dark: var(--gray-0);           
 
    /* Tokens Semânticos do Blog */
    --blog-background: var(--blog-ultra-light);
@@ -247,11 +247,11 @@
    --blog-accent: var(--blog-medium);
 
    /* =====  SEÇÃO CONTATO  ===== */
-   --contato-ultra-light: var(--gray-8);       /* Futuro: #1a1a2e (deep dark) */
-   --contato-light: var(--gray-7);             /* Futuro: #16213e (dark blue) */
-   --contato-medium: var(--gray-5);            /* Futuro: #0f3460 (medium blue) */
-   --contato-dark: var(--gray-2);              /* Futuro: #e53e3e (accent red) */
-   --contato-ultra-dark: var(--gray-0);        /* Futuro: #ffffff (pure white) */
+   --contato-ultra-light: var(--gray-8);       
+   --contato-light: var(--gray-7);             
+   --contato-medium: var(--gray-5);            
+   --contato-dark: var(--gray-2);              
+   --contato-ultra-dark: var(--gray-0);        
 
    /* Tokens Semânticos do Contato */
    --contato-background: var(--contato-ultra-light);
