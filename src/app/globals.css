@@ -1,26 +1,243 @@
 /* 
-   ===================================================================
-   GLOBALS.CSS - PONTO DE ENTRADA PRINCIPAL PARA ESTILOS
-   ===================================================================
+  ===================================================================
+  GLOBALS.CSS - PONTO DE ENTRADA PRINCIPAL DO SISTEMA CSS
+  ===================================================================
 */
 
 /* 
-   ===================================================================
-   TAILWIND CSS V4 - IMPORTS COMPATÍVEIS
-   ===================================================================
+  ===================================================================
+  TAILWIND CSS V4 - SISTEMA BASE
+  ===================================================================
 */
 
 @import "tailwindcss/preflight";
 @import "tailwindcss/utilities";
 
 /* 
-   ===================================================================
-   ESTRUTURA MODULAR PERSONALIZADA
-   ===================================================================
+  ===================================================================
+  SISTEMA DE DESIGN CUSTOMIZADO
+  ===================================================================
 */
 
-/* Tokens de design centralizados */
-@import "../styles/tokens.css";
+@import "../styles/index.css";
 
-/* Componentes personalizados */
-@import "../styles/components.css";
+/* 
+  ===================================================================
+  COMPATIBILIDADE E FALLBACKS
+  ===================================================================
+*/
+
+/* Garantir que o HTML use todo o espaço disponível */
+html,
+body,
+#__next,
+#root {
+  min-height: 100vh;
+  width: 100%;
+}
+
+/* Suporte para scroll suave em navegadores que precisam de prefixo */
+html {
+  -webkit-scroll-behavior: smooth;
+  -moz-scroll-behavior: smooth;
+  -ms-scroll-behavior: smooth;
+  scroll-behavior: smooth;
+}
+
+/* Melhorar renderização de fontes em diferentes sistemas */
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "kern" 1;
+  font-kerning: normal;
+}
+
+/* 
+  ===================================================================
+  CONFIGURAÇÕES ESPECÍFICAS DO NEXT.JS
+  ===================================================================
+*/
+
+/* Prevenir FOUC (Flash of Unstyled Content) */
+.no-js {
+  visibility: hidden;
+}
+
+/* Garantir que imagens do Next/Image funcionem corretamente */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Remover outline padrão do Chrome em elementos focados via mouse */
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Mas manter para navegação por teclado (acessibilidade) */
+:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+/* 
+  ===================================================================
+  PERFORMANCE OPTIMIZATIONS
+  ===================================================================
+*/
+
+/* Prevenir layout shift com fontes */
+@font-face {
+  font-family: 'Inter';
+  src: local('Inter'), url('/fonts/Inter.woff2') format('woff2');
+  font-display: swap; /* Mostra texto com fonte fallback enquanto carrega */
+}
+
+/* GPU acceleration para elementos que serão animados */
+.will-animate {
+  will-change: transform, opacity;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Mas remover após animação para liberar memória */
+.animation-done {
+  will-change: auto;
+}
+
+/* 
+  ===================================================================
+  MODO ESCURO - TRANSIÇÕES SUAVES
+  ===================================================================
+*/
+
+/* Transição suave ao mudar de tema */
+* {
+  transition: background-color 200ms ease,
+              border-color 200ms ease;
+}
+
+/* Mas não animar durante animações complexas para evitar lag */
+.animating * {
+  transition: none !important;
+}
+
+/* 
+  ===================================================================
+  ACESSIBILIDADE GLOBAL
+  ===================================================================
+*/
+
+/* Respeitar preferências do sistema para movimento reduzido */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Alto contraste para melhor legibilidade */
+@media (prefers-contrast: high) {
+  :root {
+    --border: var(--gray-4);
+    --border-subtle: var(--gray-3);
+    --border-strong: var(--gray-6);
+  }
+}
+
+/* 
+  ===================================================================
+  UTILITÁRIOS DE DESENVOLVIMENTO
+  ===================================================================
+*/
+
+/* Indicador visual do ambiente de desenvolvimento */
+body::before {
+  content: 'DEV';
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  padding: 2px 8px;
+  background: rgba(255, 0, 0, 0.1);
+  color: red;
+  font-size: 10px;
+  font-weight: bold;
+  border-radius: 3px;
+  pointer-events: none;
+  z-index: 9999;
+  display: none; /* Descomente durante desenvolvimento: display: block; */
+}
+
+/* Grid de alinhamento para design */
+.show-grid {
+  background-image: 
+    linear-gradient(rgba(255, 0, 0, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 0, 0, 0.1) 1px, transparent 1px);
+  background-size: 8px 8px;
+}
+
+/* 
+  ===================================================================
+  FIXES PARA NAVEGADORES ESPECÍFICOS
+  ===================================================================
+*/
+
+/* Fix para Safari iOS - prevenir zoom em inputs */
+@supports (-webkit-touch-callout: none) {
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  input[type="number"],
+  input[type="tel"],
+  input[type="url"],
+  textarea,
+  select {
+    font-size: 16px !important;
+  }
+}
+
+/* Fix para Firefox - scrollbar customizada */
+@supports (scrollbar-width: thin) {
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--muted) transparent;
+  }
+}
+
+/* Fix para Edge/IE - suporte a CSS Grid */
+@supports not (display: grid) {
+  .grid {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .grid > * {
+    flex: 1 1 300px;
+    margin: var(--space-2);
+  }
+}
+
+/* 
+  ===================================================================
+  ESTADO FINAL
+  ===================================================================
+*/
+
+/* Remover classe de loading quando tudo estiver carregado */
+.loaded .loading-screen {
+  display: none;
+}
+
+/* Mostrar conteúdo quando CSS estiver carregado */
+.css-loaded {
+  visibility: visible !important;
+  opacity: 1 !important;
+}
