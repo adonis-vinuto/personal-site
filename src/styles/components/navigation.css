@@ -1,0 +1,471 @@
+/* 
+  ===================================================================
+  NAVIGATION.CSS - SISTEMA COMPLETO DE NAVEGAÇÃO
+  ===================================================================
+*/
+
+/* 
+  ===================================================================
+  NAVIGATION DOTS - Indicadores Laterais de Seção
+  ===================================================================
+*/
+
+.navigation {
+  position: fixed;
+  top: 50%;
+  right: var(--space-8);
+  transform: translateY(-50%);
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  
+  /* Transição suave quando a navegação aparece/desaparece */
+  transition: opacity var(--transition-normal),
+              transform var(--transition-normal);
+}
+
+/* Dot individual */
+.nav-dot {
+  width: var(--space-3);
+  height: var(--space-3);
+  border-radius: 50%;
+  border: 2px solid var(--foreground-quaternary);
+  background: transparent;
+  cursor: pointer;
+  position: relative;
+  transition: all var(--transition-enter);
+  transform-origin: center;
+  
+  /* Remove estilos de botão se for um button */
+  padding: 0;
+  outline: none;
+}
+
+/* Efeito de hover circular */
+.nav-dot::before {
+  content: '';
+  position: absolute;
+  inset: calc(var(--space-2) * -1);
+  border-radius: 50%;
+  background: var(--foreground);
+  opacity: 0;
+  transform: scale(0);
+  transition: var(--transition-bounce);
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Estados do dot */
+.nav-dot:hover::before {
+  opacity: 0.1;
+  transform: scale(1);
+}
+
+.nav-dot:hover {
+  border-color: var(--foreground);
+  transform: scale(1.2);
+}
+
+.nav-dot.active {
+  background: var(--foreground);
+  border-color: var(--foreground);
+  transform: scale(1.1);
+}
+
+.nav-dot.active::before {
+  opacity: 0.2;
+  transform: scale(1);
+}
+
+/* Acessibilidade - foco visível */
+.nav-dot:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 4px;
+}
+
+/* 
+  ===================================================================
+  NAVIGATION BUTTONS - Botões do Menu Principal
+  ===================================================================
+*/
+
+.nav-button {
+  background: transparent !important;
+  border: none !important;
+  font-family: var(--font-button);
+  font-size: var(--size-button);
+  font-weight: var(--weight-button);
+  line-height: var(--line-height-button);
+  letter-spacing: var(--letter-spacing-button);
+  padding: var(--space-3) var(--space-5);
+  position: relative;
+  transition: var(--transition-enter);
+  border-radius: 0;
+  color: var(--foreground);
+  cursor: pointer;
+  overflow: hidden;
+}
+
+/* Linha inferior animada */
+.nav-button::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 100%;
+  height: 2px;
+  background: var(--foreground);
+  transform: translateX(-50%) scaleX(0);
+  transform-origin: center;
+  transition: transform var(--transition-bounce);
+}
+
+/* Efeito de background gradiente */
+.nav-button::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg,
+      var(--foreground) 0%,
+      transparent 100%);
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Estados do botão */
+.nav-button:hover::after {
+  transform: translateX(-50%) scaleX(1);
+}
+
+.nav-button:hover::before {
+  opacity: 0.1;
+}
+
+.nav-button:hover {
+  transform: translateY(-1px);
+}
+
+.nav-button.active {
+  font-weight: 600;
+  color: var(--foreground);
+}
+
+.nav-button.active::after {
+  transform: translateX(-50%) scaleX(1);
+  height: 3px;
+}
+
+.nav-button.active::before {
+  opacity: 0.15;
+}
+
+/* Desabilitar animações durante clique */
+.nav-button:active {
+  transform: translateY(0);
+  transition: transform var(--transition-fast);
+}
+
+/* 
+  ===================================================================
+  TOP MENU - Menu Superior com Patterns
+  ===================================================================
+*/
+
+.menu-with-side-patterns {
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 50;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  transition: all var(--transition-normal) ease-in-out;
+  background-color: var(--background);
+  
+  /* Altura fixa para estabilidade */
+  height: 80px;
+  min-height: 80px;
+  max-height: 80px;
+}
+
+/* Container interno do menu */
+.menu-with-side-patterns > div {
+  position: relative;
+  z-index: 10;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+/* Patterns laterais (se você decidir manter no futuro) */
+.menu-with-side-patterns::before,
+.menu-with-side-patterns::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 400px;
+  background-color: var(--pattern-bg, transparent);
+  background-image: var(--pattern-image, none);
+  background-size: var(--pattern-size, auto);
+  background-repeat: var(--pattern-repeat, repeat);
+  transition: var(--transition-bounce);
+  z-index: 1;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.menu-with-side-patterns::before {
+  left: 0;
+  mask-image: linear-gradient(to right, black, transparent);
+  -webkit-mask-image: linear-gradient(to right, black, transparent);
+}
+
+.menu-with-side-patterns::after {
+  right: 0;
+  mask-image: linear-gradient(to left, black, transparent);
+  -webkit-mask-image: linear-gradient(to left, black, transparent);
+}
+
+/* 
+  ===================================================================
+  MOBILE NAVIGATION - Padrões para Dispositivos Móveis
+  ===================================================================
+*/
+
+/* Botão hamburguer */
+.nav-mobile-toggle {
+  display: none;
+  width: var(--space-10);
+  height: var(--space-10);
+  padding: var(--space-2);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  z-index: 60;
+}
+
+.nav-mobile-toggle span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: var(--foreground);
+  margin: 4px 0;
+  transition: var(--transition-normal);
+  transform-origin: center;
+}
+
+/* Animação do hamburguer para X */
+.nav-mobile-toggle.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.nav-mobile-toggle.active span:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+.nav-mobile-toggle.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* Menu mobile overlay */
+.nav-mobile-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: var(--background);
+  z-index: 55;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-normal);
+}
+
+.nav-mobile-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Menu mobile panel */
+.nav-mobile-menu {
+  position: fixed;
+  top: 80px; /* Altura do header */
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--background);
+  padding: var(--space-8);
+  transform: translateY(-100%);
+  transition: transform var(--transition-bounce);
+  z-index: 56;
+  overflow-y: auto;
+  
+  /* Sombra sutil na parte superior */
+  box-shadow: 0 -1px 0 var(--border);
+}
+
+.nav-mobile-menu.active {
+  transform: translateY(0);
+}
+
+/* Items do menu mobile */
+.nav-mobile-item {
+  display: block;
+  padding: var(--space-4) 0;
+  font-size: var(--size-body-large);
+  font-weight: var(--weight-button);
+  color: var(--foreground);
+  border-bottom: 1px solid var(--border);
+  transition: var(--transition-enter);
+}
+
+.nav-mobile-item:hover {
+  color: var(--foreground-tertiary);
+  padding-left: var(--space-2);
+}
+
+.nav-mobile-item.active {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+/* 
+  ===================================================================
+  BREADCRUMB - Navegação de Migalhas de Pão
+  ===================================================================
+*/
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--size-body-small);
+  color: var(--foreground-tertiary);
+}
+
+.breadcrumb-item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  transition: var(--transition-enter);
+}
+
+.breadcrumb-item a {
+  color: var(--foreground-tertiary);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: var(--transition-enter);
+}
+
+.breadcrumb-item a:hover {
+  color: var(--foreground);
+  border-bottom-color: var(--foreground);
+}
+
+/* Separador entre items */
+.breadcrumb-separator {
+  color: var(--foreground-quaternary);
+  user-select: none;
+}
+
+/* Item atual (não clicável) */
+.breadcrumb-current {
+  color: var(--foreground);
+  font-weight: 500;
+  cursor: default;
+}
+
+/* 
+  ===================================================================
+  MEDIA QUERIES - Responsividade
+  ===================================================================
+*/
+
+@media (max-width: 768px) {
+  /* Esconder navegação lateral em mobile */
+  .navigation {
+    right: var(--space-4);
+    gap: var(--space-4);
+  }
+
+  .nav-dot {
+    width: var(--space-3);
+    height: var(--space-3);
+  }
+
+  /* Ajustar botões de navegação */
+  .nav-button {
+    font-size: calc(var(--size-button) * 0.9);
+    padding: var(--space-2) var(--space-4);
+  }
+  
+  /* Mostrar toggle mobile */
+  .nav-mobile-toggle {
+    display: block;
+  }
+  
+  /* Esconder menu desktop */
+  .nav-desktop {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Navegação ainda mais compacta em telas muito pequenas */
+  .navigation {
+    right: var(--space-2);
+    gap: var(--space-3);
+  }
+  
+  .nav-dot {
+    width: 10px;
+    height: 10px;
+    border-width: 1.5px;
+  }
+  
+  /* Menu mobile com padding reduzido */
+  .nav-mobile-menu {
+    padding: var(--space-4);
+  }
+  
+  .nav-mobile-item {
+    padding: var(--space-3) 0;
+    font-size: var(--size-body);
+  }
+}
+
+/* 
+  ===================================================================
+  ANIMAÇÕES ESPECIAIS
+  ===================================================================
+*/
+
+@keyframes nav-fade-in {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Aplicar animação de entrada aos dots */
+.navigation.animate-in .nav-dot {
+  animation: nav-fade-in var(--transition-normal) var(--ease-enter) backwards;
+}
+
+/* Delay progressivo para cada dot */
+.navigation.animate-in .nav-dot:nth-child(1) { animation-delay: 0ms; }
+.navigation.animate-in .nav-dot:nth-child(2) { animation-delay: 50ms; }
+.navigation.animate-in .nav-dot:nth-child(3) { animation-delay: 100ms; }
+.navigation.animate-in .nav-dot:nth-child(4) { animation-delay: 150ms; }
+.navigation.animate-in .nav-dot:nth-child(5) { animation-delay: 200ms; }
+.navigation.animate-in .nav-dot:nth-child(6) { animation-delay: 250ms; }

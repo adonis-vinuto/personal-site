@@ -1,0 +1,527 @@
+/* 
+  ===================================================================
+  BUTTONS.CSS - SISTEMA COMPLETO DE BOTÕES
+  ===================================================================
+*/
+
+/* 
+  ===================================================================
+  BOTÃO BASE - Estrutura Fundamental
+  ===================================================================
+*/
+
+.btn {
+  /* Layout e posicionamento */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  
+  /* Tipografia */
+  font-family: var(--font-button);
+  font-size: var(--size-button);
+  font-weight: var(--weight-button);
+  line-height: var(--line-height-button);
+  letter-spacing: var(--letter-spacing-button);
+  
+  /* Dimensões padrão */
+  padding: var(--space-3) var(--space-6);
+  min-height: var(--space-12);
+  
+  /* Aparência */
+  border-radius: var(--radius);
+  border: none;
+  cursor: pointer;
+  
+  /* Comportamento */
+  position: relative;
+  overflow: hidden;
+  transition: var(--transition-enter);
+  outline: none;
+  
+  /* Previne seleção de texto */
+  user-select: none;
+  -webkit-user-select: none;
+  
+  /* Melhora o toque em dispositivos móveis */
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+/* Camada de hover universal */
+.btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: currentColor;
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+  pointer-events: none;
+}
+
+/* 
+  ===================================================================
+  ESTADOS UNIVERSAIS - Aplicados a Todas as Variantes
+  ===================================================================
+*/
+
+/* Hover */
+.btn:hover::before {
+  opacity: 0.1;
+}
+
+/* Focus visível para acessibilidade */
+.btn:focus-visible {
+  box-shadow: 0 0 0 var(--space-1) var(--ring);
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+/* Active/pressed */
+.btn:active {
+  transform: scale(0.98);
+  transition: transform var(--transition-fast);
+}
+
+/* Disabled */
+.btn:disabled,
+.btn.disabled {
+  pointer-events: none;
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Loading state */
+.btn.loading {
+  color: transparent;
+  pointer-events: none;
+}
+
+.btn.loading::after {
+  content: '';
+  position: absolute;
+  width: var(--space-4);
+  height: var(--space-4);
+  top: 50%;
+  left: 50%;
+  margin-left: calc(var(--space-4) / -2);
+  margin-top: calc(var(--space-4) / -2);
+  border: 2px solid currentColor;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: btn-spin 0.6s linear infinite;
+}
+
+@keyframes btn-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* 
+  ===================================================================
+  VARIANTES DE BOTÃO - Diferentes Estilos Visuais
+  ===================================================================
+*/
+
+/* Primary - Ação principal, maior destaque */
+.btn-primary {
+  background: var(--primary);
+  color: var(--primary-foreground);
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-primary:hover {
+  transform: translateY(calc(var(--space-1) * -0.5));
+  box-shadow: var(--shadow-md);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Secondary - Ações secundárias */
+.btn-secondary {
+  background: var(--secondary);
+  color: var(--secondary-foreground);
+  border: 1px solid var(--border);
+}
+
+.btn-secondary:hover {
+  background: var(--accent);
+  color: var(--accent-foreground);
+  border-color: var(--accent);
+}
+
+/* Outline - Apenas contorno */
+.btn-outline {
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--foreground);
+}
+
+.btn-outline:hover {
+  background: var(--accent);
+  color: var(--accent-foreground);
+  border-color: var(--accent);
+}
+
+/* Ghost - Sem background ou borda */
+.btn-ghost {
+  background: transparent;
+  color: var(--foreground);
+  box-shadow: none;
+}
+
+.btn-ghost:hover {
+  background: var(--accent);
+  color: var(--accent-foreground);
+}
+
+/* Link - Parece um link mas é um botão */
+.btn-link {
+  background: transparent;
+  color: var(--primary);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  padding: 0;
+  min-height: auto;
+  box-shadow: none;
+}
+
+.btn-link:hover {
+  opacity: 0.8;
+  text-decoration: underline;
+}
+
+.btn-link:focus-visible {
+  box-shadow: none;
+  outline-offset: 4px;
+}
+
+/* Destructive - Ações perigosas ou destrutivas */
+.btn-destructive {
+  background: var(--destructive);
+  color: var(--destructive-foreground);
+}
+
+.btn-destructive:hover {
+  background: var(--destructive);
+  opacity: 0.9;
+  transform: translateY(calc(var(--space-1) * -0.5));
+}
+
+/* Success - Confirmações e ações positivas */
+.btn-success {
+  background: var(--success);
+  color: var(--success-foreground);
+}
+
+.btn-success:hover {
+  background: var(--success);
+  opacity: 0.9;
+  transform: translateY(calc(var(--space-1) * -0.5));
+}
+
+/* 
+  ===================================================================
+  TAMANHOS DE BOTÃO - Variações de Dimensão
+  ===================================================================
+*/
+
+/* Extra small */
+.btn-xs {
+  padding: var(--space-1) var(--space-2);
+  min-height: var(--space-6);
+  font-size: var(--size-caption);
+  gap: var(--space-1);
+}
+
+/* Small */
+.btn-sm {
+  padding: var(--space-2) var(--space-4);
+  min-height: var(--space-8);
+  font-size: calc(var(--size-button) * 0.875);
+  gap: var(--space-1);
+}
+
+/* Medium (padrão) - já definido no .btn base */
+
+/* Large */
+.btn-lg {
+  padding: var(--space-4) var(--space-8);
+  min-height: var(--space-12);
+  font-size: var(--size-body);
+  gap: var(--space-3);
+}
+
+/* Extra large */
+.btn-xl {
+  padding: var(--space-5) var(--space-10);
+  min-height: 56px;
+  font-size: var(--size-body-large);
+  gap: var(--space-3);
+}
+
+/* 
+  ===================================================================
+  BOTÕES DE ÍCONE - Apenas Ícone, Sem Texto
+  ===================================================================
+*/
+
+.btn-icon {
+  padding: 0;
+  width: var(--space-10);
+  height: var(--space-10);
+  min-height: auto;
+}
+
+.btn-icon.btn-xs {
+  width: var(--space-6);
+  height: var(--space-6);
+}
+
+.btn-icon.btn-sm {
+  width: var(--space-8);
+  height: var(--space-8);
+}
+
+.btn-icon.btn-lg {
+  width: var(--space-12);
+  height: var(--space-12);
+}
+
+.btn-icon.btn-xl {
+  width: 56px;
+  height: 56px;
+}
+
+/* Garantir que ícones dentro de botões tenham tamanho apropriado */
+.btn svg {
+  width: var(--space-4);
+  height: var(--space-4);
+  flex-shrink: 0;
+}
+
+.btn-xs svg {
+  width: var(--space-3);
+  height: var(--space-3);
+}
+
+.btn-xl svg {
+  width: var(--space-5);
+  height: var(--space-5);
+}
+
+/* 
+  ===================================================================
+  GRUPOS DE BOTÕES - Múltiplos Botões Conectados
+  ===================================================================
+*/
+
+.btn-group {
+  display: inline-flex;
+  position: relative;
+  gap: 0;
+}
+
+/* Remove border radius dos cantos internos */
+.btn-group > .btn:not(:first-child) {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  margin-left: -1px;
+}
+
+.btn-group > .btn:not(:last-child) {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+/* Garantir que o botão hover/focus fique na frente */
+.btn-group > .btn:hover,
+.btn-group > .btn:focus-visible,
+.btn-group > .btn:active {
+  z-index: 1;
+}
+
+/* Grupo vertical */
+.btn-group-vertical {
+  flex-direction: column;
+}
+
+.btn-group-vertical > .btn:not(:first-child) {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  margin-top: -1px;
+  margin-left: 0;
+}
+
+.btn-group-vertical > .btn:not(:last-child) {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+/* 
+  ===================================================================
+  BOTÕES ESPECIAIS - Casos de Uso Específicos
+  ===================================================================
+*/
+
+/* Botão de largura total */
+.btn-block {
+  width: 100%;
+  display: flex;
+}
+
+/* Botão flutuante (FAB - Floating Action Button) */
+.btn-fab {
+  position: fixed;
+  bottom: var(--space-6);
+  right: var(--space-6);
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  box-shadow: var(--shadow-lg);
+  z-index: 40;
+  padding: 0;
+}
+
+.btn-fab:hover {
+  transform: scale(1.1);
+  box-shadow: var(--shadow-xl);
+}
+
+.btn-fab:active {
+  transform: scale(1.05);
+}
+
+/* Botão com badge/contador */
+.btn-with-badge {
+  position: relative;
+}
+
+.btn-badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 var(--space-1);
+  background: var(--destructive);
+  color: var(--destructive-foreground);
+  border-radius: var(--radius-full);
+  font-size: 10px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+/* Botão de toggle (on/off) */
+.btn-toggle {
+  background: var(--muted);
+  color: var(--muted-foreground);
+}
+
+.btn-toggle.active {
+  background: var(--primary);
+  color: var(--primary-foreground);
+}
+
+/* Botão com loading à direita */
+.btn-loading-right {
+  padding-right: calc(var(--space-6) + var(--space-4));
+}
+
+.btn-loading-right::after {
+  left: auto;
+  right: var(--space-3);
+  margin: 0;
+  margin-top: calc(var(--space-4) / -2);
+}
+
+/* 
+  ===================================================================
+  ANIMAÇÕES E EFEITOS ESPECIAIS
+  ===================================================================
+*/
+
+/* Ripple effect ao clicar */
+.btn-ripple {
+  overflow: hidden;
+}
+
+.btn-ripple::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: 0.3;
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.btn-ripple:active::after {
+  width: 300px;
+  height: 300px;
+}
+
+/* Shine effect */
+.btn-shine {
+  overflow: hidden;
+}
+
+.btn-shine::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.3) 50%,
+    transparent 70%
+  );
+  transform: rotate(45deg) translate(-100%, -100%);
+  transition: transform 0.6s;
+}
+
+.btn-shine:hover::after {
+  transform: rotate(45deg) translate(100%, 100%);
+}
+
+/* 
+  ===================================================================
+  RESPONSIVIDADE
+  ===================================================================
+*/
+
+@media (max-width: 640px) {
+  /* Botões ocupam largura total em mobile por padrão */
+  .btn-mobile-full {
+    width: 100%;
+  }
+  
+  /* Ajustar padding em telas menores */
+  .btn {
+    padding: var(--space-2) var(--space-4);
+  }
+  
+  .btn-lg {
+    padding: var(--space-3) var(--space-6);
+  }
+  
+  /* FAB menor em mobile */
+  .btn-fab {
+    width: 48px;
+    height: 48px;
+    bottom: var(--space-4);
+    right: var(--space-4);
+  }
+}
