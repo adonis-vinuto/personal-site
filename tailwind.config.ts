@@ -4,112 +4,181 @@ import tailwindcssAnimate from 'tailwindcss-animate'
 const config: Config = {
   // Configuração do modo escuro
   darkMode: 'class',
-  
-  // Arquivos a serem escaneados
+
+  // Arquivos onde o Tailwind deve procurar por classes utilizadas
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
     './src/styles/**/*.{js,ts,jsx,tsx,mdx}',
   ],
-  
+
   theme: {
     extend: {
-      /* ===================================================================
-         CORES - CONSUMINDO TOKENS CSS
-         ================================================================= */
+      /* 
+        ===================================================================
+        SISTEMA DE CORES
+        ===================================================================
+      */
+
       colors: {
-        // Cores base
-        white: 'var(--color-white)',
-        black: 'var(--color-black)',
-        
-        // Paleta principal
+        // Cores fundamentais que trabalham automaticamente com modo escuro
+        background: 'var(--background)',
+        foreground: 'var(--foreground)',
+
+        // Hierarquia de backgrounds para diferentes níveis de profundidade
+        'background-primary': 'var(--background-primary)',
+        'background-secondary': 'var(--background-secondary)',
+        'background-tertiary': 'var(--background-tertiary)',
+        'background-quaternary': 'var(--background-quaternary)',
+        'background-subtle': 'var(--background-subtle)',
+
+        // Hierarquia de foregrounds para diferentes níveis de importância
+        'foreground-primary': 'var(--foreground-primary)',
+        'foreground-secondary': 'var(--foreground-secondary)',
+        'foreground-tertiary': 'var(--foreground-tertiary)',
+        'foreground-quaternary': 'var(--foreground-quaternary)',
+        'foreground-disabled': 'var(--foreground-disabled)',
+
+        // Cores semânticas principais
         primary: {
-          50: 'var(--color-primary-50)',
-          100: 'var(--color-primary-100)',
-          200: 'var(--color-primary-200)',
-          300: 'var(--color-primary-300)',
-          400: 'var(--color-primary-400)',
-          500: 'var(--color-primary-500)',
-          600: 'var(--color-primary-600)',
-          700: 'var(--color-primary-700)',
-          800: 'var(--color-primary-800)',
-          900: 'var(--color-primary-900)',
           DEFAULT: 'var(--primary)',
           foreground: 'var(--primary-foreground)',
         },
-        
-        // Paleta neutra
-        neutral: {
-          50: 'var(--color-neutral-50)',
-          100: 'var(--color-neutral-100)',
-          200: 'var(--color-neutral-200)',
-          300: 'var(--color-neutral-300)',
-          400: 'var(--color-neutral-400)',
-          500: 'var(--color-neutral-500)',
-          600: 'var(--color-neutral-600)',
-          700: 'var(--color-neutral-700)',
-          800: 'var(--color-neutral-800)',
-          900: 'var(--color-neutral-900)',
-        },
-        
-        // Cores semânticas
-        background: 'var(--background)',
-        foreground: 'var(--foreground)',
-        
-        card: {
-          DEFAULT: 'var(--card)',
-          foreground: 'var(--card-foreground)',
-        },
-        
-        popover: {
-          DEFAULT: 'var(--popover)',
-          foreground: 'var(--popover-foreground)',
-        },
-        
         secondary: {
           DEFAULT: 'var(--secondary)',
           foreground: 'var(--secondary-foreground)',
         },
-        
         muted: {
           DEFAULT: 'var(--muted)',
           foreground: 'var(--muted-foreground)',
         },
-        
         accent: {
           DEFAULT: 'var(--accent)',
           foreground: 'var(--accent-foreground)',
         },
-        
+
+        // Componentes específicos
+        card: {
+          DEFAULT: 'var(--card)',
+          foreground: 'var(--card-foreground)',
+        },
+        popover: {
+          DEFAULT: 'var(--popover)',
+          foreground: 'var(--popover-foreground)',
+        },
+
+        // Estados de feedback - sempre funcionais
         destructive: {
           DEFAULT: 'var(--destructive)',
           foreground: 'var(--destructive-foreground)',
         },
-        
         success: {
           DEFAULT: 'var(--success)',
           foreground: 'var(--success-foreground)',
         },
-        
         warning: {
           DEFAULT: 'var(--warning)',
           foreground: 'var(--warning-foreground)',
         },
-        
+        info: {
+          DEFAULT: 'var(--info)',
+          foreground: 'var(--info-foreground)',
+        },
+
+        // Elementos de interface
         border: 'var(--border)',
+        'border-subtle': 'var(--border-subtle)',
+        'border-strong': 'var(--border-strong)',
         input: 'var(--input)',
         ring: 'var(--ring)',
-        
-        // Cores de charts
-        chart: {
-          1: 'var(--chart-1)',
-          2: 'var(--chart-2)',
-          3: 'var(--chart-3)',
-          4: 'var(--chart-4)',
-          5: 'var(--chart-5)',
+
+        /* TOKENS ESPECÍFICOS DE SEÇÃO */
+
+        // Seção Bio
+        bio: {
+          'ultra-light': 'var(--bio-ultra-light)',
+          light: 'var(--bio-light)',
+          medium: 'var(--bio-medium)',
+          dark: 'var(--bio-dark)',
+          'ultra-dark': 'var(--bio-ultra-dark)',
+          background: 'var(--bio-background)',
+          'background-secondary': 'var(--bio-background-secondary)',
+          foreground: 'var(--bio-foreground)',
+          'foreground-muted': 'var(--bio-foreground-muted)',
+          accent: 'var(--bio-accent)',
         },
-        
+
+        // Seção Projetos
+        projetos: {
+          'ultra-light': 'var(--projetos-ultra-light)',
+          light: 'var(--projetos-light)',
+          medium: 'var(--projetos-medium)',
+          dark: 'var(--projetos-dark)',
+          'ultra-dark': 'var(--projetos-ultra-dark)',
+          background: 'var(--projetos-background)',
+          'background-secondary': 'var(--projetos-background-secondary)',
+          foreground: 'var(--projetos-foreground)',
+          'foreground-muted': 'var(--projetos-foreground-muted)',
+          accent: 'var(--projetos-accent)',
+        },
+
+        // Seção Carreira
+        carreira: {
+          'ultra-light': 'var(--carreira-ultra-light)',
+          light: 'var(--carreira-light)',
+          medium: 'var(--carreira-medium)',
+          dark: 'var(--carreira-dark)',
+          'ultra-dark': 'var(--carreira-ultra-dark)',
+          background: 'var(--carreira-background)',
+          'background-secondary': 'var(--carreira-background-secondary)',
+          foreground: 'var(--carreira-foreground)',
+          'foreground-muted': 'var(--carreira-foreground-muted)',
+          accent: 'var(--carreira-accent)',
+        },
+
+        // Seção Hobbys
+        hobbys: {
+          'ultra-light': 'var(--hobbys-ultra-light)',
+          light: 'var(--hobbys-light)',
+          medium: 'var(--hobbys-medium)',
+          dark: 'var(--hobbys-dark)',
+          'ultra-dark': 'var(--hobbys-ultra-dark)',
+          background: 'var(--hobbys-background)',
+          'background-secondary': 'var(--hobbys-background-secondary)',
+          foreground: 'var(--hobbys-foreground)',
+          'foreground-muted': 'var(--hobbys-foreground-muted)',
+          accent: 'var(--hobbys-accent)',
+        },
+
+        // Seção Blog
+        blog: {
+          'ultra-light': 'var(--blog-ultra-light)',
+          light: 'var(--blog-light)',
+          medium: 'var(--blog-medium)',
+          dark: 'var(--blog-dark)',
+          'ultra-dark': 'var(--blog-ultra-dark)',
+          background: 'var(--blog-background)',
+          'background-secondary': 'var(--blog-background-secondary)',
+          foreground: 'var(--blog-foreground)',
+          'foreground-muted': 'var(--blog-foreground-muted)',
+          accent: 'var(--blog-accent)',
+        },
+
+        // Seção Contato
+        contato: {
+          'ultra-light': 'var(--contato-ultra-light)',
+          light: 'var(--contato-light)',
+          medium: 'var(--contato-medium)',
+          dark: 'var(--contato-dark)',
+          'ultra-dark': 'var(--contato-ultra-dark)',
+          background: 'var(--contato-background)',
+          'background-secondary': 'var(--contato-background-secondary)',
+          foreground: 'var(--contato-foreground)',
+          'foreground-muted': 'var(--contato-foreground-muted)',
+          accent: 'var(--contato-accent)',
+        },
+
         // Sidebar
         sidebar: {
           DEFAULT: 'var(--sidebar)',
@@ -121,39 +190,196 @@ const config: Config = {
           border: 'var(--sidebar-border)',
           ring: 'var(--sidebar-ring)',
         },
-        
-        // Cores personalizadas do projeto
-        'savoy-blue': 'var(--color-savoy-blue)',
-        'ash-gray': 'var(--color-ash-gray)',
-        'gunmetal': 'var(--color-gunmetal)',
-        'timberwolf': 'var(--color-timberwolf)',
+
+        // Charts
+        chart: {
+          1: 'var(--chart-1)',
+          2: 'var(--chart-2)',
+          3: 'var(--chart-3)',
+          4: 'var(--chart-4)',
+          5: 'var(--chart-5)',
+        },
+
+        // Paleta base de cinzas
+        gray: {
+          0: 'var(--gray-0)',
+          1: 'var(--gray-1)',
+          2: 'var(--gray-2)',
+          3: 'var(--gray-3)',
+          4: 'var(--gray-4)',
+          5: 'var(--gray-5)',
+          6: 'var(--gray-6)',
+          7: 'var(--gray-7)',
+          8: 'var(--gray-8)',
+          50: 'var(--gray-50)',
+          100: 'var(--gray-100)',
+          200: 'var(--gray-200)',
+          300: 'var(--gray-300)',
+          400: 'var(--gray-400)',
+          500: 'var(--gray-500)',
+          600: 'var(--gray-600)',
+          700: 'var(--gray-700)',
+          800: 'var(--gray-800)',
+          900: 'var(--gray-900)',
+        },
       },
-      
-      /* ===================================================================
-         BORDER RADIUS - CONSUMINDO TOKENS CSS
-         ================================================================= */
+
+      /* 
+        ===================================================================
+        SISTEMA DE ESPAÇAMENTOS
+        ===================================================================
+      */
+
+      spacing: {
+        // Mapeando nosso sistema harmônico de espaçamentos
+        'space-0': 'var(--space-0)',    // 0
+        'space-1': 'var(--space-1)',    // 4px
+        'space-2': 'var(--space-2)',    // 8px
+        'space-3': 'var(--space-3)',    // 12px
+        'space-4': 'var(--space-4)',    // 16px
+        'space-5': 'var(--space-5)',    // 20px
+        'space-6': 'var(--space-6)',    // 24px
+        'space-8': 'var(--space-8)',    // 32px
+        'space-10': 'var(--space-10)',  // 40px
+        'space-12': 'var(--space-12)',  // 48px
+        'space-16': 'var(--space-16)',  // 64px
+        'space-20': 'var(--space-20)',  // 80px
+        'space-24': 'var(--space-24)',  // 96px
+        'space-32': 'var(--space-32)',  // 128px
+
+        // Espaçamentos adicionais para casos específicos
+        '18': '4.5rem',    // 72px
+        '88': '22rem',     // 352px
+        '128': '32rem',    // 512px
+      },
+
+      /* 
+        ===================================================================
+        SISTEMA TIPOGRÁFICO
+        ===================================================================
+      */
+
+      fontFamily: {
+        // Mapeando nossas famílias tipográficas específicas
+        primary: 'var(--font-primary)',
+        display: 'var(--font-display)',
+        mono: 'var(--font-mono)',
+
+        // Aliases convencionais do Tailwind
+        sans: 'var(--font-primary)',
+        serif: 'var(--font-display)',
+
+        // Mantendo fallbacks robustos
+        system: [
+          '-apple-system',
+          'BlinkMacSystemFont',
+          'Segoe UI',
+          'Roboto',
+          'Oxygen',
+          'Ubuntu',
+          'Cantarell',
+          'Fira Sans',
+          'Droid Sans',
+          'Helvetica Neue',
+          'sans-serif',
+        ],
+      },
+
+      /* 
+        ===================================================================
+        TAMANHOS TIPOGRÁFICOS
+        ===================================================================
+      */
+
+      fontSize: {
+        // Permitindo uso direto dos nossos tokens tipográficos
+        'size-hero': 'var(--size-hero)',
+        'size-h1': 'var(--size-h1)',
+        'size-h2': 'var(--size-h2)',
+        'size-h3': 'var(--size-h3)',
+        'size-h4': 'var(--size-h4)',
+        'size-body-large': 'var(--size-body-large)',
+        'size-body': 'var(--size-body)',
+        'size-body-small': 'var(--size-body-small)',
+        'size-caption': 'var(--size-caption)',
+        'size-code': 'var(--size-code)',
+        'size-button': 'var(--size-button)',
+      },
+
+      /*
+        ===================================================================
+        BORDER RADIUS
+        ===================================================================
+      */
+
       borderRadius: {
+        // Mapeando nosso sistema de border radius
+        'radius-sm': 'var(--radius-sm)',
+        'radius-md': 'var(--radius-md)',
+        'radius-lg': 'var(--radius-lg)',
+        'radius-xl': 'var(--radius-xl)',
+        'radius-full': 'var(--radius-full)',
+
+        // Aliases para conveniência
         lg: 'var(--radius)',
         md: 'var(--radius-md)',
         sm: 'var(--radius-sm)',
         xl: 'var(--radius-xl)',
+        full: 'var(--radius-full)',
       },
-      
-      /* ===================================================================
-         BOX SHADOW - CONSUMINDO TOKENS CSS
-         ================================================================= */
+
+      /* 
+        ===================================================================
+        SISTEMA DE SOMBRAS
+        ===================================================================
+      */
+
       boxShadow: {
+        // Mapeando nosso sistema completo de sombras
+        'shadow-sm': 'var(--shadow-sm)',
+        'shadow': 'var(--shadow)',
+        'shadow-md': 'var(--shadow-md)',
+        'shadow-lg': 'var(--shadow-lg)',
+        'shadow-xl': 'var(--shadow-xl)',
+
+        // Aliases padrão do Tailwind
         sm: 'var(--shadow-sm)',
         DEFAULT: 'var(--shadow)',
         md: 'var(--shadow-md)',
         lg: 'var(--shadow-lg)',
         xl: 'var(--shadow-xl)',
       },
-      
-      /* ===================================================================
-         ANIMAÇÕES E TRANSIÇÕES
-         ================================================================= */
+
+      /* 
+        ===================================================================
+        SISTEMA DE TRANSIÇÕES
+        ===================================================================
+      */
+
+      transitionDuration: {
+        // Mapeando nossas durações harmônicas
+        fast: 'var(--transition-fast)',
+        normal: 'var(--transition-normal)',
+        slow: 'var(--transition-slow)',
+        'very-slow': 'var(--transition-very-slow)',
+      },
+
+      transitionTimingFunction: {
+        // Mapeando nossas curvas de easing específicas
+        'ease-enter': 'var(--ease-enter)',
+        'ease-exit': 'var(--ease-exit)',
+        'ease-bounce': 'var(--ease-bounce)',
+        'ease-back': 'var(--ease-back)',
+      },
+
+      /* 
+        ===================================================================
+        ANIMAÇÕES AVANÇADAS
+        ===================================================================
+      */
+
       keyframes: {
+        // Animações para componentes de interface
         'accordion-down': {
           from: { height: '0' },
           to: { height: 'var(--radix-accordion-content-height)' },
@@ -162,6 +388,8 @@ const config: Config = {
           from: { height: 'var(--radix-accordion-content-height)' },
           to: { height: '0' },
         },
+
+        // Animações de entrada e saída
         'fade-in': {
           '0%': { opacity: '0' },
           '100%': { opacity: '1' },
@@ -170,6 +398,8 @@ const config: Config = {
           '0%': { opacity: '1' },
           '100%': { opacity: '0' },
         },
+
+        // Animações de movimento
         'slide-in-from-top': {
           '0%': { transform: 'translateY(-100%)' },
           '100%': { transform: 'translateY(0)' },
@@ -186,62 +416,58 @@ const config: Config = {
           '0%': { transform: 'translateX(100%)' },
           '100%': { transform: 'translateX(0)' },
         },
+
+        // Animações de loading
+        'spin': {
+          '0%': { transform: 'rotate(0deg)' },
+          '100%': { transform: 'rotate(360deg)' },
+        },
+        'shimmer': {
+          '0%': { transform: 'translateX(-100%)' },
+          '100%': { transform: 'translateX(100%)' },
+        },
       },
-      
+
       animation: {
-        'accordion-down': 'accordion-down 0.2s ease-out',
-        'accordion-up': 'accordion-up 0.2s ease-out',
-        'fade-in': 'fade-in 0.2s ease-out',
-        'fade-out': 'fade-out 0.2s ease-out',
-        'slide-in-from-top': 'slide-in-from-top 0.2s ease-out',
-        'slide-in-from-bottom': 'slide-in-from-bottom 0.2s ease-out',
-        'slide-in-from-left': 'slide-in-from-left 0.2s ease-out',
-        'slide-in-from-right': 'slide-in-from-right 0.2s ease-out',
+        // Aplicando as animações com timings apropriados
+        'accordion-down': 'accordion-down var(--transition-normal) ease-out',
+        'accordion-up': 'accordion-up var(--transition-normal) ease-out',
+        'fade-in': 'fade-in var(--transition-normal) var(--ease-enter)',
+        'fade-out': 'fade-out var(--transition-fast) var(--ease-exit)',
+        'slide-in-from-top': 'slide-in-from-top var(--transition-normal) var(--ease-enter)',
+        'slide-in-from-bottom': 'slide-in-from-bottom var(--transition-normal) var(--ease-enter)',
+        'slide-in-from-left': 'slide-in-from-left var(--transition-normal) var(--ease-enter)',
+        'slide-in-from-right': 'slide-in-from-right var(--transition-normal) var(--ease-enter)',
+        'spin': 'spin var(--transition-normal) linear infinite',
+        'shimmer': 'shimmer var(--transition-very-slow) linear infinite',
       },
-      
-      /* ===================================================================
-         TIPOGRAFIA
-         ================================================================= */
-      fontFamily: {
-        sans: [
-          '-apple-system',
-          'BlinkMacSystemFont',
-          'Segoe UI',
-          'Roboto',
-          'Oxygen',
-          'Ubuntu',
-          'Cantarell',
-          'Fira Sans',
-          'Droid Sans',
-          'Helvetica Neue',
-          'sans-serif',
-        ],
-      },
-      
-      /* ===================================================================
-         ESPAÇAMENTOS PERSONALIZADOS
-         ================================================================= */
-      spacing: {
-        '18': '4.5rem',
-        '88': '22rem',
-        '128': '32rem',
-      },
-      
-      /* ===================================================================
-         BREAKPOINTS PERSONALIZADOS
-         ================================================================= */
+
+      /*
+        ===================================================================
+        BREAKPOINTS PERSONALIZADOS
+        =================================================================
+      */
+
       screens: {
-        'xs': '475px',
-        '3xl': '1600px',
+        'xs': '475px',      // Para dispositivos muito pequenos
+        'sm': '640px',      // Padrão do Tailwind
+        'md': '768px',      // Padrão do Tailwind  
+        'lg': '1024px',     // Padrão do Tailwind
+        'xl': '1280px',     // Padrão do Tailwind
+        '2xl': '1536px',    // Padrão do Tailwind
+        '3xl': '1600px',    // Para telas muito grandes
       },
     },
   },
-  
-  /* ===================================================================
-     PLUGINS
-     ================================================================= */
+
+  /*
+    ===================================================================
+    PLUGINS
+    ===================================================================
+  */
+
   plugins: [
-    // Plugin para animações mais avançadas
+    // Plugin para animações avançadas e estados
     tailwindcssAnimate,
   ],
 }
