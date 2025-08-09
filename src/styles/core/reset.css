@@ -1,0 +1,192 @@
+/* 
+  ===================================================================
+  RESET.CSS - FUNDAMENTOS E NORMALIZAÇÃO GLOBAL
+  ===================================================================
+  
+  Este arquivo estabelece os comportamentos base para todos os elementos.
+  É o primeiro a ser carregado após os tokens, garantindo uma base
+  consistente e previsível para todo o sistema.
+*/
+
+/* 
+  ===================================================================
+  RESET UNIVERSAL - Box Model e Comportamentos Base
+  ===================================================================
+*/
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  
+  /* Garante que borders e outlines usem as cores do sistema */
+  border-color: var(--border);
+  outline-color: var(--ring);
+  outline-offset: 2px;
+}
+
+/* 
+  ===================================================================
+  DOCUMENTO BASE - HTML e Body
+  ===================================================================
+*/
+
+html {
+  /* Comportamento de scroll suave e snap para as seções */
+  scroll-behavior: smooth;
+  scroll-snap-type: y mandatory;
+  overflow-x: hidden;
+  
+  /* Previne ajustes de fonte em iOS */
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  /* Sistema tipográfico base */
+  font-family: var(--font-primary);
+  font-size: var(--size-body);
+  font-weight: var(--weight-body);
+  line-height: var(--line-height-body);
+  letter-spacing: var(--letter-spacing-body);
+  
+  /* Otimizações de renderização de fonte */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  
+  /* Cores base do sistema */
+  background-color: var(--background);
+  color: var(--foreground);
+  
+  /* Previne scroll horizontal acidental */
+  overflow-x: hidden;
+  
+  /* Garante altura mínima da viewport */
+  min-height: 100vh;
+  
+  /* Transição suave para mudanças de tema */
+  transition: background-color var(--transition-base),
+              color var(--transition-base);
+}
+
+/* 
+  ===================================================================
+  ELEMENTOS DE TEXTO - Comportamentos Base
+  ===================================================================
+*/
+
+/* Remove estilos padrão de links mas mantém acessibilidade */
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: var(--transition-enter);
+}
+
+/* Garante que imagens sejam responsivas por padrão */
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Remove estilos padrão de listas quando usadas para layout */
+ul[role='list'],
+ol[role='list'] {
+  list-style: none;
+}
+
+/* Melhora a legibilidade de elementos de formulário */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+/* Remove aparência padrão de botões */
+button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+/* Garante que elementos ocultos não sejam focalizáveis */
+[hidden] {
+  display: none !important;
+}
+
+/* 
+  ===================================================================
+  ACESSIBILIDADE - Melhorias Base
+  ===================================================================
+*/
+
+/* Classe para ocultar visualmente mas manter acessível para leitores de tela */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Melhora o foco visível para navegação por teclado */
+:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+/* Remove o foco para navegação por mouse/touch */
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* 
+  ===================================================================
+  COMPORTAMENTOS ESPECÍFICOS DO PROJETO
+  ===================================================================
+*/
+
+/* Garante que seções ocupem altura total da viewport */
+.section {
+  min-height: 100vh;
+  scroll-snap-align: start;
+}
+
+/* Previne seleção de texto em elementos de interface */
+.no-select {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* 
+  ===================================================================
+  CORREÇÕES PARA MODO ESCURO
+  ===================================================================
+*/
+
+/* Ajusta a cor de seleção de texto para modo escuro */
+::selection {
+  background-color: var(--accent);
+  color: var(--accent-foreground);
+}
+
+::-moz-selection {
+  background-color: var(--accent);
+  color: var(--accent-foreground);
+}

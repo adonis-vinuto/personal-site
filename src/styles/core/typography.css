@@ -1,0 +1,442 @@
+/* 
+  ===================================================================
+  TYPOGRAPHY.CSS - SISTEMA TIPOGRÁFICO COMPLETO
+  ===================================================================
+  
+  Este arquivo define todas as regras tipográficas do sistema.
+  Trabalha em conjunto com os tokens definidos em tokens.css,
+  aplicando-os aos elementos HTML e criando classes utilitárias.
+*/
+
+/* 
+  ===================================================================
+  HIERARQUIA DE TÍTULOS - Elementos Nativos
+  ===================================================================
+*/
+
+/* Hero Title - Máximo impacto visual */
+.hero-title,
+.title-hero {
+  font-family: var(--font-hero);
+  font-size: var(--size-hero);
+  font-weight: var(--weight-hero);
+  line-height: var(--line-height-hero);
+  letter-spacing: var(--letter-spacing-hero);
+  color: var(--foreground);
+  transition: color var(--transition-base);
+  
+  /* Otimização para títulos grandes */
+  text-wrap: balance;
+  hyphens: auto;
+}
+
+/* Heading 1 - Título principal de páginas */
+h1,
+.title-h1 {
+  font-family: var(--font-h1);
+  font-size: var(--size-h1);
+  font-weight: var(--weight-h1);
+  line-height: var(--line-height-h1);
+  letter-spacing: var(--letter-spacing-h1);
+  color: var(--foreground);
+  transition: color var(--transition-base);
+  
+  /* Melhora a legibilidade em títulos longos */
+  text-wrap: balance;
+}
+
+/* Heading 2 - Subtítulos de seção */
+h2,
+.title-h2 {
+  font-family: var(--font-h2);
+  font-size: var(--size-h2);
+  font-weight: var(--weight-h2);
+  line-height: var(--line-height-h2);
+  letter-spacing: var(--letter-spacing-h2);
+  color: var(--foreground);
+  transition: color var(--transition-base);
+  text-wrap: balance;
+}
+
+/* Heading 3 - Subtítulos de conteúdo */
+h3,
+.title-h3 {
+  font-family: var(--font-h3);
+  font-size: var(--size-h3);
+  font-weight: var(--weight-h3);
+  line-height: var(--line-height-h3);
+  letter-spacing: var(--letter-spacing-h3);
+  color: var(--foreground);
+  transition: color var(--transition-base);
+}
+
+/* Heading 4 - Subtítulos menores */
+h4,
+.title-h4 {
+  font-family: var(--font-h4);
+  font-size: var(--size-h4);
+  font-weight: var(--weight-h4);
+  line-height: var(--line-height-h4);
+  letter-spacing: var(--letter-spacing-h4);
+  color: var(--foreground);
+  transition: color var(--transition-base);
+}
+
+/* Headings 5 e 6 - Uso menos comum, herdam de h4 com ajustes */
+h5 {
+  font-family: var(--font-h4);
+  font-size: calc(var(--size-h4) * 0.9);
+  font-weight: var(--weight-h4);
+  line-height: var(--line-height-h4);
+  letter-spacing: var(--letter-spacing-h4);
+  color: var(--foreground);
+  transition: color var(--transition-base);
+}
+
+h6 {
+  font-family: var(--font-h4);
+  font-size: calc(var(--size-h4) * 0.8);
+  font-weight: 600;
+  line-height: var(--line-height-h4);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--foreground-tertiary);
+  transition: color var(--transition-base);
+}
+
+/* 
+  ===================================================================
+  ELEMENTOS DE TEXTO - Parágrafos e Corpo
+  ===================================================================
+*/
+
+/* Parágrafo padrão */
+p {
+  font-family: var(--font-body);
+  font-size: var(--size-body);
+  font-weight: var(--weight-body);
+  line-height: var(--line-height-body);
+  letter-spacing: var(--letter-spacing-body);
+  color: var(--foreground);
+  
+  /* Melhora a legibilidade de textos longos */
+  max-width: 65ch; /* Largura ideal para leitura */
+  hyphens: auto;
+}
+
+/* Lead paragraph - Texto de destaque */
+.lead,
+.text-lead {
+  font-family: var(--font-body-large);
+  font-size: var(--size-body-large);
+  font-weight: var(--weight-body-large);
+  line-height: var(--line-height-body-large);
+  letter-spacing: var(--letter-spacing-body-large);
+  color: var(--foreground);
+  max-width: 75ch;
+}
+
+/* Small text */
+small,
+.text-small {
+  font-family: var(--font-body-small);
+  font-size: var(--size-body-small);
+  font-weight: var(--weight-body-small);
+  line-height: var(--line-height-body-small);
+  letter-spacing: var(--letter-spacing-body-small);
+  color: var(--foreground-tertiary);
+}
+
+/* Caption text */
+.caption,
+.text-caption {
+  font-family: var(--font-caption);
+  font-size: var(--size-caption);
+  font-weight: var(--weight-caption);
+  line-height: var(--line-height-caption);
+  letter-spacing: var(--letter-spacing-caption);
+  text-transform: var(--text-transform-caption);
+  color: var(--foreground-quaternary);
+}
+
+/* 
+  ===================================================================
+  ELEMENTOS ESPECIAIS - Code, Pre, Blockquote
+  ===================================================================
+*/
+
+/* Código inline */
+code,
+.text-code {
+  font-family: var(--font-code);
+  font-size: var(--size-code);
+  font-weight: var(--weight-code);
+  line-height: var(--line-height-code);
+  letter-spacing: var(--letter-spacing-code);
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-sm);
+  background: var(--muted);
+  color: var(--foreground);
+  transition: var(--transition-base);
+  
+  /* Previne quebra de linha em código inline */
+  white-space: nowrap;
+}
+
+/* Blocos de código */
+pre {
+  font-family: var(--font-code);
+  font-size: var(--size-code);
+  font-weight: var(--weight-code);
+  line-height: var(--line-height-code);
+  letter-spacing: var(--letter-spacing-code);
+  padding: var(--space-4);
+  border-radius: var(--radius);
+  background: var(--muted);
+  color: var(--foreground);
+  overflow-x: auto;
+  
+  /* Melhora a rolagem em blocos de código */
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Código dentro de pre não precisa de padding extra */
+pre code {
+  padding: 0;
+  background: transparent;
+  border-radius: 0;
+  white-space: pre;
+}
+
+/* Blockquote */
+blockquote {
+  font-family: var(--font-primary);
+  font-size: var(--size-body-large);
+  font-style: italic;
+  line-height: var(--line-height-body-large);
+  color: var(--foreground-tertiary);
+  padding-left: var(--space-6);
+  border-left: 4px solid var(--border);
+  margin: var(--space-6) 0;
+  
+  /* Citações dentro de blockquote */
+  cite {
+    display: block;
+    font-size: var(--size-body-small);
+    font-style: normal;
+    color: var(--foreground-quaternary);
+    margin-top: var(--space-2);
+  }
+}
+
+/* 
+  ===================================================================
+  VARIAÇÕES SEMÂNTICAS - Classes de Cor
+  ===================================================================
+*/
+
+.text-muted {
+  color: var(--foreground-tertiary);
+}
+
+.text-subtle {
+  color: var(--foreground-quaternary);
+}
+
+.text-disabled {
+  color: var(--foreground-disabled);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.text-primary {
+  color: var(--primary);
+}
+
+.text-secondary {
+  color: var(--secondary);
+}
+
+.text-destructive {
+  color: var(--destructive);
+}
+
+.text-success {
+  color: var(--success);
+}
+
+.text-warning {
+  color: var(--warning);
+}
+
+.text-info {
+  color: var(--info);
+}
+
+/* 
+  ===================================================================
+  LINKS - Estilos e Estados
+  ===================================================================
+*/
+
+a {
+  color: var(--foreground);
+  text-decoration: none;
+  transition: var(--transition-enter);
+  border-bottom: 1px solid transparent;
+  
+  /* Indica que é clicável */
+  cursor: pointer;
+}
+
+/* Estados do link */
+a:hover {
+  color: var(--foreground-tertiary);
+  border-bottom-color: var(--foreground-tertiary);
+}
+
+a:active {
+  color: var(--foreground-secondary);
+  transform: translateY(1px);
+}
+
+a:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: var(--space-1);
+  border-radius: var(--radius-sm);
+}
+
+/* Link variantes */
+a.link-primary {
+  color: var(--primary);
+  border-bottom-color: transparent;
+}
+
+a.link-primary:hover {
+  border-bottom-color: var(--primary);
+  opacity: 0.8;
+}
+
+a.link-underline {
+  border-bottom: 1px solid currentColor;
+}
+
+a.link-no-underline {
+  border-bottom: none;
+}
+
+/* 
+  ===================================================================
+  UTILIDADES TIPOGRÁFICAS - Classes Auxiliares
+  ===================================================================
+*/
+
+/* Alinhamento de texto */
+.text-left { text-align: left; }
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+.text-justify { text-align: justify; }
+
+/* Peso da fonte */
+.font-thin { font-weight: 100; }
+.font-light { font-weight: 300; }
+.font-normal { font-weight: 400; }
+.font-medium { font-weight: 500; }
+.font-semibold { font-weight: 600; }
+.font-bold { font-weight: 700; }
+.font-black { font-weight: 900; }
+
+/* Estilo da fonte */
+.italic { font-style: italic; }
+.not-italic { font-style: normal; }
+
+/* Transformação de texto */
+.uppercase { text-transform: uppercase; }
+.lowercase { text-transform: lowercase; }
+.capitalize { text-transform: capitalize; }
+.normal-case { text-transform: none; }
+
+/* Decoração de texto */
+.underline { text-decoration: underline; }
+.line-through { text-decoration: line-through; }
+.no-underline { text-decoration: none; }
+
+/* Truncamento de texto */
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.text-ellipsis {
+  text-overflow: ellipsis;
+}
+
+.text-clip {
+  text-overflow: clip;
+}
+
+/* Quebra de linha */
+.break-normal {
+  overflow-wrap: normal;
+  word-break: normal;
+}
+
+.break-words {
+  overflow-wrap: break-word;
+}
+
+.break-all {
+  word-break: break-all;
+}
+
+/* Espaçamento entre letras */
+.tracking-tighter { letter-spacing: -0.05em; }
+.tracking-tight { letter-spacing: -0.025em; }
+.tracking-normal { letter-spacing: 0; }
+.tracking-wide { letter-spacing: 0.025em; }
+.tracking-wider { letter-spacing: 0.05em; }
+.tracking-widest { letter-spacing: 0.1em; }
+
+/* Altura da linha */
+.leading-none { line-height: 1; }
+.leading-tight { line-height: 1.25; }
+.leading-snug { line-height: 1.375; }
+.leading-normal { line-height: 1.5; }
+.leading-relaxed { line-height: 1.625; }
+.leading-loose { line-height: 2; }
+
+/* 
+  ===================================================================
+  EFEITOS ESPECIAIS DE TEXTO
+  ===================================================================
+*/
+
+/* Texto com gradiente */
+.gradient-text {
+  background: linear-gradient(135deg,
+      var(--foreground),
+      var(--foreground-tertiary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Sombra de texto para legibilidade */
+.text-shadow {
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.12),
+               0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+.text-shadow-lg {
+  text-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* Otimização de legibilidade */
+.text-balance {
+  text-wrap: balance;
+}
+
+.text-pretty {
+  text-wrap: pretty;
+}
