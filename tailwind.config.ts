@@ -17,7 +17,7 @@ const config: Config = {
     extend: {
       /* 
         ===================================================================
-        SISTEMA DE CORES
+        SISTEMA DE CORES HARMONIZADO
         ===================================================================
       */
 
@@ -226,7 +226,7 @@ const config: Config = {
 
       /* 
         ===================================================================
-        SISTEMA DE ESPAÇAMENTOS
+        SISTEMA DE ESPAÇAMENTOS HARMONIZADO
         ===================================================================
       */
 
@@ -255,7 +255,7 @@ const config: Config = {
 
       /* 
         ===================================================================
-        SISTEMA TIPOGRÁFICO
+        SISTEMA TIPOGRÁFICO HARMONIZADO
         ===================================================================
       */
 
@@ -264,6 +264,19 @@ const config: Config = {
         primary: 'var(--font-primary)',
         display: 'var(--font-display)',
         mono: 'var(--font-mono)',
+        
+        // Tipografia específica para cada contexto
+        hero: 'var(--font-hero)',
+        h1: 'var(--font-h1)',
+        h2: 'var(--font-h2)',
+        h3: 'var(--font-h3)',
+        h4: 'var(--font-h4)',
+        body: 'var(--font-body)',
+        'body-large': 'var(--font-body-large)',
+        'body-small': 'var(--font-body-small)',
+        caption: 'var(--font-caption)',
+        code: 'var(--font-code)',
+        button: 'var(--font-button)',
 
         // Aliases convencionais do Tailwind
         sans: 'var(--font-primary)',
@@ -287,28 +300,101 @@ const config: Config = {
 
       /* 
         ===================================================================
-        TAMANHOS TIPOGRÁFICOS
+        TAMANHOS TIPOGRÁFICOS HARMONIZADOS
         ===================================================================
       */
 
       fontSize: {
-        // Permitindo uso direto dos nossos tokens tipográficos
-        'size-hero': 'var(--size-hero)',
-        'size-h1': 'var(--size-h1)',
-        'size-h2': 'var(--size-h2)',
-        'size-h3': 'var(--size-h3)',
-        'size-h4': 'var(--size-h4)',
-        'size-body-large': 'var(--size-body-large)',
-        'size-body': 'var(--size-body)',
-        'size-body-small': 'var(--size-body-small)',
-        'size-caption': 'var(--size-caption)',
-        'size-code': 'var(--size-code)',
-        'size-button': 'var(--size-button)',
+        // Mapeando todos os nossos tokens tipográficos
+        'size-hero': ['var(--size-hero)', { lineHeight: 'var(--line-height-hero)', letterSpacing: 'var(--letter-spacing-hero)', fontWeight: 'var(--weight-hero)' }],
+        'size-h1': ['var(--size-h1)', { lineHeight: 'var(--line-height-h1)', letterSpacing: 'var(--letter-spacing-h1)', fontWeight: 'var(--weight-h1)' }],
+        'size-h2': ['var(--size-h2)', { lineHeight: 'var(--line-height-h2)', letterSpacing: 'var(--letter-spacing-h2)', fontWeight: 'var(--weight-h2)' }],
+        'size-h3': ['var(--size-h3)', { lineHeight: 'var(--line-height-h3)', letterSpacing: 'var(--letter-spacing-h3)', fontWeight: 'var(--weight-h3)' }],
+        'size-h4': ['var(--size-h4)', { lineHeight: 'var(--line-height-h4)', letterSpacing: 'var(--letter-spacing-h4)', fontWeight: 'var(--weight-h4)' }],
+        'size-body-large': ['var(--size-body-large)', { lineHeight: 'var(--line-height-body-large)', letterSpacing: 'var(--letter-spacing-body-large)', fontWeight: 'var(--weight-body-large)' }],
+        'size-body': ['var(--size-body)', { lineHeight: 'var(--line-height-body)', letterSpacing: 'var(--letter-spacing-body)', fontWeight: 'var(--weight-body)' }],
+        'size-body-small': ['var(--size-body-small)', { lineHeight: 'var(--line-height-body-small)', letterSpacing: 'var(--letter-spacing-body-small)', fontWeight: 'var(--weight-body-small)' }],
+        'size-caption': ['var(--size-caption)', { lineHeight: 'var(--line-height-caption)', letterSpacing: 'var(--letter-spacing-caption)', fontWeight: 'var(--weight-caption)', textTransform: 'var(--text-transform-caption)' }],
+        'size-code': ['var(--size-code)', { lineHeight: 'var(--line-height-code)', letterSpacing: 'var(--letter-spacing-code)', fontWeight: 'var(--weight-code)' }],
+        'size-button': ['var(--size-button)', { lineHeight: 'var(--line-height-button)', letterSpacing: 'var(--letter-spacing-button)', fontWeight: 'var(--weight-button)' }],
+
+        // Aliases simples para casos específicos
+        'hero': 'var(--size-hero)',
+        'h1': 'var(--size-h1)',
+        'h2': 'var(--size-h2)',
+        'h3': 'var(--size-h3)',
+        'h4': 'var(--size-h4)',
+        'body-large': 'var(--size-body-large)',
+        'body': 'var(--size-body)',
+        'body-small': 'var(--size-body-small)',
+        'caption': 'var(--size-caption)',
+        'code': 'var(--size-code)',
+        'button': 'var(--size-button)',
+      },
+
+      /* 
+        ===================================================================
+        PESOS TIPOGRÁFICOS
+        ===================================================================
+      */
+
+      fontWeight: {
+        'hero': 'var(--weight-hero)',
+        'h1': 'var(--weight-h1)',
+        'h2': 'var(--weight-h2)',
+        'h3': 'var(--weight-h3)',
+        'h4': 'var(--weight-h4)',
+        'body-large': 'var(--weight-body-large)',
+        'body': 'var(--weight-body)',
+        'body-small': 'var(--weight-body-small)',
+        'caption': 'var(--weight-caption)',
+        'code': 'var(--weight-code)',
+        'button': 'var(--weight-button)',
+      },
+
+      /* 
+        ===================================================================
+        ALTURAS DE LINHA
+        ===================================================================
+      */
+
+      lineHeight: {
+        'hero': 'var(--line-height-hero)',
+        'h1': 'var(--line-height-h1)',
+        'h2': 'var(--line-height-h2)',
+        'h3': 'var(--line-height-h3)',
+        'h4': 'var(--line-height-h4)',
+        'body-large': 'var(--line-height-body-large)',
+        'body': 'var(--line-height-body)',
+        'body-small': 'var(--line-height-body-small)',
+        'caption': 'var(--line-height-caption)',
+        'code': 'var(--line-height-code)',
+        'button': 'var(--line-height-button)',
+      },
+
+      /* 
+        ===================================================================
+        ESPAÇAMENTO ENTRE LETRAS
+        ===================================================================
+      */
+
+      letterSpacing: {
+        'hero': 'var(--letter-spacing-hero)',
+        'h1': 'var(--letter-spacing-h1)',
+        'h2': 'var(--letter-spacing-h2)',
+        'h3': 'var(--letter-spacing-h3)',
+        'h4': 'var(--letter-spacing-h4)',
+        'body-large': 'var(--letter-spacing-body-large)',
+        'body': 'var(--letter-spacing-body)',
+        'body-small': 'var(--letter-spacing-body-small)',
+        'caption': 'var(--letter-spacing-caption)',
+        'code': 'var(--letter-spacing-code)',
+        'button': 'var(--letter-spacing-button)',
       },
 
       /*
         ===================================================================
-        BORDER RADIUS
+        BORDER RADIUS HARMONIZADO
         ===================================================================
       */
 
@@ -330,7 +416,7 @@ const config: Config = {
 
       /* 
         ===================================================================
-        SISTEMA DE SOMBRAS
+        SISTEMA DE SOMBRAS HARMONIZADO
         ===================================================================
       */
 
@@ -352,7 +438,7 @@ const config: Config = {
 
       /* 
         ===================================================================
-        SISTEMA DE TRANSIÇÕES
+        SISTEMA DE TRANSIÇÕES HARMONIZADO
         ===================================================================
       */
 
@@ -374,7 +460,7 @@ const config: Config = {
 
       /* 
         ===================================================================
-        ANIMAÇÕES AVANÇADAS
+        ANIMAÇÕES AVANÇADAS HARMONIZADAS
         ===================================================================
       */
 
@@ -417,7 +503,7 @@ const config: Config = {
           '100%': { transform: 'translateX(0)' },
         },
 
-        // Animações de loading
+        // Animações de loading e feedback
         'spin': {
           '0%': { transform: 'rotate(0deg)' },
           '100%': { transform: 'rotate(360deg)' },
@@ -425,6 +511,20 @@ const config: Config = {
         'shimmer': {
           '0%': { transform: 'translateX(-100%)' },
           '100%': { transform: 'translateX(100%)' },
+        },
+        'skeleton-shimmer': {
+          '0%': { transform: 'translateX(-100%)' },
+          '100%': { transform: 'translateX(100%)' },
+        },
+
+        // Animações específicas para navegação
+        'nav-pulse': {
+          '0%, 100%': { opacity: '1' },
+          '50%': { opacity: '0.5' },
+        },
+        'nav-bounce': {
+          '0%, 100%': { transform: 'scale(1)' },
+          '50%': { transform: 'scale(1.1)' },
         },
       },
 
@@ -440,6 +540,9 @@ const config: Config = {
         'slide-in-from-right': 'slide-in-from-right var(--transition-normal) var(--ease-enter)',
         'spin': 'spin var(--transition-normal) linear infinite',
         'shimmer': 'shimmer var(--transition-very-slow) linear infinite',
+        'skeleton-shimmer': 'skeleton-shimmer var(--transition-very-slow) infinite',
+        'nav-pulse': 'nav-pulse var(--transition-slow) ease-in-out infinite',
+        'nav-bounce': 'nav-bounce var(--transition-bounce) infinite',
       },
 
       /*
@@ -456,6 +559,34 @@ const config: Config = {
         'xl': '1280px',     // Padrão do Tailwind
         '2xl': '1536px',    // Padrão do Tailwind
         '3xl': '1600px',    // Para telas muito grandes
+      },
+
+      /*
+        ===================================================================
+        ALTURA E LARGURA ESPECÍFICAS
+        =================================================================
+      */
+
+      height: {
+        'section': '100vh',
+        'min-section': '100vh',
+      },
+
+      minHeight: {
+        'section': '100vh',
+      },
+
+      /*
+        ===================================================================
+        Z-INDEX HIERÁRQUICO
+        =================================================================
+      */
+
+      zIndex: {
+        'nav': '50',
+        'modal': '100',
+        'toast': '1000',
+        'tooltip': '1001',
       },
     },
   },
