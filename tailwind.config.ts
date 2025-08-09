@@ -200,6 +200,16 @@ const config: Config = {
           5: 'var(--chart-5)',
         },
 
+        // Cores customizadas para compatibilidade com classes existentes
+        'ghost-white': 'var(--gray-1)',      // #fafafa
+        'light-gray': 'var(--gray-2)',       // #f5f5f5
+        'silver': 'var(--gray-3)',           // #e5e5e5
+        'charcoal': 'var(--gray-6)',         // #2a2a2a
+        'dark-gray': 'var(--gray-5)',        // #6b6b6b
+        'near-black': 'var(--gray-7)',       // #1a1a1a
+        'white': 'var(--gray-0)',            // #ffffff
+        'black': 'var(--gray-8)',            // #000000
+
         // Paleta base de cinzas
         gray: {
           0: 'var(--gray-0)',
