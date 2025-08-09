@@ -1,129 +1,26 @@
-/* ===================================================================
-   GLOBALS.CSS - ARQUIVO PRINCIPAL MONOCROMÁTICO (VERSÃO 2.0)
-   ================================================================= */
-
 /* 
-  Este arquivo é o ponto de entrada principal para todos os estilos
-  do projeto monocromático. Ele importa as diretivas compatíveis com 
-  Tailwind CSS v4 e nossa estrutura modular personalizada.
+   ===================================================================
+   GLOBALS.CSS - PONTO DE ENTRADA PRINCIPAL PARA ESTILOS
+   ===================================================================
 */
 
-/* ===================================================================
+/* 
+   ===================================================================
    TAILWIND CSS V4 - IMPORTS COMPATÍVEIS
-   ================================================================= */
+   ===================================================================
+*/
 
 @import "tailwindcss/preflight";
 @import "tailwindcss/utilities";
 
-/* ===================================================================
+/* 
+   ===================================================================
    ESTRUTURA MODULAR PERSONALIZADA
-   ================================================================= */
+   ===================================================================
+*/
 
 /* Tokens de design centralizados */
 @import "../styles/tokens.css";
 
 /* Componentes personalizados */
 @import "../styles/components.css";
-
-/* ===================================================================
-   DOCUMENTAÇÃO DE USO
-   ================================================================= */
-
-/*
-  SISTEMA MONOCROMÁTICO:
-
-  Este sistema foi redesenhado para usar apenas tons de preto, branco e cinza,
-  criando uma identidade visual elegante e atemporal.
-
-  COMO FUNCIONA ESTA ESTRUTURA:
-
-  1. @tailwind preflight
-     - Inclui o Preflight (reset CSS)
-     - Estilos base do Tailwind
-     - Nossos estilos @layer base
-
-  2. @tailwind utilities
-     - Classes utilitárias do Tailwind
-     - Nossos estilos @layer utilities
-     - Responsividade e estados
-
-  3. tokens.css
-     - Variáveis CSS centralizadas monocromáticas
-     - Sistema tipográfico estruturado
-     - Tokens semânticos para temas
-
-  4. components.css
-     - Componentes personalizados
-     - Estilos usando CSS nativo
-     - Responsividade e temas
-
-  EXEMPLO DE COMO USAR:
-
-  // Em um componente React
-  import { theme, cn } from '@/styles/theme'
-
-  export function Card({ children, variant = 'default' }) {
-    return (
-      <div className={cn(
-        theme.card.base,
-        variant === 'elevated' && theme.card.variants.elevated
-      )}>
-        {children}
-      </div>
-    )
-  }
-
-  // Usando classes Tailwind que consomem nossos tokens
-  <div className="bg-background text-foreground p-4 rounded-lg">
-    <h2 className="text-foreground text-xl font-bold">Título</h2>
-    <p className="text-muted-foreground">Descrição</p>
-  </div>
-
-  // Usando tipografia estruturada
-  <h1 className={theme.typography.hero}>Título Principal</h1>
-  <p className={theme.typography.lead}>Texto de destaque</p>
-  <p className={theme.typography.body}>Texto normal</p>
-
-  MUDANÇA DE TEMA:
-
-  // Tema claro (padrão)
-  document.documentElement.classList.remove('dark')
-
-  // Tema escuro
-  document.documentElement.classList.add('dark')
-
-  SISTEMA TIPOGRÁFICO:
-
-  // Hierarquia clara com 3 famílias de fontes:
-  - Inter: Fonte principal para interface
-  - JetBrains Mono: Fonte monoespaçada para código
-  - Playfair Display: Fonte display para títulos principais
-
-  PALETA MONOCROMÁTICA:
-
-  // Escala de cinzas profissionais:
-  - Pure White (#ffffff)
-  - Ghost White (#fafafa)
-  - Light Gray (#f5f5f5)
-  - Silver (#e5e5e5)
-  - Medium Gray (#a0a0a0)
-  - Dark Gray (#6b6b6b)
-  - Charcoal (#2a2a2a)
-  - Near Black (#1a1a1a)
-  - Pure Black (#000000)
-
-  BENEFÍCIOS DESTA ESTRUTURA:
-
-  ✅ Elegância atemporal
-  ✅ Escalabilidade máxima
-  ✅ Manutenção simplificada
-  ✅ Performance otimizada
-  ✅ Compatibilidade total com Tailwind
-  ✅ Temas nativos (claro/escuro)
-  ✅ Tokens semânticos
-  ✅ Organização profissional
-  ✅ Reutilização de código
-  ✅ Tipografia hierárquica
-  ✅ Acessibilidade melhorada
-  ✅ Padrões da indústria
-*/
