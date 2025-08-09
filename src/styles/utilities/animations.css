@@ -1,0 +1,706 @@
+/* 
+  ===================================================================
+  ANIMATIONS.CSS - SISTEMA COMPLETO DE ANIMAÇÕES E TRANSIÇÕES
+  ===================================================================
+*/
+
+/* 
+  ===================================================================
+  TRANSIÇÕES BASE - Configurações Fundamentais
+  ===================================================================
+*/
+
+/* Transições rápidas para micro-interações */
+.transition-fast {
+  transition: all var(--transition-fast) var(--ease-in-out);
+}
+
+/* Transição padrão para a maioria dos elementos */
+.transition,
+.transition-normal {
+  transition: all var(--transition-normal) var(--ease-in-out);
+}
+
+/* Transições lentas para mudanças importantes */
+.transition-slow {
+  transition: all var(--transition-slow) var(--ease-in-out);
+}
+
+/* Transições muito lentas para efeitos dramáticos */
+.transition-very-slow {
+  transition: all var(--transition-very-slow) var(--ease-in-out);
+}
+
+/* Transições específicas por propriedade (mais performáticas) */
+.transition-colors {
+  transition: background-color var(--transition-normal) var(--ease-in-out),
+              border-color var(--transition-normal) var(--ease-in-out),
+              color var(--transition-normal) var(--ease-in-out),
+              fill var(--transition-normal) var(--ease-in-out),
+              stroke var(--transition-normal) var(--ease-in-out);
+}
+
+.transition-opacity {
+  transition: opacity var(--transition-normal) var(--ease-in-out);
+}
+
+.transition-transform {
+  transition: transform var(--transition-normal) var(--ease-in-out);
+}
+
+.transition-shadow {
+  transition: box-shadow var(--transition-normal) var(--ease-in-out);
+}
+
+/* Desabilitar transições */
+.transition-none {
+  transition: none;
+}
+
+/* 
+  ===================================================================
+  ANIMAÇÕES DE ENTRADA - Elementos Aparecendo
+  ===================================================================
+*/
+
+/* Fade In - Aparecimento suave */
+.fade-in {
+  animation: fade-in var(--transition-normal) var(--ease-enter);
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Fade In com movimento para cima */
+.fade-in-up {
+  animation: fade-in-up var(--transition-normal) var(--ease-enter);
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(var(--space-4));
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Fade In com movimento para baixo */
+.fade-in-down {
+  animation: fade-in-down var(--transition-normal) var(--ease-enter);
+}
+
+@keyframes fade-in-down {
+  from {
+    opacity: 0;
+    transform: translateY(calc(var(--space-4) * -1));
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Fade In da esquerda */
+.fade-in-left {
+  animation: fade-in-left var(--transition-normal) var(--ease-enter);
+}
+
+@keyframes fade-in-left {
+  from {
+    opacity: 0;
+    transform: translateX(calc(var(--space-4) * -1));
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Fade In da direita */
+.fade-in-right {
+  animation: fade-in-right var(--transition-normal) var(--ease-enter);
+}
+
+@keyframes fade-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(var(--space-4));
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Scale In - Crescimento */
+.scale-in {
+  animation: scale-in var(--transition-normal) var(--ease-enter);
+}
+
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Scale In com bounce */
+.scale-in-bounce {
+  animation: scale-in-bounce var(--transition-slow) var(--ease-bounce);
+}
+
+@keyframes scale-in-bounce {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Rotate In */
+.rotate-in {
+  animation: rotate-in var(--transition-normal) var(--ease-enter);
+}
+
+@keyframes rotate-in {
+  from {
+    opacity: 0;
+    transform: rotate(-180deg);
+  }
+  to {
+    opacity: 1;
+    transform: rotate(0);
+  }
+}
+
+/* 
+  ===================================================================
+  ANIMAÇÕES DE SAÍDA - Elementos Desaparecendo
+  ===================================================================
+*/
+
+/* Fade Out básico */
+.fade-out {
+  animation: fade-out var(--transition-fast) var(--ease-exit);
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+/* Fade Out com movimento para cima */
+.fade-out-up {
+  animation: fade-out-up var(--transition-fast) var(--ease-exit);
+}
+
+@keyframes fade-out-up {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(calc(var(--space-4) * -1));
+  }
+}
+
+/* Fade Out com movimento para baixo */
+.fade-out-down {
+  animation: fade-out-down var(--transition-fast) var(--ease-exit);
+}
+
+@keyframes fade-out-down {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(var(--space-4));
+  }
+}
+
+/* Scale Out - Encolhimento */
+.scale-out {
+  animation: scale-out var(--transition-fast) var(--ease-exit);
+}
+
+@keyframes scale-out {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+}
+
+/* 
+  ===================================================================
+  ANIMAÇÕES DE ATENÇÃO - Para Chamar Foco
+  ===================================================================
+*/
+
+/* Pulse - Pulsação suave */
+.pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Bounce - Quique */
+.bounce {
+  animation: bounce 1s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+  50% {
+    transform: translateY(-25%);
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+}
+
+/* Shake - Tremor */
+.shake {
+  animation: shake 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+@keyframes shake {
+  10%, 90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  20%, 80% {
+    transform: translate3d(2px, 0, 0);
+  }
+  30%, 50%, 70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+  40%, 60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+
+/* Wiggle - Balanço */
+.wiggle {
+  animation: wiggle 1s ease-in-out infinite;
+}
+
+@keyframes wiggle {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(3deg);
+  }
+  75% {
+    transform: rotate(-3deg);
+  }
+}
+
+/* Ping - Pulso expansivo (para notificações) */
+.ping {
+  position: relative;
+}
+
+.ping::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+  background: inherit;
+}
+
+@keyframes ping {
+  75%, 100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+/* 
+  ===================================================================
+  ANIMAÇÕES CONTÍNUAS - Loops Infinitos
+  ===================================================================
+*/
+
+/* Spin - Rotação */
+.spin {
+  animation: spin 1s linear infinite;
+}
+
+.spin-slow {
+  animation: spin 3s linear infinite;
+}
+
+.spin-reverse {
+  animation: spin-reverse 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spin-reverse {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+/* Float - Flutuação */
+.float {
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Slide - Deslizamento horizontal contínuo */
+.slide {
+  animation: slide 20s linear infinite;
+}
+
+@keyframes slide {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
+/* 
+  ===================================================================
+  EFEITOS DE HOVER - Interações com Mouse
+  ===================================================================
+*/
+
+/* Hover Lift - Levanta o elemento */
+.hover-lift {
+  transition: transform var(--transition-enter);
+}
+
+.hover-lift:hover {
+  transform: translateY(-2px);
+}
+
+/* Hover Scale - Aumenta o elemento */
+.hover-scale {
+  transition: transform var(--transition-enter);
+}
+
+.hover-scale:hover {
+  transform: scale(1.05);
+}
+
+.hover-scale-sm:hover {
+  transform: scale(1.02);
+}
+
+.hover-scale-lg:hover {
+  transform: scale(1.1);
+}
+
+/* Hover Rotate - Rotaciona o elemento */
+.hover-rotate {
+  transition: transform var(--transition-enter);
+}
+
+.hover-rotate:hover {
+  transform: rotate(3deg);
+}
+
+/* Hover Shadow - Adiciona sombra */
+.hover-shadow {
+  transition: box-shadow var(--transition-enter);
+}
+
+.hover-shadow:hover {
+  box-shadow: var(--shadow-lg);
+}
+
+/* Hover Glow - Brilho ao redor */
+.hover-glow {
+  transition: box-shadow var(--transition-enter);
+}
+
+.hover-glow:hover {
+  box-shadow: 0 0 20px rgba(var(--primary), 0.5);
+}
+
+/* Hover Opacity */
+.hover-opacity {
+  transition: opacity var(--transition-enter);
+}
+
+.hover-opacity:hover {
+  opacity: 0.8;
+}
+
+/* 
+  ===================================================================
+  ANIMAÇÕES DE SCROLL - Ativadas Durante Rolagem
+  ===================================================================
+*/
+
+/* Parallax - Movimento diferencial */
+.parallax {
+  transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.parallax-slow {
+  transform: translateY(calc(var(--scroll-y) * 0.5));
+}
+
+.parallax-fast {
+  transform: translateY(calc(var(--scroll-y) * 1.5));
+}
+
+/* Reveal on scroll - Aparece ao rolar */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 
+  ===================================================================
+  EFEITOS ESPECIAIS - Animações Complexas
+  ===================================================================
+*/
+
+/* Morph - Transformação de forma */
+.morph {
+  animation: morph 8s ease-in-out infinite;
+}
+
+@keyframes morph {
+  0% {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  }
+  50% {
+    border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+  }
+  100% {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  }
+}
+
+/* Gradient animation - Gradiente animado */
+.gradient-shift {
+  background-size: 200% 200%;
+  animation: gradient-shift 3s ease infinite;
+}
+
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Typewriter - Efeito de digitação */
+.typewriter {
+  overflow: hidden;
+  border-right: 2px solid var(--foreground);
+  white-space: nowrap;
+  animation: 
+    typewriter 3s steps(40, end),
+    blink-caret 0.75s step-end infinite;
+}
+
+@keyframes typewriter {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blink-caret {
+  from, to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: var(--foreground);
+  }
+}
+
+/* 
+  ===================================================================
+  ANIMAÇÕES STAGGERED - Delay Progressivo
+  ===================================================================
+*/
+
+.stagger > * {
+  animation: fade-in-up var(--transition-normal) var(--ease-enter) both;
+}
+
+.stagger > *:nth-child(1) { animation-delay: 0ms; }
+.stagger > *:nth-child(2) { animation-delay: 50ms; }
+.stagger > *:nth-child(3) { animation-delay: 100ms; }
+.stagger > *:nth-child(4) { animation-delay: 150ms; }
+.stagger > *:nth-child(5) { animation-delay: 200ms; }
+.stagger > *:nth-child(6) { animation-delay: 250ms; }
+.stagger > *:nth-child(7) { animation-delay: 300ms; }
+.stagger > *:nth-child(8) { animation-delay: 350ms; }
+.stagger > *:nth-child(9) { animation-delay: 400ms; }
+.stagger > *:nth-child(10) { animation-delay: 450ms; }
+
+/* Stagger reverso (de baixo para cima) */
+.stagger-reverse > * {
+  animation: fade-in-up var(--transition-normal) var(--ease-enter) both;
+}
+
+.stagger-reverse > *:nth-last-child(1) { animation-delay: 0ms; }
+.stagger-reverse > *:nth-last-child(2) { animation-delay: 50ms; }
+.stagger-reverse > *:nth-last-child(3) { animation-delay: 100ms; }
+.stagger-reverse > *:nth-last-child(4) { animation-delay: 150ms; }
+.stagger-reverse > *:nth-last-child(5) { animation-delay: 200ms; }
+
+/* 
+  ===================================================================
+  UTILITÁRIOS DE CONTROLE - Gerenciamento de Animações
+  ===================================================================
+*/
+
+/* Pausar animação */
+.animation-pause {
+  animation-play-state: paused;
+}
+
+/* Rodar animação */
+.animation-play {
+  animation-play-state: running;
+}
+
+/* Delay de animação */
+.animation-delay-100 { animation-delay: 100ms; }
+.animation-delay-200 { animation-delay: 200ms; }
+.animation-delay-300 { animation-delay: 300ms; }
+.animation-delay-500 { animation-delay: 500ms; }
+.animation-delay-1000 { animation-delay: 1000ms; }
+
+/* Duração de animação */
+.animation-duration-100 { animation-duration: 100ms; }
+.animation-duration-200 { animation-duration: 200ms; }
+.animation-duration-300 { animation-duration: 300ms; }
+.animation-duration-500 { animation-duration: 500ms; }
+.animation-duration-1000 { animation-duration: 1000ms; }
+.animation-duration-2000 { animation-duration: 2000ms; }
+
+/* Fill mode */
+.animation-fill-both { animation-fill-mode: both; }
+.animation-fill-forwards { animation-fill-mode: forwards; }
+.animation-fill-backwards { animation-fill-mode: backwards; }
+
+/* 
+  ===================================================================
+  PERFORMANCE - Otimizações para Animações Suaves
+  ===================================================================
+*/
+
+/* Will-change para preparar o browser */
+.will-change-transform {
+  will-change: transform;
+}
+
+.will-change-opacity {
+  will-change: opacity;
+}
+
+.will-change-auto {
+  will-change: auto;
+}
+
+/* GPU acceleration */
+.gpu {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* 
+  ===================================================================
+  MEDIA QUERIES - Respeitar Preferências do Usuário
+  ===================================================================
+*/
+
+/* Respeitar configuração de movimento reduzido */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  /* Manter apenas animações essenciais */
+  .spinner,
+  .loading-dots {
+    animation-duration: 1s !important;
+  }
+}
