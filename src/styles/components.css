@@ -1,17 +1,18 @@
-/* ===================================================================
-   COMPONENTS.CSS - ESTILOS MONOCROMÁTICOS (VERSÃO 2.0)
-   ================================================================= */
-
 /* 
-  Componentes redesenhados para o sistema monocromático com foco em
-  tipografia, hierarquia visual e animações suaves.
+  ===================================================================
+  COMPONENTS.CSS
+  ===================================================================
 */
 
-/* ===================================================================
-   ESTILOS BASE
-   ================================================================= */
+/* 
+  ===================================================================
+  RESET E FUNDAMENTOS
+  ===================================================================
+*/
 
-* {
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -23,6 +24,7 @@
 html {
   scroll-behavior: smooth;
   scroll-snap-type: y mandatory;
+  overflow-x: hidden;
 }
 
 body {
@@ -33,14 +35,17 @@ body {
   letter-spacing: var(--letter-spacing-body);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
+  text-rendering: optimizeLegibility;
   background-color: var(--background);
   color: var(--foreground);
+  overflow-x: hidden;
 }
 
-/* ===================================================================
-   SISTEMA TIPOGRÁFICO APLICADO
-   ================================================================= */
+/* 
+  ===================================================================
+  SISTEMA TIPOGRÁFICO
+  ===================================================================
+*/
 
 /* Títulos Hierárquicos */
 .hero-title,
@@ -51,6 +56,7 @@ body {
   line-height: var(--line-height-hero);
   letter-spacing: var(--letter-spacing-hero);
   color: var(--foreground);
+  transition: color var(--transition-base);
 }
 
 h1,
@@ -61,6 +67,7 @@ h1,
   line-height: var(--line-height-h1);
   letter-spacing: var(--letter-spacing-h1);
   color: var(--foreground);
+  transition: color var(--transition-base);
 }
 
 h2,
@@ -71,6 +78,7 @@ h2,
   line-height: var(--line-height-h2);
   letter-spacing: var(--letter-spacing-h2);
   color: var(--foreground);
+  transition: color var(--transition-base);
 }
 
 h3,
@@ -81,6 +89,7 @@ h3,
   line-height: var(--line-height-h3);
   letter-spacing: var(--letter-spacing-h3);
   color: var(--foreground);
+  transition: color var(--transition-base);
 }
 
 h4,
@@ -91,6 +100,7 @@ h4,
   line-height: var(--line-height-h4);
   letter-spacing: var(--letter-spacing-h4);
   color: var(--foreground);
+  transition: color var(--transition-base);
 }
 
 /* Corpo de Texto */
@@ -101,6 +111,7 @@ h4,
   line-height: var(--line-height-body-large);
   letter-spacing: var(--letter-spacing-body-large);
   color: var(--foreground);
+  transition: color var(--transition-base);
 }
 
 p,
@@ -111,6 +122,7 @@ p,
   line-height: var(--line-height-body);
   letter-spacing: var(--letter-spacing-body);
   color: var(--foreground);
+  transition: color var(--transition-base);
 }
 
 .text-small {
@@ -119,7 +131,8 @@ p,
   font-weight: var(--weight-body-small);
   line-height: var(--line-height-body-small);
   letter-spacing: var(--letter-spacing-body-small);
-  color: var(--foreground-muted);
+  color: var(--foreground-tertiary);
+  transition: color var(--transition-base);
 }
 
 .text-caption {
@@ -129,9 +142,11 @@ p,
   line-height: var(--line-height-caption);
   letter-spacing: var(--letter-spacing-caption);
   text-transform: var(--text-transform-caption);
-  color: var(--foreground-subtle);
+  color: var(--foreground-quaternary);
+  transition: color var(--transition-base);
 }
 
+/* Elementos Especiais */
 code,
 .text-code {
   font-family: var(--font-code);
@@ -139,41 +154,48 @@ code,
   font-weight: var(--weight-code);
   line-height: var(--line-height-code);
   letter-spacing: var(--letter-spacing-code);
-  background: var(--muted);
-  padding: 0.125rem 0.25rem;
+  padding: var(--space-1) var(--space-2);
   border-radius: var(--radius-sm);
+  background: var(--muted);
   color: var(--foreground);
+  transition: var(--transition-base);
 }
 
-/* Variações de Cor de Texto */
 .text-muted {
-  color: var(--foreground-muted);
+  color: var(--foreground-tertiary);
 }
 
 .text-subtle {
-  color: var(--foreground-subtle);
+  color: var(--foreground-quaternary);
 }
 
 .text-disabled {
   color: var(--foreground-disabled);
 }
 
-/* Links */
 a {
   color: var(--foreground);
   text-decoration: none;
-  transition: color var(--transition-fast);
+  transition: var(--transition-enter);
   border-bottom: 1px solid transparent;
 }
 
 a:hover {
-  color: var(--foreground-muted);
-  border-bottom-color: var(--foreground-muted);
+  color: var(--foreground-tertiary);
+  border-bottom-color: var(--foreground-tertiary);
 }
 
-/* ===================================================================
-   LAYOUT COMPONENTS
-   ================================================================= */
+a:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: var(--space-1);
+  border-radius: var(--radius-sm);
+}
+
+/* 
+  ===================================================================
+  LAYOUT FUNDAMENTAIS
+  ===================================================================
+*/
 
 .section {
   height: 100vh;
@@ -182,46 +204,61 @@ a:hover {
   justify-content: center;
   position: relative;
   scroll-snap-align: start;
-  padding: 2rem;
+  padding: var(--space-8);
+  transition: background-color var(--transition-base),
+    color var(--transition-base);
 }
+
+@media (max-width: 768px) {
+  .section {
+    padding: var(--space-4);
+  }
+}
+
+@media (max-width: 480px) {
+  .section {
+    padding: var(--space-2);
+  }
+}
+
+/* 
+  ===================================================================
+  NAVEGAÇÃO GLOBAL
+  ===================================================================
+*/
 
 .navigation {
   position: fixed;
   top: 50%;
-  right: 2rem;
+  right: var(--space-8);
   transform: translateY(-50%);
   z-index: 50;
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: var(--space-6);
 }
 
-/* ===================================================================
-   NAVIGATION COMPONENTS MELHORADOS
-   ================================================================= */
-
-/* Navigation Dots com Animações Aprimoradas */
 .nav-dot {
-  width: 0.875rem;
-  height: 0.875rem;
+  width: var(--space-3);
+  height: var(--space-3);
   border-radius: 50%;
-  border: 2px solid var(--foreground-subtle);
+  border: 2px solid var(--foreground-quaternary);
   background: transparent;
   cursor: pointer;
   position: relative;
-  transition: all var(--transition-normal);
+  transition: all var(--transition-enter);
   transform-origin: center;
 }
 
 .nav-dot::before {
   content: '';
   position: absolute;
-  inset: -8px;
+  inset: calc(var(--space-2) * -1);
   border-radius: 50%;
   background: var(--foreground);
   opacity: 0;
   transform: scale(0);
-  transition: all var(--transition-normal);
+  transition: var(--transition-bounce);
   z-index: -1;
 }
 
@@ -246,7 +283,6 @@ a:hover {
   transform: scale(1);
 }
 
-/* Navigation Buttons - Estilo Minimalista Melhorado */
 .nav-button {
   background: transparent !important;
   border: none !important;
@@ -255,9 +291,9 @@ a:hover {
   font-weight: var(--weight-button);
   line-height: var(--line-height-button);
   letter-spacing: var(--letter-spacing-button);
-  padding: 0.875rem 1.25rem;
+  padding: var(--space-3) var(--space-5);
   position: relative;
-  transition: all var(--transition-normal);
+  transition: var(--transition-enter);
   border-radius: 0;
   color: var(--foreground);
   cursor: pointer;
@@ -268,31 +304,25 @@ a:hover {
   content: '';
   position: absolute;
   bottom: 0;
-  left: 50%;                    
-  width: 100%;                  
+  left: 50%;
+  width: 100%;
   height: 2px;
   background: var(--foreground);
-  transform: translateX(-50%) scaleX(0);  
-  transform-origin: center;    
-  transition: transform var(--transition-slow);
+  transform: translateX(-50%) scaleX(0);
+  transform-origin: center;
+  transition: transform var(--transition-bounce);
 }
 
 .nav-button::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(360deg, 
-    var(--foreground) 0%, 
-    transparent 100%); 
+  background: linear-gradient(180deg,
+      var(--foreground) 0%,
+      transparent 100%);
   opacity: 0;
   transition: opacity var(--transition-fast);
   z-index: -1;
-}
-
-.nav-button:hover {
-  background: transparent !important;
-  color: var(--foreground);
-
 }
 
 .nav-button:hover::after {
@@ -304,24 +334,39 @@ a:hover {
 }
 
 .nav-button.active {
-  background: transparent !important;
   font-weight: 600;
-  color: var(--foreground);
 }
 
 .nav-button.active::after {
-  width: 100%;
-  height: 2px;
-  transform: translateX(-50%) scaleX(1) !important;
+  transform: translateX(-50%) scaleX(1);
 }
 
 .nav-button.active::before {
-  opacity: 0.1 !important;
+  opacity: 0.15;
 }
 
-/* ===================================================================
-   CARD COMPONENTS
-   ================================================================= */
+@media (max-width: 768px) {
+  .navigation {
+    right: var(--space-4);
+    gap: var(--space-4);
+  }
+
+  .nav-dot {
+    width: var(--space-3);
+    height: var(--space-3);
+  }
+
+  .nav-button {
+    font-size: calc(var(--size-button) * 0.9);
+    padding: var(--space-2) var(--space-4);
+  }
+}
+
+/* 
+  ===================================================================
+  COMPONENTES DE CARD
+  ===================================================================
+*/
 
 .card {
   border-radius: var(--radius-lg);
@@ -329,19 +374,19 @@ a:hover {
   box-shadow: var(--shadow);
   background: var(--card);
   color: var(--card-foreground);
-  transition: all var(--transition-normal);
+  transition: var(--transition-enter);
 }
 
 .card:hover {
   box-shadow: var(--shadow-lg);
-  transform: translateY(-2px);
+  transform: translateY(calc(var(--space-1) * -1));
 }
 
 .card-header {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
-  padding: 2rem;
+  gap: var(--space-2);
+  padding: var(--space-8);
 }
 
 .card-title {
@@ -358,42 +403,67 @@ a:hover {
   font-size: var(--size-body-small);
   font-weight: var(--weight-body-small);
   line-height: var(--line-height-body-small);
-  color: var(--foreground-muted);
+  color: var(--foreground-tertiary);
 }
 
 .card-content {
-  padding: 2rem;
+  padding: var(--space-8);
   padding-top: 0;
 }
 
 .card-footer {
   display: flex;
   align-items: center;
-  padding: 2rem;
+  gap: var(--space-4);
+  padding: var(--space-8);
   padding-top: 0;
 }
 
-/* ===================================================================
-   BUTTON COMPONENTS
-   ================================================================= */
+@media (max-width: 768px) {
+  .card {
+    margin: 0 var(--space-4);
+  }
+
+  .card-header,
+  .card-content,
+  .card-footer {
+    padding: var(--space-6);
+  }
+
+  .card-content {
+    padding-top: 0;
+  }
+
+  .card-footer {
+    padding-top: 0;
+  }
+}
+
+/* 
+  ===================================================================
+  SISTEMA DE BOTÕES
+  ===================================================================
+*/
 
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border-radius: var(--radius);
+  gap: var(--space-2);
   font-family: var(--font-button);
   font-size: var(--size-button);
   font-weight: var(--weight-button);
   line-height: var(--line-height-button);
   letter-spacing: var(--letter-spacing-button);
-  transition: all var(--transition-normal);
-  cursor: pointer;
+  padding: var(--space-3) var(--space-6);
+  min-height: var(--space-12);
+  border-radius: var(--radius);
   border: none;
-  padding: 0.75rem 1.5rem;
-  height: 2.75rem;
+  cursor: pointer;
   position: relative;
   overflow: hidden;
+  transition: var(--transition-enter);
+  outline: none;
 }
 
 .btn::before {
@@ -403,17 +473,18 @@ a:hover {
   background: currentColor;
   opacity: 0;
   transition: opacity var(--transition-fast);
+  pointer-events: none;
 }
 
 .btn:focus-visible {
-  outline: none;
-  box-shadow: 0 0 0 2px var(--ring);
-  outline-offset: 2px;
+  box-shadow: 0 0 0 var(--space-1) var(--ring);
+  outline-offset: var(--space-1);
 }
 
 .btn:disabled {
   pointer-events: none;
   opacity: 0.5;
+  cursor: not-allowed;
 }
 
 .btn:hover::before {
@@ -426,7 +497,7 @@ a:hover {
 }
 
 .btn-primary:hover {
-  transform: translateY(-1px);
+  transform: translateY(calc(var(--space-1) * -0.5));
   box-shadow: var(--shadow-md);
 }
 
@@ -463,28 +534,30 @@ a:hover {
   color: var(--accent-foreground);
 }
 
-/* ===================================================================
-   INPUT COMPONENTS
-   ================================================================= */
+/* 
+  ===================================================================
+  CAMPOS DE ENTRADA
+  ===================================================================
+*/
 
 .input {
   display: flex;
-  height: 2.75rem;
   width: 100%;
+  min-height: var(--space-12);
+  font-family: var(--font-body);
+  font-size: var(--size-body);
+  padding: var(--space-3) var(--space-4);
   border-radius: var(--radius);
   border: 1px solid var(--border);
   background: var(--background);
-  padding: 0.75rem 1rem;
-  font-family: var(--font-body);
-  font-size: var(--size-body);
   color: var(--foreground);
-  transition: all var(--transition-normal);
+  transition: var(--transition-enter);
+  outline: none;
 }
 
 .input:focus {
-  outline: none;
   border-color: var(--ring);
-  box-shadow: 0 0 0 2px var(--ring), var(--shadow);
+  box-shadow: 0 0 0 var(--space-1) var(--ring), var(--shadow);
 }
 
 .input:disabled {
@@ -493,110 +566,162 @@ a:hover {
 }
 
 .input::placeholder {
-  color: var(--foreground-subtle);
+  color: var(--foreground-quaternary);
 }
 
-/* ===================================================================
-   GRADIENTES MONOCROMÁTICOS POR SEÇÃO
-   ================================================================= */
+/* 
+  ===================================================================
+  ESTILOS POR SEÇÃO
+  ===================================================================
+*/
 
-.gradient-top-menu {
-  position: relative;
-  background: linear-gradient(135deg, 
-    var(--background) 0%, 
-    var(--background-secondary) 50%, 
-    var(--background-tertiary) 100%
-  );
+.section-bio {
+  background: linear-gradient(135deg,
+      var(--bio-background) 0%,
+      var(--bio-background-secondary) 100%);
+  color: var(--bio-foreground);
+}
+
+.section-bio .card {
+  background: var(--bio-background-secondary);
+  border-color: var(--bio-accent);
+  color: var(--bio-foreground);
+}
+
+.section-bio .text-muted {
+  color: var(--bio-foreground-muted);
+}
+
+.section-projetos {
+  background: linear-gradient(135deg,
+      var(--projetos-background) 0%,
+      var(--projetos-background-secondary) 100%);
+  color: var(--projetos-foreground);
+}
+
+.section-projetos .card {
+  background: var(--projetos-background-secondary);
+  border-color: var(--projetos-accent);
+  color: var(--projetos-foreground);
+}
+
+.section-carreira {
+  background: linear-gradient(135deg,
+      var(--carreira-background) 0%,
+      var(--carreira-background-secondary) 100%);
+  color: var(--carreira-foreground);
+}
+
+.section-carreira .card {
+  background: var(--carreira-background-secondary);
+  border-color: var(--carreira-accent);
+  color: var(--carreira-foreground);
+}
+
+.section-hobbys {
+  background: linear-gradient(135deg,
+      var(--hobbys-background) 0%,
+      var(--hobbys-background-secondary) 100%);
+  color: var(--hobbys-foreground);
+}
+
+.section-blog {
+  background: linear-gradient(135deg,
+      var(--blog-background) 0%,
+      var(--blog-background-secondary) 100%);
+  color: var(--blog-foreground);
+}
+
+.section-contato {
+  background: linear-gradient(135deg,
+      var(--contato-background) 0%,
+      var(--contato-background-secondary) 100%);
+  color: var(--contato-foreground);
+}
+
+/* 
+  ===================================================================
+  UTILIDADES GLOBAIS
+  ===================================================================
+*/
+
+.text-balance {
+  text-wrap: balance;
+}
+
+.transition-smooth {
+  transition: var(--transition-base);
+}
+
+.focus-ring:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: var(--space-1);
+  border-radius: var(--radius-sm);
+}
+
+.gradient-text {
+  background: linear-gradient(135deg,
+      var(--foreground),
+      var(--foreground-tertiary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.backdrop-blur {
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--border);
 }
 
-.gradient-bio {
-  background: linear-gradient(135deg, 
-    var(--gradient-bio-start) 0%, 
-    var(--gradient-bio-end) 100%
-  );
-  color: var(--foreground);
-}
-
-.gradient-projetos {
-  background: linear-gradient(135deg, 
-    var(--gradient-projetos-start) 0%, 
-    var(--gradient-projetos-end) 100%
-  );
-  color: var(--foreground);
-}
-
-.gradient-carreira {
-  background: linear-gradient(135deg, 
-    var(--gradient-carreira-start) 0%, 
-    var(--gradient-carreira-end) 100%
-  );
-  color: var(--foreground);
-}
-
-.gradient-hobbys {
-  background: linear-gradient(135deg, 
-    var(--gradient-hobbys-start) 0%, 
-    var(--gradient-hobbys-end) 100%
-  );
-  color: var(--foreground);
-}
-
-.gradient-blog {
-  background: linear-gradient(135deg, 
-    var(--gradient-blog-start) 0%, 
-    var(--gradient-blog-end) 100%
-  );
-  color: var(--foreground);
-}
-
-.gradient-contato {
-  background: linear-gradient(135deg, 
-    var(--gradient-contato-start) 0%, 
-    var(--gradient-contato-end) 100%
-  );
-  color: var(--foreground);
-}
-
-/* ===================================================================
-   ANIMAÇÕES MELHORADAS
-   ================================================================= */
-
-/* Menu Superior com Animação Suave */
-.top-menu {
-  transition: all var(--transition-slow);
-}
-
-.top-menu.hidden {
-  transform: translateY(-100%);
-  opacity: 0;
-}
-
-/* Efeitos de Hover Globais */
 .hover-lift {
-  transition: transform var(--transition-normal);
+  transition: transform var(--transition-enter);
 }
 
 .hover-lift:hover {
-  transform: translateY(-2px);
+  transform: translateY(calc(var(--space-1) * -1));
 }
 
 .hover-scale {
-  transition: transform var(--transition-normal);
+  transition: transform var(--transition-enter);
 }
 
 .hover-scale:hover {
   transform: scale(1.05);
 }
 
-/* Animações de Entrada */
+.loading {
+  opacity: 0.6;
+  pointer-events: none;
+  position: relative;
+}
+
+.loading::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg,
+      transparent,
+      rgba(255, 255, 255, 0.1),
+      transparent);
+  animation: shimmer var(--transition-very-slow) infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(100%);
+  }
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(var(--space-5));
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -604,12 +729,14 @@ a:hover {
 }
 
 .fade-in {
-  animation: fadeIn var(--transition-slow) ease-out;
+  animation: fadeIn var(--transition-bounce) var(--ease-enter);
 }
 
-/* ===================================================================
-   PREPARAÇÃO PARA FOOTER
-   ================================================================= */
+/* 
+  ===================================================================
+  PREPARAÇÃO PARA FOOTER
+  ===================================================================
+*/
 
 .footer-section {
   min-height: 100vh;
@@ -621,135 +748,25 @@ a:hover {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 2rem;
+  padding: var(--space-8);
 }
 
 .footer-info {
-  padding: 2rem;
+  padding: var(--space-8);
   border-top: 1px solid var(--border);
   background: var(--background-secondary);
   text-align: center;
 }
 
 .footer-info .text-small {
-  color: var(--foreground-subtle);
+  color: var(--foreground-quaternary);
 }
 
-/* ===================================================================
-   RESPONSIVE DESIGN
-   ================================================================= */
-
-@media (max-width: 768px) {
-  .navigation {
-    right: 1rem;
-    gap: 1rem;
-  }
-
-  .nav-dot {
-    width: 0.75rem;
-    height: 0.75rem;
-  }
-  
-  .nav-button {
-    font-size: 0.8rem;
-    padding: 0.625rem 1rem;
-  }
-
-  .section {
-    padding: 1rem;
-  }
-
-  .card {
-    margin: 0 1rem;
-  }
-
-  .card-header,
-  .card-content,
-  .card-footer {
-    padding: 1.5rem;
-  }
-
-  .card-content {
-    padding-top: 0;
-  }
-
-  .card-footer {
-    padding-top: 0;
-  }
-}
-
-@media (max-width: 480px) {
-  .nav-button {
-    font-size: 0.75rem;
-    padding: 0.5rem 0.75rem;
-  }
-
-  .card-title {
-    font-size: var(--size-h4);
-  }
-
-  .section {
-    padding: 0.5rem;
-  }
-}
-
-/* ===================================================================
-   UTILITY CLASSES
-   ================================================================= */
-
-.text-balance {
-  text-wrap: balance;
-}
-
-.transition-smooth {
-  transition: all var(--transition-normal);
-}
-
-.focus-ring:focus-visible {
-  outline: none;
-  box-shadow: 0 0 0 2px var(--ring);
-  outline-offset: 2px;
-}
-
-.gradient-text {
-  background: linear-gradient(135deg, var(--foreground), var(--foreground-muted));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.backdrop-blur {
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-}
-
-/* Estados de Loading */
-.loading {
-  opacity: 0.6;
-  pointer-events: none;
-  position: relative;
-}
-
-.loading::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(90deg, 
-    transparent, 
-    rgba(255, 255, 255, 0.1), 
-    transparent
-  );
-  animation: shimmer 1.5s infinite;
-}
-
-@keyframes shimmer {
-  0% { transform: translateX(-100%); }
-  100% { transform: translateX(100%); }
-}
-
-/* ===================================================================
-   PATTERNS LATERAIS NO MENU
-   ================================================================= */
+/* 
+  ===================================================================
+  PATTERNS LATERAIS DO MENU
+  ===================================================================
+*/
 
 .menu-with-side-patterns {
   position: fixed !important;
@@ -766,7 +783,7 @@ a:hover {
   background-image: var(--pattern-image);
   background-size: var(--pattern-size);
   background-repeat: var(--pattern-repeat);
-  transition: all 500ms ease-in-out;
+  transition: var(--transition-bounce);
   z-index: 1;
 }
 
@@ -778,8 +795,7 @@ a:hover {
   right: 0;
 }
 
-/* Garantir que o conteúdo do menu fique acima dos patterns */
-.menu-with-side-patterns > div {
+.menu-with-side-patterns>div {
   position: relative;
   z-index: 10;
 }
