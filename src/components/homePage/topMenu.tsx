@@ -35,38 +35,42 @@ export default function TopMenu({ sections }: TopMenuProps) {
       className="menu-with-side-patterns"
       data-active-section={sections[activeSection]?.toLowerCase()}
     >
-      <div className="container-responsive">
-        <div className="nav-container">
-          {/* Navegação Desktop - Visível em telas grandes */}
-          <div className="nav-desktop">
-            <div className="nav-menu">
-              {sections.map((section, index) => (
-                <button
-                  key={section}
-                  className={`nav-button ${index === activeSection ? 'active' : ''}`}
-                  onClick={() => scrollToSection(index)}
-                  aria-label={`Ir para seção ${section}`}
-                  aria-current={index === activeSection ? 'page' : undefined}
-                >
-                  {section}
-                </button>
-              ))}
-            </div>
-          </div>
+      {/* Container com largura máxima e centralização */}
+      <div className="menu-container">
+        {/* Logo/Brand (opcional - espaço reservado) */}
+        <div className="menu-brand">
+          {/* Você pode adicionar um logo aqui no futuro */}
+        </div>
 
-          {/* Navegação Mobile - Menu hamburger para telas pequenas */}
-          <div className="nav-mobile">
-            <MobileMenu 
-              sections={sections}
-              activeSection={activeSection}
-              onNavigate={scrollToSection}
-            />
+        {/* Navegação centralizada */}
+        <div className="menu-navigation">
+          <div className="nav-menu">
+            {sections.map((section, index) => (
+              <button
+                key={section}
+                className={`nav-button ${index === activeSection ? 'active' : ''}`}
+                onClick={() => scrollToSection(index)}
+                aria-label={`Ir para seção ${section}`}
+                aria-current={index === activeSection ? 'page' : undefined}
+              >
+                {section}
+              </button>
+            ))}
           </div>
+        </div>
 
-          {/* Theme Toggle - Sempre visível */}
-          <div className="nav-actions">
-            <ThemeToggle />
-          </div>
+        {/* Theme Toggle posicionado à direita */}
+        <div className="menu-actions">
+          <ThemeToggle />
+        </div>
+
+        {/* Menu Mobile */}
+        <div className="menu-mobile">
+          <MobileMenu 
+            sections={sections}
+            activeSection={activeSection}
+            onNavigate={scrollToSection}
+          />
         </div>
       </div>
     </nav>
@@ -86,12 +90,11 @@ function MobileMenu({
 
   const handleNavigate = (index: number) => {
     onNavigate(index);
-    setIsOpen(false); // Fecha o menu após navegar
+    setIsOpen(false);
   };
 
   return (
     <>
-      {/* Botão hamburger */}
       <button
         className={`nav-mobile-toggle ${isOpen ? 'active' : ''}`}
         onClick={() => setIsOpen(!isOpen)}
@@ -103,7 +106,6 @@ function MobileMenu({
         <span />
       </button>
 
-      {/* Overlay e Menu */}
       {isOpen && (
         <>
           <div 

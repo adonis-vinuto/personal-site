@@ -3,6 +3,7 @@
 import Navigation from '@/components/homePage/navigation';
 import TopMenu from '@/components/homePage/topMenu';
 import KeyboardNavigation from '@/components/homePage/keyboardNavigation';
+import SmoothScrollHandler from '@/components/homePage/smoothScrollHandler';
 import Section from '@/components/homePage/section';
 import Bio from '@/components/sections/bio';
 import Projetos from '@/components/sections/projetos';
@@ -16,10 +17,19 @@ export default function Home() {
 
   return (
     <main className="relative">
+      {/* Menu superior fixo */}
       <TopMenu sections={sections} />
+      
+      {/* Navegação lateral com dots */}
       <Navigation sections={sections} />
+      
+      {/* Navegação por teclado */}
       <KeyboardNavigation totalSections={sections.length} />
+      
+      {/* Handler para scroll suave com mouse */}
+      <SmoothScrollHandler totalSections={sections.length} />
 
+      {/* Seções do site */}
       <Section id="bio">
         <Bio />
       </Section>
