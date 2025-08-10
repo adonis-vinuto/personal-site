@@ -6,6 +6,57 @@
 
 /* 
   ===================================================================
+  MENU SUPERIOR - Layout em Grid
+  ===================================================================
+*/
+
+/* Container do menu - Abordagem com Flexbox + Posicionamento Absoluto */
+.menu-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Centraliza o conteúdo principal */
+  height: 100%;
+  width: 100%;
+  padding: 0 20px; /* Padding lateral de 20px como você pediu */
+}
+
+.menu-brand {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* Navegação - Centralizada naturalmente pelo flexbox */
+.menu-navigation {
+  /* Fica no centro por causa do justify-content: center do parent */
+  display: flex;
+  align-items: center;
+}
+
+/* Theme Toggle - Posicionado absolutamente à direita */
+.menu-actions {
+  position: absolute;
+  right: 20px; /* Exatos 20px da borda direita como solicitado */
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+/* Menu mobile - Posicionado absolutamente à esquerda */
+.menu-mobile {
+  display: none;
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* 
+  ===================================================================
   NAVIGATION DOTS - Indicadores Laterais de Seção
   ===================================================================
 */
@@ -174,6 +225,7 @@
   ===================================================================
 */
 
+/* Menu principal - estrutura base */
 .menu-with-side-patterns {
   position: fixed !important;
   top: 0;
@@ -181,16 +233,18 @@
   right: 0;
   width: 100%;
   z-index: 50;
+  
+  /* Visual */
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border);
-  transition: all var(--transition-normal) ease-in-out;
   background-color: var(--background);
   
-  /* Altura fixa para estabilidade */
+  /* Altura fixa */
   height: 80px;
-  min-height: 80px;
-  max-height: 80px;
+  
+  /* Transições suaves */
+  transition: all var(--transition-normal) ease-in-out;
 }
 
 /* Container interno do menu */
@@ -498,13 +552,13 @@
 
 /* Pattern para seção Bio */
 .menu-with-side-patterns[data-active-section="bio"] {
-  background: var(--bio-background);
+  background: rgba(var(--bio-background, 0.95));
   border-bottom-color: var(--bio-accent);
 }
 
 /* Pattern para seção Projetos */
 .menu-with-side-patterns[data-active-section="projetos"] {
-  background: var(--projetos-background);
+  background: rgba(var(--projetos-background, 0.95));
   border-bottom-color: var(--projetos-accent);
 }
 
@@ -574,9 +628,11 @@
   justify-content: center;
 }
 
+/* Menu de botões */
 .nav-menu {
   display: flex;
   gap: var(--space-2);
+  align-items: center;
 }
 
 .nav-mobile {
@@ -661,7 +717,41 @@
 .navigation .nav-dot-8 { animation-delay: 400ms; }
 .navigation .nav-dot-9 { animation-delay: 450ms; }
 
-/* Caso precisem de mais seções no futuro */
-.navigation .nav-dot-10 { animation-delay: 500ms; }
-.navigation .nav-dot-11 { animation-delay: 550ms; }
-.navigation .nav-dot-12 { animation-delay: 600ms; }
+
+/* 
+  ===================================================================
+  RESPONSIVIDADE DO MENU SUPERIOR
+  ===================================================================
+*/
+
+@media (max-width: 768px) {
+  /* Ajusta o grid para 2 colunas em mobile */
+  .menu-container {
+    grid-template-columns: 1fr auto;
+    padding: 0 var(--space-4);
+  }
+  
+  /* Esconde navegação desktop */
+  .menu-navigation {
+    display: none;
+  }
+  
+  /* Mostra menu mobile na primeira coluna */
+  .menu-mobile {
+    display: block;
+    grid-column: 1;
+    justify-self: start;
+  }
+  
+  /* Actions continuam na segunda coluna */
+  .menu-actions {
+    grid-column: 2;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Padding ainda menor em telas muito pequenas */
+  .menu-container {
+    padding: 0 var(--space-3);
+  }
+}

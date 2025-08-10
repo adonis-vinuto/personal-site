@@ -33,11 +33,18 @@
   ===================================================================
 */
 
+/* Atualização do elemento html para scroll snap funcionar */
 html {
   /* Comportamento de scroll suave e snap para as seções */
   scroll-behavior: smooth;
   scroll-snap-type: y mandatory;
+  
+  /* Garante altura adequada para scroll */
+  height: 100%;
+  
+  /* Previne scroll horizontal acidental */
   overflow-x: hidden;
+  overflow-y: auto;
   
   /* Previne ajustes de fonte em iOS */
   -webkit-text-size-adjust: 100%;
@@ -189,4 +196,25 @@ button {
 ::-moz-selection {
   background-color: var(--accent);
   color: var(--accent-foreground);
+}
+
+/* 
+  ===================================================================
+  SUPORTE PARA DIFERENTES NAVEGADORES
+  ===================================================================
+*/
+
+/* Garante que o scroll snap funcione em todos os navegadores modernos */
+@supports (scroll-snap-type: y mandatory) {
+  html {
+    scroll-snap-type: y mandatory;
+  }
+}
+
+/* Fallback para navegadores mais antigos */
+@supports not (scroll-snap-type: y mandatory) {
+  html {
+    scroll-snap-type: mandatory;
+    scroll-snap-points-y: repeat(100vh);
+  }
 }

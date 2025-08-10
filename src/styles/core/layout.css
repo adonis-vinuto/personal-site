@@ -10,8 +10,9 @@
   ===================================================================
 */
 
+/* Atualização da classe .section existente */
 .section {
-  /* Ocupa altura total da viewport */
+  /* Altura exata da viewport para scroll snap funcionar */
   height: 100vh;
   min-height: 100vh;
   
@@ -20,19 +21,20 @@
   align-items: center;
   justify-content: center;
   
-  /* Comportamento de scroll */
-  position: relative;
+  /* Scroll snap - cada seção é um ponto de parada */
   scroll-snap-align: start;
+  scroll-snap-stop: always;
   
-  /* Espaçamento interno responsivo */
-  padding: var(--space-8);
+  /* Posicionamento e overflow */
+  position: relative;
+  overflow-x: hidden;
   
-  /* Transições suaves para mudanças de tema */
+  /* Padding responsivo */
+  padding: 0;
+  
+  /* Transições suaves */
   transition: background-color var(--transition-base),
               color var(--transition-base);
-  
-  /* Previne overflow horizontal */
-  overflow-x: hidden;
 }
 
 /* Variação para seção com conteúdo mais longo */
