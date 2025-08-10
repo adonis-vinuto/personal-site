@@ -35,15 +35,14 @@ export default function TopMenu({ sections }: TopMenuProps) {
       className="menu-with-side-patterns"
       data-active-section={sections[activeSection]?.toLowerCase()}
     >
-      {/* Container com largura máxima e centralização */}
       <div className="menu-container">
-        {/* Logo/Brand (opcional - espaço reservado) */}
-        <div className="menu-brand">
-          {/* Você pode adicionar um logo aqui no futuro */}
-        </div>
-
-        {/* Navegação centralizada */}
-        <div className="menu-navigation">
+        {/* 
+          Em telas grandes: mostra os botões de navegação
+          Em telas pequenas: mostra apenas o nome da seção atual
+        */}
+        
+        {/* Navegação Desktop - Botões centralizados */}
+        <div className="menu-navigation-desktop">
           <div className="nav-menu">
             {sections.map((section, index) => (
               <button
@@ -59,73 +58,22 @@ export default function TopMenu({ sections }: TopMenuProps) {
           </div>
         </div>
 
-        {/* Theme Toggle posicionado à direita */}
+        {/* 
+          Indicador Mobile - Nome da Seção Atual
+          Este elemento só aparece em telas pequenas
+          Ele mostra onde o usuário está, como uma placa de sinalização
+        */}
+        <div className="menu-section-indicator">
+          <span className="section-indicator-label">
+            {sections[activeSection]}
+          </span>
+        </div>
+
+        {/* Theme Toggle - Sempre visível à direita */}
         <div className="menu-actions">
           <ThemeToggle />
         </div>
-
-        {/* Menu Mobile */}
-        <div className="menu-mobile">
-          <MobileMenu 
-            sections={sections}
-            activeSection={activeSection}
-            onNavigate={scrollToSection}
-          />
-        </div>
       </div>
     </nav>
-  );
-}
-
-function MobileMenu({ 
-  sections, 
-  activeSection, 
-  onNavigate 
-}: {
-  sections: string[];
-  activeSection: number;
-  onNavigate: (index: number) => void;
-}) {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const handleNavigate = (index: number) => {
-    onNavigate(index);
-    setIsOpen(false);
-  };
-
-  return (
-    <>
-      <button
-        className={`nav-mobile-toggle ${isOpen ? 'active' : ''}`}
-        onClick={() => setIsOpen(!isOpen)}
-        aria-label="Menu de navegação"
-        aria-expanded={isOpen}
-      >
-        <span />
-        <span />
-        <span />
-      </button>
-
-      {isOpen && (
-        <>
-          <div 
-            className="nav-mobile-overlay active"
-            onClick={() => setIsOpen(false)}
-            aria-hidden="true"
-          />
-          <div className="nav-mobile-menu active">
-            {sections.map((section, index) => (
-              <button
-                key={section}
-                className={`nav-mobile-item ${index === activeSection ? 'active' : ''}`}
-                onClick={() => handleNavigate(index)}
-              >
-                {section}
-              </button>
-            ))}
-          </div>
-        </>
-      )}
-    </>
   );
 }
