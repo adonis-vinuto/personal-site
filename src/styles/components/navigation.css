@@ -469,3 +469,171 @@
 .navigation.animate-in .nav-dot:nth-child(4) { animation-delay: 150ms; }
 .navigation.animate-in .nav-dot:nth-child(5) { animation-delay: 200ms; }
 .navigation.animate-in .nav-dot:nth-child(6) { animation-delay: 250ms; }
+
+/* Estado oculto durante scroll rápido - melhora performance */
+.navigation-hidden {
+  opacity: 0;
+  transform: translateX(10px);
+  pointer-events: none;
+  transition: opacity var(--transition-fast),
+              transform var(--transition-fast);
+}
+
+/* Garante transição suave ao reaparecer */
+.navigation:not(.navigation-hidden) {
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity var(--transition-normal),
+              transform var(--transition-normal);
+}
+
+/* 
+  ===================================================================
+  MELHORIAS PARA O TOP MENU - PATTERNS VIA CSS
+  ===================================================================
+  
+  Estas regras permitem que o menu superior mude visualmente
+  baseado na seção ativa, sem JavaScript para os patterns
+*/
+
+/* Pattern para seção Bio */
+.menu-with-side-patterns[data-active-section="bio"] {
+  background: var(--bio-background);
+  border-bottom-color: var(--bio-accent);
+}
+
+/* Pattern para seção Projetos */
+.menu-with-side-patterns[data-active-section="projetos"] {
+  background: var(--projetos-background);
+  border-bottom-color: var(--projetos-accent);
+}
+
+/* Pattern para seção Carreira (inverte cores para contraste) */
+.menu-with-side-patterns[data-active-section="carreira"] {
+  background: rgba(var(--gray-6), 0.95);
+  border-bottom-color: var(--carreira-accent);
+}
+
+.menu-with-side-patterns[data-active-section="carreira"] .nav-button {
+  color: var(--gray-0);
+}
+
+/* Pattern para seção Hobbys */
+.menu-with-side-patterns[data-active-section="hobbys"] {
+  background: var(--hobbys-background);
+  border-bottom-color: var(--hobbys-accent);
+}
+
+/* Pattern para seção Blog (inverte cores) */
+.menu-with-side-patterns[data-active-section="blog"] {
+  background: rgba(var(--gray-5), 0.95);
+  border-bottom-color: var(--blog-accent);
+}
+
+.menu-with-side-patterns[data-active-section="blog"] .nav-button {
+  color: var(--gray-0);
+}
+
+/* Pattern para seção Contato (mais escuro) */
+.menu-with-side-patterns[data-active-section="contato"] {
+  background: rgba(var(--gray-8), 0.95);
+  border-bottom-color: var(--contato-accent);
+}
+
+.menu-with-side-patterns[data-active-section="contato"] .nav-button {
+  color: var(--gray-0);
+}
+
+/* Transição suave entre estados */
+.menu-with-side-patterns {
+  transition: background-color var(--transition-slow),
+              border-color var(--transition-slow);
+}
+
+/* 
+  ===================================================================
+  ESTRUTURA DO NAV CONTAINER - Organização do Menu
+  ===================================================================
+*/
+
+.nav-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  padding: 0 var(--space-4);
+}
+
+.nav-brand {
+  flex-shrink: 0;
+}
+
+.nav-desktop {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.nav-menu {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.nav-mobile {
+  display: none;
+}
+
+.nav-actions {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+/* Logo se houver */
+.nav-logo {
+  height: 40px;
+  width: auto;
+}
+
+/* 
+  ===================================================================
+  RESPONSIVIDADE MELHORADA
+  ===================================================================
+*/
+
+@media (max-width: 768px) {
+  /* Esconde menu desktop e mostra mobile */
+  .nav-desktop {
+    display: none;
+  }
+  
+  .nav-mobile {
+    display: flex;
+    align-items: center;
+  }
+  
+  /* Ajusta container para mobile */
+  .nav-container {
+    padding: 0 var(--space-3);
+  }
+  
+  /* Menu mobile ocupa altura total disponível */
+  .nav-mobile-menu.active {
+    height: calc(100vh - 80px); /* Altura total menos altura do header */
+    overflow-y: auto;
+  }
+}
+
+/* Telas muito pequenas */
+@media (max-width: 480px) {
+  .nav-container {
+    padding: 0 var(--space-2);
+  }
+  
+  /* Dots de navegação mais compactos */
+  .navigation {
+    right: var(--space-2);
+    gap: var(--space-3);
+  }
+}
