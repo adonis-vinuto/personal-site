@@ -89,13 +89,6 @@ img {
   ===================================================================
 */
 
-/* Prevenir layout shift com fontes */
-@font-face {
-  font-family: 'Inter';
-  src: local('Inter'), url('/fonts/Inter.woff2') format('woff2');
-  font-display: swap; /* Mostra texto com fonte fallback enquanto carrega */
-}
-
 /* GPU acceleration para elementos que serão animados */
 .will-animate {
   will-change: transform, opacity;
