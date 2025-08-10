@@ -59,15 +59,11 @@ export default function Navigation({ sections }: NavigationProps) {
       {sections.map((section, index) => (
         <button
           key={section}
-          className={`nav-dot ${index === activeSection ? 'active' : ''}`}
+          className={`nav-dot nav-dot-${index} ${index === activeSection ? 'active' : ''}`}
           onClick={() => scrollToSection(index)}
           aria-label={`Ir para seção ${section}`}
           aria-current={index === activeSection ? 'true' : 'false'}
           title={section}
-          // Adiciona um pequeno delay progressivo na animação de entrada
-          style={{
-            animationDelay: `${index * 50}ms`
-          }}
         />
       ))}
     </nav>

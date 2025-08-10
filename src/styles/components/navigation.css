@@ -637,3 +637,31 @@
     gap: var(--space-3);
   }
 }
+
+/* 
+  ===================================================================
+  ANIMAÇÃO DOS DOTS COM DELAY PROGRESSIVO
+  ===================================================================
+*/
+
+/* Aplicar animação de entrada aos dots */
+.navigation .nav-dot {
+  animation: nav-fade-in var(--transition-normal) var(--ease-enter) backwards;
+}
+
+/* Delay progressivo para cada dot usando classes específicas */
+.navigation .nav-dot-0 { animation-delay: 0ms; }
+.navigation .nav-dot-1 { animation-delay: 50ms; }
+.navigation .nav-dot-2 { animation-delay: 100ms; }
+.navigation .nav-dot-3 { animation-delay: 150ms; }
+.navigation .nav-dot-4 { animation-delay: 200ms; }
+.navigation .nav-dot-5 { animation-delay: 250ms; }
+.navigation .nav-dot-6 { animation-delay: 300ms; }
+.navigation .nav-dot-7 { animation-delay: 350ms; }
+.navigation .nav-dot-8 { animation-delay: 400ms; }
+.navigation .nav-dot-9 { animation-delay: 450ms; }
+
+/* Caso precisem de mais seções no futuro */
+.navigation .nav-dot-10 { animation-delay: 500ms; }
+.navigation .nav-dot-11 { animation-delay: 550ms; }
+.navigation .nav-dot-12 { animation-delay: 600ms; }
