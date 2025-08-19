@@ -1,6 +1,6 @@
 /* 
   ===================================================================
-  INDEX.CSS - ORQUESTRADOR PRINCIPAL DO SISTEMA DE ESTILOS
+  INDEX.CSS - ORQUESTRADOR PRINCIPAL SIMPLIFICADO
   ===================================================================
 */
 
@@ -8,8 +8,6 @@
   ===================================================================
   1. FUNDAÇÃO - TOKENS E VARIÁVEIS
   ===================================================================
-  Deve vir primeiro porque todos os outros arquivos dependem dessas
-  variáveis.
 */
 
 @import "./core/tokens.css";
@@ -18,9 +16,6 @@
   ===================================================================
   2. CORE - SISTEMA BASE
   ===================================================================
-  Reset vem primeiro para normalizar o navegador.
-  Typography define como o texto se comporta globalmente.
-  Layout estabelece as estruturas fundamentais.
 */
 
 @import "./core/reset.css";
@@ -29,14 +24,8 @@
 
 /* 
   ===================================================================
-  3. COMPONENTES - BLOCOS DE CONSTRUÇÃO
+  3. COMPONENTES - BLOCOS ESSENCIAIS
   ===================================================================
-  Ordem dos componentes baseada em dependências e frequência de uso:
-  - Navigation: Usado em todas as páginas, sempre visível
-  - Buttons: Componente mais usado em toda a interface
-  - Cards: Containers principais de conteúdo
-  - Forms: Elementos de interação
-  - Feedback: Estados e notificações
 */
 
 @import "./components/navigation.css";
@@ -47,63 +36,34 @@
 
 /* 
   ===================================================================
-  4. SEÇÕES - CUSTOMIZAÇÕES ESPECÍFICAS
+  4. SEÇÕES - APENAS PROJETOS (USADO)
   ===================================================================
-  Ordem das seções seguindo o fluxo de scroll do usuário.
-  Cada arquivo ajusta os componentes para sua seção específica.
 */
 
-@import "./sections/bio.css";
 @import "./sections/projetos.css";
-@import "./sections/carreira.css";
-@import "./sections/hobbys.css";
-@import "./sections/blog.css";
-@import "./sections/contato.css";
 
 /* 
   ===================================================================
-  5. UTILIDADES - CLASSES AUXILIARES
+  5. UTILIDADES - ANIMAÇÕES MÍNIMAS
   ===================================================================
-  Vêm por último para ter a maior especificidade.
-  Podem sobrescrever qualquer estilo anterior quando necessário.
-  
-  Ordem baseada em impacto visual:
-  - Animations: Movimento e transições
-  - Spacing: Ajustes de margem e padding
-  - Helpers: Todo o resto (display, opacity, etc.)
 */
 
 @import "./utilities/animations.css";
-@import "./utilities/spacing.css";
-@import "./utilities/helpers.css";
 
 /* 
   ===================================================================
-  CUSTOMIZAÇÕES FINAIS E OVERRIDES
+  CUSTOMIZAÇÕES FINAIS
   ===================================================================
-  Qualquer ajuste específico que precise sobrescrever tudo pode
-  ser adicionado aqui. Use com moderação!
 */
-
-/* Exemplo: Remover animações quando o usuário prefere movimento reduzido */
-@media (prefers-reduced-motion: reduce) {
-  * {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-}
 
 /* Ajustes para modo de impressão */
 @media print {
-  /* Remove elementos de navegação na impressão */
   .navigation,
   .nav-dot,
   .menu-with-side-patterns {
     display: none !important;
   }
   
-  /* Remove backgrounds coloridos para economizar tinta */
   .section {
     background: white !important;
     color: black !important;

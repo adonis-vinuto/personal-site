@@ -1,464 +1,245 @@
 /* 
-   ===================================================================
-   TOKENS.CSS - SISTEMA MODULAR HARMONIZADO
-   ===================================================================
+  ===================================================================
+  TOKENS.CSS - SISTEMA ESSENCIAL DE DESIGN TOKENS
+  ===================================================================
 */
 
 :root {
-   /* 
-      ===================================================================
-      PALETA MONOCROMÁTICA BASE - SISTEMA FUNDAMENTAL
-      ===================================================================
-   */
+  /* 
+    ===================================================================
+    PALETA FUNDAMENTAL - Escala de Cinzas
+    ===================================================================
+  */
+  --gray-0: #ffffff;
+  --gray-1: #f8f9fa;
+  --gray-2: #e9ecef;
+  --gray-3: #dee2e6;
+  --gray-4: #ced4da;
+  --gray-5: #6c757d;
+  --gray-6: #495057;
+  --gray-7: #343a40;
+  --gray-8: #212529;
 
-   /* Escala Principal - 9 Níveis Fundamentais */
-   --gray-0: #ffffff;    /* Pure White - Ponto de referência máximo */
-   --gray-1: #fafafa;    /* Ghost White - Quase imperceptível */
-   --gray-2: #f5f5f5;    /* Light Gray - Backgrounds suaves */
-   --gray-3: #e5e5e5;    /* Silver - Separadores sutis */
-   --gray-4: #a0a0a0;    /* Medium Gray - Textos secundários */
-   --gray-5: #6b6b6b;    /* Dark Gray - Textos principais */
-   --gray-6: #2a2a2a;    /* Charcoal - Backgrounds escuros */
-   --gray-7: #1a1a1a;    /* Near Black - Quase imperceptível */
-   --gray-8: #000000;    /* Pure Black - Ponto de referência mínimo */
+  /* 
+    ===================================================================
+    FAMÍLIAS TIPOGRÁFICAS
+    ===================================================================
+  */
+  --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  --font-display: 'Playfair Display', 'Times New Roman', serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
 
-   /* Escala Expandida - Graduações Intermediárias para Transições Suaves */
-   --gray-50: #fafafa;   /* Alias semântico para gray-1 */
-   --gray-100: #f5f5f5;  /* Alias semântico para gray-2 */
-   --gray-200: #e5e5e5;  /* Alias semântico para gray-3 */
-   --gray-300: #d4d4d4;  /* Graduação intermediária - hover states */
-   --gray-400: #a3a3a3;  /* Graduação intermediária - disabled states */
-   --gray-500: #737373;  /* Ponto médio verdadeiro (50% entre extremos) */
-   --gray-600: #525252;  /* Graduação intermediária - secondary text */
-   --gray-700: #404040;  /* Graduação intermediária - dark backgrounds */
-   --gray-800: #262626;  /* Graduação intermediária - darker backgrounds */
-   --gray-900: #171717;  /* Graduação intermediária - darkest backgrounds */
+  /* Aliases semânticos */
+  --font-hero: var(--font-display);
+  --font-h1: var(--font-display);
+  --font-h2: var(--font-primary);
+  --font-h3: var(--font-primary);
+  --font-h4: var(--font-primary);
+  --font-body: var(--font-primary);
+  --font-body-large: var(--font-primary);
+  --font-body-small: var(--font-primary);
+  --font-caption: var(--font-primary);
+  --font-code: var(--font-mono);
+  --font-button: var(--font-primary);
 
-   /* 
-      ===================================================================
-      SISTEMA TIPOGRÁFICO ESTRUTURADO
-      ===================================================================
-   */
+  /* 
+    ===================================================================
+    HIERARQUIA TIPOGRÁFICA
+    ===================================================================
+  */
+  
+  /* Hero */
+  --size-hero: clamp(3rem, 8vw, 5rem);
+  --weight-hero: 700;
+  --line-height-hero: 1.1;
+  --letter-spacing-hero: -0.02em;
 
-   /* Famílias de Fontes - Semânticas e Funcionais */
-   --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
-   --font-display: 'Playfair Display', 'Times New Roman', serif;
-   --font-mono: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+  /* H1 */
+  --size-h1: clamp(2.25rem, 5vw, 3rem);
+  --weight-h1: 600;
+  --line-height-h1: 1.2;
+  --letter-spacing-h1: -0.01em;
 
-   /* Hero Title - Máximo impacto visual para landing pages */
-   --font-hero: var(--font-display);
-   --size-hero: clamp(2.5rem, 5vw, 4rem);      /* 40px → 64px responsivo */
-   --weight-hero: 700;                          /* Bold para máximo impacto */
-   --line-height-hero: 1.1;                     /* Compacto para impacto visual */
-   --letter-spacing-hero: -0.02em;              /* Levemente condensado para elegância */
+  /* H2 */
+  --size-h2: clamp(1.875rem, 4vw, 2.25rem);
+  --weight-h2: 600;
+  --line-height-h2: 1.3;
+  --letter-spacing-h2: -0.005em;
 
-   /* H1 - Títulos principais de seção */
-   --font-h1: var(--font-primary);
-   --size-h1: clamp(2rem, 4vw, 3rem);          /* 32px → 48px responsivo */
-   --weight-h1: 700;                            /* Bold para hierarquia clara */
-   --line-height-h1: 1.2;                       /* Equilibrado para legibilidade */
-   --letter-spacing-h1: -0.015em;               /* Sutilmente condensado */
+  /* H3 */
+  --size-h3: clamp(1.5rem, 3vw, 1.875rem);
+  --weight-h3: 600;
+  --line-height-h3: 1.4;
+  --letter-spacing-h3: 0;
 
-   /* H2 - Subtítulos importantes */
-   --font-h2: var(--font-primary);
-   --size-h2: clamp(1.5rem, 3vw, 2.25rem);     /* 24px → 36px responsivo */
-   --weight-h2: 600;                            /* Semibold para destaque sem ser pesado */
-   --line-height-h2: 1.3;                       /* Confortável para leitura */
-   --letter-spacing-h2: -0.01em;                /* Levemente ajustado */
+  /* H4 */
+  --size-h4: clamp(1.25rem, 2.5vw, 1.5rem);
+  --weight-h4: 600;
+  --line-height-h4: 1.4;
+  --letter-spacing-h4: 0;
 
-   /* H3 - Subtítulos de conteúdo */
-   --font-h3: var(--font-primary);
-   --size-h3: clamp(1.25rem, 2.5vw, 1.75rem);  /* 20px → 28px responsivo */
-   --weight-h3: 500;                            /* Medium weight para equilíbrio */
-   --line-height-h3: 1.4;                       /* Ótimo para legibilidade */
-   --letter-spacing-h3: -0.005em;               /* Quase neutro */
+  /* Body Large */
+  --size-body-large: clamp(1.125rem, 2vw, 1.25rem);
+  --weight-body-large: 400;
+  --line-height-body-large: 1.6;
+  --letter-spacing-body-large: 0;
 
-   /* H4 - Subtítulos menores */
-   --font-h4: var(--font-primary);
-   --size-h4: clamp(1.125rem, 2vw, 1.5rem);    /* 18px → 24px responsivo */
-   --weight-h4: 500;                            /* Medium weight consistente */
-   --line-height-h4: 1.4;                       /* Consistente com H3 */
-   --letter-spacing-h4: 0;                      /* Neutro para tamanhos menores */
+  /* Body Regular */
+  --size-body: clamp(1rem, 1.5vw, 1.125rem);
+  --weight-body: 400;
+  --line-height-body: 1.6;
+  --letter-spacing-body: 0;
 
-   /* Body Large - Texto de destaque e introduções */
-   --font-body-large: var(--font-primary);
-   --size-body-large: clamp(1.125rem, 2vw, 1.25rem); /* 18px → 20px responsivo */
-   --weight-body-large: 400;                    /* Regular para conforto de leitura */
-   --line-height-body-large: 1.6;               /* Confortável para textos longos */
-   --letter-spacing-body-large: 0;              /* Neutro para fluidez */
+  /* Body Small */
+  --size-body-small: clamp(0.875rem, 1.2vw, 1rem);
+  --weight-body-small: 400;
+  --line-height-body-small: 1.5;
+  --letter-spacing-body-small: 0.01em;
 
-   /* Body Regular - Texto padrão do sistema */
-   --font-body: var(--font-primary);
-   --size-body: clamp(0.875rem, 1.5vw, 1rem);  /* 14px → 16px responsivo */
-   --weight-body: 400;                          /* Regular weight padrão */
-   --line-height-body: 1.7;                     /* Excelente para parágrafos longos */
-   --letter-spacing-body: 0;                    /* Neutro para máxima legibilidade */
+  /* Caption */
+  --size-caption: 0.75rem;
+  --weight-caption: 500;
+  --line-height-caption: 1.4;
+  --letter-spacing-caption: 0.05em;
+  --text-transform-caption: uppercase;
 
-   /* Body Small - Textos auxiliares e metadados */
-   --font-body-small: var(--font-primary);
-   --size-body-small: clamp(0.75rem, 1.2vw, 0.875rem); /* 12px → 14px responsivo */
-   --weight-body-small: 400;                    /* Regular para consistency */
-   --line-height-body-small: 1.5;               /* Compacto mas legível */
-   --letter-spacing-body-small: 0.01em;         /* Ligeiramente espaçado para clareza */
+  /* Code */
+  --size-code: 0.875rem;
+  --weight-code: 400;
+  --line-height-code: 1.6;
+  --letter-spacing-code: 0;
 
-   /* Caption - Legendas e metadados */
-   --font-caption: var(--font-primary);
-   --size-caption: 0.75rem;                     /* 12px fixo para consistency */
-   --weight-caption: 500;                       /* Medium para destaque visual */
-   --line-height-caption: 1.4;                  /* Equilibrado para pequenos textos */
-   --letter-spacing-caption: 0.05em;            /* Bem espaçado para legibilidade */
-   --text-transform-caption: uppercase;         /* Diferenciação visual clara */
+  /* Button */
+  --size-button: 0.875rem;
+  --weight-button: 500;
+  --line-height-button: 1;
+  --letter-spacing-button: 0.025em;
 
-   /* Code - Código e dados técnicos */
-   --font-code: var(--font-mono);
-   --size-code: 0.875rem;                       /* 14px para boa legibilidade */
-   --weight-code: 400;                          /* Regular para código */
-   --line-height-code: 1.6;                     /* Espaçado para leitura de código */
-   --letter-spacing-code: 0;                    /* Neutro para fontes mono */
+  /* 
+    ===================================================================
+    ESPAÇAMENTOS HARMÔNICOS
+    ===================================================================
+  */
+  --space-0: 0;
+  --space-1: 0.25rem;    /* 4px */
+  --space-2: 0.5rem;     /* 8px */
+  --space-3: 0.75rem;    /* 12px */
+  --space-4: 1rem;       /* 16px */
+  --space-6: 1.5rem;     /* 24px */
+  --space-8: 2rem;       /* 32px */
+  --space-10: 2.5rem;    /* 40px */
+  --space-12: 3rem;      /* 48px */
+  --space-16: 4rem;      /* 64px */
+  --space-20: 5rem;      /* 80px */
+  --space-24: 6rem;      /* 96px */
 
-   /* Button - Elementos interativos */
-   --font-button: var(--font-primary);
-   --size-button: 0.875rem;                     /* 14px padrão para botões */
-   --weight-button: 500;                        /* Medium para clareza de ação */
-   --line-height-button: 1;                     /* Compacto para elementos de interface */
-   --letter-spacing-button: 0.025em;            /* Espaçado para legibilidade em botões */
+  /* 
+    ===================================================================
+    BORDER RADIUS
+    ===================================================================
+  */
+  --radius-sm: 0.375rem;   /* 6px */
+  --radius-md: 0.5rem;     /* 8px */
+  --radius: 0.5rem;        /* 8px - padrão */
+  --radius-lg: 0.75rem;    /* 12px */
+  --radius-xl: 1rem;       /* 16px */
+  --radius-full: 9999px;   /* círculo perfeito */
 
-   /* 
-      ===================================================================
-      TOKENS SEMÂNTICOS GLOBAIS - SISTEMA INTELIGENTE
-      ===================================================================
-   */
+  /* 
+    ===================================================================
+    SOMBRAS
+    ===================================================================
+  */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 
-   /* Hierarchy Background - Do mais claro ao mais escuro */
-   --background-primary: var(--gray-0);         /* Canvas principal da aplicação */
-   --background-secondary: var(--gray-1);       /* Cards e elementos flutuantes */
-   --background-tertiary: var(--gray-2);        /* Separadores e áreas destacadas */
-   --background-quaternary: var(--gray-3);      /* Inputs e elementos interativos */
-   --background-subtle: var(--gray-100);        /* Elementos quase imperceptíveis */
+  /* 
+    ===================================================================
+    TRANSIÇÕES
+    ===================================================================
+  */
+  --transition-fast: 0.15s;
+  --transition-normal: 0.25s;
+  --transition-slow: 0.4s;
 
-   /* Hierarchy Foreground - Do mais escuro ao mais claro */
-   --foreground-primary: var(--gray-8);         /* Texto principal, máxima legibilidade */
-   --foreground-secondary: var(--gray-7);       /* Texto secundário importante */
-   --foreground-tertiary: var(--gray-5);        /* Texto de apoio e descrições */
-   --foreground-quaternary: var(--gray-4);      /* Texto sutil e auxiliar */
-   --foreground-disabled: var(--gray-400);      /* Estados desabilitados */
+  /* 
+    ===================================================================
+    SISTEMA SEMÂNTICO - MODO CLARO
+    ===================================================================
+  */
+  
+  /* Hierarquia de fundos */
+  --background: var(--gray-0);
+  --background-secondary: var(--gray-1);
+  --background-tertiary: var(--gray-2);
 
-   /* Semantic Tokens - Conceitos funcionais abstratos */
-   --background: var(--background-primary);     /* Background padrão do sistema */
-   --foreground: var(--foreground-primary);     /* Texto padrão do sistema */
-   --muted: var(--background-tertiary);         /* Elementos silenciados */
-   --muted-foreground: var(--foreground-tertiary); /* Texto silenciado */
-   --accent: var(--background-quaternary);      /* Elementos de destaque */
-   --accent-foreground: var(--foreground-primary); /* Texto em elementos destacados */
+  /* Hierarquia de textos */
+  --foreground: var(--gray-8);
+  --foreground-secondary: var(--gray-7);
+  --foreground-tertiary: var(--gray-6);
+  --foreground-quaternary: var(--gray-5);
+  --foreground-disabled: var(--gray-4);
 
-   /* Component Tokens - Elementos específicos de interface */
-   --card: var(--background-secondary);         /* Background de cards */
-   --card-foreground: var(--foreground-primary); /* Texto em cards */
-   --popover: var(--background-secondary);      /* Elementos flutuantes (tooltips, dropdowns) */
-   --popover-foreground: var(--foreground-primary); /* Texto em elementos flutuantes */
+  /* Cores funcionais */
+  --primary: var(--gray-8);
+  --primary-foreground: var(--gray-0);
+  --secondary: var(--gray-2);
+  --secondary-foreground: var(--gray-8);
+  --muted: var(--gray-2);
+  --muted-foreground: var(--gray-6);
+  --accent: var(--gray-1);
+  --accent-foreground: var(--gray-8);
 
-   /* Interactive Tokens - Estados de interação do usuário */
-   --primary: var(--foreground-primary);        /* Ações principais (botões CTA) */
-   --primary-foreground: var(--background-primary); /* Texto em ações principais */
-   --secondary: var(--background-tertiary);     /* Ações secundárias */
-   --secondary-foreground: var(--foreground-primary); /* Texto em ações secundárias */
+  /* Componentes */
+  --card: var(--gray-0);
+  --card-foreground: var(--gray-8);
+  --border: var(--gray-3);
+  --ring: var(--gray-5);
 
-   /* Border & Input Tokens - Contornos e campos de entrada */
-   --border: var(--gray-3);                     /* Bordas padrão */
-   --border-subtle: var(--gray-200);            /* Bordas suaves e discretas */
-   --border-strong: var(--gray-400);            /* Bordas de destaque e separação */
-   --input: var(--background-tertiary);         /* Background de campos de entrada */
-   --ring: var(--foreground-tertiary);          /* Estados de foco e seleção */
-
-   /* 
-      ===================================================================
-      PALETAS POR SEÇÃO - SISTEMA HARMONIZADO
-      ===================================================================
-   */
-
-   /* =====  SEÇÃO BIO  ===== */
-   --bio-ultra-light: var(--gray-0);           
-   --bio-light: var(--gray-1);                 
-   --bio-medium: var(--gray-2);                
-   --bio-dark: var(--gray-5);                  
-   --bio-ultra-dark: var(--gray-8);            
-
-   /* Tokens Semânticos da Bio */
-   --bio-background: var(--bio-ultra-light);
-   --bio-background-secondary: var(--bio-light);
-   --bio-foreground: var(--bio-ultra-dark);
-   --bio-foreground-muted: var(--bio-dark);
-   --bio-accent: var(--bio-medium);
-
-   /* =====  SEÇÃO PROJETOS  ===== */
-   --projetos-ultra-light: var(--gray-1);      
-   --projetos-light: var(--gray-2);            
-   --projetos-medium: var(--gray-3);           
-   --projetos-dark: var(--gray-5);             
-   --projetos-ultra-dark: var(--gray-7);       
-
-   /* Tokens Semânticos dos Projetos */
-   --projetos-background: var(--projetos-ultra-light);
-   --projetos-background-secondary: var(--projetos-light);
-   --projetos-foreground: var(--projetos-ultra-dark);
-   --projetos-foreground-muted: var(--projetos-dark);
-   --projetos-accent: var(--projetos-medium);
-
-   /* =====  SEÇÃO CARREIRA  ===== */
-   --carreira-ultra-light: var(--gray-6);      
-   --carreira-light: var(--gray-5);            
-   --carreira-medium: var(--gray-4);           
-   --carreira-dark: var(--gray-2);             
-   --carreira-ultra-dark: var(--gray-0);       
-
-   /* Tokens Semânticos da Carreira */
-   --carreira-background: var(--carreira-ultra-light);
-   --carreira-background-secondary: var(--carreira-light);
-   --carreira-foreground: var(--carreira-ultra-dark);
-   --carreira-foreground-muted: var(--carreira-dark);
-   --carreira-accent: var(--carreira-medium);
-
-   /* =====  SEÇÃO HOBBYS  ===== */
-   --hobbys-ultra-light: var(--gray-0);        
-   --hobbys-light: var(--gray-1);              
-   --hobbys-medium: var(--gray-2);             
-   --hobbys-dark: var(--gray-6);               
-   --hobbys-ultra-dark: var(--gray-8);         
-
-   /* Tokens Semânticos dos Hobbys */
-   --hobbys-background: var(--hobbys-ultra-light);
-   --hobbys-background-secondary: var(--hobbys-light);
-   --hobbys-foreground: var(--hobbys-ultra-dark);
-   --hobbys-foreground-muted: var(--hobbys-dark);
-   --hobbys-accent: var(--hobbys-medium);
-
-   /* =====  SEÇÃO BLOG  ===== */
-   --blog-ultra-light: var(--gray-5);          
-   --blog-light: var(--gray-4);                
-   --blog-medium: var(--gray-3);               
-   --blog-dark: var(--gray-1);                 
-   --blog-ultra-dark: var(--gray-0);           
-
-   /* Tokens Semânticos do Blog */
-   --blog-background: var(--blog-ultra-light);
-   --blog-background-secondary: var(--blog-light);
-   --blog-foreground: var(--blog-ultra-dark);
-   --blog-foreground-muted: var(--blog-dark);
-   --blog-accent: var(--blog-medium);
-
-   /* =====  SEÇÃO CONTATO  ===== */
-   --contato-ultra-light: var(--gray-8);       
-   --contato-light: var(--gray-7);             
-   --contato-medium: var(--gray-5);            
-   --contato-dark: var(--gray-2);              
-   --contato-ultra-dark: var(--gray-0);        
-
-   /* Tokens Semânticos do Contato */
-   --contato-background: var(--contato-ultra-light);
-   --contato-background-secondary: var(--contato-light);
-   --contato-foreground: var(--contato-ultra-dark);
-   --contato-foreground-muted: var(--contato-dark);
-   --contato-accent: var(--contato-medium);
-
-   /* 
-      ===================================================================
-      FEEDBACK STATES - SEMPRE FUNCIONAIS E ACESSÍVEIS
-      ===================================================================
-   */
-
-   --destructive: #dc2626;                      /* Vermelho para erros e ações destrutivas */
-   --destructive-foreground: var(--gray-0);    /* Texto branco sobre vermelho */
-   --success: #16a34a;                         /* Verde para sucessos e confirmações */
-   --success-foreground: var(--gray-0);        /* Texto branco sobre verde */
-   --warning: #ca8a04;                         /* Amarelo para avisos e atenção */
-   --warning-foreground: var(--gray-8);        /* Texto escuro sobre amarelo */
-   --info: #2563eb;                            /* Azul para informações e dicas */
-   --info-foreground: var(--gray-0);           /* Texto branco sobre azul */
-
-   /* 
-      ===================================================================
-      ESPAÇAMENTOS E DIMENSÕES - ESCALA HARMÔNICA
-      ===================================================================
-   */
-
-   /* Escala de Espaçamentos - Baseada em múltiplos de 4px */
-   --space-0: 0;           /* Para reset de margens/paddings */
-   --space-1: 0.25rem;     /* 4px - Espaçamentos mínimos */
-   --space-2: 0.5rem;      /* 8px - Espaçamentos pequenos */
-   --space-3: 0.75rem;     /* 12px - Espaçamentos compactos */
-   --space-4: 1rem;        /* 16px - Espaçamento padrão */
-   --space-5: 1.25rem;     /* 20px - Espaçamentos médios */
-   --space-6: 1.5rem;      /* 24px - Espaçamentos confortáveis */
-   --space-8: 2rem;        /* 32px - Espaçamentos grandes */
-   --space-10: 2.5rem;     /* 40px - Espaçamentos extra */
-   --space-12: 3rem;       /* 48px - Espaçamentos amplos */
-   --space-16: 4rem;       /* 64px - Espaçamentos muito amplos */
-   --space-20: 5rem;       /* 80px - Espaçamentos para seções */
-   --space-24: 6rem;       /* 96px - Espaçamentos entre seções */
-   --space-32: 8rem;       /* 128px - Espaçamentos de layout */
-
-   /* Border Radius - Hierarquia de curvatura */
-   --radius: 0.5rem;                           /* 8px - Padrão para a maioria dos elementos */
-   --radius-sm: calc(var(--radius) - 2px);     /* 6px - Elementos pequenos */
-   --radius-md: var(--radius);                 /* 8px - Elementos médios */
-   --radius-lg: calc(var(--radius) + 2px);     /* 10px - Elementos grandes */
-   --radius-xl: calc(var(--radius) + 4px);     /* 12px - Elementos extra grandes */
-   --radius-full: 9999px;                      /* Bordas completamente arredondadas */
-
-   /* Shadows - Sistema de elevação e profundidade */
-   --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);    /* Elevação mínima */
-   --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);  /* Elevação padrão */
-   --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);  /* Elevação média */
-   --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);  /* Elevação alta */
-   --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);  /* Elevação máxima */
-
-   /* 
-      ===================================================================
-      ANIMAÇÕES E TRANSIÇÕES - TIMING HARMONIOSO
-      ===================================================================
-   */
-
-   /* Durações Base - Para diferentes tipos de movimento */
-   --transition-fast: 150ms;        /* Micro-interações e feedback imediato */
-   --transition-normal: 250ms;      /* Transições padrão de interface */
-   --transition-slow: 350ms;        /* Mudanças de estado importantes */
-   --transition-very-slow: 500ms;   /* Animações complexas e elaboradas */
-
-   /* Easing Functions - Personalidade de movimento específica */
-   --ease-linear: linear;                                    /* Movimento constante */
-   --ease-in: cubic-bezier(0.4, 0, 1, 1);                  /* Aceleração gradual */
-   --ease-out: cubic-bezier(0, 0, 0.2, 1);                 /* Desaceleração gradual */
-   --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);            /* Aceleração e desaceleração */
-   --ease-enter: cubic-bezier(0.4, 0, 0.2, 1);             /* Para elementos aparecendo */
-   --ease-exit: cubic-bezier(0.4, 0, 1, 1);                /* Para elementos desaparecendo */
-   --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);  /* Efeito elástico divertido */
-   --ease-back: cubic-bezier(0.68, -0.55, 0.265, 1.55);    /* Recuo antes do movimento */
-
-   /* Transições Combinadas - Pronto para uso */
-   --transition-base: var(--transition-normal) var(--ease-in-out);      /* Padrão geral */
-   --transition-enter: var(--transition-normal) var(--ease-enter);      /* Elementos entrando */
-   --transition-exit: var(--transition-fast) var(--ease-exit);          /* Elementos saindo */
-   --transition-bounce: var(--transition-slow) var(--ease-bounce);      /* Interações especiais */
-
-   /* Sidebar (Mantido para compatibilidade com shadcn/ui) */
-   --sidebar: var(--background-secondary);
-   --sidebar-foreground: var(--foreground-primary);
-   --sidebar-primary: var(--primary);
-   --sidebar-primary-foreground: var(--primary-foreground);
-   --sidebar-accent: var(--accent);
-   --sidebar-accent-foreground: var(--accent-foreground);
-   --sidebar-border: var(--border);
-   --sidebar-ring: var(--ring);
-
-   /* Charts - Escala monocromática para visualizações de dados */
-   --chart-1: var(--gray-8);    /* Dados primários - mais escuro */
-   --chart-2: var(--gray-6);    /* Dados secundários */
-   --chart-3: var(--gray-4);    /* Dados terciários */
-   --chart-4: var(--gray-2);    /* Dados quaternários */
-   --chart-5: var(--gray-1);    /* Dados de apoio - mais claro */
+  /* Estados */
+  --destructive: #dc2626;
+  --destructive-foreground: var(--gray-0);
 }
 
 /* 
-   ===================================================================
-   TEMA ESCURO - INVERSÕES INTELIGENTES E HARMÔNICAS
-   ===================================================================
+  ===================================================================
+  MODO ESCURO
+  ===================================================================
 */
 
 .dark {
-   /* Hierarquia Background invertida - Do mais escuro ao mais claro */
-   --background-primary: var(--gray-8);         /* Canvas principal escuro */
-   --background-secondary: var(--gray-7);       /* Cards sobre fundo escuro */
-   --background-tertiary: var(--gray-6);        /* Separadores em tema escuro */
-   --background-quaternary: var(--gray-5);      /* Inputs em tema escuro */
-   --background-subtle: var(--gray-800);        /* Elementos quase imperceptíveis */
+  /* Hierarquia de fundos */
+  --background: var(--gray-8);
+  --background-secondary: var(--gray-7);
+  --background-tertiary: var(--gray-6);
 
-   /* Hierarquia Foreground invertida - Do mais claro ao mais escuro */
-   --foreground-primary: var(--gray-0);         /* Texto principal claro */
-   --foreground-secondary: var(--gray-1);       /* Texto secundário claro */
-   --foreground-tertiary: var(--gray-3);        /* Texto de apoio */
-   --foreground-quaternary: var(--gray-4);      /* Texto sutil */
-   --foreground-disabled: var(--gray-600);      /* Estados desabilitados escuros */
+  /* Hierarquia de textos */
+  --foreground: var(--gray-0);
+  --foreground-secondary: var(--gray-1);
+  --foreground-tertiary: var(--gray-2);
+  --foreground-quaternary: var(--gray-3);
+  --foreground-disabled: var(--gray-5);
 
-   /* Tokens semânticos atualizados para tema escuro */
-   --background: var(--background-primary);
-   --foreground: var(--foreground-primary);
-   --muted: var(--background-tertiary);
-   --muted-foreground: var(--foreground-tertiary);
-   --accent: var(--background-quaternary);
-   --accent-foreground: var(--foreground-primary);
+  /* Cores funcionais */
+  --primary: var(--gray-0);
+  --primary-foreground: var(--gray-8);
+  --secondary: var(--gray-6);
+  --secondary-foreground: var(--gray-0);
+  --muted: var(--gray-7);
+  --muted-foreground: var(--gray-3);
+  --accent: var(--gray-7);
+  --accent-foreground: var(--gray-0);
 
-   /* Componentes atualizados */
-   --card: var(--background-secondary);
-   --card-foreground: var(--foreground-primary);
-   --popover: var(--background-secondary);
-   --popover-foreground: var(--foreground-primary);
+  /* Componentes */
+  --card: var(--gray-7);
+  --card-foreground: var(--gray-0);
+  --border: var(--gray-6);
+  --ring: var(--gray-4);
 
-   /* Estados interativos atualizados */
-   --primary: var(--foreground-primary);
-   --primary-foreground: var(--background-primary);
-   --secondary: var(--background-tertiary);
-   --secondary-foreground: var(--foreground-primary);
-
-   /* Bordas e contornos atualizados */
-   --border: var(--gray-5);
-   --border-subtle: var(--gray-600);
-   --border-strong: var(--gray-400);
-   --input: var(--background-tertiary);
-   --ring: var(--foreground-tertiary);
-   
-   /* Bio */
-   --bio-ultra-light: var(--gray-6);
-   --bio-light: var(--gray-5);
-   --bio-medium: var(--gray-4);
-   --bio-dark: var(--gray-2);
-   --bio-ultra-dark: var(--gray-0);
-
-   /* Projetos */
-   --projetos-ultra-light: var(--gray-7);
-   --projetos-light: var(--gray-6);
-   --projetos-medium: var(--gray-5);
-   --projetos-dark: var(--gray-3);
-   --projetos-ultra-dark: var(--gray-1);
-
-   /* Carreira */
-   --carreira-ultra-light: var(--gray-2);
-   --carreira-light: var(--gray-3);
-   --carreira-medium: var(--gray-4);
-   --carreira-dark: var(--gray-6);
-   --carreira-ultra-dark: var(--gray-8);
-
-   /* Hobbys */
-   --hobbys-ultra-light: var(--gray-8);
-   --hobbys-light: var(--gray-7);
-   --hobbys-medium: var(--gray-6);
-   --hobbys-dark: var(--gray-2);
-   --hobbys-ultra-dark: var(--gray-0);
-
-   /* Blog */
-   --blog-ultra-light: var(--gray-3);
-   --blog-light: var(--gray-4);
-   --blog-medium: var(--gray-5);
-   --blog-dark: var(--gray-7);
-   --blog-ultra-dark: var(--gray-8);
-
-   /* Contato */
-   --contato-ultra-light: var(--gray-0);
-   --contato-light: var(--gray-1);
-   --contato-medium: var(--gray-3);
-   --contato-dark: var(--gray-6);
-   --contato-ultra-dark: var(--gray-8);
-
-   /* Charts invertidos para visualização em tema escuro */
-   --chart-1: var(--gray-0);     /* Dados primários - agora claro */
-   --chart-2: var(--gray-2);     /* Dados secundários */
-   --chart-3: var(--gray-4);     /* Dados terciários */
-   --chart-4: var(--gray-6);     /* Dados quaternários */
-   --chart-5: var(--gray-8);     /* Dados de apoio - agora escuro */
-
-   /* Sombras intensificadas para criar profundidade no tema escuro */
-   --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
-   --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.4), 0 1px 2px -1px rgb(0 0 0 / 0.4);
-   --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.4), 0 2px 4px -2px rgb(0 0 0 / 0.4);
-   --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.4), 0 4px 6px -4px rgb(0 0 0 / 0.4);
-   --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.4), 0 8px 10px -6px rgb(0 0 0 / 0.4);
+  /* Estados */
+  --destructive: #ef4444;
+  --destructive-foreground: var(--gray-0);
 }

@@ -1,818 +1,95 @@
 /* 
   ===================================================================
-  FEEDBACK.CSS - SISTEMA COMPLETO DE FEEDBACK E NOTIFICAÇÕES
+  FEEDBACK.CSS - SISTEMA MÍNIMO DE FEEDBACK
   ===================================================================
 */
 
 /* 
   ===================================================================
-  ALERTS - Mensagens de Alerta Estáticas
+  ALERT - Notificações Básicas
   ===================================================================
 */
 
 .alert {
-  /* Estrutura base */
+  /* Layout */
   display: flex;
   align-items: flex-start;
   gap: var(--space-3);
-  padding: var(--space-4);
-  border-radius: var(--radius);
-  border: 1px solid transparent;
   
-  /* Tipografia */
-  font-family: var(--font-body);
-  font-size: var(--size-body);
-  line-height: var(--line-height-body);
+  /* Dimensões */
+  padding: var(--space-4);
+  margin-bottom: var(--space-4);
+  
+  /* Aparência */
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--card-foreground);
   
   /* Comportamento */
-  transition: var(--transition-enter);
-  position: relative;
-  
-  /* Garante que seja visível */
-  min-height: var(--space-12);
-}
-
-/* Ícone do alert */
-.alert-icon {
-  flex-shrink: 0;
-  width: var(--space-5);
-  height: var(--space-5);
-  margin-top: 1px; /* Alinha com o texto */
+  transition: var(--transition-normal);
 }
 
 /* Conteúdo do alert */
 .alert-content {
   flex: 1;
-  min-width: 0; /* Permite text truncation */
 }
 
-/* Título do alert */
 .alert-title {
-  font-family: var(--font-h4);
-  font-size: var(--size-h4);
-  font-weight: var(--weight-h4);
+  font-weight: 600;
   margin-bottom: var(--space-1);
-  line-height: var(--line-height-h4);
 }
 
-/* Descrição do alert */
 .alert-description {
-  font-family: var(--font-body-small);
   font-size: var(--size-body-small);
-  opacity: 0.9;
-  line-height: var(--line-height-body-small);
+  opacity: 0.8;
 }
 
-/* Botão de fechar */
-.alert-close {
-  position: absolute;
-  top: var(--space-3);
-  right: var(--space-3);
-  width: var(--space-6);
-  height: var(--space-6);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: var(--radius-sm);
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  opacity: 0.7;
-  transition: var(--transition-fast);
-}
-
-.alert-close:hover {
-  opacity: 1;
-  background: rgba(0, 0, 0, 0.1);
-}
-
-/* 
-  ===================================================================
-  VARIANTES DE ALERT - Diferentes Estados e Importâncias
-  ===================================================================
-*/
-
-/* Alert informativo (padrão) */
-.alert-info {
-  background-color: var(--info);
-  color: var(--info-foreground);
-  border-color: var(--info);
-}
-
-.alert-info.alert-outlined {
-  background-color: transparent;
-  color: var(--info);
-  border-color: var(--info);
-}
-
-/* Alert de sucesso */
-.alert-success {
-  background-color: var(--success);
-  color: var(--success-foreground);
-  border-color: var(--success);
-}
-
-.alert-success.alert-outlined {
-  background-color: transparent;
-  color: var(--success);
-  border-color: var(--success);
-}
-
-/* Alert de aviso */
-.alert-warning {
-  background-color: var(--warning);
-  color: var(--warning-foreground);
-  border-color: var(--warning);
-}
-
-.alert-warning.alert-outlined {
-  background-color: transparent;
-  color: var(--warning);
-  border-color: var(--warning);
-}
-
-/* Alert de erro/destrutivo */
-.alert-destructive,
-.alert-error {
-  background-color: var(--destructive);
-  color: var(--destructive-foreground);
+/* Variantes básicas */
+.alert-destructive {
   border-color: var(--destructive);
-}
-
-.alert-destructive.alert-outlined,
-.alert-error.alert-outlined {
-  background-color: transparent;
+  background: rgba(var(--destructive), 0.1);
   color: var(--destructive);
-  border-color: var(--destructive);
-}
-
-/* Alert neutro */
-.alert-neutral {
-  background-color: var(--muted);
-  color: var(--muted-foreground);
-  border-color: var(--border);
 }
 
 /* 
   ===================================================================
-  TOASTS - Notificações Temporárias Flutuantes
+  LOADING - Estados de Carregamento
   ===================================================================
 */
 
-/* Container dos toasts */
-.toast-container {
-  position: fixed;
-  z-index: 100;
-  pointer-events: none;
-  padding: var(--space-4);
-}
-
-/* Posições do container */
-.toast-container-top-right {
-  top: 0;
-  right: 0;
-}
-
-.toast-container-top-left {
-  top: 0;
-  left: 0;
-}
-
-.toast-container-bottom-right {
-  bottom: 0;
-  right: 0;
-}
-
-.toast-container-bottom-left {
-  bottom: 0;
-  left: 0;
-}
-
-.toast-container-top-center {
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-.toast-container-bottom-center {
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-/* Toast individual */
-.toast {
-  /* Estrutura */
-  position: relative;
-  width: 100%;
-  max-width: 420px;
-  margin-bottom: var(--space-3);
-  padding: var(--space-4);
-  
-  /* Aparência */
-  background: var(--card);
-  color: var(--card-foreground);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-lg);
-  
-  /* Comportamento */
-  pointer-events: auto;
-  transition: all var(--transition-bounce);
-  transform-origin: center;
-  
-  /* Animação de entrada */
-  animation: toast-slide-in var(--transition-bounce);
-}
-
-/* Animações do toast */
-@keyframes toast-slide-in {
-  from {
-    transform: translateX(100%);
-    opacity: 0;
-  }
-  to {
-    transform: translateX(0);
-    opacity: 1;
-  }
-}
-
-@keyframes toast-slide-out {
-  from {
-    transform: translateX(0);
-    opacity: 1;
-  }
-  to {
-    transform: translateX(100%);
-    opacity: 0;
-  }
-}
-
-/* Toast saindo */
-.toast.toast-exit {
-  animation: toast-slide-out var(--transition-exit);
-  pointer-events: none;
-}
-
-/* Variantes de toast (similar aos alerts) */
-.toast-success {
-  border-left: 4px solid var(--success);
-}
-
-.toast-error {
-  border-left: 4px solid var(--destructive);
-}
-
-.toast-warning {
-  border-left: 4px solid var(--warning);
-}
-
-.toast-info {
-  border-left: 4px solid var(--info);
-}
-
-/* 
-  ===================================================================
-  BADGES - Indicadores de Status e Contadores
-  ===================================================================
-*/
-
-.badge {
-  /* Estrutura */
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--space-1);
-  
-  /* Dimensões */
-  padding: var(--space-1) var(--space-2);
-  min-width: var(--space-5);
-  height: var(--space-5);
-  
-  /* Aparência */
-  border-radius: var(--radius-full);
-  background: var(--primary);
-  color: var(--primary-foreground);
-  
-  /* Tipografia */
-  font-size: var(--size-caption);
-  font-weight: var(--weight-caption);
-  line-height: 1;
-  white-space: nowrap;
-  
-  /* Comportamento */
-  transition: var(--transition-fast);
-}
-
-/* Variantes de badge */
-.badge-secondary {
-  background: var(--secondary);
-  color: var(--secondary-foreground);
-}
-
-.badge-success {
-  background: var(--success);
-  color: var(--success-foreground);
-}
-
-.badge-destructive {
-  background: var(--destructive);
-  color: var(--destructive-foreground);
-}
-
-.badge-warning {
-  background: var(--warning);
-  color: var(--warning-foreground);
-}
-
-.badge-info {
-  background: var(--info);
-  color: var(--info-foreground);
-}
-
-.badge-outline {
-  background: transparent;
-  border: 1px solid var(--border);
-  color: var(--foreground);
-}
-
-/* Tamanhos de badge */
-.badge-sm {
-  padding: 0 var(--space-1);
-  min-width: var(--space-4);
-  height: var(--space-4);
-  font-size: 10px;
-}
-
-.badge-lg {
-  padding: var(--space-2) var(--space-3);
-  min-width: var(--space-6);
-  height: var(--space-6);
-  font-size: var(--size-body-small);
-}
-
-/* Badge com pulsação (para notificações) */
-.badge-pulse {
-  position: relative;
-}
-
-.badge-pulse::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background: inherit;
-  animation: badge-pulse 2s infinite;
-}
-
-@keyframes badge-pulse {
-  0% {
-    transform: scale(1);
-    opacity: 1;
-  }
-  50% {
-    transform: scale(1.5);
-    opacity: 0;
-  }
-  100% {
-    transform: scale(1);
-    opacity: 0;
-  }
-}
-
-/* 
-  ===================================================================
-  PROGRESS - Indicadores de Progresso
-  ===================================================================
-*/
-
-/* Barra de progresso */
-.progress {
-  /* Container */
-  width: 100%;
-  height: var(--space-2);
-  background: var(--muted);
-  border-radius: var(--radius-full);
-  overflow: hidden;
-  position: relative;
-}
-
-/* Barra de preenchimento */
-.progress-bar {
-  height: 100%;
-  background: var(--primary);
-  border-radius: var(--radius-full);
-  transition: width var(--transition-slow) var(--ease-out);
-  transform-origin: left center;
-  position: relative;
-  overflow: hidden;
-}
-
-/* Animação de listras */
-.progress-bar-striped {
-  background-image: linear-gradient(
-    45deg,
-    rgba(255, 255, 255, 0.15) 25%,
-    transparent 25%,
-    transparent 50%,
-    rgba(255, 255, 255, 0.15) 50%,
-    rgba(255, 255, 255, 0.15) 75%,
-    transparent 75%,
-    transparent
-  );
-  background-size: 1rem 1rem;
-}
-
-.progress-bar-animated {
-  animation: progress-stripes 1s linear infinite;
-}
-
-@keyframes progress-stripes {
-  from { background-position: 1rem 0; }
-  to { background-position: 0 0; }
-}
-
-/* Variantes de progresso */
-.progress-bar-success {
-  background: var(--success);
-}
-
-.progress-bar-warning {
-  background: var(--warning);
-}
-
-.progress-bar-error {
-  background: var(--destructive);
-}
-
-/* Tamanhos de progresso */
-.progress-sm {
-  height: var(--space-1);
-}
-
-.progress-lg {
-  height: var(--space-3);
-}
-
-/* Progress circular */
-.progress-circular {
+.loading {
   display: inline-block;
-  width: var(--space-10);
-  height: var(--space-10);
-  position: relative;
-}
-
-.progress-circular svg {
-  transform: rotate(-90deg);
-}
-
-.progress-circular-track {
-  stroke: var(--muted);
-  fill: none;
-}
-
-.progress-circular-bar {
-  stroke: var(--primary);
-  fill: none;
-  stroke-linecap: round;
-  transition: stroke-dashoffset var(--transition-slow) ease;
-}
-
-/* 
-  ===================================================================
-  LOADING STATES - Estados de Carregamento
-  ===================================================================
-*/
-
-/* Spinner básico */
-.spinner {
-  display: inline-block;
-  width: var(--space-6);
-  height: var(--space-6);
+  width: 20px;
+  height: 20px;
   border: 2px solid var(--muted);
-  border-top: 2px solid var(--foreground);
+  border-top-color: var(--primary);
   border-radius: 50%;
-  animation: spinner-rotate var(--transition-normal) linear infinite;
+  animation: spin 0.8s linear infinite;
 }
 
-@keyframes spinner-rotate {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-/* Tamanhos de spinner */
-.spinner-xs {
-  width: var(--space-3);
-  height: var(--space-3);
-  border-width: 1px;
-}
-
-.spinner-sm {
-  width: var(--space-4);
-  height: var(--space-4);
-}
-
-.spinner-lg {
-  width: var(--space-8);
-  height: var(--space-8);
-  border-width: 3px;
-}
-
-.spinner-xl {
-  width: var(--space-12);
-  height: var(--space-12);
-  border-width: 4px;
-}
-
-/* Dots loading */
-.loading-dots {
-  display: inline-flex;
-  gap: var(--space-1);
-}
-
-.loading-dot {
-  width: var(--space-2);
-  height: var(--space-2);
-  border-radius: 50%;
-  background: var(--foreground);
-  animation: loading-bounce 1.4s ease-in-out infinite both;
-}
-
-.loading-dot:nth-child(1) { animation-delay: -0.32s; }
-.loading-dot:nth-child(2) { animation-delay: -0.16s; }
-.loading-dot:nth-child(3) { animation-delay: 0; }
-
-@keyframes loading-bounce {
-  0%, 80%, 100% {
-    transform: scale(0);
-    opacity: 0.5;
-  }
-  40% {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
-
-/* Skeleton loading */
-.skeleton {
-  background: var(--muted);
-  border-radius: var(--radius);
-  position: relative;
-  overflow: hidden;
-  
-  /* Dimensão padrão se não especificada */
-  height: var(--space-4);
-  width: 100%;
-}
-
-/* Animação de shimmer */
-.skeleton::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.1),
-    transparent
-  );
-  animation: skeleton-shimmer 2s infinite;
-}
-
-@keyframes skeleton-shimmer {
-  0% { transform: translateX(-100%); }
-  100% { transform: translateX(100%); }
-}
-
-/* Variações de skeleton */
-.skeleton-text {
-  height: var(--space-3);
-  border-radius: var(--radius-sm);
-}
-
-.skeleton-title {
-  height: var(--space-6);
-  width: 60%;
-  margin-bottom: var(--space-2);
-}
-
-.skeleton-paragraph {
-  height: var(--space-3);
-  margin-bottom: var(--space-2);
-}
-
-.skeleton-paragraph:last-child {
-  width: 80%;
-}
-
-.skeleton-avatar {
-  width: var(--space-10);
-  height: var(--space-10);
-  border-radius: 50%;
-}
-
-.skeleton-button {
-  width: 120px;
-  height: var(--space-10);
-}
-
-.skeleton-card {
-  height: 200px;
-  border-radius: var(--radius-lg);
-}
-
-/* 
-  ===================================================================
-  TOOLTIPS - Dicas Contextuais
-  ===================================================================
-*/
-
-.tooltip {
-  position: relative;
-  display: inline-block;
-}
-
-.tooltip-content {
-  /* Posicionamento */
-  position: absolute;
-  z-index: 60;
-  bottom: calc(100% + var(--space-2));
-  left: 50%;
-  transform: translateX(-50%);
-  
-  /* Aparência */
-  padding: var(--space-2) var(--space-3);
-  background: var(--foreground);
-  color: var(--background);
-  border-radius: var(--radius);
-  font-size: var(--size-body-small);
-  white-space: nowrap;
-  box-shadow: var(--shadow-lg);
-  
-  /* Estado inicial (oculto) */
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-  
-  /* Transição */
-  transition: opacity var(--transition-fast),
-              visibility var(--transition-fast);
-}
-
-/* Seta do tooltip */
-.tooltip-content::after {
-  content: '';
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  border: 4px solid transparent;
-  border-top-color: var(--foreground);
-}
-
-/* Mostrar tooltip no hover */
-.tooltip:hover .tooltip-content {
-  opacity: 1;
-  visibility: visible;
-}
-
-/* Posições do tooltip */
-.tooltip-top .tooltip-content {
-  bottom: calc(100% + var(--space-2));
-  top: auto;
-}
-
-.tooltip-bottom .tooltip-content {
-  top: calc(100% + var(--space-2));
-  bottom: auto;
-}
-
-.tooltip-bottom .tooltip-content::after {
-  top: auto;
-  bottom: 100%;
-  border-top-color: transparent;
-  border-bottom-color: var(--foreground);
-}
-
-.tooltip-left .tooltip-content {
-  right: calc(100% + var(--space-2));
-  left: auto;
-  bottom: 50%;
-  transform: translateY(50%);
-}
-
-.tooltip-left .tooltip-content::after {
-  left: 100%;
-  top: 50%;
-  transform: translateY(-50%);
-  border-top-color: transparent;
-  border-left-color: var(--foreground);
-}
-
-.tooltip-right .tooltip-content {
-  left: calc(100% + var(--space-2));
-  right: auto;
-  bottom: 50%;
-  transform: translateY(50%);
-}
-
-.tooltip-right .tooltip-content::after {
-  right: 100%;
-  left: auto;
-  top: 50%;
-  transform: translateY(-50%);
-  border-top-color: transparent;
-  border-right-color: var(--foreground);
-}
-
-/* 
-  ===================================================================
-  SNACKBAR - Mensagens Temporárias na Parte Inferior
-  ===================================================================
-*/
-
-.snackbar {
-  /* Posicionamento */
-  position: fixed;
-  bottom: var(--space-6);
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 90;
-  
-  /* Estrutura */
-  display: flex;
-  align-items: center;
-  gap: var(--space-3);
-  min-width: 300px;
-  max-width: 500px;
-  padding: var(--space-3) var(--space-4);
-  
-  /* Aparência */
-  background: var(--foreground);
-  color: var(--background);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow-xl);
-  
-  /* Animação */
-  animation: snackbar-slide-up var(--transition-bounce);
-}
-
-@keyframes snackbar-slide-up {
-  from {
-    transform: translateX(-50%) translateY(100%);
-    opacity: 0;
-  }
+@keyframes spin {
   to {
-    transform: translateX(-50%) translateY(0);
-    opacity: 1;
+    transform: rotate(360deg);
   }
 }
 
-.snackbar-action {
-  margin-left: auto;
-  padding: var(--space-1) var(--space-2);
-  background: transparent;
-  color: var(--primary);
-  border: none;
-  border-radius: var(--radius-sm);
-  font-weight: var(--weight-button);
-  cursor: pointer;
-  transition: var(--transition-fast);
+/* Loading em botões */
+.btn.loading {
+  color: transparent;
+  pointer-events: none;
 }
 
-.snackbar-action:hover {
-  background: rgba(255, 255, 255, 0.1);
-}
-
-/* 
-  ===================================================================
-  RESPONSIVIDADE
-  ===================================================================
-*/
-
-@media (max-width: 640px) {
-  /* Toasts ocupam largura total em mobile */
-  .toast {
-    max-width: calc(100vw - var(--space-8));
-  }
-  
-  /* Snackbar responsivo */
-  .snackbar {
-    left: var(--space-4);
-    right: var(--space-4);
-    transform: none;
-    max-width: none;
-  }
-  
-  /* Ajustar padding dos alerts */
-  .alert {
-    padding: var(--space-3);
-  }
-  
-  /* Tooltips em mobile viram touch para melhor UX */
-  .tooltip-content {
-    white-space: normal;
-    max-width: 200px;
-    text-align: center;
-  }
+.btn.loading::after {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  top: 50%;
+  left: 50%;
+  margin: -8px 0 0 -8px;
+  border: 2px solid currentColor;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
 }
