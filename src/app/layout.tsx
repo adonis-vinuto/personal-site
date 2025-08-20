@@ -1,6 +1,5 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, JetBrains_Mono, Playfair_Display } from "next/font/google";
-import "./globals.css";
 import { ThemeProvider } from "@/lib/theme-context";
 
 const inter = Inter({
