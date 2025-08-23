@@ -1,28 +1,27 @@
-/* src/styles/globals.css */
 @import "tailwindcss";
 
 /* ===================================================================
-   CONFIGURAÇÃO DO TEMA
+   CONFIGURAÇÃO DO TEMA - Tailwind v4
    =================================================================== */
 @theme {
-  /* Cores do projeto */
-  --color-primary: #3b82f6;      /* blue-500 */
-  --color-primary-hover: #2563eb; /* blue-600 */
-  --color-success: #10b981;      /* green-500 */
-  --color-error: #ef4444;        /* red-500 */
+  /* Cores customizadas do projeto */
+  --color-primary: #3b82f6;
+  --color-primary-hover: #2563eb;
+  --color-success: #10b981;
+  --color-error: #ef4444;
   
-  /* Tipografia */
-  --font-sans: Inter, system-ui, -apple-system, sans-serif;
-  --font-mono: "Fira Code", Consolas, Monaco, monospace;
+  /* Tipografia personalizada */
+  --font-family-sans: Inter, system-ui, -apple-system, sans-serif;
+  --font-family-mono: "Fira Code", Consolas, Monaco, monospace;
   
-  /* Espaçamentos extras úteis */
+  /* Espaçamentos adicionais */
   --spacing-18: 4.5rem;
   --spacing-22: 5.5rem;
   
-  /* Layout */
+  /* Configurações de layout */
   --container-max: 80rem;
-  --radius: 0.5rem;
-  --radius-lg: 0.75rem;
+  --radius-default: 0.5rem;
+  --radius-large: 0.75rem;
 }
 
 /* ===================================================================
@@ -30,13 +29,13 @@
    =================================================================== */
 @layer base {
   * {
-    border-color: theme(colors.gray.200);
+    border-color: #e5e7eb; /* gray-200 */
   }
   
   body {
-    font-family: var(--font-sans);
+    font-family: var(--font-family-sans);
     line-height: 1.6;
-    color: theme(colors.gray.900);
+    color: #111827; /* gray-900 */
     background-color: white;
   }
   
@@ -46,7 +45,7 @@
   }
   
   code, pre {
-    font-family: var(--font-mono);
+    font-family: var(--font-family-mono);
   }
   
   :focus-visible {
@@ -60,30 +59,80 @@
    =================================================================== */
 @layer components {
   .container {
-    @apply mx-auto px-4 sm:px-6 lg:px-8;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
     max-width: var(--container-max);
   }
   
+  @media (min-width: 640px) {
+    .container {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .container {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+  }
+  
   .card {
-    @apply bg-white rounded-lg border border-gray-200 p-6 shadow-sm;
+    background-color: white;
+    border-radius: var(--radius-default);
+    border: 1px solid #e5e7eb;
+    padding: 1.5rem;
+    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
   }
   
   .btn {
-    @apply inline-flex items-center justify-center px-4 py-2 font-medium rounded-md transition-colors;
-    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2;
-    @apply disabled:pointer-events-none disabled:opacity-50;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 1rem;
+    font-weight: 500;
+    border-radius: var(--radius-default);
+    transition: background-color 150ms ease, color 150ms ease;
+  }
+  
+  .btn:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+  
+  .btn:disabled {
+    pointer-events: none;
+    opacity: 0.5;
   }
   
   .btn-primary {
-    @apply btn bg-primary text-white hover:bg-primary-hover;
+    background-color: var(--color-primary);
+    color: white;
+  }
+  
+  .btn-primary:hover {
+    background-color: var(--color-primary-hover);
   }
   
   .btn-secondary {
-    @apply btn bg-gray-100 text-gray-900 hover:bg-gray-200;
+    background-color: #f3f4f6;
+    color: #111827;
+  }
+  
+  .btn-secondary:hover {
+    background-color: #e5e7eb;
   }
   
   .btn-outline {
-    @apply btn border-2 border-gray-300 hover:bg-gray-50;
+    border: 2px solid #d1d5db;
+    background-color: transparent;
+  }
+  
+  .btn-outline:hover {
+    background-color: #f9fafb;
   }
 }
 
@@ -92,7 +141,7 @@
    =================================================================== */
 @layer utilities {
   /* Grid responsivo automático */
-  .grid-auto {
+  .grid-auto-fit {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
     gap: 1.5rem;
@@ -100,13 +149,17 @@
   
   /* Gradiente em texto */
   .text-gradient {
-    @apply bg-clip-text text-transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
   }
   
   /* Truncate múltiplas linhas */
   .line-clamp-2 {
     display: -webkit-box;
     -webkit-line-clamp: 2;
+    line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
@@ -114,12 +167,24 @@
   .line-clamp-3 {
     display: -webkit-box;
     -webkit-line-clamp: 3;
+    line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
   
   /* Skeleton loading */
   .skeleton {
-    @apply animate-pulse bg-gray-200 rounded;
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    background-color: #e5e7eb;
+    border-radius: var(--radius-default);
+  }
+  
+  @keyframes pulse {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.5;
+    }
   }
 }
