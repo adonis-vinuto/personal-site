@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import "@/styles/globals.css";
 
 export const metadata: Metadata = {
   title: "Adonis Vinuto | Portfolio",
@@ -30,6 +31,7 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <body>
+        {children}
       </body>
     </html>
   );
