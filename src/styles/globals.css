@@ -1,62 +1,58 @@
-@import "tailwindcss";
+/*
+=================================================================
+GLOBALS.CSS - Arquivo principal de estilos
+=================================================================
+*/
 
-/* ===================================================================
-   CONFIGURAÇÃO DO TEMA - Tailwind v4
-   =================================================================== */
-@theme {
-  /* Cores customizadas do projeto */
-  --color-primary: #3b82f6;
-  --color-primary-hover: #2563eb;
-  --color-success: #10b981;
-  --color-error: #ef4444;
-  
-  /* Tipografia personalizada */
-  --font-family-sans: Inter, system-ui, -apple-system, sans-serif;
-  --font-family-mono: "Fira Code", Consolas, Monaco, monospace;
-  
-  /* Espaçamentos adicionais */
-  --spacing-18: 4.5rem;
-  --spacing-22: 5.5rem;
-  
-  /* Configurações de layout */
-  --container-max: 80rem;
-  --radius-default: 0.5rem;
-  --radius-large: 0.75rem;
-}
+/* Importa Tailwind CSS v4 */
+@import 'tailwindcss';
 
-/* ===================================================================
-   ESTILOS BASE
-   =================================================================== */
+/* Importa configuração do tema - DEVE vir após o Tailwind */
+@import './core/theme.css';
+
+/*
+=================================================================
+ESTILOS BASE
+=================================================================
+*/
 @layer base {
   * {
-    border-color: #e5e7eb; /* gray-200 */
+    border-color: var(--color-gray-200);
   }
-  
+
   body {
     font-family: var(--font-family-sans);
     line-height: 1.6;
-    color: #111827; /* gray-900 */
+    color: var(--color-gray-900);
     background-color: white;
   }
-  
-  h1, h2, h3, h4, h5, h6 {
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-weight: 700;
     line-height: 1.2;
   }
-  
-  code, pre {
+
+  code,
+  pre {
     font-family: var(--font-family-mono);
   }
-  
+
   :focus-visible {
-    outline: 2px solid var(--color-primary);
+    outline: 2px solid var(--color-info-500);
     outline-offset: 2px;
   }
 }
 
-/* ===================================================================
-   COMPONENTES REUTILIZÁVEIS
-   =================================================================== */
+/*
+=================================================================
+COMPONENTES
+=================================================================
+*/
 @layer components {
   .container {
     margin-left: auto;
@@ -65,88 +61,90 @@
     padding-right: 1rem;
     max-width: var(--container-max);
   }
-  
+
   @media (min-width: 640px) {
     .container {
       padding-left: 1.5rem;
       padding-right: 1.5rem;
     }
   }
-  
+
   @media (min-width: 1024px) {
     .container {
       padding-left: 2rem;
       padding-right: 2rem;
     }
   }
-  
+
   .card {
     background-color: white;
-    border-radius: var(--radius-default);
-    border: 1px solid #e5e7eb;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-gray-200);
     padding: 1.5rem;
-    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
+    box-shadow: var(--shadow-sm);
   }
-  
+
   .btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     padding: 0.5rem 1rem;
     font-weight: 500;
-    border-radius: var(--radius-default);
-    transition: background-color 150ms ease, color 150ms ease;
+    border-radius: var(--radius-md);
+    transition: all var(--duration-fast) var(--ease-base);
   }
-  
+
   .btn:focus-visible {
-    outline: 2px solid var(--color-primary);
+    outline: 2px solid var(--color-info-500);
     outline-offset: 2px;
   }
-  
+
   .btn:disabled {
     pointer-events: none;
     opacity: 0.5;
   }
-  
+
   .btn-primary {
-    background-color: var(--color-primary);
+    background-color: var(--color-gray-900);
     color: white;
   }
-  
+
   .btn-primary:hover {
-    background-color: var(--color-primary-hover);
+    background-color: var(--color-gray-800);
   }
-  
+
   .btn-secondary {
-    background-color: #f3f4f6;
-    color: #111827;
+    background-color: var(--color-gray-200);
+    color: var(--color-gray-900);
   }
-  
+
   .btn-secondary:hover {
-    background-color: #e5e7eb;
+    background-color: var(--color-gray-400);
   }
-  
+
   .btn-outline {
-    border: 2px solid #d1d5db;
+    border: 2px solid var(--color-gray-400);
     background-color: transparent;
   }
-  
+
   .btn-outline:hover {
-    background-color: #f9fafb;
+    background-color: var(--color-gray-50);
   }
 }
 
-/* ===================================================================
-   UTILITIES CUSTOMIZADAS
-   =================================================================== */
+/*
+=================================================================
+UTILITIES
+=================================================================
+*/
 @layer utilities {
-  /* Grid responsivo automático */
+  /* Grid responsivo */
   .grid-auto-fit {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
     gap: 1.5rem;
   }
-  
+
   /* Gradiente em texto */
   .text-gradient {
     background-clip: text;
@@ -154,7 +152,7 @@
     -webkit-text-fill-color: transparent;
     color: transparent;
   }
-  
+
   /* Truncate múltiplas linhas */
   .line-clamp-2 {
     display: -webkit-box;
@@ -163,7 +161,7 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
-  
+
   .line-clamp-3 {
     display: -webkit-box;
     -webkit-line-clamp: 3;
@@ -171,16 +169,17 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
-  
+
   /* Skeleton loading */
   .skeleton {
     animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-    background-color: #e5e7eb;
-    border-radius: var(--radius-default);
+    background-color: var(--color-gray-200);
+    border-radius: var(--radius-md);
   }
-  
+
   @keyframes pulse {
-    0%, 100% {
+    0%,
+    100% {
       opacity: 1;
     }
     50% {
