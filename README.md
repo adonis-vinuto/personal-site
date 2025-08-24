@@ -20,8 +20,8 @@ Atualmente estou desenvolvendo toda a **estrutura base**: sistema de componentes
 - 🇺🇸 [Read in English](README.en.md) - Complete project overview, objectives and detailed roadmap
 
 ### 🎨 Guias de Arquitetura CSS | CSS Architecture Guides
-- 🇧🇷 [Guia de Estilização (Português)](guide.md) - Arquitetura CSS, sistema de design e padrões de componentes
-- 🇺🇸 [Styling Guide (English)](guide.en.md) - CSS architecture, design system and component patterns
+- 🇧🇷 [Guia de Estilização (Português)](guide-css.md) - Arquitetura CSS, sistema de design e padrões de componentes
+- 🇺🇸 [Styling Guide (English)](guide-css.en.md) - CSS architecture, design system and component patterns
 
 ---
 
