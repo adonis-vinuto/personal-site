@@ -1,0 +1,118 @@
+/*
+=================================================================
+TOKENS.CSS - Design Tokens Simplificado
+=================================================================
+*/
+
+/*
+=================================================================
+LIGHT MODE (Padrão)
+=================================================================
+*/
+:root {
+  /*
+  =================================================================
+  CORES - Sistema minimalista P&B
+  =================================================================
+  */
+  
+  /* Backgrounds (3 níveis apenas) */
+  --bg: var(--color-white);              /* Fundo principal */
+  --bg-subtle: var(--color-gray-50);     /* Seções alternadas */
+  --bg-muted: var(--color-gray-200);     /* Disabled, skeleton */
+  
+  /* Texto (3 níveis apenas) */
+  --text: var(--color-gray-900);         /* Texto principal */
+  --text-muted: var(--color-gray-600);   /* Secundário */
+  --text-subtle: var(--color-gray-400);  /* Placeholders, hints */
+  
+  /* Borders (2 níveis) */
+  --border: var(--color-gray-200);       /* Borda padrão */
+  --border-strong: var(--color-gray-400); /* Hover, foco */
+  
+  /* Cor primária (preto no light) */
+  --primary: var(--color-black);
+  --primary-hover: var(--color-gray-800);
+  
+  /*
+  =================================================================
+  TIPOGRAFIA - Base
+  =================================================================
+  */
+  
+  /* Fonts */
+  --font-main: var(--font-family-sans);
+  --font-mono: var(--font-family-mono);
+  
+  /* Tamanhos para títulos */
+  --text-hero: var(--font-size-5xl);     /* 48px - Hero/Landing */
+  --text-title: var(--font-size-3xl);    /* 30px - Títulos de página */
+  --text-heading: var(--font-size-xl);   /* 20px - Seções */
+  
+  /*
+  =================================================================
+  LAYOUT - Valores específicos do projeto
+  =================================================================
+  */
+
+  --header-height: 4rem;                  /* 64px - altura do header */
+  --container-padding: var(--spacing-4);  /* Padding lateral mobile */
+  --container-padding-lg: var(--spacing-8); /* Padding lateral desktop */
+  
+  /*
+  =================================================================
+  EFEITOS
+  =================================================================
+  */
+  
+  /* Shadows padrão */
+  --shadow: var(--shadow-sm);
+  --shadow-hover: var(--shadow-md);
+  --shadow-modal: var(--shadow-xl);
+  
+  /* Radius padrão */
+  --radius: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+  
+  /* Transição padrão */
+  --transition: var(--duration-base) var(--ease-base);
+}
+
+/*
+=================================================================
+DARK MODE - Inverte as cores
+=================================================================
+*/
+:root[data-theme="dark"] {
+  /* Backgrounds */
+  --bg: var(--color-black);
+  --bg-subtle: var(--color-gray-900);
+  --bg-muted: var(--color-gray-800);
+  
+  /* Texto */
+  --text: var(--color-white);
+  --text-muted: var(--color-gray-400);
+  --text-subtle: var(--color-gray-600);
+  
+  /* Borders */
+  --border: var(--color-gray-800);
+  --border-strong: var(--color-gray-600);
+  
+  /* Primária (branco no dark) */
+  --primary: var(--color-white);
+  --primary-hover: var(--color-gray-200);
+  
+  /* Shadows mais sutis no dark */
+  --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.3);
+  --shadow-hover: 0 4px 6px -1px rgb(0 0 0 / 0.3);
+  --shadow-modal: 0 20px 25px -5px rgb(0 0 0 / 0.3);
+}
+
+/*
+=================================================================
+PREPARAÇÃO FUTURA
+Quando precisar de temas por seção, adicione:
+[data-section="projects"] { ... }
+[data-section="blog"] { ... }
+=================================================================
+*/
