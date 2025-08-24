@@ -1,7 +1,7 @@
 # 🌐 personal-site
 
-Este é o meu site pessoal e portfólio, desenvolvido com Next.js. Aqui compartilho meus projetos, experiências e aprendizados como desenvolvedor. O objetivo é apresentar minhas habilidades técnicas, trajetória profissional e ideias que me inspiram no dia a dia.
-> *This is my personal website and portfolio, built with Next.js. Here I share my projects, experiences, and lessons learned as a developer. The goal is to showcase my technical skills, professional journey, and ideas that inspire me day by day.*
+Este é o meu site pessoal e portfólio, desenvolvido com Next.js. Aqui compartilho meus projetos, experiências e aprendizados como desenvolvedor.
+> *This is my personal website and portfolio, built with Next.js. Here I share my projects, experiences, and lessons learned as a developer.*
 
 ---
 
@@ -25,41 +25,6 @@ Atualmente estou desenvolvendo toda a **estrutura base**: sistema de componentes
 
 ---
 
-## 🚀 Quick Start
-
-```bash
-# Clone o repositório | Clone the repository
-git clone https://github.com/adonis-vinuto/personal-site.git
-
-# Entre no diretório | Enter the directory
-cd personal-site
-
-# Instale as dependências | Install dependencies
-npm install
-
-# Inicie o servidor de desenvolvimento | Start development server
-npm run dev
-```
-
-Acesse | Access: [http://localhost:3000](http://localhost:3000)
-
----
-
-## 🛠️ Stack Principal | Main Stack
-
-- **[Next.js 15](https://nextjs.org/)** - Framework React com App Router
-- **[React 19](https://react.dev/)** - Biblioteca para interfaces
-- **[TypeScript 5](https://www.typescriptlang.org/)** - Type safety e DX aprimorada
-- **[Tailwind CSS 4](https://tailwindcss.com/)** - Estilização utility-first moderna
-
----
-
 Este projeto está em constante evolução. Navegue pelos documentos acima para detalhes completos sobre arquitetura, padrões de código, roadmap de desenvolvimento e guias de contribuição.
 
 > *This project is continuously evolving. Browse the documents above for complete details on architecture, code patterns, development roadmap, and contribution guidelines.*
-
----
-
-<div align="center">
-  <sub>Desenvolvido com ❤️ e muita IA por Adonis Vinuto</sub>
-</div>
