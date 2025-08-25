@@ -1,0 +1,372 @@
+/*
+=================================================================
+LAYOUT.CSS - Sistema de Layout
+=================================================================
+*/
+
+@layer components {
+    /*
+    =================================================================
+    CONTAINER SYSTEM
+    =================================================================
+    */
+    
+    /* Container com limite de largura */
+    .container {
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: var(--container-padding);
+        padding-right: var(--container-padding);
+        max-width: var(--container-max);
+    }
+    
+    /* Container fluid - largura total */
+    .container-fluid {
+        width: 100%;
+        padding-left: var(--container-padding);
+        padding-right: var(--container-padding);
+    }
+    
+    /* Container narrow - para conteúdo de leitura */
+    .container-narrow {
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: var(--container-padding);
+        padding-right: var(--container-padding);
+        max-width: 42rem; /* ~672px - ideal para forms e texto */
+    }
+    
+    /* Padding responsivo para todos containers */
+    @media (min-width: 640px) {
+        .container,
+        .container-fluid,
+        .container-narrow {
+        padding-left: var(--spacing-6);
+        padding-right: var(--spacing-6);
+        }
+    }
+    
+    @media (min-width: 1024px) {
+        .container,
+        .container-fluid,
+        .container-narrow {
+        padding-left: var(--container-padding-lg);
+        padding-right: var(--container-padding-lg);
+        }
+    }
+    
+    /*
+    =================================================================
+    SECTION SYSTEM - Espaçamento vertical entre blocos
+    =================================================================
+    */
+    
+    /* Seções com espaçamento variável */
+    .section-sm {
+        padding-top: var(--spacing-12);    /* 48px */
+        padding-bottom: var(--spacing-12);
+    }
+    
+    .section {
+        padding-top: var(--spacing-20);    /* 80px */
+        padding-bottom: var(--spacing-20);
+    }
+    
+    .section-lg {
+        padding-top: var(--spacing-32);    /* 128px */
+        padding-bottom: var(--spacing-32);
+    }
+    
+    /* Ajuste mobile - seções menores em telas pequenas */
+    @media (max-width: 768px) {
+        .section-sm {
+        padding-top: var(--spacing-8);     /* 32px */
+        padding-bottom: var(--spacing-8);
+        }
+        
+        .section {
+        padding-top: var(--spacing-12);    /* 48px */
+        padding-bottom: var(--spacing-12);
+        }
+        
+        .section-lg {
+        padding-top: var(--spacing-16);    /* 64px */
+        padding-bottom: var(--spacing-16);
+        }
+    }
+    
+    /* Remover padding top da primeira section */
+    .section-first {
+        padding-top: 0;
+    }
+    
+    /* Remover padding bottom da última section */
+    .section-last {
+        padding-bottom: 0;
+    }
+    
+    /*
+    =================================================================
+    STACK PATTERN - Espaçamento automático entre elementos
+    =================================================================
+    */
+    
+    /* Stack Vertical - adiciona espaço vertical entre filhos */
+    .stack-v > * + * {
+        margin-top: var(--spacing-4); /* 16px padrão */
+    }
+    
+    .stack-v-sm > * + * {
+        margin-top: var(--spacing-2); /* 8px */
+    }
+    
+    .stack-v-md > * + * {
+        margin-top: var(--spacing-4); /* 16px */
+    }
+    
+    .stack-v-lg > * + * {
+        margin-top: var(--spacing-6); /* 24px */
+    }
+    
+    .stack-v-xl > * + * {
+        margin-top: var(--spacing-8); /* 32px */
+    }
+    
+    /* Stack Horizontal - adiciona espaço horizontal entre filhos */
+    .stack-h {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--spacing-4); /* 16px padrão */
+    }
+    
+    .stack-h-sm {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--spacing-2); /* 8px */
+    }
+    
+    .stack-h-md {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--spacing-4); /* 16px */
+    }
+    
+    .stack-h-lg {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--spacing-6); /* 24px */
+    }
+    
+    .stack-h-xl {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--spacing-8); /* 32px */
+    }
+    
+    /* Variantes sem wrap para forçar linha única */
+    .stack-h-nowrap {
+        flex-wrap: nowrap;
+    }
+    
+    /* Alinhamento para stacks horizontais */
+    .stack-h-center {
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .stack-h-between {
+        justify-content: space-between;
+    }
+    
+    .stack-h-end {
+        justify-content: flex-end;
+    }
+    
+    /*
+    =================================================================
+    CENTER PATTERN - Centralização
+    =================================================================
+    */
+    
+    /* Centralizar horizontalmente */
+    .center-h {
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    /* Centralizar com flexbox */
+    .center {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .center-x {
+        display: flex;
+        justify-content: center;
+    }
+    
+    .center-y {
+        display: flex;
+        align-items: center;
+    }
+    
+    /* Centralizar absolutamente */
+    .center-absolute {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    
+    /*
+    =================================================================
+    GRID HELPERS - Complementa o Tailwind
+    =================================================================
+    */
+    
+    /* Grid auto-fit - colunas responsivas automáticas */
+    .grid-auto-fit {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--grid-min, 250px)), 1fr));
+        gap: var(--spacing-gap-lg, var(--spacing-6));
+    }
+    
+    /* Grid auto-fit com tamanhos específicos */
+    .grid-auto-sm {
+        --grid-min: 200px;
+    }
+    
+    .grid-auto-md {
+        --grid-min: 250px;
+    }
+    
+    .grid-auto-lg {
+        --grid-min: 300px;
+    }
+    
+    .grid-auto-xl {
+        --grid-min: 350px;
+    }
+    
+    /*
+    =================================================================
+    WRAPPER - Para conteúdo que precisa de max-width
+    =================================================================
+    */
+    
+    .wrapper {
+        width: 100%;
+        max-width: var(--container-max);
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .wrapper-narrow {
+        width: 100%;
+        max-width: var(--content-max-width, 65ch);
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    /*
+    =================================================================
+    SPLIT LAYOUT - Dois elementos lado a lado
+    =================================================================
+    */
+    
+    .split {
+        display: grid;
+        gap: var(--spacing-8);
+        align-items: center;
+    }
+    
+    @media (min-width: 768px) {
+        .split {
+        grid-template-columns: 1fr 1fr;
+        }
+        
+        .split-reverse > *:first-child {
+        order: 2;
+        }
+        
+        .split-30-70 {
+        grid-template-columns: 30fr 70fr;
+        }
+        
+        .split-40-60 {
+        grid-template-columns: 40fr 60fr;
+        }
+        
+        .split-60-40 {
+        grid-template-columns: 60fr 40fr;
+        }
+        
+        .split-70-30 {
+        grid-template-columns: 70fr 30fr;
+        }
+    }
+    
+    /*
+    =================================================================
+    ASPECT RATIOS - Para manter proporções
+    =================================================================
+    */
+    
+    .aspect-square {
+        aspect-ratio: 1 / 1;
+    }
+    
+    .aspect-video {
+        aspect-ratio: 16 / 9;
+    }
+    
+    .aspect-portrait {
+        aspect-ratio: 3 / 4;
+    }
+    
+    .aspect-landscape {
+        aspect-ratio: 4 / 3;
+    }
+    
+    .aspect-golden {
+        aspect-ratio: 1.618 / 1;
+    }
+    
+    /*
+    =================================================================
+    UTILITIES - Helpers úteis
+    =================================================================
+    */
+    
+    /* Full viewport height */
+    .min-h-screen {
+        min-height: 100vh;
+        min-height: 100dvh; /* Dynamic viewport */
+    }
+    
+    /* Full width breakout */
+    .full-bleed {
+        width: 100vw;
+        margin-left: calc(50% - 50vw);
+        margin-right: calc(50% - 50vw);
+    }
+    
+    /* Scrollable horizontal */
+    .scroll-x {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    /* Hide scrollbar but keep scrollable */
+    .scroll-hidden {
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+    
+    .scroll-hidden::-webkit-scrollbar {
+        display: none;
+    }
+}

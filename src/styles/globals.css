@@ -6,3 +6,4 @@
 @import './core/tokens.css'; /* 2º Variáveis do projeto */
 @import './core/reset.css'; /* 3º Normalizações do projeto */
 @import './core/typography.css'; /* 4º Sistema Tipográfico */
+@import './core/layout.css'; /* 5º Sistema de Layout */
