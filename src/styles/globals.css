@@ -10,3 +10,5 @@
 
 /* Utilities */
 @import './utilities/animations.css'; /* 6º Animações */
+@import './utilities/helpers.css'; /* 7º Utilities Essenciais */
+@import './utilities/states.css'; /* 8º Utilities Essenciais */

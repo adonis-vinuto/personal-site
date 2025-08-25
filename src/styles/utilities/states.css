@@ -1,0 +1,532 @@
+/*
+=================================================================
+STATES.CSS - Estados da Aplicação
+=================================================================
+*/
+
+@layer utilities {
+  /*
+  =================================================================
+  LOADING STATES - Complementa animations.css
+  =================================================================
+  */
+  
+  /* Container em loading */
+  .is-loading {
+    position: relative;
+    pointer-events: none;
+    cursor: wait;
+  }
+  
+  .is-loading::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--bg);
+    opacity: var(--loading-opacity);
+    z-index: 10;
+  }
+  
+  /* Elementos durante loading */
+  .is-loading > * {
+    opacity: var(--loading-opacity);
+  }
+  
+  /* Loading overlay com spinner */
+  .loading-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.9);
+    z-index: var(--z-dropdown);
+  }
+  
+  :root[data-theme="dark"] .loading-overlay {
+    background: rgba(0, 0, 0, 0.9);
+  }
+  
+  /* Inline loading */
+  .loading-inline {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-2);
+  }
+  
+  .loading-dots::after {
+    content: '...';
+    animation: dots 1.5s steps(4, end) infinite;
+  }
+  
+  @keyframes dots {
+    0%, 20% { content: ''; }
+    40% { content: '.'; }
+    60% { content: '..'; }
+    80%, 100% { content: '...'; }
+  }
+  
+  /*
+  =================================================================
+  ERROR STATES
+  =================================================================
+  */
+  
+  /* Container com erro */
+  .has-error {
+    border-color: var(--color-error-500) !important;
+    background-color: var(--color-error-100);
+  }
+  
+  :root[data-theme="dark"] .has-error {
+    background-color: rgba(239, 68, 68, 0.1);
+  }
+  
+  /* Mensagem de erro */
+  .error-message {
+    color: var(--color-error-600);
+    font-size: var(--font-size-sm);
+    margin-top: var(--spacing-1);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-1);
+  }
+  
+  .error-message::before {
+    content: '⚠';
+    font-size: var(--font-size-xs);
+  }
+  
+  /* Error boundary state */
+  .error-boundary {
+    padding: var(--spacing-8);
+    text-align: center;
+    background: var(--color-error-100);
+    border: 2px dashed var(--color-error-300);
+    border-radius: var(--radius-lg);
+  }
+  
+  :root[data-theme="dark"] .error-boundary {
+    background: rgba(239, 68, 68, 0.1);
+    border-color: var(--color-error-700);
+  }
+  
+  /*
+  =================================================================
+  SUCCESS STATES
+  =================================================================
+  */
+  
+  /* Container com sucesso */
+  .has-success {
+    border-color: var(--color-success-500) !important;
+    background-color: var(--color-success-100);
+  }
+  
+  :root[data-theme="dark"] .has-success {
+    background-color: rgba(34, 197, 94, 0.1);
+  }
+  
+  /* Mensagem de sucesso */
+  .success-message {
+    color: var(--color-success-600);
+    font-size: var(--font-size-sm);
+    margin-top: var(--spacing-1);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-1);
+  }
+  
+  .success-message::before {
+    content: '✓';
+    font-size: var(--font-size-xs);
+  }
+  
+  /*
+  =================================================================
+  WARNING STATES
+  =================================================================
+  */
+  
+  /* Container com aviso */
+  .has-warning {
+    border-color: var(--color-warning-500) !important;
+    background-color: var(--color-warning-100);
+  }
+  
+  :root[data-theme="dark"] .has-warning {
+    background-color: rgba(234, 179, 8, 0.1);
+  }
+  
+  /* Mensagem de aviso */
+  .warning-message {
+    color: var(--color-warning-600);
+    font-size: var(--font-size-sm);
+    margin-top: var(--spacing-1);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-1);
+  }
+  
+  .warning-message::before {
+    content: '!';
+    font-size: var(--font-size-xs);
+    font-weight: bold;
+  }
+  
+  /*
+  =================================================================
+  EMPTY STATES
+  =================================================================
+  */
+  
+  /* Container vazio */
+  .is-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-12);
+    text-align: center;
+    color: var(--text-muted);
+    background: var(--bg-subtle);
+    border: 2px dashed var(--border);
+    border-radius: var(--radius-lg);
+    min-height: 200px;
+  }
+  
+  .is-empty-icon {
+    font-size: var(--font-size-4xl);
+    opacity: 0.3;
+    margin-bottom: var(--spacing-4);
+  }
+  
+  .is-empty-text {
+    font-size: var(--font-size-base);
+    color: var(--text-muted);
+    margin-bottom: var(--spacing-2);
+  }
+  
+  .is-empty-hint {
+    font-size: var(--font-size-sm);
+    color: var(--text-subtle);
+  }
+  
+  /*
+  =================================================================
+  DISABLED STATES
+  =================================================================
+  */
+  
+  /* Elemento desabilitado */
+  .is-disabled {
+    opacity: var(--disabled-opacity) !important;
+    pointer-events: none !important;
+    cursor: not-allowed !important;
+    filter: grayscale(0.5);
+  }
+  
+  /* Container desabilitado com overlay */
+  .disabled-overlay {
+    position: relative;
+  }
+  
+  .disabled-overlay::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--bg);
+    opacity: 0.5;
+    pointer-events: none;
+    z-index: 1;
+  }
+  
+  /*
+  =================================================================
+  FORM VALIDATION STATES
+  =================================================================
+  */
+  
+  /* Input válido */
+  .is-valid {
+    border-color: var(--color-success-500) !important;
+  }
+  
+  .is-valid:focus {
+    box-shadow: var(--focus-ring-offset), 0 0 0 4px var(--color-success-300);
+  }
+  
+  /* Input inválido */
+  .is-invalid {
+    border-color: var(--color-error-500) !important;
+  }
+  
+  .is-invalid:focus {
+    box-shadow: var(--focus-ring-offset), 0 0 0 4px var(--color-error-300);
+  }
+  
+  /* Input tocado */
+  .is-touched {
+    background-color: var(--bg-subtle);
+  }
+  
+  /* Input pristine (não tocado) */
+  .is-pristine {
+    background-color: var(--bg);
+  }
+  
+  /*
+  =================================================================
+  ACTIVE/SELECTED STATES
+  =================================================================
+  */
+  
+  /* Item ativo */
+  .is-active {
+    background-color: var(--primary);
+    color: var(--bg);
+    font-weight: 600;
+  }
+  
+  /* Item selecionado */
+  .is-selected {
+    background-color: var(--bg-muted);
+    border: 2px solid var(--primary);
+  }
+  
+  /* Tab ativo */
+  .tab-active {
+    border-bottom: 2px solid var(--primary);
+    color: var(--primary);
+    font-weight: 600;
+  }
+  
+  /*
+  =================================================================
+  DRAG & DROP STATES
+  =================================================================
+  */
+  
+  /* Elemento sendo arrastado */
+  .is-dragging {
+    opacity: 0.5;
+    cursor: grabbing;
+  }
+  
+  /* Área de drop ativa */
+  .is-drop-zone {
+    background-color: var(--bg-subtle);
+    border: 2px dashed var(--border-strong);
+    transition: all var(--duration-fast) var(--ease-out);
+  }
+  
+  /* Área de drop hover */
+  .is-drop-hover {
+    background-color: var(--color-info-100);
+    border-color: var(--color-info-500);
+    transform: scale(1.01);
+  }
+  
+  /* Item draggable */
+  .draggable {
+    cursor: grab;
+    transition: transform var(--duration-fast) var(--ease-out);
+  }
+  
+  .draggable:active {
+    cursor: grabbing;
+  }
+  
+  /*
+  =================================================================
+  FOCUS STATES - Acessibilidade
+  =================================================================
+  */
+  
+  /* Focus visível aprimorado */
+  .focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+  }
+  
+  /* Focus trap indicator */
+  .has-focus-trap {
+    position: relative;
+  }
+  
+  .has-focus-trap::before {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border: 2px dashed var(--primary);
+    border-radius: var(--radius-lg);
+    opacity: 0.3;
+    pointer-events: none;
+  }
+  
+  /*
+  =================================================================
+  PENDING/PROCESSING STATES
+  =================================================================
+  */
+  
+  /* Estado pendente */
+  .is-pending {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .is-pending::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      var(--primary),
+      transparent
+    );
+    animation: pending 1.5s linear infinite;
+  }
+  
+  @keyframes pending {
+    0% { left: -100%; }
+    100% { left: 100%; }
+  }
+  
+  /* Processing indicator */
+  .is-processing {
+    pointer-events: none;
+    position: relative;
+  }
+  
+  .is-processing::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin: -10px 0 0 -10px;
+    border: 2px solid var(--border);
+    border-top-color: var(--primary);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+  
+  /*
+  =================================================================
+  EXPANDED/COLLAPSED STATES
+  =================================================================
+  */
+  
+  /* Expansível */
+  .is-expandable {
+    cursor: pointer;
+    transition: all var(--duration-base) var(--ease-base);
+  }
+  
+  /* Expandido */
+  .is-expanded {
+    max-height: none;
+  }
+  
+  /* Colapsado */
+  .is-collapsed {
+    max-height: 0;
+    overflow: hidden;
+  }
+  
+  /* Chevron indicator */
+  .expand-icon {
+    transition: transform var(--duration-fast) var(--ease-out);
+  }
+  
+  .is-expanded .expand-icon {
+    transform: rotate(180deg);
+  }
+  
+  /*
+  =================================================================
+  ONLINE/OFFLINE STATES
+  =================================================================
+  */
+  
+  /* Status online */
+  .is-online::before {
+    content: '';
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background-color: var(--color-success-500);
+    border-radius: 50%;
+    margin-right: var(--spacing-1);
+    animation: pulse 2s infinite;
+  }
+  
+  /* Status offline */
+  .is-offline::before {
+    content: '';
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background-color: var(--color-gray-400);
+    border-radius: 50%;
+    margin-right: var(--spacing-1);
+  }
+  
+  /* Status away */
+  .is-away::before {
+    content: '';
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background-color: var(--color-warning-500);
+    border-radius: 50%;
+    margin-right: var(--spacing-1);
+  }
+  
+  /*
+  =================================================================
+  NEW/UPDATED BADGES
+  =================================================================
+  */
+  
+  /* Novo item */
+  .is-new {
+    position: relative;
+  }
+  
+  .is-new::after {
+    content: 'NEW';
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: var(--color-info-500);
+    color: white;
+    font-size: 10px;
+    font-weight: bold;
+    padding: 2px 6px;
+    border-radius: var(--radius-full);
+  }
+  
+  /* Item atualizado */
+  .is-updated {
+    position: relative;
+  }
+  
+  .is-updated::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 8px;
+    height: 8px;
+    background: var(--color-warning-500);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+}
