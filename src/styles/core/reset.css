@@ -1,0 +1,152 @@
+/*
+=================================================================
+RESET.CSS - Normalizações Mínimas
+=================================================================
+*/
+
+@layer base {
+  /*
+  =================================================================
+  DOCUMENTO
+  =================================================================
+  */
+  
+  /* Scroll suave para navegação por âncoras */
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  /* Remove o scroll horizontal acidental */
+  html,
+  body {
+    overflow-x: hidden;
+  }
+  
+  /* Permite que o body ocupe toda a altura */
+  body {
+    min-height: 100vh;
+    min-height: 100dvh; /* Dynamic viewport height para mobile */
+  }
+  
+  /*
+  =================================================================
+  MÍDIA
+  =================================================================
+  */
+  
+  /* Imagens e vídeos responsivos por padrão */
+  img,
+  picture,
+  video,
+  canvas,
+  svg {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /* Previne que imagens quebrem o layout */
+  img {
+    font-style: italic; /* Melhora aparência do alt text */
+    background-repeat: no-repeat;
+    background-size: cover;
+    shape-margin: 0.75rem;
+  }
+  
+  /*
+  =================================================================
+  FORMULÁRIOS
+  =================================================================
+  */
+  
+  /* Remove aparência padrão em iOS */
+  input,
+  button,
+  textarea,
+  select {
+    font: inherit; /* Herda fonte do parent */
+    color: inherit;
+  }
+  
+  /* Remove setas de número no Chrome, Safari, Edge */
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  
+  input[type="number"] {
+    -moz-appearance: textfield; /* Firefox */
+  }
+  
+  /* Melhora cursor em elementos interativos */
+  button,
+  [role="button"],
+  a,
+  label[for],
+  select,
+  summary,
+  [tabindex]:not([tabindex="-1"]) {
+    cursor: pointer;
+  }
+  
+  /* Desabilita cursor pointer em disabled */
+  :disabled,
+  [disabled],
+  [aria-disabled="true"] {
+    cursor: not-allowed;
+  }
+  
+  /*
+  =================================================================
+  TIPOGRAFIA
+  =================================================================
+  */
+  
+  /* Melhora a quebra de palavras longas */
+  p,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    overflow-wrap: break-word;
+    hyphens: auto;
+  }
+  
+  /* Remove margin top do primeiro elemento e bottom do último */
+  :where(* > :first-child) {
+    margin-top: 0;
+  }
+  
+  :where(* > :last-child) {
+    margin-bottom: 0;
+  }
+  
+  /*
+  =================================================================
+  DETALHES MOBILE
+  =================================================================
+  */
+  
+  /* Remove highlight em tap no iOS */
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  /* Previne zoom em inputs no iOS */
+  @media (max-width: 768px) {
+    input[type="text"],
+    input[type="email"],
+    input[type="number"],
+    input[type="password"],
+    input[type="tel"],
+    input[type="url"],
+    input[type="search"],
+    textarea,
+    select {
+      font-size: 16px; /* iOS não faz zoom em fonts >= 16px */
+    }
+  }
+}
