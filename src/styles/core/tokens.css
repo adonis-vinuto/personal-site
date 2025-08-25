@@ -76,6 +76,32 @@ LIGHT MODE (Padrão)
   
   /* Transição padrão */
   --transition: var(--duration-base) var(--ease-base);
+
+  /*
+  =================================================================
+  ESTADOS INTERATIVOS
+  =================================================================
+  */
+  
+  /* Focus ring para acessibilidade */
+  --focus-ring: 0 0 0 2px var(--primary);
+  --focus-ring-offset: 0 0 0 2px var(--bg), 0 0 0 4px var(--primary);
+  
+  /* Opacidades para hover */
+  --hover-opacity: 0.8;
+  --disabled-opacity: 0.5;
+  --loading-opacity: 0.7;
+  
+  /*
+  =================================================================
+  BREAKPOINTS EXTRAS (complementa o theme.css)
+  =================================================================
+  */
+  
+  /* Breakpoints intermediários se necessário */
+  --breakpoint-xs: 480px;           /* Entre mobile e sm */
+  --breakpoint-tablet: 900px;       /* Entre md e lg */
+  --breakpoint-desktop: 1200px;     /* Entre lg e xl */
 }
 
 /*
