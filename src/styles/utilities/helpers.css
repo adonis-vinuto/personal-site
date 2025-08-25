@@ -1,0 +1,120 @@
+/*
+=================================================================
+HELPERS.CSS - Utilities Essenciais
+=================================================================
+*/
+
+@layer utilities {
+    /*
+    =================================================================
+    TEXT UTILITIES
+    =================================================================
+    */
+    
+    /* Line clamp extras (Tailwind só vai até 6) */
+    .line-clamp-10 {
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 10;
+    }
+    
+    /* Melhora quebra de linha em títulos (CSS moderno) */
+    .text-balance {
+        text-wrap: balance;
+    }
+    
+    /* Texto com gradiente (muito usado em portfolios) */
+    .text-gradient {
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-color: transparent;
+    }
+    
+    /*
+    =================================================================
+    ACCESSIBILITY
+    =================================================================
+    */
+    
+    /* Screen reader only - padrão web */
+    .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+    }
+    
+    /* Skip link - acessibilidade via teclado */
+    .skip-link {
+        position: absolute;
+        top: -40px;
+        left: 6px;
+        background: var(--bg);
+        color: var(--text);
+        padding: 8px;
+        text-decoration: none;
+        border-radius: var(--radius);
+        border: 2px solid var(--border-strong);
+        z-index: var(--z-tooltip);
+        transition: top var(--duration-fast) var(--ease-out);
+    }
+    
+    .skip-link:focus {
+        top: 6px;
+    }
+    
+    /*
+    =================================================================
+    SCROLL UTILITIES - Tailwind não oferece
+    =================================================================
+    */
+    
+    /* Hide scrollbar mas mantém funcionalidade */
+    .scrollbar-none {
+        scrollbar-width: none; /* Firefox */
+        -ms-overflow-style: none; /* IE/Edge */
+    }
+    
+    .scrollbar-none::-webkit-scrollbar {
+        display: none; /* Chrome/Safari */
+    }
+    
+    /* Scroll suave com momentum iOS */
+    .scroll-smooth {
+        -webkit-overflow-scrolling: touch;
+        scroll-behavior: smooth;
+    }
+    
+    /*
+    =================================================================
+    RESPONSIVE VISIBILITY - Tailwind não tem estas específicas
+    =================================================================
+    */
+    
+    .mobile-only {
+        display: block;
+    }
+    
+    @media (min-width: 768px) {
+        .mobile-only {
+        display: none;
+        }
+    }
+    
+    .desktop-only {
+        display: none;
+    }
+    
+    @media (min-width: 1024px) {
+        .desktop-only {
+        display: block;
+        }
+    }
+}
