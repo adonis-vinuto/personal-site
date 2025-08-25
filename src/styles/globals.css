@@ -5,3 +5,4 @@
 @import './core/theme.css';  /* 1º Config base Tailwind */
 @import './core/tokens.css'; /* 2º Variáveis do projeto */
 @import './core/reset.css'; /* 3º Normalizações do projeto */
+@import './core/typography.css'; /* 4º Sistema Tipográfico */
