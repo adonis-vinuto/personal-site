@@ -341,12 +341,6 @@ LAYOUT.CSS - Sistema de Layout
     =================================================================
     */
     
-    /* Full viewport height */
-    .min-h-screen {
-        min-height: 100vh;
-        min-height: 100dvh; /* Dynamic viewport */
-    }
-    
     /* Full width breakout */
     .full-bleed {
         width: 100vw;

@@ -20,12 +20,6 @@ ANIMATIONS.CSS - Sistema de Animações
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
         }
-        
-        /* Mantém animações essenciais para UX */
-        .animate-pulse,
-        .animate-spin {
-        animation: none;
-        }
     }
     
     /*
@@ -132,23 +126,6 @@ ANIMATIONS.CSS - Sistema de Animações
     }
     
     /* Loading Animations */
-    @keyframes pulse {
-        0%, 100% {
-        opacity: 1;
-        }
-        50% {
-        opacity: 0.5;
-        }
-    }
-    
-    @keyframes spin {
-        from {
-        transform: rotate(0deg);
-        }
-        to {
-        transform: rotate(360deg);
-        }
-    }
     
     @keyframes heartbeat {
         0%, 100% {
@@ -232,14 +209,6 @@ ANIMATIONS.CSS - Sistema de Animações
     LOADING STATES
     =================================================================
     */
-    
-    .animate-pulse {
-        animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-    }
-    
-    .animate-spin {
-        animation: spin 1s linear infinite;
-    }
     
     .animate-heartbeat {
         animation: heartbeat 1.5s ease-in-out infinite;
