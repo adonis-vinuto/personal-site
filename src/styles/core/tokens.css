@@ -1,6 +1,6 @@
 /*
 =================================================================
-TOKENS.CSS - Design Tokens Simplificado
+TOKENS.CSS - Design Tokens do Projeto
 =================================================================
 */
 
@@ -12,27 +12,76 @@ LIGHT MODE (Padrão)
 :root {
   /*
   =================================================================
-  CORES - Sistema minimalista P&B
+  CORES
   =================================================================
   */
   
   /* Backgrounds (3 níveis apenas) */
-  --bg: var(--color-white);              /* Fundo principal */
-  --bg-subtle: var(--color-gray-50);     /* Seções alternadas */
-  --bg-muted: var(--color-gray-200);     /* Disabled, skeleton */
+  --cor-bg: var(--color-white);              /* Fundo principal */
+  --cor-bg-subtle: var(--color-gray-50);     /* Seções alternadas */
+  --cor-bg-muted: var(--color-gray-200);     /* Disabled, skeleton */
   
   /* Texto (3 níveis apenas) */
-  --text: var(--color-gray-900);         /* Texto principal */
-  --text-muted: var(--color-gray-600);   /* Secundário */
-  --text-subtle: var(--color-gray-400);  /* Placeholders, hints */
+  --cor-text: var(--color-gray-900);         /* Texto principal */
+  --cor-text-muted: var(--color-gray-600);   /* Secundário */
+  --cor-text-subtle: var(--color-gray-400);  /* Placeholders, hints */
   
   /* Borders (2 níveis) */
-  --border: var(--color-gray-200);       /* Borda padrão */
-  --border-strong: var(--color-gray-400); /* Hover, foco */
+  --cor-border: var(--color-gray-200);       /* Borda padrão */
+  --cor-border-strong: var(--color-gray-400); /* Hover, foco */
   
   /* Cor primária (preto no light) */
-  --primary: var(--color-black);
-  --primary-hover: var(--color-gray-800);
+  --cor-primary: var(--color-black);
+  --cor-primary-hover: var(--color-gray-800);
+  
+    /*
+  =================================================================
+  CORES SEMÂNTICAS
+  =================================================================
+  */
+
+  /* Success (verde) */
+  --color-success-100: var(--color-green-100);
+  --color-success-300: var(--color-green-300);
+  --color-success-500: var(--color-green-500);
+  --color-success-600: var(--color-green-600);
+  --color-success-700: var(--color-green-700);
+
+  /* Error (vermelho) */
+  --color-error-100: var(--color-red-100);
+  --color-error-300: var(--color-red-300);
+  --color-error-500: var(--color-red-500);
+  --color-error-600: var(--color-red-600);
+  --color-error-700: var(--color-red-700);
+
+  /* Warning (amarelo) */
+  --color-warning-100:var(--color-yellow-100);
+  --color-warning-300:var(--color-yellow-300);
+  --color-warning-500:var(--color-yellow-500);
+  --color-warning-600:var(--color-yellow-600);
+  --color-warning-700:var(--color-yellow-700);
+
+  /* Info (azul) */
+  --color-info-100: var(--color-blue-100);
+  --color-info-300: var(--color-blue-300);
+  --color-info-500: var(--color-blue-500);
+  --color-info-600: var(--color-blue-600);
+  --color-info-700: var(--color-blue-700);
+
+  /*
+  =================================================================
+  Z-INDEX - Sistema de camadas
+  =================================================================
+  */
+  
+  --z-base: var(--z-0);
+  --z-dropdown: var(--z-1000);
+  --z-sticky: var(--z-1020);
+  --z-modal-backdrop: var(--z-1040);
+  --z-modal: var(--z-1050);
+  --z-popover: var(--z-1060);
+  --z-tooltip: var(--z-1070);
+  --z-notification: var(--z-1080);
   
   /*
   =================================================================
@@ -45,38 +94,10 @@ LIGHT MODE (Padrão)
   --font-mono: var(--font-family-mono);
   
   /* Tamanhos para títulos */
-  --text-hero: var(--font-size-5xl);     /* 48px - Hero/Landing */
-  --text-title: var(--font-size-3xl);    /* 30px - Títulos de página */
-  --text-heading: var(--font-size-xl);   /* 20px - Seções */
+  --size-text-hero: var(--font-size-5xl);     /* 48px - Hero/Landing */
+  --size-text-title: var(--font-size-3xl);    /* 30px - Títulos de página */
+  --size-text-heading: var(--font-size-xl);   /* 20px - Seções */
   
-  /*
-  =================================================================
-  LAYOUT - Valores específicos do projeto
-  =================================================================
-  */
-
-  --header-height: 4rem;                  /* 64px - altura do header */
-  --container-padding: var(--spacing-4);  /* Padding lateral mobile */
-  --container-padding-lg: var(--spacing-8); /* Padding lateral desktop */
-  
-  /*
-  =================================================================
-  EFEITOS
-  =================================================================
-  */
-  
-  /* Shadows padrão */
-  --shadow: var(--shadow-sm);
-  --shadow-hover: var(--shadow-md);
-  --shadow-modal: var(--shadow-xl);
-  
-  /* Radius padrão */
-  --radius: var(--radius-md);
-  --radius-lg: var(--radius-lg);
-  
-  /* Transição padrão */
-  --transition: var(--duration-base) var(--ease-base);
-
   /*
   =================================================================
   ESTADOS INTERATIVOS
@@ -86,59 +107,29 @@ LIGHT MODE (Padrão)
   /* Focus ring para acessibilidade */
   --focus-ring: 0 0 0 2px var(--primary);
   --focus-ring-offset: 0 0 0 2px var(--bg), 0 0 0 4px var(--primary);
-  
-  /* Opacidades para hover */
-  --hover-opacity: 0.8;
-  --disabled-opacity: 0.5;
-  --loading-opacity: 0.7;
-  
-  /*
-  =================================================================
-  BREAKPOINTS EXTRAS (complementa o theme.css)
-  =================================================================
-  */
-  
-  /* Breakpoints intermediários se necessário */
-  --breakpoint-xs: 480px;           /* Entre mobile e sm */
-  --breakpoint-tablet: 900px;       /* Entre md e lg */
-  --breakpoint-desktop: 1200px;     /* Entre lg e xl */
 }
 
 /*
 =================================================================
-DARK MODE - Inverte as cores
+DARK MODE
 =================================================================
 */
-:root[data-theme="dark"] {
+.dark {
   /* Backgrounds */
-  --bg: var(--color-black);
-  --bg-subtle: var(--color-gray-900);
-  --bg-muted: var(--color-gray-800);
+  --cor-bg: var(--color-black);
+  --cor-bg-subtle: var(--color-gray-900);
+  --cor-bg-muted: var(--color-gray-800);
   
   /* Texto */
-  --text: var(--color-white);
-  --text-muted: var(--color-gray-400);
-  --text-subtle: var(--color-gray-600);
+  --cor-text: var(--color-white);
+  --cor-text-muted: var(--color-gray-400);
+  --cor-text-subtle: var(--color-gray-600);
   
   /* Borders */
-  --border: var(--color-gray-800);
-  --border-strong: var(--color-gray-600);
+  --cor-border: var(--color-gray-800);
+  --cor-border-strong: var(--color-gray-600);
   
   /* Primária (branco no dark) */
-  --primary: var(--color-white);
-  --primary-hover: var(--color-gray-200);
-  
-  /* Shadows mais sutis no dark */
-  --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.3);
-  --shadow-hover: 0 4px 6px -1px rgb(0 0 0 / 0.3);
-  --shadow-modal: 0 20px 25px -5px rgb(0 0 0 / 0.3);
+  --cor-primary: var(--color-white);
+  --cor-primary-hover: var(--color-gray-200);
 }
-
-/*
-=================================================================
-PREPARAÇÃO FUTURA
-Quando precisar de temas por seção, adicione:
-[data-section="projects"] { ... }
-[data-section="blog"] { ... }
-=================================================================
-*/
