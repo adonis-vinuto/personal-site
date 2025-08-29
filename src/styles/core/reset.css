@@ -1,6 +1,6 @@
 /*
 =================================================================
-RESET.CSS - Normalizações Mínimas
+RESET.CSS - Normalizações Complementares ao Tailwind
 =================================================================
 */
 
@@ -11,21 +11,10 @@ RESET.CSS - Normalizações Mínimas
   =================================================================
   */
   
-  /* Scroll suave para navegação por âncoras */
-  html {
-    scroll-behavior: smooth;
-  }
-  
-  /* Remove o scroll horizontal acidental */
-  html,
-  body {
-    overflow-x: hidden;
-  }
-  
-  /* Permite que o body ocupe toda a altura */
+  /* Dynamic viewport height para mobile (não coberto pelo Tailwind) */
   body {
     min-height: 100vh;
-    min-height: 100dvh; /* Dynamic viewport height para mobile */
+    min-height: 100dvh; /* Fallback para browsers que suportam */
   }
   
   /*
@@ -34,22 +23,9 @@ RESET.CSS - Normalizações Mínimas
   =================================================================
   */
   
-  /* Imagens e vídeos responsivos por padrão */
-  img,
-  picture,
-  video,
-  canvas,
-  svg {
-    display: block;
-    max-width: 100%;
-    height: auto;
-  }
-  
-  /* Previne que imagens quebrem o layout */
+  /* Melhora aparência do alt text em imagens quebradas */
   img {
-    font-style: italic; /* Melhora aparência do alt text */
-    background-repeat: no-repeat;
-    background-size: cover;
+    font-style: italic;
     shape-margin: 0.75rem;
   }
   
@@ -59,16 +35,7 @@ RESET.CSS - Normalizações Mínimas
   =================================================================
   */
   
-  /* Remove aparência padrão em iOS */
-  input,
-  button,
-  textarea,
-  select {
-    font: inherit; /* Herda fonte do parent */
-    color: inherit;
-  }
-  
-  /* Remove setas de número no Chrome, Safari, Edge */
+  /* Remove setas de input number (Tailwind não remove) */
   input[type="number"]::-webkit-inner-spin-button,
   input[type="number"]::-webkit-outer-spin-button {
     -webkit-appearance: none;
@@ -76,25 +43,13 @@ RESET.CSS - Normalizações Mínimas
   }
   
   input[type="number"] {
-    -moz-appearance: textfield; /* Firefox */
+    -moz-appearance: textfield;
   }
   
-  /* Melhora cursor em elementos interativos */
-  button,
-  [role="button"],
-  a,
-  label[for],
-  select,
+  /* Cursor pointer em elementos interativos específicos não cobertos */
   summary,
-  [tabindex]:not([tabindex="-1"]) {
+  [role="button"] {
     cursor: pointer;
-  }
-  
-  /* Desabilita cursor pointer em disabled */
-  :disabled,
-  [disabled],
-  [aria-disabled="true"] {
-    cursor: not-allowed;
   }
   
   /*
@@ -103,50 +58,20 @@ RESET.CSS - Normalizações Mínimas
   =================================================================
   */
   
-  /* Melhora a quebra de palavras longas */
-  p,
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
+  /* Melhora quebra de palavras longas em headings */
+  h1, h2, h3, h4, h5, h6 {
     overflow-wrap: break-word;
     hyphens: auto;
   }
   
-  /* Remove margin top do primeiro elemento e bottom do último */
-  :where(* > :first-child) {
-    margin-top: 0;
-  }
-  
-  :where(* > :last-child) {
-    margin-bottom: 0;
-  }
-  
   /*
   =================================================================
-  DETALHES MOBILE
+  MOBILE ESPECÍFICO
   =================================================================
   */
   
-  /* Remove highlight em tap no iOS */
+  /* Remove highlight em tap no iOS (não coberto pelo Tailwind) */
   * {
     -webkit-tap-highlight-color: transparent;
-  }
-  
-  /* Previne zoom em inputs no iOS */
-  @media (max-width: 768px) {
-    input[type="text"],
-    input[type="email"],
-    input[type="number"],
-    input[type="password"],
-    input[type="tel"],
-    input[type="url"],
-    input[type="search"],
-    textarea,
-    select {
-      font-size: 16px; /* iOS não faz zoom em fonts >= 16px */
-    }
   }
 }
