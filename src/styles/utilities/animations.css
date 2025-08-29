@@ -1,389 +1,223 @@
 /*
 =================================================================
-ANIMATIONS.CSS - Sistema de Animações
+ANIMATIONS.CSS - Animações Essenciais
 =================================================================
 */
 
 @layer utilities {
-    /*
-    =================================================================
-    CONFIGURAÇÃO DE ANIMAÇÕES
-    =================================================================
-    */
-    
-    /* Desabilita animações para usuários que preferem movimento reduzido */
-    @media (prefers-reduced-motion: reduce) {
-        *,
-        *::before,
-        *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-        }
+  /*
+  =================================================================
+  KEYFRAMES ESSENCIAIS
+  =================================================================
+  */
+  
+  /* Fade com scale (entrada suave) */
+  @keyframes fadeScaleIn {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
     }
-    
-    /*
-    =================================================================
-    KEYFRAMES - Animações Base
-    =================================================================
-    */
-    
-    /* Fade In/Out */
-    @keyframes fadeIn {
-        from { opacity: 0; }
-        to { opacity: 1; }
+    to {
+      opacity: 1;
+      transform: scale(1);
     }
-    
-    @keyframes fadeOut {
-        from { opacity: 1; }
-        to { opacity: 0; }
+  }
+  
+  /* Slide up (vem de baixo) */
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(1rem);
     }
-    
-    /* Slide Animations */
-    @keyframes slideUp {
-        from {
-        opacity: 0;
-        transform: translateY(2rem);
-        }
-        to {
-        opacity: 1;
-        transform: translateY(0);
-        }
+    to {
+      opacity: 1;
+      transform: translateY(0);
     }
-    
-    @keyframes slideDown {
-        from {
-        opacity: 0;
-        transform: translateY(-2rem);
-        }
-        to {
-        opacity: 1;
-        transform: translateY(0);
-        }
+  }
+  
+  /* Skeleton loading */
+  @keyframes shimmer {
+    from {
+      background-position: -200% 0;
     }
-    
-    @keyframes slideLeft {
-        from {
-        opacity: 0;
-        transform: translateX(2rem);
-        }
-        to {
-        opacity: 1;
-        transform: translateX(0);
-        }
+    to {
+      background-position: 200% 0;
     }
-    
-    @keyframes slideRight {
-        from {
-        opacity: 0;
-        transform: translateX(-2rem);
-        }
-        to {
-        opacity: 1;
-        transform: translateX(0);
-        }
+  }
+  
+  /* Pulse suave para notificações */
+  @keyframes softPulse {
+    0%, 100% {
+      opacity: 1;
     }
-    
-    /* Scale Animations */
-    @keyframes scaleIn {
-        from {
-        opacity: 0;
-        transform: scale(0.95);
-        }
-        to {
-        opacity: 1;
-        transform: scale(1);
-        }
+    50% {
+      opacity: 0.5;
     }
-    
-    @keyframes scaleOut {
-        from {
-        opacity: 1;
-        transform: scale(1);
-        }
-        to {
-        opacity: 0;
-        transform: scale(0.95);
-        }
+  }
+  
+  /* Shake para erros */
+  @keyframes shake {
+    0%, 100% {
+      transform: translateX(0);
     }
-    
-    /* Bounce Effect */
-    @keyframes bounceIn {
-        0% {
-        opacity: 0;
-        transform: scale(0.3) translateY(-50px);
-        }
-        50% {
-        opacity: 1;
-        transform: scale(1.05) translateY(0);
-        }
-        70% {
-        transform: scale(0.98);
-        }
-        100% {
-        transform: scale(1);
-        }
+    25% {
+      transform: translateX(-0.5rem);
     }
-    
-    /* Loading Animations */
-    
-    @keyframes heartbeat {
-        0%, 100% {
-        transform: scale(1);
-        }
-        50% {
-        transform: scale(1.1);
-        }
+    75% {
+      transform: translateX(0.5rem);
     }
+  }
+  
+  /*
+  =================================================================
+  CLASSES DE ANIMAÇÃO
+  =================================================================
+  */
+  
+  /* Animações de entrada */
+  .animate-in {
+    animation: fadeScaleIn 0.3s ease-out;
+  }
+  
+  .animate-slide-up {
+    animation: slideUp 0.4s ease-out;
+  }
+  
+  /* Skeleton loading */
+  .skeleton {
+    position: relative;
+    overflow: hidden;
+    background: var(--cor-bg-muted);
     
-    /* Skeleton Loading */
-    @keyframes shimmer {
-        0% {
-        background-position: -200px 0;
-        }
-        100% {
-        background-position: calc(200px + 100%) 0;
-        }
-    }
-    
-    /* Shake Effect (para erros) */
-    @keyframes shake {
-        0%, 100% {
-        transform: translateX(0);
-        }
-        10%, 30%, 50%, 70%, 90% {
-        transform: translateX(-10px);
-        }
-        20%, 40%, 60%, 80% {
-        transform: translateX(10px);
-        }
-    }
-    
-    /*
-    =================================================================
-    CLASSES DE ANIMAÇÃO - Entrada de Elementos
-    =================================================================
-    */
-    
-    /* Fade Animations */
-    .animate-fade-in {
-        animation: fadeIn var(--duration-base) var(--ease-out) forwards;
-    }
-    
-    .animate-fade-out {
-        animation: fadeOut var(--duration-base) var(--ease-in) forwards;
-    }
-    
-    /* Slide Animations */
-    .animate-slide-up {
-        animation: slideUp var(--duration-base) var(--ease-out) forwards;
-    }
-    
-    .animate-slide-down {
-        animation: slideDown var(--duration-base) var(--ease-out) forwards;
-    }
-    
-    .animate-slide-left {
-        animation: slideLeft var(--duration-base) var(--ease-out) forwards;
-    }
-    
-    .animate-slide-right {
-        animation: slideRight var(--duration-base) var(--ease-out) forwards;
-    }
-    
-    /* Scale Animations */
-    .animate-scale-in {
-        animation: scaleIn var(--duration-fast) var(--ease-out) forwards;
-    }
-    
-    .animate-scale-out {
-        animation: scaleOut var(--duration-fast) var(--ease-in) forwards;
-    }
-    
-    .animate-bounce-in {
-        animation: bounceIn var(--duration-slow) var(--ease-out) forwards;
-    }
-    
-    /*
-    =================================================================
-    LOADING STATES
-    =================================================================
-    */
-    
-    .animate-heartbeat {
-        animation: heartbeat 1.5s ease-in-out infinite;
-    }
-    
-    /* Skeleton Loading */
-    .skeleton {
-        background: linear-gradient(
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
         90deg,
-        var(--bg-muted) 0%,
-        var(--bg-subtle) 50%,
-        var(--bg-muted) 100%
-        );
-        background-size: 200px 100%;
-        animation: shimmer 1.5s infinite linear;
-        border-radius: var(--radius);
+        transparent 0%,
+        var(--cor-bg-subtle) 50%,
+        transparent 100%
+      );
+      background-size: 200% 100%;
+      animation: shimmer 1.5s infinite;
     }
+  }
+  
+  /* Pulse para badges/indicators */
+  .animate-pulse-soft {
+    animation: softPulse 2s ease-in-out infinite;
+  }
+  
+  /* Shake para feedback de erro */
+  .animate-shake {
+    animation: shake 0.5s ease-in-out;
+  }
+  
+  /*
+  =================================================================
+  TRANSIÇÕES HOVER - Não cobertas pelo Tailwind
+  =================================================================
+  */
+  
+  /* Hover lift (levanta elemento) */
+  .hover-lift {
+    transition: transform 0.2s ease-out;
     
-    /*
-    =================================================================
-    MICROINTERAÇÕES - Hover/Focus/Active
-    =================================================================
-    */
-    
-    /* Hover Effects */
-    .hover-lift {
-        transition: transform var(--duration-fast) var(--ease-out);
+    &:hover {
+      transform: translateY(-2px);
     }
+  }
+  
+  /* Hover scale suave */
+  .hover-scale {
+    transition: transform 0.2s ease-out;
     
-    .hover-lift:hover {
-        transform: translateY(-2px);
+    &:hover {
+      transform: scale(1.05);
     }
+  }
+  
+  /* Click feedback */
+  .click-scale {
+    transition: transform 0.1s ease-out;
     
-    .hover-scale {
-        transition: transform var(--duration-fast) var(--ease-out);
+    &:active {
+      transform: scale(0.98);
     }
-    
-    .hover-scale:hover {
-        transform: scale(1.05);
+  }
+  
+  /*
+  =================================================================
+  INDICADORES DE ESTADO
+  =================================================================
+  */
+  
+  /* Loading dots animados */
+  .loading-dots {
+    &::after {
+      content: '.';
+      animation: dots 1.5s steps(4, end) infinite;
     }
-    
-    .hover-glow {
-        transition: box-shadow var(--duration-fast) var(--ease-out);
+  }
+  
+  @keyframes dots {
+    0%, 20% {
+      content: '.';
     }
-    
-    .hover-glow:hover {
-        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    40% {
+      content: '..';
     }
-    
-    /* Click Effects */
-    .click-scale {
-        transition: transform var(--duration-fast) var(--ease-out);
+    60%, 100% {
+      content: '...';
     }
-    
-    .click-scale:active {
-        transform: scale(0.98);
+  }
+  
+  /* Spinner simples */
+  .spinner {
+    width: 1.5rem;
+    height: 1.5rem;
+    border: 2px solid var(--cor-border);
+    border-top-color: var(--cor-primary);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+  
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
     }
-    
-    /*
-    =================================================================
-    FEEDBACK ANIMATIONS
-    =================================================================
-    */
-    
-    .animate-shake {
-        animation: shake var(--duration-base) var(--ease-out);
-    }
-    
-    /* Success Animation */
-    .animate-success {
-        animation: scaleIn var(--duration-fast) var(--ease-out),
-                heartbeat 0.6s var(--ease-out) 0.3s;
-    }
-    
-    /*
-    =================================================================
-    SCROLL-TRIGGERED ANIMATIONS (Preparação para JS)
-    =================================================================
-    */
-    
-    /* Estados iniciais para animações por scroll */
-    .scroll-animate {
-        opacity: 0;
-        transform: translateY(2rem);
-        transition: all var(--duration-base) var(--ease-out);
-    }
-    
-    /* Estado ativo (acionado via JS) */
-    .scroll-animate.in-view {
-        opacity: 1;
-        transform: translateY(0);
-    }
-    
-    /* Variantes com delays */
-    .scroll-animate-delay-1 {
-        transition-delay: 0.1s;
-    }
-    
-    .scroll-animate-delay-2 {
-        transition-delay: 0.2s;
-    }
-    
-    .scroll-animate-delay-3 {
-        transition-delay: 0.3s;
-    }
-    
-    /*
-    =================================================================
-    VARIAÇÕES DE VELOCIDADE
-    =================================================================
-    */
-    
-    /* Versões lentas */
-    .animate-fade-in-slow {
-        animation: fadeIn var(--duration-slow) var(--ease-out) forwards;
-    }
-    
-    .animate-slide-up-slow {
-        animation: slideUp var(--duration-slow) var(--ease-out) forwards;
-    }
-    
-    /* Versões rápidas */
-    .animate-fade-in-fast {
-        animation: fadeIn var(--duration-fast) var(--ease-out) forwards;
-    }
-    
-    .animate-slide-up-fast {
-        animation: slideUp var(--duration-fast) var(--ease-out) forwards;
-    }
-    
-    /*
-    =================================================================
-    ESTADO PAUSADO - Para controle via JS
-    =================================================================
-    */
-    
-    .animation-paused {
-        animation-play-state: paused !important;
-    }
-    
-    .animation-running {
-        animation-play-state: running !important;
-    }
-    
-    /*
-    =================================================================
-    TRANSIÇÕES GLOBAIS - Para elementos que mudam estado
-    =================================================================
-    */
-    
-    /* Transição suave padrão para mudanças de propriedade */
-    .transition {
-        transition: all var(--duration-base) var(--ease-base);
-    }
-    
-    .transition-fast {
-        transition: all var(--duration-fast) var(--ease-base);
-    }
-    
-    .transition-slow {
-        transition: all var(--duration-slow) var(--ease-base);
-    }
-    
-    /* Transições específicas */
-    .transition-colors {
-        transition: color var(--duration-base) var(--ease-base),
-                background-color var(--duration-base) var(--ease-base),
-                border-color var(--duration-base) var(--ease-base);
-    }
-    
-    .transition-transform {
-        transition: transform var(--duration-base) var(--ease-base);
-    }
-    
-    .transition-opacity {
-        transition: opacity var(--duration-base) var(--ease-base);
-    }
+  }
+  
+  /*
+  =================================================================
+  SCROLL-TRIGGERED (preparado para JS)
+  =================================================================
+  */
+  
+  /* Estado inicial */
+  .scroll-fade {
+    opacity: 0;
+    transform: translateY(1rem);
+    transition: all 0.6s ease-out;
+  }
+  
+  /* Estado quando visível */
+  .scroll-fade.in-view {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  /* Com delays para stagger effect */
+  .scroll-fade-delay-1 {
+    transition-delay: 0.1s;
+  }
+  
+  .scroll-fade-delay-2 {
+    transition-delay: 0.2s;
+  }
+  
+  .scroll-fade-delay-3 {
+    transition-delay: 0.3s;
+  }
 }
