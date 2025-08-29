@@ -5,103 +5,102 @@ HELPERS.CSS - Utilities Essenciais
 */
 
 @layer utilities {
-    /*
-    =================================================================
-    TEXT UTILITIES
-    =================================================================
-    */
-    
-    /* Line clamp extras (Tailwind só vai até 6) */
-    .line-clamp-10 {
-        overflow: hidden;
-        display: -webkit-box;
-        -webkit-box-orient: vertical;
-        -webkit-line-clamp: 10;
-    }
-    
-    /* Melhora quebra de linha em títulos (CSS moderno) */
-    .text-balance {
-        text-wrap: balance;
-    }
-    
-    /* Texto com gradiente (muito usado em portfolios) */
-    .text-gradient {
-        background-clip: text;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-color: transparent;
-    }
-    
-    /*
-    =================================================================
-    ACCESSIBILITY
-    =================================================================
-    */
-    
-    /* Skip link - acessibilidade via teclado */
-    .skip-link {
-        position: absolute;
-        top: -40px;
-        left: 6px;
-        background: var(--bg);
-        color: var(--text);
-        padding: 8px;
-        text-decoration: none;
-        border-radius: var(--radius);
-        border: 2px solid var(--border-strong);
-        z-index: var(--z-tooltip);
-        transition: top var(--duration-fast) var(--ease-out);
-    }
-    
-    .skip-link:focus {
-        top: 6px;
-    }
-    
-    /*
-    =================================================================
-    SCROLL UTILITIES - Tailwind não oferece
-    =================================================================
-    */
-    
-    /* Hide scrollbar mas mantém funcionalidade */
-    .scrollbar-none {
-        scrollbar-width: none; /* Firefox */
-        -ms-overflow-style: none; /* IE/Edge */
-    }
-    
-    .scrollbar-none::-webkit-scrollbar {
-        display: none; /* Chrome/Safari */
-    }
-    
-    /* Scroll suave com momentum iOS */
-    .scroll-smooth {
-        -webkit-overflow-scrolling: touch;
-        scroll-behavior: smooth;
-    }
-    
-    /*
-    =================================================================
-    RESPONSIVE VISIBILITY - Tailwind não tem estas específicas
-    =================================================================
-    */
-    
-    .mobile-only {
-        display: block;
-    }
-    
-    @media (min-width: 768px) {
-        .mobile-only {
-        display: none;
-        }
-    }
-    
-    .desktop-only {
-        display: none;
-    }
-    
-    @media (min-width: 1024px) {
-        .desktop-only {
-        display: block;
-        }
-    }
+  /*
+  =================================================================
+  TIPOGRAFIA AVANÇADA
+  =================================================================
+  */
+  
+  /* Texto com gradiente */
+  .text-gradient {
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+  
+  /* Balance text - melhora quebra de linha em títulos */
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  /* Pretty text - evita órfãs em parágrafos */
+  .text-pretty {
+    text-wrap: pretty;
+  }
+  
+  /*
+  =================================================================
+  ACESSIBILIDADE
+  =================================================================
+  */
+  
+  /* Esconde visualmente mas mantém para leitores de tela */
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+  
+  /* Skip link para navegação via teclado */
+  .skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--cor-bg);
+    color: var(--cor-text);
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    border-radius: 0.25rem;
+    z-index: 9999;
+  }
+  
+  .skip-link:focus {
+    top: 0;
+  }
+  
+  /*
+  =================================================================
+  ASPECT RATIOS ESPECIAIS
+  =================================================================
+  */
+  
+  /* Proporção áurea */
+  .aspect-golden {
+    aspect-ratio: 1.618 / 1;
+  }
+  
+  /* Cinema widescreen */
+  .aspect-cinema {
+    aspect-ratio: 2.39 / 1;
+  }
+  
+  /* Stories/Reels */
+  .aspect-phone {
+    aspect-ratio: 9 / 16;
+  }
+  
+  /*
+  =================================================================
+  UTILITIES DE DESENVOLVIMENTO
+  =================================================================
+  */
+  
+  /* Debug - outline em todos elementos (desenvolvimento apenas) */
+  .debug * {
+    outline: 1px solid rgb(255 0 0 / 0.2);
+  }
+  
+  .debug-grid {
+    background-image: 
+      linear-gradient(rgba(255, 0, 0, 0.1) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 0, 0, 0.1) 1px, transparent 1px);
+    background-size: 1rem 1rem;
+  }
 }
