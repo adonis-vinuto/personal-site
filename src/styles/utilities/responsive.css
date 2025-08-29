@@ -1,502 +1,25 @@
 /*
 =================================================================
-RESPONSIVE.CSS - Utilities Responsivas Avançadas
+RESPONSIVE.CSS - Helpers Responsivos Essenciais
 =================================================================
 */
 
 @layer utilities {
   /*
   =================================================================
-  VISIBILIDADE POR BREAKPOINT - Complementa helpers.css
+  SAFE AREAS - Para dispositivos com notch (iPhone X+)
   =================================================================
   */
   
-  /* Tablet only (768px - 1023px) */
-  .tablet-only {
-    display: none;
+  /* Padding safe para todos os lados */
+  .safe-area {
+    padding-top: env(safe-area-inset-top);
+    padding-right: env(safe-area-inset-right);
+    padding-bottom: env(safe-area-inset-bottom);
+    padding-left: env(safe-area-inset-left);
   }
   
-  @media (min-width: 768px) and (max-width: 1023px) {
-    .tablet-only {
-      display: block;
-    }
-  }
-  
-  /* Above mobile (tablet e desktop) */
-  .tablet-up {
-    display: none;
-  }
-  
-  @media (min-width: 768px) {
-    .tablet-up {
-      display: block;
-    }
-  }
-  
-  /* Below desktop (mobile e tablet) */
-  .tablet-down {
-    display: block;
-  }
-  
-  @media (min-width: 1024px) {
-    .tablet-down {
-      display: none;
-    }
-  }
-  
-  /* Extra large screens only */
-  .xl-only {
-    display: none;
-  }
-  
-  @media (min-width: 1280px) {
-    .xl-only {
-      display: block;
-    }
-  }
-  
-  /* 2XL screens and up */
-  .xxl-up {
-    display: none;
-  }
-  
-  @media (min-width: 1536px) {
-    .xxl-up {
-      display: block;
-    }
-  }
-  
-  /*
-  =================================================================
-  ORIENTAÇÃO
-  =================================================================
-  */
-  
-  /* Mostrar apenas em landscape */
-  .landscape-only {
-    display: none;
-  }
-  
-  @media (orientation: landscape) {
-    .landscape-only {
-      display: block;
-    }
-    
-    .portrait-only {
-      display: none;
-    }
-  }
-  
-  /* Mostrar apenas em portrait */
-  .portrait-only {
-    display: block;
-  }
-  
-  @media (orientation: portrait) {
-    .portrait-only {
-      display: block;
-    }
-    
-    .landscape-only {
-      display: none;
-    }
-  }
-  
-  /*
-  =================================================================
-  CONTAINER QUERIES - CSS Moderno
-  =================================================================
-  */
-  
-  /* Container query setup */
-  .container-query {
-    container-type: inline-size;
-  }
-  
-  .container-query-both {
-    container-type: size;
-  }
-  
-  /* Container query breakpoints */
-  @container (min-width: 320px) {
-    .cq\:sm\:block {
-      display: block;
-    }
-    
-    .cq\:sm\:hidden {
-      display: none;
-    }
-  }
-  
-  @container (min-width: 640px) {
-    .cq\:md\:block {
-      display: block;
-    }
-    
-    .cq\:md\:hidden {
-      display: none;
-    }
-    
-    .cq\:md\:grid-cols-2 {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-  
-  @container (min-width: 1024px) {
-    .cq\:lg\:block {
-      display: block;
-    }
-    
-    .cq\:lg\:hidden {
-      display: none;
-    }
-    
-    .cq\:lg\:grid-cols-3 {
-      grid-template-columns: repeat(3, 1fr);
-    }
-  }
-  
-  /*
-  =================================================================
-  HELPERS DE TOQUE - Mobile/Tablet
-  =================================================================
-  */
-  
-  /* Mostrar apenas em dispositivos touch */
-  @media (hover: none) and (pointer: coarse) {
-    .touch-only {
-      display: block;
-    }
-    
-    .no-touch {
-      display: none;
-    }
-  }
-  
-  /* Mostrar apenas em dispositivos com mouse */
-  @media (hover: hover) and (pointer: fine) {
-    .no-touch {
-      display: block;
-    }
-    
-    .touch-only {
-      display: none;
-    }
-  }
-  
-  /* Área de toque maior em mobile */
-  @media (hover: none) and (pointer: coarse) {
-    .touch-target {
-      min-height: 44px;
-      min-width: 44px;
-    }
-  }
-  
-  /*
-  =================================================================
-  PRINT UTILITIES
-  =================================================================
-  */
-  
-  /* Esconder na impressão */
-  @media print {
-    .no-print,
-    .print\:hidden {
-      display: none !important;
-    }
-    
-    /* Mostrar apenas na impressão */
-    .print-only,
-    .print\:block {
-      display: block !important;
-    }
-    
-    /* Remover backgrounds na impressão */
-    .print\:bg-white {
-      background-color: white !important;
-    }
-    
-    .print\:text-black {
-      color: black !important;
-    }
-    
-    /* Quebra de página */
-    .page-break-before {
-      page-break-before: always;
-    }
-    
-    .page-break-after {
-      page-break-after: always;
-    }
-    
-    .avoid-break {
-      page-break-inside: avoid;
-    }
-  }
-  
-  /*
-  =================================================================
-  DETECÇÃO DE RECURSOS
-  =================================================================
-  */
-  
-  /* High DPI screens (Retina) */
-  @media (-webkit-min-device-pixel-ratio: 2),
-         (min-resolution: 192dpi) {
-    .retina-only {
-      display: block;
-    }
-  }
-  
-  /* Preferência de cor do sistema */
-  @media (prefers-color-scheme: dark) {
-    .dark-mode-only {
-      display: block;
-    }
-    
-    .light-mode-only {
-      display: none;
-    }
-  }
-  
-  @media (prefers-color-scheme: light) {
-    .light-mode-only {
-      display: block;
-    }
-    
-    .dark-mode-only {
-      display: none;
-    }
-  }
-  
-  /* Modo de alto contraste */
-  @media (prefers-contrast: high) {
-    .high-contrast {
-      border: 2px solid currentColor !important;
-      font-weight: bold;
-    }
-  }
-  
-  /* Movimento reduzido - já existe em animations.css mas adiciono complementos */
-  @media (prefers-reduced-motion: reduce) {
-    .motion-safe-only {
-      display: none;
-    }
-  }
-  
-  @media (prefers-reduced-motion: no-preference) {
-    .motion-reduce-only {
-      display: none;
-    }
-  }
-  
-  /*
-  =================================================================
-  RESPONSIVE TYPOGRAPHY HELPERS
-  =================================================================
-  */
-  
-  /* Tamanho de fonte responsivo */
-  .text-responsive {
-    font-size: clamp(0.875rem, 2vw, 1rem);
-  }
-  
-  .text-responsive-lg {
-    font-size: clamp(1rem, 3vw, 1.5rem);
-  }
-  
-  .text-responsive-xl {
-    font-size: clamp(1.5rem, 4vw, 2.5rem);
-  }
-  
-  /* Line height responsivo */
-  @media (max-width: 640px) {
-    .mobile\:leading-tight {
-      line-height: 1.25;
-    }
-    
-    .mobile\:leading-normal {
-      line-height: 1.5;
-    }
-  }
-  
-  @media (min-width: 1024px) {
-    .desktop\:leading-loose {
-      line-height: 2;
-    }
-  }
-  
-  /*
-  =================================================================
-  RESPONSIVE SPACING HELPERS
-  =================================================================
-  */
-  
-  /* Padding/Margin responsivo */
-  .p-responsive {
-    padding: clamp(1rem, 3vw, 2rem);
-  }
-  
-  .py-responsive {
-    padding-top: clamp(2rem, 5vw, 4rem);
-    padding-bottom: clamp(2rem, 5vw, 4rem);
-  }
-  
-  .px-responsive {
-    padding-left: clamp(1rem, 4vw, 3rem);
-    padding-right: clamp(1rem, 4vw, 3rem);
-  }
-  
-  /*
-  =================================================================
-  RESPONSIVE GRID/FLEX
-  =================================================================
-  */
-  
-  /* Direção flexível por breakpoint */
-  @media (max-width: 768px) {
-    .mobile\:flex-col {
-      flex-direction: column;
-    }
-    
-    .mobile\:flex-col-reverse {
-      flex-direction: column-reverse;
-    }
-  }
-  
-  @media (min-width: 768px) {
-    .tablet\:flex-row {
-      flex-direction: row;
-    }
-    
-    .tablet\:flex-row-reverse {
-      flex-direction: row-reverse;
-    }
-  }
-  
-  /* Grid responsivo customizado */
-  .grid-responsive {
-    display: grid;
-    gap: var(--spacing-4);
-  }
-  
-  @media (min-width: 640px) {
-    .grid-responsive {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-  
-  @media (min-width: 1024px) {
-    .grid-responsive {
-      grid-template-columns: repeat(3, 1fr);
-    }
-  }
-  
-  @media (min-width: 1280px) {
-    .grid-responsive {
-      grid-template-columns: repeat(4, 1fr);
-    }
-  }
-  
-  /*
-  =================================================================
-  ASPECT RATIO RESPONSIVO
-  =================================================================
-  */
-  
-  /* Aspect ratio que muda por breakpoint */
-  .aspect-responsive {
-    aspect-ratio: 1 / 1;
-  }
-  
-  @media (min-width: 768px) {
-    .aspect-responsive {
-      aspect-ratio: 16 / 9;
-    }
-  }
-  
-  @media (min-width: 1024px) {
-    .aspect-responsive {
-      aspect-ratio: 21 / 9;
-    }
-  }
-  
-  /*
-  =================================================================
-  RESPONSIVE IMAGES
-  =================================================================
-  */
-  
-  /* Imagem responsiva com art direction */
-  .img-responsive {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-  }
-  
-  @media (max-width: 640px) {
-    .img-mobile-square {
-      aspect-ratio: 1 / 1;
-    }
-  }
-  
-  @media (min-width: 641px) {
-    .img-desktop-wide {
-      aspect-ratio: 16 / 9;
-    }
-  }
-  
-  /*
-  =================================================================
-  HOVER STATES CONDICIONAIS
-  =================================================================
-  */
-  
-  /* Aplicar hover apenas em dispositivos que suportam */
-  @media (hover: hover) {
-    .hover\:scale-up:hover {
-      transform: scale(1.05);
-    }
-    
-    .hover\:shadow-lg:hover {
-      box-shadow: var(--shadow-lg);
-    }
-  }
-  
-  /* Em touch, usar active state */
-  @media (hover: none) {
-    .hover\:scale-up:active {
-      transform: scale(0.98);
-    }
-  }
-  
-  /*
-  =================================================================
-  SCROLL BEHAVIOR RESPONSIVO
-  =================================================================
-  */
-  
-  /* Snap scroll em mobile */
-  @media (max-width: 768px) {
-    .mobile-scroll-snap {
-      scroll-snap-type: x mandatory;
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-    }
-    
-    .mobile-scroll-snap > * {
-      scroll-snap-align: start;
-      flex: 0 0 85%;
-    }
-  }
-  
-  /*
-  =================================================================
-  SAFE AREAS - Para dispositivos com notch
-  =================================================================
-  */
-  
-  /* Padding safe para iPhone X+ */
+  /* Safe areas individuais */
   .safe-top {
     padding-top: env(safe-area-inset-top);
   }
@@ -513,13 +36,137 @@ RESPONSIVE.CSS - Utilities Responsivas Avançadas
     padding-right: env(safe-area-inset-right);
   }
   
-  .safe-x {
-    padding-left: env(safe-area-inset-left);
-    padding-right: env(safe-area-inset-right);
+  /* Safe areas com padding adicional */
+  .safe-top-plus {
+    padding-top: calc(env(safe-area-inset-top) + 1rem);
   }
   
-  .safe-y {
-    padding-top: env(safe-area-inset-top);
-    padding-bottom: env(safe-area-inset-bottom);
+  .safe-bottom-plus {
+    padding-bottom: calc(env(safe-area-inset-bottom) + 1rem);
+  }
+  
+  /*
+  =================================================================
+  TOUCH TARGETS - Acessibilidade em dispositivos touch
+  =================================================================
+  */
+  
+  /* Garante tamanho mínimo para toque (44x44px - iOS guideline) */
+  @media (hover: none) and (pointer: coarse) {
+    .touch-target {
+      min-height: 44px;
+      min-width: 44px;
+    }
+    
+    /* Para elementos inline como links no texto */
+    .touch-target-inline {
+      padding: 0.5rem;
+      margin: -0.5rem;
+    }
+  }
+  
+  /*
+  =================================================================
+  CONTAINER QUERIES - Responsive baseado no container
+  =================================================================
+  */
+  
+  /* Setup do container */
+  .container-responsive {
+    container-type: inline-size;
+  }
+  
+  /* Breakpoints do container */
+  @container (min-width: 640px) {
+    .cq\:hidden {
+      display: none;
+    }
+    
+    .cq\:block {
+      display: block;
+    }
+    
+    .cq\:grid-cols-2 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @container (min-width: 1024px) {
+    .cq\:grid-cols-3 {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .cq\:grid-cols-4 {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+  
+  /*
+  =================================================================
+  RESPONSIVE CLAMP - Valores fluidos
+  =================================================================
+  */
+  
+  /* Texto responsivo com clamp */
+  .text-fluid {
+    font-size: clamp(1rem, 2vw + 0.5rem, 1.25rem);
+  }
+  
+  .text-fluid-lg {
+    font-size: clamp(1.25rem, 3vw + 0.5rem, 2rem);
+  }
+  
+  .text-fluid-xl {
+    font-size: clamp(1.5rem, 4vw + 0.5rem, 3rem);
+  }
+  
+  /* Padding responsivo com clamp */
+  .p-fluid {
+    padding: clamp(1rem, 3vw, 2rem);
+  }
+  
+  .px-fluid {
+    padding-left: clamp(1rem, 4vw, 3rem);
+    padding-right: clamp(1rem, 4vw, 3rem);
+  }
+  
+  .py-fluid {
+    padding-top: clamp(2rem, 5vw, 4rem);
+    padding-bottom: clamp(2rem, 5vw, 4rem);
+  }
+  
+  /*
+  =================================================================
+  SCROLL MOBILE - Patterns específicos para mobile
+  =================================================================
+  */
+  
+  /* Horizontal scroll com snap apenas em mobile */
+  @media (max-width: 768px) {
+    .mobile-scroll-snap {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      gap: 1rem;
+      
+      /* Esconde scrollbar */
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
+    
+    .mobile-scroll-snap > * {
+      scroll-snap-align: start;
+      flex: 0 0 85%;
+    }
+    
+    /* Padding para mostrar início do próximo item */
+    .mobile-scroll-peek {
+      padding-right: 15%;
+    }
   }
 }
