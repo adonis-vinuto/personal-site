@@ -15,7 +15,7 @@ STATES.CSS - Estados de Aplicação
   .is-loading {
     position: relative;
     pointer-events: none;
-    opacity: 0.6;
+    opacity: var(--opacity-disabled);
   }
   
   /* Loading overlay para containers */
@@ -26,7 +26,7 @@ STATES.CSS - Estados de Aplicação
       content: '';
       position: absolute;
       inset: 0;
-      background: rgba(255, 255, 255, 0.8);
+      background: var(--overlay-light);
       backdrop-filter: blur(2px);
       display: flex;
       align-items: center;
@@ -37,7 +37,7 @@ STATES.CSS - Estados de Aplicação
   
   /* Dark mode loading overlay */
   :root.dark .loading-overlay::after {
-    background: rgba(0, 0, 0, 0.8);
+    background: var(--overlay-dark);
   }
   
   /*
@@ -58,7 +58,7 @@ STATES.CSS - Estados de Aplicação
     background: var(--cor-bg-subtle);
     border: 2px dashed var(--cor-border);
     border-radius: 0.5rem;
-    min-height: 200px;
+    min-height: var(--empty-state-min-height);
   }
   
   /*
@@ -69,21 +69,21 @@ STATES.CSS - Estados de Aplicação
   
   /* Campo com erro */
   .has-error {
-    border-color: rgb(239 68 68) !important; /* red-500 */
+    border-color: var(--color-error-500) !important;
     
     &:focus {
-      outline-color: rgb(239 68 68);
-      box-shadow: 0 0 0 3px rgb(239 68 68 / 0.1);
+      outline-color: var(--color-error-500);
+      box-shadow: 0 0 0 3px rgb(var(--color-error-rgb) / 0.1);
     }
   }
   
   /* Campo com sucesso */
   .has-success {
-    border-color: rgb(34 197 94) !important; /* green-500 */
+    border-color: var(--color-success-500) !important;
     
     &:focus {
-      outline-color: rgb(34 197 94);
-      box-shadow: 0 0 0 3px rgb(34 197 94 / 0.1);
+      outline-color: var(--color-success-500);
+      box-shadow: 0 0 0 3px rgb(var(--color-success-rgb) / 0.1);
     }
   }
   
@@ -95,7 +95,7 @@ STATES.CSS - Estados de Aplicação
   
   /* Elemento sendo arrastado */
   .is-dragging {
-    opacity: 0.4;
+    opacity: var(--opacity-dragging);
     cursor: grabbing;
   }
   
@@ -103,18 +103,18 @@ STATES.CSS - Estados de Aplicação
   .is-drop-zone {
     background: var(--cor-bg-subtle);
     border: 2px dashed var(--cor-border-strong);
-    transition: all 0.2s ease;
+    transition: all var(--animation-duration-fast) ease;
   }
   
   /* Hover sobre área de drop */
   .is-drop-hover {
-    background: rgb(219 234 254); /* blue-100 */
-    border-color: rgb(59 130 246); /* blue-500 */
+    background: var(--color-info-100);
+    border-color: var(--color-info-500);
     transform: scale(1.02);
   }
   
   :root.dark .is-drop-hover {
-    background: rgb(30 58 138); /* blue-900 */
+    background: var(--color-info-900);
   }
   
   /*
@@ -165,32 +165,32 @@ STATES.CSS - Estados de Aplicação
       width: 8px;
       height: 8px;
       border-radius: 50%;
-      background: rgb(156 163 175); /* gray-400 - offline */
+      background: var(--color-gray-400); /* offline default */
     }
   }
   
   .status-online::before {
-    background: rgb(34 197 94); /* green-500 */
+    background: var(--color-success-500);
     animation: pulse-ring 2s infinite;
   }
   
   .status-away::before {
-    background: rgb(234 179 8); /* yellow-500 */
+    background: var(--color-warning-500);
   }
   
   .status-busy::before {
-    background: rgb(239 68 68); /* red-500 */
+    background: var(--color-error-500);
   }
   
   @keyframes pulse-ring {
     0% {
-      box-shadow: 0 0 0 0 rgb(34 197 94 / 0.4);
+      box-shadow: 0 0 0 0 rgb(var(--color-success-rgb) / 0.4);
     }
     70% {
-      box-shadow: 0 0 0 6px rgb(34 197 94 / 0);
+      box-shadow: 0 0 0 6px rgb(var(--color-success-rgb) / 0);
     }
     100% {
-      box-shadow: 0 0 0 0 rgb(34 197 94 / 0);
+      box-shadow: 0 0 0 0 rgb(var(--color-success-rgb) / 0);
     }
   }
   
@@ -211,7 +211,7 @@ STATES.CSS - Estados de Aplicação
       right: -2px;
       width: 8px;
       height: 8px;
-      background: rgb(239 68 68); /* red-500 */
+      background: var(--color-error-500);
       border-radius: 50%;
       border: 2px solid var(--cor-bg);
     }
@@ -229,7 +229,7 @@ STATES.CSS - Estados de Aplicação
       min-width: 20px;
       height: 20px;
       padding: 0 6px;
-      background: rgb(239 68 68); /* red-500 */
+      background: var(--color-error-500);
       color: white;
       font-size: 11px;
       font-weight: bold;
