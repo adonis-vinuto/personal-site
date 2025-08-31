@@ -233,7 +233,7 @@ TYPOGRAPHY.CSS - Sistema Tipográfico Complementar
     border: 1px solid var(--cor-border);
     border-radius: 0.25rem;
     font-size: 0.875em;
-    font-family: var(--font-mono);
+    font-family: var(--font-sec);
     color: var(--cor-text);
   }
   
@@ -251,7 +251,7 @@ TYPOGRAPHY.CSS - Sistema Tipográfico Complementar
     padding: 0.5rem 1rem;
     font-size: 0.75rem;
     color: var(--cor-text-muted);
-    font-family: var(--font-mono);
+    font-family: var(--font-sec);
   }
   
   .code-block pre {
@@ -264,7 +264,7 @@ TYPOGRAPHY.CSS - Sistema Tipográfico Complementar
   .code-block code {
     font-size: 0.875rem;
     line-height: 1.6;
-    font-family: var(--font-mono);
+    font-family: var(--font-sec);
   }
   
   /*

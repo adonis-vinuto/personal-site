@@ -18,17 +18,17 @@ LIGHT MODE (Padrão)
   
   /* Backgrounds (3 níveis apenas) */
   --cor-bg: var(--color-white);              /* Fundo principal */
-  --cor-bg-subtle: var(--color-gray-50);     /* Seções alternadas */
-  --cor-bg-muted: var(--color-gray-200);     /* Disabled, skeleton */
+  --cor-bg-subtle: var(--color-zinc-50);     /* Seções alternadas */
+  --cor-bg-muted: var(--color-zinc-200);     /* Disabled, skeleton */
   
   /* Texto (3 níveis apenas) */
-  --cor-text: var(--color-gray-900);         /* Texto principal */
-  --cor-text-muted: var(--color-gray-600);   /* Secundário */
-  --cor-text-subtle: var(--color-gray-400);  /* Placeholders, hints */
+  --cor-text: var(--color-zinc-900);         /* Texto principal */
+  --cor-text-muted: var(--color-zinc-600);   /* Secundário */
+  --cor-text-subtle: var(--color-zinc-400);  /* Placeholders, hints */
   
   /* Borders (2 níveis) */
-  --cor-border: var(--color-gray-200);       /* Borda padrão */
-  --cor-border-strong: var(--color-gray-400); /* Hover, foco */
+  --cor-border: var(--color-zinc-200);       /* Borda padrão */
+  --cor-border-strong: var(--color-zinc-400); /* Hover, foco */
   
   /* Cor primária (preto no light) */
   --cor-primary: var(--color-black);
@@ -90,8 +90,8 @@ LIGHT MODE (Padrão)
   */
   
   /* Fonts */
-  --font-main: var(--font-family-sans);
-  --font-mono: var(--font-family-mono);
+  --font-main: var(--font-sans);
+  --font-sec: var(--font-mono);
   
   /* Tamanhos para títulos */
   --size-text-hero: var(--font-size-5xl);     /* 48px - Hero/Landing */
@@ -107,6 +107,25 @@ LIGHT MODE (Padrão)
   /* Focus ring para acessibilidade */
   --focus-ring: 0 0 0 2px var(--primary);
   --focus-ring-offset: 0 0 0 2px var(--bg), 0 0 0 4px var(--primary);
+
+  /* Padding de seções */
+  --section-padding-mobile: 2rem;   /* 32px */
+  --section-padding-desktop: 5rem;  /* 80px */
+
+  /* Opacidades para estados */
+  --opacity-disabled: 0.5;
+  --opacity-dragging: 0.4;
+
+  /* Durações de animação */
+  --animation-duration-fast: 150ms;
+  --animation-duration-base: 300ms;
+  --animation-duration-slow: 500ms;
+
+  /* Estados vazios */
+  --empty-state-min-height: 200px;
+
+  /* Touch targets (acessibilidade) */
+  --touch-target-min: 44px; /* Mínimo recomendado iOS/Android */
 }
 
 /*
