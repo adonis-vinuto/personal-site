@@ -12,17 +12,17 @@ LAYOUT.CSS - Sistema de Layout Essencial
   */
   
   .section {
-    padding-top: 5rem;    /* 80px */
-    padding-bottom: 5rem;
+    padding-top: var(--section-padding-desktop);
+    padding-bottom: var(--section-padding-desktop);
   }
   
   .section-sm {
-    padding-top: 3rem;    /* 48px */
+    padding-top: 3rem;    /* 48px - valor específico */
     padding-bottom: 3rem;
   }
   
   .section-lg {
-    padding-top: 8rem;    /* 128px */
+    padding-top: 8rem;    /* 128px - valor específico */
     padding-bottom: 8rem;
   }
   
@@ -34,8 +34,8 @@ LAYOUT.CSS - Sistema de Layout Essencial
     }
     
     .section-sm {
-      padding-top: 2rem;
-      padding-bottom: 2rem;
+      padding-top: var(--section-padding-mobile);
+      padding-bottom: var(--section-padding-mobile);
     }
     
     .section-lg {
