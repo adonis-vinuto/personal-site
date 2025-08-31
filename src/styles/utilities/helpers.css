@@ -7,30 +7,6 @@ HELPERS.CSS - Utilities Essenciais
 @layer utilities {
   /*
   =================================================================
-  TIPOGRAFIA AVANÇADA
-  =================================================================
-  */
-  
-  /* Texto com gradiente */
-  .text-gradient {
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    color: transparent;
-  }
-  
-  /* Balance text - melhora quebra de linha em títulos */
-  .text-balance {
-    text-wrap: balance;
-  }
-  
-  /* Pretty text - evita órfãs em parágrafos */
-  .text-pretty {
-    text-wrap: pretty;
-  }
-  
-  /*
-  =================================================================
   ACESSIBILIDADE
   =================================================================
   */

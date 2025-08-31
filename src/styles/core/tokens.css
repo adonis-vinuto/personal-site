@@ -124,6 +124,10 @@ LIGHT MODE (Padrão)
 
   /* Touch targets (acessibilidade) */
   --touch-target-min: 44px; /* Mínimo recomendado iOS/Android */
+
+
+  --overlay-light: rgba(var(--color-white), 0.8);
+  --overlay-dark: rgba(var(--color-black), 0.5);
 }
 
 /*
