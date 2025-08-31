@@ -75,13 +75,11 @@ LIGHT MODE (Padrão)
   */
   
   --z-base: var(--z-0);
-  --z-dropdown: var(--z-1000);
-  --z-sticky: var(--z-1020);
-  --z-modal-backdrop: var(--z-1040);
-  --z-modal: var(--z-1050);
-  --z-popover: var(--z-1060);
-  --z-tooltip: var(--z-1070);
-  --z-notification: var(--z-1080);
+  --z-dropdown: var(--z-10);
+  --z-sticky: var(--z-20);
+  --z-modal: var(--z-30);
+  --z-popover: var(--z-40);
+  --z-notification: var(--z-50);
   
   /*
   =================================================================
