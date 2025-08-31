@@ -13,36 +13,36 @@ RESPONSIVE.CSS - Helpers Responsivos Essenciais
   
   /* Padding safe para todos os lados */
   .safe-area {
-    padding-top: var(safe-area-inset-top);
-    padding-right: var(safe-area-inset-right);
-    padding-bottom: var(safe-area-inset-bottom);
-    padding-left: var(safe-area-inset-left);
+    padding-top: env(safe-area-inset-top);
+    padding-right: env(safe-area-inset-right);
+    padding-bottom: env(safe-area-inset-bottom);
+    padding-left: env(safe-area-inset-left);
   }
   
   /* Safe areas individuais */
   .safe-top {
-    padding-top: var(safe-area-inset-top);
+    padding-top: env(safe-area-inset-top);
   }
   
   .safe-bottom {
-    padding-bottom: var(safe-area-inset-bottom);
+    padding-bottom: env(safe-area-inset-bottom);
   }
   
   .safe-left {
-    padding-left: var(safe-area-inset-left);
+    padding-left: env(safe-area-inset-left);
   }
   
   .safe-right {
-    padding-right: var(safe-area-inset-right);
+    padding-right: env(safe-area-inset-right);
   }
   
   /* Safe areas com padding adicional */
   .safe-top-plus {
-    padding-top: calc(var(safe-area-inset-top) + 1rem);
+    padding-top: calc(env(safe-area-inset-top) + 1rem);
   }
   
   .safe-bottom-plus {
-    padding-bottom: calc(var(safe-area-inset-bottom) + 1rem);
+    padding-bottom: calc(env(safe-area-inset-bottom) + 1rem);
   }
   
   /*
