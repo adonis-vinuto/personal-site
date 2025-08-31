@@ -73,7 +73,7 @@ STATES.CSS - Estados de Aplicação
     
     &:focus {
       outline-color: var(--color-error-500);
-      box-shadow: 0 0 0 3px rgb(var(--color-error-700) / 0.1);
+      box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-error-700) 10%, transparent);
     }
   }
   
@@ -83,7 +83,7 @@ STATES.CSS - Estados de Aplicação
     
     &:focus {
       outline-color: var(--color-success-500);
-      box-shadow: 0 0 0 3px rgb(var(--color-success-700) / 0.1);
+      box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-error-700) 10%, transparent);
     }
   }
   
@@ -184,13 +184,13 @@ STATES.CSS - Estados de Aplicação
   
   @keyframes pulse-ring {
     0% {
-      box-shadow: 0 0 0 0 rgb(var(--color-success-700) / 0.4);
+      box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-success-700) 40%, transparent);
     }
     70% {
-      box-shadow: 0 0 0 6px rgb(var(--color-success-700) / 0);
+      box-shadow: 0 0 0 6px color-mix(in srgb, var(--color-success-700) 100%, transparent);
     }
     100% {
-      box-shadow: 0 0 0 0 rgb(var(--color-success-700) / 0);
+      box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-success-700) 100%, transparent);
     }
   }
   

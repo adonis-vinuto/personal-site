@@ -10,7 +10,7 @@ RESPONSIVE.CSS - Helpers Responsivos Essenciais
   SAFE AREAS - Para dispositivos com notch (iPhone X+)
   =================================================================
   */
-  
+
   /* Padding safe para todos os lados */
   .safe-area {
     padding-top: env(safe-area-inset-top);
@@ -18,129 +18,128 @@ RESPONSIVE.CSS - Helpers Responsivos Essenciais
     padding-bottom: env(safe-area-inset-bottom);
     padding-left: env(safe-area-inset-left);
   }
-  
+
   /* Safe areas individuais */
   .safe-top {
     padding-top: env(safe-area-inset-top);
   }
-  
+
   .safe-bottom {
     padding-bottom: env(safe-area-inset-bottom);
   }
-  
+
   .safe-left {
     padding-left: env(safe-area-inset-left);
   }
-  
+
   .safe-right {
     padding-right: env(safe-area-inset-right);
   }
-  
+
   /* Safe areas com padding adicional */
   .safe-top-plus {
     padding-top: calc(env(safe-area-inset-top) + 1rem);
   }
-  
+
   .safe-bottom-plus {
     padding-bottom: calc(env(safe-area-inset-bottom) + 1rem);
   }
-  
+
   /*
   =================================================================
   TOUCH TARGETS - Acessibilidade em dispositivos touch
   =================================================================
   */
-  
+
   /* Garante tamanho mínimo para toque (44x44px - iOS guideline) */
   @media (hover: none) and (pointer: coarse) {
     .touch-target {
       min-height: var(--touch-target-min);
       min-width: var(--touch-target-min);
     }
-    
+
     /* Para elementos inline como links no texto */
     .touch-target-inline {
       padding: 0.5rem;
       margin: -0.5rem;
     }
   }
-  
+
   /*
   =================================================================
   CONTAINER QUERIES - Responsive baseado no container
   =================================================================
   */
-  
+
   /* Setup do container */
   .container-responsive {
     container-type: inline-size;
   }
-  
+
   /* Breakpoints do container */
   @container (min-width: 640px) {
-    .cq\:hidden {
+    .cq-hidden {
       display: none;
     }
-    
-    .cq\:block {
+
+    .cq-block {
       display: block;
     }
-    
-    .cq\:grid-cols-2 {
+
+    .cq-grid-cols-2 {
       grid-template-columns: repeat(2, 1fr);
     }
   }
-  
+
   @container (min-width: 1024px) {
-    .cq\:grid-cols-3 {
+    .cq-grid-cols-3 {
       grid-template-columns: repeat(3, 1fr);
     }
-    
-    .cq\:grid-cols-4 {
+
+    .cq-grid-cols-4 {
       grid-template-columns: repeat(4, 1fr);
     }
   }
-  
   /*
   =================================================================
   RESPONSIVE CLAMP - Valores fluidos
   =================================================================
   */
-  
+
   /* Texto responsivo com clamp */
   .text-fluid {
     font-size: clamp(1rem, 2vw + 0.5rem, 1.25rem);
   }
-  
+
   .text-fluid-lg {
     font-size: clamp(1.25rem, 3vw + 0.5rem, 2rem);
   }
-  
+
   .text-fluid-xl {
     font-size: clamp(1.5rem, 4vw + 0.5rem, 3rem);
   }
-  
+
   /* Padding responsivo com clamp */
   .p-fluid {
     padding: clamp(1rem, 3vw, 2rem);
   }
-  
+
   .px-fluid {
     padding-left: clamp(1rem, 4vw, 3rem);
     padding-right: clamp(1rem, 4vw, 3rem);
   }
-  
+
   .py-fluid {
     padding-top: clamp(2rem, 5vw, 4rem);
     padding-bottom: clamp(2rem, 5vw, 4rem);
   }
-  
+
   /*
   =================================================================
   SCROLL MOBILE - Patterns específicos para mobile
   =================================================================
   */
-  
+
   /* Horizontal scroll com snap apenas em mobile */
   @media (max-width: 768px) {
     .mobile-scroll-snap {
@@ -149,21 +148,21 @@ RESPONSIVE.CSS - Helpers Responsivos Essenciais
       scroll-snap-type: x mandatory;
       -webkit-overflow-scrolling: touch;
       gap: 1rem;
-      
+
       /* Esconde scrollbar */
       scrollbar-width: none;
       -ms-overflow-style: none;
-      
+
       &::-webkit-scrollbar {
         display: none;
       }
     }
-    
+
     .mobile-scroll-snap > * {
       scroll-snap-align: start;
       flex: 0 0 85%;
     }
-    
+
     /* Padding para mostrar início do próximo item */
     .mobile-scroll-peek {
       padding-right: 15%;
