@@ -76,7 +76,7 @@ ANIMATIONS.CSS - Animações Essenciais
   
   /* Animações de entrada */
   .animate-in {
-    animation: fadeScaleIn 0.3s ease-out;
+    animation: fadeScaleIn var(--animation-duration-base) ease-out;
   }
   
   .animate-slide-up {
@@ -122,7 +122,7 @@ ANIMATIONS.CSS - Animações Essenciais
   
   /* Hover lift (levanta elemento) */
   .hover-lift {
-    transition: transform 0.2s ease-out;
+    transition: transform var(--animation-duration-fast) ease-out;
     
     &:hover {
       transform: translateY(-2px);
@@ -131,7 +131,7 @@ ANIMATIONS.CSS - Animações Essenciais
   
   /* Hover scale suave */
   .hover-scale {
-    transition: transform 0.2s ease-out;
+    transition: transform var(--animation-duration-fast) ease-out;
     
     &:hover {
       transform: scale(1.05);
@@ -199,7 +199,7 @@ ANIMATIONS.CSS - Animações Essenciais
   .scroll-fade {
     opacity: 0;
     transform: translateY(1rem);
-    transition: all 0.6s ease-out;
+    transition: all var(--animation-duration-slow) ease-out;
   }
   
   /* Estado quando visível */
