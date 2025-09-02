@@ -111,11 +111,11 @@ export default function DocsIndexPage() {
 
         {/* Additional Resources */}
         <section className="mt-16">
-          <h2 className="text-2xl font-semibold text-zinc-900 mb-6">Recursos Adicionais</h2>
+          {/* <h2 className="text-2xl font-semibold text-zinc-900 mb-6">Recursos Adicionais</h2> */}
           
           <div className="grid md:grid-cols-3 gap-6">
             {/* Tailwind Docs */}
-            <div className="bg-white rounded-lg border border-zinc-200 p-6">
+            {/* <div className="bg-white rounded-lg border border-zinc-200 p-6">
               <div className="flex items-center gap-3 mb-3">
                 <span className="text-2xl">🔗</span>
                 <h3 className="font-semibold text-zinc-900">Tailwind CSS 4</h3>
@@ -131,10 +131,10 @@ export default function DocsIndexPage() {
               >
                 Acessar documentação →
               </a>
-            </div>
+            </div> */}
 
             {/* Project CSS Guide */}
-            <div className="bg-white rounded-lg border border-zinc-200 p-6">
+            {/* <div className="bg-white rounded-lg border border-zinc-200 p-6">
               <div className="flex items-center gap-3 mb-3">
                 <span className="text-2xl">📚</span>
                 <h3 className="font-semibold text-zinc-900">Guia de CSS</h3>
@@ -148,10 +148,10 @@ export default function DocsIndexPage() {
               >
                 Ver guia completo →
               </Link>
-            </div>
+            </div> */}
 
             {/* Component Examples */}
-            <div className="bg-white rounded-lg border border-zinc-200 p-6">
+            {/* <div className="bg-white rounded-lg border border-zinc-200 p-6">
               <div className="flex items-center gap-3 mb-3">
                 <span className="text-2xl">🧩</span>
                 <h3 className="font-semibold text-zinc-900">Componentes</h3>
@@ -165,27 +165,7 @@ export default function DocsIndexPage() {
               >
                 Ver componentes →
               </Link>
-            </div>
-          </div>
-        </section>
-
-        {/* Quick Tips */}
-        <section className="mt-16 bg-blue-50 rounded-xl p-8">
-          <h2 className="text-xl font-semibold text-zinc-900 mb-4">💡 Dicas Rápidas</h2>
-          <div className="space-y-3 text-sm text-zinc-700">
-            <p>
-              • Use <code className="bg-white px-2 py-1 rounded font-mono text-xs">Cmd/Ctrl + Click</code> nas 
-              cores e classes para copiar automaticamente
-            </p>
-            <p>
-              • As classes customizadas estão definidas em <code className="bg-white px-2 py-1 rounded font-mono text-xs">src/styles/</code>
-            </p>
-            <p>
-              • O sistema usa CSS Variables para facilitar temas light/dark
-            </p>
-            <p>
-              • Todas as cores respeitam o modo escuro automaticamente
-            </p>
+            </div> */}
           </div>
         </section>
       </main>
