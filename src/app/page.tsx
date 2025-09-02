@@ -14,41 +14,15 @@ export default function Home() {
           Desenvolvedor apaixonado por criar experiências digitais incríveis.
         </p>
         
-        <div className="flex gap-4">
+        <div className="flex gap-4 flex-wrap">
           <Button size="lg">Ver Projetos</Button>
           <Button variant="outline" size="lg">Contato</Button>
-        </div>
-      </section>
-
-      {/* Cards Section */}
-      <section className="container py-16">
-        <h2 className="text-3xl font-bold mb-8">Projetos Recentes</h2>
-        
-        <div className="grid-auto-fit">
-          {[1, 2, 3].map((i) => (
-            <div key={i} className="card hover:shadow-lg transition-shadow">
-              <div className="skeleton h-48 rounded-md mb-4" />
-              <h3 className="text-xl font-semibold mb-2">Projeto {i}</h3>
-              <p className="text-gray-700 line-clamp-3">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              </p>
-              <Button variant="secondary" size="sm" className="mt-4">
-                Ver mais
-              </Button>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="container py-16">
-        <div className="card bg-gradient-to-r from-blue-50 to-purple-50 text-center">
-          <h2 className="text-2xl font-bold mb-4">Vamos trabalhar juntos?</h2>
-          <p className="text-gray-700 mb-6 max-w-xl mx-auto">
-            Estou sempre aberto a novos desafios e oportunidades de colaboração.
-          </p>
-          <Button size="lg">Entrar em Contato</Button>
+          <a href="/docs" className="inline-flex items-center gap-2 px-6 h-12 text-base font-medium text-zinc-700 hover:text-zinc-900 transition-colors">
+            📚 Ver Documentação CSS
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
         </div>
       </section>
     </main>
