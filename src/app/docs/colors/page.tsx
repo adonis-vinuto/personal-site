@@ -451,7 +451,6 @@ export default function ColorsPage() {
                 <div className="p-6">
                   <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
                     {Object.entries(shades).map(([shade, className]) => {
-                      const textClass = parseInt(shade) >= 500 ? 'text-white' : 'text-zinc-900';
                       
                       return (
                         <button

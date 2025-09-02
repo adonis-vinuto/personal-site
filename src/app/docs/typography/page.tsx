@@ -102,10 +102,39 @@ export default function TypographyDocumentation() {
   const [sampleText, setSampleText] = useState('The quick brown fox jumps over the lazy dog');
   const [copiedClass, setCopiedClass] = useState<string | null>(null);
 
-  const copyToClipboard = (text: string) => {
-    navigator.clipboard.writeText(text);
-    setCopiedClass(text);
-    setTimeout(() => setCopiedClass(null), 2000);
+  const copyToClipboard = async (text: string) => {
+    try {
+      // Tenta usar a API moderna primeiro
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(text);
+      } else {
+        // Fallback para método antigo
+        const textArea = document.createElement('textarea');
+        textArea.value = text;
+        textArea.style.position = 'fixed';
+        textArea.style.left = '-999999px';
+        textArea.style.top = '-999999px';
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        
+        try {
+          document.execCommand('copy');
+        } catch (err) {
+          console.error('Fallback copy failed:', err);
+        } finally {
+          textArea.remove();
+        }
+      }
+      
+      setCopiedClass(text);
+      setTimeout(() => setCopiedClass(null), 2000);
+    } catch (err) {
+      console.error('Failed to copy:', err);
+      // Ainda mostra feedback visual mesmo se falhar
+      setCopiedClass(text);
+      setTimeout(() => setCopiedClass(null), 2000);
+    }
   };
 
   return (
@@ -460,7 +489,7 @@ export default function TypographyDocumentation() {
                     case 'blockquote':
                       example = (
                         <blockquote className="blockquote">
-                          "Esta é uma citação estilizada com a classe .blockquote"
+                          &ldquo;Esta é uma citação estilizada com a classe .blockquote&rdquo;
                           <cite className="blockquote-cite">Autor da Citação</cite>
                         </blockquote>
                       );
