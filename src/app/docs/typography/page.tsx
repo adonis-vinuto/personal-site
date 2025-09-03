@@ -69,6 +69,78 @@ const fontFamilies = {
   'font-mono': 'Monospace',
 };
 
+const fontStyles = [
+  { class: 'italic', label: 'Italic' },
+  { class: 'not-italic', label: 'Not Italic' }
+];
+
+const textDecorationLines = [
+  { class: 'underline', label: 'Underline' },
+  { class: 'overline', label: 'Overline' },
+  { class: 'line-through', label: 'Line Through' },
+  { class: 'no-underline', label: 'No Underline' }
+];
+
+const textDecorationStyles = [
+  { class: 'decoration-solid', label: 'Solid' },
+  { class: 'decoration-double', label: 'Double' },
+  { class: 'decoration-dotted', label: 'Dotted' },
+  { class: 'decoration-dashed', label: 'Dashed' },
+  { class: 'decoration-wavy', label: 'Wavy' }
+];
+
+const textDecorationThickness = [
+  { class: 'decoration-auto', label: 'Auto' },
+  { class: 'decoration-from-font', label: 'From Font' },
+  { class: 'decoration-0', label: '0' },
+  { class: 'decoration-1', label: '1px' },
+  { class: 'decoration-2', label: '2px' },
+  { class: 'decoration-4', label: '4px' },
+  { class: 'decoration-8', label: '8px' }
+];
+
+const textUnderlineOffset = [
+  { class: 'underline-offset-auto', label: 'Auto' },
+  { class: 'underline-offset-0', label: '0' },
+  { class: 'underline-offset-1', label: '1px' },
+  { class: 'underline-offset-2', label: '2px' },
+  { class: 'underline-offset-4', label: '4px' },
+  { class: 'underline-offset-8', label: '8px' }
+];
+
+const textOverflow = [
+  { class: 'truncate', label: 'Truncate', description: 'Adiciona reticências ao texto que ultrapassa o container' },
+  { class: 'text-ellipsis', label: 'Ellipsis', description: 'Adiciona reticências ao overflow' },
+  { class: 'text-clip', label: 'Clip', description: 'Corta o texto sem reticências' }
+];
+
+const whitespaceClasses = [
+  { class: 'whitespace-normal', label: 'Normal', description: 'Quebra de linha normal' },
+  { class: 'whitespace-nowrap', label: 'No Wrap', description: 'Sem quebra de linha' },
+  { class: 'whitespace-pre', label: 'Pre', description: 'Preserva espaços e quebras' },
+  { class: 'whitespace-pre-line', label: 'Pre Line', description: 'Preserva quebras de linha' },
+  { class: 'whitespace-pre-wrap', label: 'Pre Wrap', description: 'Preserva espaços, quebra quando necessário' }
+];
+
+const wordBreakClasses = [
+  { class: 'break-normal', label: 'Normal', description: 'Quebra padrão de palavras' },
+  { class: 'break-words', label: 'Break Words', description: 'Quebra palavras longas' },
+  { class: 'break-all', label: 'Break All', description: 'Quebra em qualquer caractere' },
+  { class: 'break-keep', label: 'Keep', description: 'Mantém palavras inteiras' }
+];
+
+const listStyles = {
+  type: [
+    { class: 'list-none', label: 'None' },
+    { class: 'list-disc', label: 'Disc' },
+    { class: 'list-decimal', label: 'Decimal' }
+  ],
+  position: [
+    { class: 'list-inside', label: 'Inside' },
+    { class: 'list-outside', label: 'Outside' }
+  ]
+};
+
 // Classes customizadas do projeto
 const customTypography = {
   display: {
@@ -104,11 +176,9 @@ export default function TypographyDocumentation() {
 
   const copyToClipboard = async (text: string) => {
     try {
-      // Tenta usar a API moderna primeiro
       if (navigator.clipboard && window.isSecureContext) {
         await navigator.clipboard.writeText(text);
       } else {
-        // Fallback para método antigo
         const textArea = document.createElement('textarea');
         textArea.value = text;
         textArea.style.position = 'fixed';
@@ -131,7 +201,6 @@ export default function TypographyDocumentation() {
       setTimeout(() => setCopiedClass(null), 2000);
     } catch (err) {
       console.error('Failed to copy:', err);
-      // Ainda mostra feedback visual mesmo se falhar
       setCopiedClass(text);
       setTimeout(() => setCopiedClass(null), 2000);
     }
@@ -276,6 +345,35 @@ export default function TypographyDocumentation() {
               </div>
             </section>
 
+            {/* Font Styles */}
+            <section className="bg-white rounded-xl shadow-sm border border-zinc-200 overflow-hidden">
+              <div className="px-6 py-4 border-b border-zinc-200">
+                <h2 className="text-xl font-semibold text-zinc-900">Estilos de Fonte</h2>
+              </div>
+              <div className="p-6 grid md:grid-cols-2 gap-4">
+                {fontStyles.map(({ class: className, label }) => (
+                  <button
+                    key={className}
+                    onClick={() => copyToClipboard(className)}
+                    className="text-left group hover:bg-zinc-50 rounded-lg p-3 transition-colors"
+                  >
+                    <div className="flex items-center gap-3 mb-2">
+                      <span className="font-mono text-sm bg-zinc-100 px-2 py-1 rounded">
+                        {className}
+                      </span>
+                      <span className="text-xs text-zinc-500">{label}</span>
+                      {copiedClass === className && (
+                        <span className="text-sm text-green-600">Copiado!</span>
+                      )}
+                    </div>
+                    <p className={`text-lg ${className}`}>
+                      {sampleText}
+                    </p>
+                  </button>
+                ))}
+              </div>
+            </section>
+
             {/* Line Heights */}
             <section className="bg-white rounded-xl shadow-sm border border-zinc-200 overflow-hidden">
               <div className="px-6 py-4 border-b border-zinc-200">
@@ -396,6 +494,292 @@ export default function TypographyDocumentation() {
               </div>
             </section>
 
+            {/* Text Decoration */}
+            <section className="bg-white rounded-xl shadow-sm border border-zinc-200 overflow-hidden">
+              <div className="px-6 py-4 border-b border-zinc-200">
+                <h2 className="text-xl font-semibold text-zinc-900">Decoração de Texto</h2>
+              </div>
+              <div className="p-6 space-y-6">
+                {/* Decoration Lines */}
+                <div>
+                  <h3 className="text-sm font-medium text-zinc-600 mb-3">Tipos de Decoração</h3>
+                  <div className="grid md:grid-cols-2 gap-4">
+                    {textDecorationLines.map(({ class: className, label }) => (
+                      <button
+                        key={className}
+                        onClick={() => copyToClipboard(className)}
+                        className="text-left group hover:bg-zinc-50 rounded-lg p-3 transition-colors"
+                      >
+                        <div className="flex items-center gap-3 mb-2">
+                          <span className="font-mono text-sm bg-zinc-100 px-2 py-1 rounded">
+                            {className}
+                          </span>
+                          <span className="text-xs text-zinc-500">{label}</span>
+                          {copiedClass === className && (
+                            <span className="text-sm text-green-600">Copiado!</span>
+                          )}
+                        </div>
+                        <p className={`text-lg ${className}`}>
+                          {sampleText}
+                        </p>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Decoration Styles */}
+                <div>
+                  <h3 className="text-sm font-medium text-zinc-600 mb-3">Estilos de Decoração</h3>
+                  <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {textDecorationStyles.map(({ class: className, label }) => (
+                      <button
+                        key={className}
+                        onClick={() => copyToClipboard(className)}
+                        className="text-left group hover:bg-zinc-50 rounded-lg p-3 transition-colors"
+                      >
+                        <div className="flex items-center gap-3 mb-2">
+                          <span className="font-mono text-sm bg-zinc-100 px-2 py-1 rounded">
+                            {className}
+                          </span>
+                          <span className="text-xs text-zinc-500">{label}</span>
+                          {copiedClass === className && (
+                            <span className="text-sm text-green-600">Copiado!</span>
+                          )}
+                        </div>
+                        <p className={`text-lg underline ${className}`}>
+                          Texto decorado
+                        </p>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Decoration Thickness */}
+                <div>
+                  <h3 className="text-sm font-medium text-zinc-600 mb-3">Espessura da Decoração</h3>
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                    {textDecorationThickness.map(({ class: className, label }) => (
+                      <button
+                        key={className}
+                        onClick={() => copyToClipboard(className)}
+                        className="text-left group hover:bg-zinc-50 rounded-lg p-2 transition-colors"
+                      >
+                        <div className="flex items-center gap-2 mb-1">
+                          <span className="font-mono text-xs bg-zinc-100 px-1.5 py-0.5 rounded">
+                            {className}
+                          </span>
+                          {copiedClass === className && (
+                            <span className="text-xs text-green-600">✓</span>
+                          )}
+                        </div>
+                        <p className={`text-sm underline ${className}`}>
+                          {label}
+                        </p>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Underline Offset */}
+                <div>
+                  <h3 className="text-sm font-medium text-zinc-600 mb-3">Offset do Sublinhado</h3>
+                  <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                    {textUnderlineOffset.map(({ class: className, label }) => (
+                      <button
+                        key={className}
+                        onClick={() => copyToClipboard(className)}
+                        className="text-left group hover:bg-zinc-50 rounded-lg p-2 transition-colors"
+                      >
+                        <div className="flex items-center gap-2 mb-1">
+                          <span className="font-mono text-xs bg-zinc-100 px-1.5 py-0.5 rounded">
+                            {className}
+                          </span>
+                          {copiedClass === className && (
+                            <span className="text-xs text-green-600">✓</span>
+                          )}
+                        </div>
+                        <p className={`text-sm underline ${className}`}>
+                          Offset: {label}
+                        </p>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            {/* Text Overflow */}
+            <section className="bg-white rounded-xl shadow-sm border border-zinc-200 overflow-hidden">
+              <div className="px-6 py-4 border-b border-zinc-200">
+                <h2 className="text-xl font-semibold text-zinc-900">Overflow de Texto</h2>
+              </div>
+              <div className="p-6 space-y-4">
+                {textOverflow.map(({ class: className, label, description }) => (
+                  <button
+                    key={className}
+                    onClick={() => copyToClipboard(className)}
+                    className="w-full text-left group hover:bg-zinc-50 rounded-lg p-3 transition-colors"
+                  >
+                    <div className="flex items-start gap-3 mb-2">
+                      <div className="flex-1">
+                        <div className="flex items-center gap-3">
+                          <span className="font-mono text-sm bg-zinc-100 px-2 py-1 rounded">
+                            {className}
+                          </span>
+                          <span className="text-sm font-medium">{label}</span>
+                          {copiedClass === className && (
+                            <span className="text-sm text-green-600">Copiado!</span>
+                          )}
+                        </div>
+                        <p className="text-xs text-zinc-500 mt-1">{description}</p>
+                      </div>
+                    </div>
+                    <div className="max-w-xs">
+                      <p className={`text-base bg-zinc-50 p-2 rounded ${className}`}>
+                        Este texto muito longo será truncado com reticências no final quando ultrapassar o limite do container disponível
+                      </p>
+                    </div>
+                  </button>
+                ))}
+              </div>
+            </section>
+
+            {/* Whitespace & Word Break */}
+            <section className="bg-white rounded-xl shadow-sm border border-zinc-200 overflow-hidden">
+              <div className="px-6 py-4 border-b border-zinc-200">
+                <h2 className="text-xl font-semibold text-zinc-900">Espaço em Branco e Quebra de Palavras</h2>
+              </div>
+              <div className="p-6 space-y-6">
+                {/* Whitespace */}
+                <div>
+                  <h3 className="text-sm font-medium text-zinc-600 mb-3">Controle de Espaço em Branco</h3>
+                  <div className="space-y-3">
+                    {whitespaceClasses.map(({ class: className, label, description }) => (
+                      <button
+                        key={className}
+                        onClick={() => copyToClipboard(className)}
+                        className="w-full text-left group hover:bg-zinc-50 rounded-lg p-3 transition-colors"
+                      >
+                        <div className="flex items-center gap-3 mb-2">
+                          <span className="font-mono text-sm bg-zinc-100 px-2 py-1 rounded">
+                            {className}
+                          </span>
+                          <span className="text-sm font-medium">{label}</span>
+                          <span className="text-xs text-zinc-500">- {description}</span>
+                          {copiedClass === className && (
+                            <span className="text-sm text-green-600">Copiado!</span>
+                          )}
+                        </div>
+                        <div className="max-w-md">
+                          <p className={`text-sm bg-zinc-50 p-2 rounded border border-zinc-200 ${className}`}>
+                            Este    texto    tem    múltiplos    espaços
+                            e uma quebra de linha aqui.
+                          </p>
+                        </div>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Word Break */}
+                <div>
+                  <h3 className="text-sm font-medium text-zinc-600 mb-3">Quebra de Palavras</h3>
+                  <div className="space-y-3">
+                    {wordBreakClasses.map(({ class: className, label, description }) => (
+                      <button
+                        key={className}
+                        onClick={() => copyToClipboard(className)}
+                        className="w-full text-left group hover:bg-zinc-50 rounded-lg p-3 transition-colors"
+                      >
+                        <div className="flex items-center gap-3 mb-2">
+                          <span className="font-mono text-sm bg-zinc-100 px-2 py-1 rounded">
+                            {className}
+                          </span>
+                          <span className="text-sm font-medium">{label}</span>
+                          <span className="text-xs text-zinc-500">- {description}</span>
+                          {copiedClass === className && (
+                            <span className="text-sm text-green-600">Copiado!</span>
+                          )}
+                        </div>
+                        <div className="max-w-xs">
+                          <p className={`text-sm bg-zinc-50 p-2 rounded border border-zinc-200 ${className}`}>
+                            Supercalifragilisticexpialidocious é uma palavra extremamente longa que pode quebrar diferentemente.
+                          </p>
+                        </div>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            {/* List Styles */}
+            <section className="bg-white rounded-xl shadow-sm border border-zinc-200 overflow-hidden">
+              <div className="px-6 py-4 border-b border-zinc-200">
+                <h2 className="text-xl font-semibold text-zinc-900">Estilos de Lista</h2>
+              </div>
+              <div className="p-6 space-y-6">
+                {/* List Types */}
+                <div>
+                  <h3 className="text-sm font-medium text-zinc-600 mb-3">Tipos de Lista</h3>
+                  <div className="grid md:grid-cols-3 gap-4">
+                    {listStyles.type.map(({ class: className, label }) => (
+                      <button
+                        key={className}
+                        onClick={() => copyToClipboard(className)}
+                        className="text-left group hover:bg-zinc-50 rounded-lg p-3 transition-colors"
+                      >
+                        <div className="flex items-center gap-3 mb-3">
+                          <span className="font-mono text-sm bg-zinc-100 px-2 py-1 rounded">
+                            {className}
+                          </span>
+                          <span className="text-xs text-zinc-500">{label}</span>
+                          {copiedClass === className && (
+                            <span className="text-sm text-green-600">✓</span>
+                          )}
+                        </div>
+                        <ul className={`text-sm space-y-1 ${className}`}>
+                          <li>Primeiro item</li>
+                          <li>Segundo item</li>
+                          <li>Terceiro item</li>
+                        </ul>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* List Position */}
+                <div>
+                  <h3 className="text-sm font-medium text-zinc-600 mb-3">Posição da Lista</h3>
+                  <div className="grid md:grid-cols-2 gap-4">
+                    {listStyles.position.map(({ class: className, label }) => (
+                      <button
+                        key={className}
+                        onClick={() => copyToClipboard(className)}
+                        className="text-left group hover:bg-zinc-50 rounded-lg p-3 transition-colors"
+                      >
+                        <div className="flex items-center gap-3 mb-3">
+                          <span className="font-mono text-sm bg-zinc-100 px-2 py-1 rounded">
+                            {className}
+                          </span>
+                          <span className="text-xs text-zinc-500">{label}</span>
+                          {copiedClass === className && (
+                            <span className="text-sm text-green-600">✓</span>
+                          )}
+                        </div>
+                        <div className="bg-zinc-50 p-3 rounded">
+                          <ul className={`text-sm space-y-1 list-disc ${className}`}>
+                            <li>Este é um item de lista com posição {label.toLowerCase()}</li>
+                            <li>Note como o marcador se posiciona</li>
+                          </ul>
+                        </div>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </section>
+
             {/* Font Families */}
             <section className="bg-white rounded-xl shadow-sm border border-zinc-200 overflow-hidden">
               <div className="px-6 py-4 border-b border-zinc-200">
@@ -489,7 +873,7 @@ export default function TypographyDocumentation() {
                     case 'blockquote':
                       example = (
                         <blockquote className="blockquote">
-                          &ldquo;Esta é uma citação estilizada com a classe .blockquote&rdquo;
+                          "Esta é uma citação estilizada com a classe .blockquote"
                           <cite className="blockquote-cite">Autor da Citação</cite>
                         </blockquote>
                       );
@@ -625,6 +1009,62 @@ export default function TypographyDocumentation() {
                     </button>
                   );
                 })}
+              </div>
+            </section>
+
+            {/* Common Patterns */}
+            <section className="bg-white rounded-xl shadow-sm border border-zinc-200 overflow-hidden">
+              <div className="px-6 py-4 border-b border-zinc-200">
+                <h2 className="text-xl font-semibold text-zinc-900">Padrões Comuns</h2>
+                <p className="text-sm text-zinc-600 mt-1">Combinações úteis de classes tipográficas</p>
+              </div>
+              <div className="p-6 space-y-6">
+                {/* Card Title Pattern */}
+                <div className="border border-zinc-200 rounded-lg p-4">
+                  <div className="flex items-center gap-3 mb-3">
+                    <span className="font-mono text-xs bg-zinc-100 px-2 py-1 rounded">
+                      truncate font-semibold text-lg
+                    </span>
+                    <span className="text-sm text-zinc-600">Título de Card</span>
+                  </div>
+                  <div className="max-w-xs bg-zinc-50 p-3 rounded">
+                    <h3 className="truncate font-semibold text-lg">
+                      Este é um título muito longo que será truncado quando necessário
+                    </h3>
+                    <p className="text-sm text-zinc-600 mt-1">Descrição do card...</p>
+                  </div>
+                </div>
+
+                {/* Link with Hover */}
+                <div className="border border-zinc-200 rounded-lg p-4">
+                  <div className="flex items-center gap-3 mb-3">
+                    <span className="font-mono text-xs bg-zinc-100 px-2 py-1 rounded">
+                      underline decoration-2 underline-offset-4 hover:decoration-4
+                    </span>
+                    <span className="text-sm text-zinc-600">Link com Hover</span>
+                  </div>
+                  <p className="text-base">
+                    Visite nosso <a href="#" className="underline decoration-2 underline-offset-4 hover:decoration-4 text-blue-600">
+                      website oficial
+                    </a> para mais informações.
+                  </p>
+                </div>
+
+                {/* Readable Content */}
+                <div className="border border-zinc-200 rounded-lg p-4">
+                  <div className="flex items-center gap-3 mb-3">
+                    <span className="font-mono text-xs bg-zinc-100 px-2 py-1 rounded">
+                      prose leading-relaxed text-balance
+                    </span>
+                    <span className="text-sm text-zinc-600">Conteúdo Otimizado</span>
+                  </div>
+                  <div className="prose leading-relaxed text-balance">
+                    <p>
+                      Este parágrafo combina classes para criar uma experiência de leitura otimizada, 
+                      com espaçamento adequado entre linhas e distribuição balanceada do texto.
+                    </p>
+                  </div>
+                </div>
               </div>
             </section>
           </div>
