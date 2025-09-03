@@ -26,6 +26,18 @@ const documentationPages = [
       'Classes customizadas (display, hero, prose)',
       'Utilitários de texto especiais'
     ]
+  },
+  {
+    title: 'Sistema de Animações',
+    description: 'Animações, transições e efeitos visuais para interfaces dinâmicas',
+    href: '/docs/animations',
+    icon: '✨',
+    items: [
+      'Animações de entrada e saída',
+      'Estados de loading e skeleton',
+      'Efeitos hover e micro-interações',
+      'Keyframes customizados e utilities Tailwind'
+    ]
   }
 ];
 
