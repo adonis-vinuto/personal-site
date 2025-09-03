@@ -344,10 +344,118 @@ const customTokens = {
   }
 };
 
+// Color utilities documentation
+const colorUtilities = [
+  {
+    utility: 'bg-*',
+    description: 'Define a cor de fundo de um elemento',
+    example: 'bg-blue-500',
+    demo: 'bg-blue-500',
+  },
+  {
+    utility: 'text-*',
+    description: 'Define a cor do texto de um elemento',
+    example: 'text-blue-500',
+    demo: 'text-blue-500',
+  },
+  {
+    utility: 'decoration-*',
+    description: 'Define a cor da decoração de texto (underline, line-through, etc.)',
+    example: 'decoration-blue-500',
+    demo: 'underline decoration-blue-500',
+  },
+  {
+    utility: 'border-*',
+    description: 'Define a cor da borda de um elemento',
+    example: 'border-blue-500',
+    demo: 'border-2 border-blue-500',
+  },
+  {
+    utility: 'outline-*',
+    description: 'Define a cor do outline de um elemento',
+    example: 'outline-blue-500',
+    demo: 'outline outline-2 outline-blue-500',
+  },
+  {
+    utility: 'shadow-*',
+    description: 'Define a cor da sombra de um elemento',
+    example: 'shadow-blue-500/50',
+    demo: 'shadow-lg shadow-blue-500/50',
+  },
+  {
+    utility: 'inset-shadow-*',
+    description: 'Define a cor da sombra interna de um elemento',
+    example: 'inset-shadow-blue-500/50',
+    demo: 'shadow-inner inset-shadow-blue-500/50',
+  },
+  {
+    utility: 'ring-*',
+    description: 'Define a cor do ring shadow de um elemento',
+    example: 'ring-blue-500',
+    demo: 'ring-2 ring-blue-500',
+  },
+  {
+    utility: 'inset-ring-*',
+    description: 'Define a cor do ring shadow interno de um elemento',
+    example: 'inset-ring-blue-500',
+    demo: 'ring-2 ring-inset inset-ring-blue-500',
+  },
+  {
+    utility: 'accent-*',
+    description: 'Define a cor de destaque de controles de formulário (checkboxes, radio buttons)',
+    example: 'accent-blue-500',
+    demo: 'accent-blue-500',
+  },
+  {
+    utility: 'caret-*',
+    description: 'Define a cor do cursor (caret) em campos de formulário',
+    example: 'caret-blue-500',
+    demo: 'caret-blue-500',
+  },
+  {
+    utility: 'fill-*',
+    description: 'Define a cor de preenchimento de elementos SVG',
+    example: 'fill-blue-500',
+    demo: 'fill-blue-500',
+  },
+  {
+    utility: 'stroke-*',
+    description: 'Define a cor do traço de elementos SVG',
+    example: 'stroke-blue-500',
+    demo: 'stroke-blue-500',
+  },
+];
+
+// Opacity modifiers
+const opacityModifiers = [
+  { value: '0', label: 'Totalmente transparente' },
+  { value: '5', label: '5% de opacidade' },
+  { value: '10', label: '10% de opacidade' },
+  { value: '15', label: '15% de opacidade' },
+  { value: '20', label: '20% de opacidade' },
+  { value: '25', label: '25% de opacidade' },
+  { value: '30', label: '30% de opacidade' },
+  { value: '35', label: '35% de opacidade' },
+  { value: '40', label: '40% de opacidade' },
+  { value: '45', label: '45% de opacidade' },
+  { value: '50', label: '50% de opacidade' },
+  { value: '55', label: '55% de opacidade' },
+  { value: '60', label: '60% de opacidade' },
+  { value: '65', label: '65% de opacidade' },
+  { value: '70', label: '70% de opacidade' },
+  { value: '75', label: '75% de opacidade' },
+  { value: '80', label: '80% de opacidade' },
+  { value: '85', label: '85% de opacidade' },
+  { value: '90', label: '90% de opacidade' },
+  { value: '95', label: '95% de opacidade' },
+  { value: '100', label: '100% de opacidade (opaco)' },
+];
+
 export default function ColorsPage() {
-  const [activeTab, setActiveTab] = useState<'tailwind' | 'custom'>('tailwind');
+  const [activeTab, setActiveTab] = useState<'tailwind' | 'utilities' | 'opacity' | 'custom'>('tailwind');
   const [copiedColor, setCopiedColor] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
+  const [selectedOpacity, setSelectedOpacity] = useState('50');
 
   const copyToClipboard = async (text: string) => {
     try {
@@ -402,10 +510,10 @@ export default function ColorsPage() {
 
       {/* Tabs */}
       <div className="container mx-auto px-4 py-6">
-        <div className="bg-white rounded-lg shadow-sm border border-zinc-200 p-1 inline-flex">
+        <div className="bg-white rounded-lg shadow-sm border border-zinc-200 p-1 inline-flex flex-wrap">
           <button
             onClick={() => setActiveTab('tailwind')}
-            className={`px-6 py-2 rounded-md font-medium transition-colors ${
+            className={`px-4 sm:px-6 py-2 rounded-md font-medium transition-colors ${
               activeTab === 'tailwind'
                 ? 'bg-zinc-900 text-white'
                 : 'text-zinc-600 hover:text-zinc-900'
@@ -414,14 +522,34 @@ export default function ColorsPage() {
             Cores Tailwind
           </button>
           <button
+            onClick={() => setActiveTab('utilities')}
+            className={`px-4 sm:px-6 py-2 rounded-md font-medium transition-colors ${
+              activeTab === 'utilities'
+                ? 'bg-zinc-900 text-white'
+                : 'text-zinc-600 hover:text-zinc-900'
+            }`}
+          >
+            Utilities
+          </button>
+          <button
+            onClick={() => setActiveTab('opacity')}
+            className={`px-4 sm:px-6 py-2 rounded-md font-medium transition-colors ${
+              activeTab === 'opacity'
+                ? 'bg-zinc-900 text-white'
+                : 'text-zinc-600 hover:text-zinc-900'
+            }`}
+          >
+            Opacidade
+          </button>
+          <button
             onClick={() => setActiveTab('custom')}
-            className={`px-6 py-2 rounded-md font-medium transition-colors ${
+            className={`px-4 sm:px-6 py-2 rounded-md font-medium transition-colors ${
               activeTab === 'custom'
                 ? 'bg-zinc-900 text-white'
                 : 'text-zinc-600 hover:text-zinc-900'
             }`}
           >
-            Tokens Customizados
+            Tokens Custom
           </button>
         </div>
 
@@ -478,6 +606,421 @@ export default function ColorsPage() {
                 </div>
               </div>
             ))}
+          </div>
+        ) : activeTab === 'utilities' ? (
+          <div className="space-y-6">
+            {/* Introdução */}
+            <div className="bg-white rounded-xl shadow-sm border border-zinc-200 overflow-hidden">
+              <div className="px-6 py-4 border-b border-zinc-200">
+                <h2 className="text-xl font-semibold text-zinc-900">Utilities de Cor</h2>
+                <p className="text-sm text-zinc-600 mt-1">
+                  O Tailwind oferece várias utilities para aplicar cores em diferentes propriedades CSS
+                </p>
+              </div>
+              <div className="p-6">
+                <div className="prose max-w-none text-zinc-600">
+                  <p>
+                    Todas as cores disponíveis no Tailwind podem ser usadas com essas utilities. 
+                    A sintaxe padrão é <code className="bg-zinc-100 px-2 py-1 rounded text-zinc-900">[utility]-[cor]-[shade]</code>.
+                  </p>
+                  <p className="mt-2">
+                    Por exemplo: <code className="bg-zinc-100 px-2 py-1 rounded text-zinc-900">bg-blue-500</code>, 
+                    {' '}<code className="bg-zinc-100 px-2 py-1 rounded text-zinc-900">text-red-600</code>, 
+                    {' '}<code className="bg-zinc-100 px-2 py-1 rounded text-zinc-900">border-green-400</code>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Tabela de Utilities */}
+            <div className="bg-white rounded-xl shadow-sm border border-zinc-200 overflow-hidden">
+              <div className="px-6 py-4 border-b border-zinc-200">
+                <h3 className="text-lg font-semibold text-zinc-900">Lista de Utilities</h3>
+              </div>
+              <div className="overflow-x-auto">
+                <table className="w-full">
+                  <thead className="bg-zinc-50 border-b border-zinc-200">
+                    <tr>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-zinc-500 uppercase tracking-wider">
+                        Utility
+                      </th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-zinc-500 uppercase tracking-wider">
+                        Descrição
+                      </th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-zinc-500 uppercase tracking-wider">
+                        Exemplo
+                      </th>
+                      <th className="px-6 py-3 text-center text-xs font-medium text-zinc-500 uppercase tracking-wider">
+                        Demo
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-zinc-200">
+                    {colorUtilities.map((utility) => (
+                      <tr key={utility.utility} className="hover:bg-zinc-50">
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <button
+                            onClick={() => copyToClipboard(utility.utility)}
+                            className="font-mono text-sm text-zinc-900 hover:text-blue-600 transition-colors"
+                          >
+                            {utility.utility}
+                            {copiedColor === utility.utility && (
+                              <span className="ml-2 text-xs text-green-600">Copiado!</span>
+                            )}
+                          </button>
+                        </td>
+                        <td className="px-6 py-4 text-sm text-zinc-600">
+                          {utility.description}
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <code className="bg-zinc-100 px-2 py-1 rounded text-xs text-zinc-900">
+                            {utility.example}
+                          </code>
+                        </td>
+                        <td className="px-6 py-4">
+                          <div className="flex justify-center">
+                            {utility.utility === 'bg-*' && (
+                              <div className="w-16 h-16 bg-blue-500 rounded-lg shadow-sm" />
+                            )}
+                            {utility.utility === 'text-*' && (
+                              <p className="text-blue-500 font-semibold text-lg">Texto</p>
+                            )}
+                            {utility.utility === 'decoration-*' && (
+                              <p className="underline decoration-blue-500 decoration-2 text-lg">Texto</p>
+                            )}
+                            {utility.utility === 'border-*' && (
+                              <div className="w-16 h-16 bg-white border-2 border-blue-500 rounded-lg" />
+                            )}
+                            {utility.utility === 'outline-*' && (
+                              <div className="w-16 h-16 bg-white outline outline-2 outline-blue-500 rounded-lg" />
+                            )}
+                            {utility.utility === 'shadow-*' && (
+                              <div className="w-16 h-16 bg-white rounded-lg shadow-lg shadow-blue-500/50" />
+                            )}
+                            {utility.utility === 'inset-shadow-*' && (
+                              <div className="w-16 h-16 bg-zinc-100 rounded-lg shadow-inner shadow-blue-500/50" />
+                            )}
+                            {utility.utility === 'ring-*' && (
+                              <div className="w-16 h-16 bg-white rounded-lg ring-2 ring-blue-500" />
+                            )}
+                            {utility.utility === 'inset-ring-*' && (
+                              <div className="w-16 h-16 bg-white rounded-lg ring-2 ring-inset ring-blue-500" />
+                            )}
+                            {utility.utility === 'accent-*' && (
+                              <input type="checkbox" className="w-5 h-5 accent-blue-500" defaultChecked />
+                            )}
+                            {utility.utility === 'caret-*' && (
+                              <input 
+                                type="text" 
+                                className="px-2 py-1 border border-zinc-300 rounded caret-blue-500" 
+                                placeholder="Digite aqui"
+                                style={{ caretColor: 'rgb(59 130 246)' }}
+                              />
+                            )}
+                            {utility.utility === 'fill-*' && (
+                              <svg className="w-8 h-8 fill-blue-500" viewBox="0 0 20 20">
+                                <path d="M10 3.5a1.5 1.5 0 013 0V4a1 1 0 001 1h3.5a1.5 1.5 0 010 3H14a1 1 0 00-1 1v3.5a1.5 1.5 0 01-3 0V9a1 1 0 00-1-1H5.5a1.5 1.5 0 010-3H9a1 1 0 001-1v-.5z" />
+                              </svg>
+                            )}
+                            {utility.utility === 'stroke-*' && (
+                              <svg className="w-8 h-8 stroke-blue-500 fill-none" viewBox="0 0 24 24" strokeWidth="2">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v12m6-6H6" />
+                              </svg>
+                            )}
+                          </div>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            {/* Cores especiais */}
+            <div className="bg-white rounded-xl shadow-sm border border-zinc-200 overflow-hidden">
+              <div className="px-6 py-4 border-b border-zinc-200">
+                <h3 className="text-lg font-semibold text-zinc-900">Cores Especiais</h3>
+              </div>
+              <div className="p-6 space-y-4">
+                <div>
+                  <h4 className="font-medium text-zinc-900 mb-2">Cores Adicionais</h4>
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 bg-black rounded shadow-sm" />
+                      <div>
+                        <p className="text-sm font-medium">black</p>
+                        <code className="text-xs text-zinc-500">*-black</code>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 bg-white border border-zinc-300 rounded shadow-sm" />
+                      <div>
+                        <p className="text-sm font-medium">white</p>
+                        <code className="text-xs text-zinc-500">*-white</code>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 bg-transparent border-2 border-dashed border-zinc-300 rounded" />
+                      <div>
+                        <p className="text-sm font-medium">transparent</p>
+                        <code className="text-xs text-zinc-500">*-transparent</code>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <div 
+                        className="w-10 h-10 rounded shadow-sm" 
+                        style={{ 
+                          background: 'linear-gradient(45deg, #ccc 25%, transparent 25%), linear-gradient(-45deg, #ccc 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #ccc 75%), linear-gradient(-45deg, transparent 75%, #ccc 75%)',
+                          backgroundSize: '10px 10px',
+                          backgroundPosition: '0 0, 0 5px, 5px -5px, -5px 0px'
+                        }}
+                      />
+                      <div>
+                        <p className="text-sm font-medium">current</p>
+                        <code className="text-xs text-zinc-500">*-current</code>
+                      </div>
+                    </div>
+                  </div>
+                  <p className="mt-3 text-sm text-zinc-600">
+                    <strong>current</strong> usa a cor do texto atual (currentColor), útil para herança de cor.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        ) : activeTab === 'opacity' ? (
+          <div className="space-y-6">
+            {/* Introdução */}
+            <div className="bg-white rounded-xl shadow-sm border border-zinc-200 overflow-hidden">
+              <div className="px-6 py-4 border-b border-zinc-200">
+                <h2 className="text-xl font-semibold text-zinc-900">Ajustando Opacidade</h2>
+                <p className="text-sm text-zinc-600 mt-1">
+                  Controle a opacidade das cores usando modificadores de opacidade
+                </p>
+              </div>
+              <div className="p-6">
+                <div className="prose max-w-none text-zinc-600">
+                  <p>
+                    Você pode controlar a opacidade de qualquer utility de cor adicionando um modificador de opacidade.
+                    Use a sintaxe <code className="bg-zinc-100 px-2 py-1 rounded text-zinc-900">[utility]-[cor]-[shade]/[opacidade]</code>.
+                  </p>
+                  <p className="mt-2">
+                    Por exemplo: <code className="bg-zinc-100 px-2 py-1 rounded text-zinc-900">bg-blue-500/50</code> 
+                    {' '}aplica um background azul com 50% de opacidade.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Demonstração Interativa */}
+            <div className="bg-white rounded-xl shadow-sm border border-zinc-200 overflow-hidden">
+              <div className="px-6 py-4 border-b border-zinc-200">
+                <h3 className="text-lg font-semibold text-zinc-900">Demonstração Interativa</h3>
+              </div>
+              <div className="p-6">
+                {/* Seletor de Opacidade */}
+                <div className="mb-6">
+                  <label htmlFor="opacity-select" className="block text-sm font-medium text-zinc-700 mb-2">
+                    Selecione a opacidade:
+                  </label>
+                  <select 
+                    id="opacity-select"
+                    value={selectedOpacity}
+                    onChange={(e) => setSelectedOpacity(e.target.value)}
+                    className="w-full max-w-xs px-3 py-2 border border-zinc-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-zinc-900"
+                  >
+                    {opacityModifiers.map((mod) => (
+                      <option key={mod.value} value={mod.value}>
+                        {mod.value} - {mod.label}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                {/* Grid de exemplos */}
+                <div className="grid md:grid-cols-2 gap-6">
+                  {/* Background */}
+                  <div>
+                    <h4 className="font-medium text-zinc-900 mb-3">Background com Opacidade</h4>
+                    <div className="space-y-3">
+                      <button
+                        onClick={() => copyToClipboard(`bg-blue-500/${selectedOpacity}`)}
+                        className="w-full group"
+                      >
+                        <div 
+                          className={`p-6 rounded-lg bg-blue-500 transition-all`}
+                          style={{ opacity: parseInt(selectedOpacity) / 100 }}
+                        >
+                          <p className="text-white font-medium">
+                            bg-blue-500/{selectedOpacity}
+                          </p>
+                        </div>
+                        {copiedColor === `bg-blue-500/${selectedOpacity}` && (
+                          <p className="text-sm text-green-600 mt-2">Copiado!</p>
+                        )}
+                      </button>
+                      <div className="bg-zinc-100 p-3 rounded">
+                        <code className="text-sm">bg-blue-500/{selectedOpacity}</code>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Text */}
+                  <div>
+                    <h4 className="font-medium text-zinc-900 mb-3">Texto com Opacidade</h4>
+                    <div className="space-y-3">
+                      <button
+                        onClick={() => copyToClipboard(`text-blue-500/${selectedOpacity}`)}
+                        className="w-full group"
+                      >
+                        <div className="p-6 rounded-lg bg-zinc-50">
+                          <p 
+                            className={`text-blue-500 font-bold text-2xl transition-all`}
+                            style={{ opacity: parseInt(selectedOpacity) / 100 }}
+                          >
+                            Texto com Opacidade
+                          </p>
+                        </div>
+                        {copiedColor === `text-blue-500/${selectedOpacity}` && (
+                          <p className="text-sm text-green-600 mt-2">Copiado!</p>
+                        )}
+                      </button>
+                      <div className="bg-zinc-100 p-3 rounded">
+                        <code className="text-sm">text-blue-500/{selectedOpacity}</code>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Border */}
+                  <div>
+                    <h4 className="font-medium text-zinc-900 mb-3">Borda com Opacidade</h4>
+                    <div className="space-y-3">
+                      <button
+                        onClick={() => copyToClipboard(`border-blue-500/${selectedOpacity}`)}
+                        className="w-full group"
+                      >
+                        <div 
+                          className={`p-6 rounded-lg bg-white border-4 border-blue-500 transition-all`}
+                          style={{ borderColor: `rgba(59, 130, 246, ${parseInt(selectedOpacity) / 100})` }}
+                        >
+                          <p className="text-zinc-900 font-medium">
+                            border-blue-500/{selectedOpacity}
+                          </p>
+                        </div>
+                        {copiedColor === `border-blue-500/${selectedOpacity}` && (
+                          <p className="text-sm text-green-600 mt-2">Copiado!</p>
+                        )}
+                      </button>
+                      <div className="bg-zinc-100 p-3 rounded">
+                        <code className="text-sm">border-blue-500/{selectedOpacity}</code>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Shadow */}
+                  <div>
+                    <h4 className="font-medium text-zinc-900 mb-3">Sombra com Opacidade</h4>
+                    <div className="space-y-3">
+                      <button
+                        onClick={() => copyToClipboard(`shadow-blue-500/${selectedOpacity}`)}
+                        className="w-full group"
+                      >
+                        <div 
+                          className="p-6 rounded-lg bg-white shadow-xl transition-all"
+                          style={{ 
+                            boxShadow: `0 20px 25px -5px rgba(59, 130, 246, ${parseInt(selectedOpacity) / 100 * 0.5}), 0 10px 10px -5px rgba(59, 130, 246, ${parseInt(selectedOpacity) / 100 * 0.25})` 
+                          }}
+                        >
+                          <p className="text-zinc-900 font-medium">
+                            shadow-blue-500/{selectedOpacity}
+                          </p>
+                        </div>
+                        {copiedColor === `shadow-blue-500/${selectedOpacity}` && (
+                          <p className="text-sm text-green-600 mt-2">Copiado!</p>
+                        )}
+                      </button>
+                      <div className="bg-zinc-100 p-3 rounded">
+                        <code className="text-sm">shadow-blue-500/{selectedOpacity}</code>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Valores de Opacidade */}
+            <div className="bg-white rounded-xl shadow-sm border border-zinc-200 overflow-hidden">
+              <div className="px-6 py-4 border-b border-zinc-200">
+                <h3 className="text-lg font-semibold text-zinc-900">Valores de Opacidade Disponíveis</h3>
+              </div>
+              <div className="p-6">
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-3">
+                  {opacityModifiers.map((mod) => (
+                    <button
+                      key={mod.value}
+                      onClick={() => copyToClipboard(`/${mod.value}`)}
+                      className="group text-center"
+                    >
+                      <div 
+                        className="w-full h-20 bg-blue-500 rounded-lg mb-2 transition-all group-hover:scale-105"
+                        style={{ opacity: parseInt(mod.value) / 100 }}
+                      />
+                      <p className="text-sm font-medium text-zinc-900">/{mod.value}</p>
+                      {copiedColor === `/${mod.value}` && (
+                        <p className="text-xs text-green-600">Copiado!</p>
+                      )}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Exemplos Práticos */}
+            <div className="bg-white rounded-xl shadow-sm border border-zinc-200 overflow-hidden">
+              <div className="px-6 py-4 border-b border-zinc-200">
+                <h3 className="text-lg font-semibold text-zinc-900">Exemplos Práticos</h3>
+              </div>
+              <div className="p-6 space-y-6">
+                {/* Overlay */}
+                <div>
+                  <h4 className="font-medium text-zinc-900 mb-3">Overlay com Transparência</h4>
+                  <div className="relative h-48 rounded-lg overflow-hidden">
+                    <img 
+                      src="https://via.placeholder.com/800x400/3b82f6/ffffff?text=Imagem+de+Fundo" 
+                      alt="Background"
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
+                      <p className="text-white text-xl font-bold">bg-black/50</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Gradiente com Opacidade */}
+                <div>
+                  <h4 className="font-medium text-zinc-900 mb-3">Gradiente com Opacidade Variável</h4>
+                  <div className="h-32 rounded-lg bg-gradient-to-r from-blue-500/100 via-blue-500/50 to-blue-500/0">
+                    <div className="h-full flex items-center justify-center">
+                      <p className="text-white font-bold">from-blue-500/100 via-blue-500/50 to-blue-500/0</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Glass Effect */}
+                <div>
+                  <h4 className="font-medium text-zinc-900 mb-3">Efeito Glass (Glassmorphism)</h4>
+                  <div className="relative h-48 rounded-lg overflow-hidden">
+                    <div className="absolute inset-0 bg-gradient-to-br from-purple-500 to-pink-500" />
+                    <div className="absolute inset-0 flex items-center justify-center p-8">
+                      <div className="bg-white/30 backdrop-blur-md border border-white/20 rounded-xl p-6 shadow-xl">
+                        <p className="text-white font-bold">bg-white/30 backdrop-blur-md</p>
+                        <p className="text-white/80 text-sm mt-2">border-white/20</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         ) : (
           <div className="space-y-8">
