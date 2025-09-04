@@ -38,6 +38,19 @@ const documentationPages = [
       'Efeitos hover e micro-interações',
       'Keyframes customizados e utilities Tailwind'
     ]
+  },
+  {
+    title: 'Sistema de Layout',
+    description: 'Sistemas de layout, containers, grids e helpers responsivos',
+    href: '/docs/layout',
+    icon: '📐',
+    items: [
+      'Stack patterns (vertical/horizontal)',
+      'Grid auto-responsivo',
+      'Safe areas para mobile',
+      'Containers e seções',
+      'Espaçamento fluido responsivo'
+    ]
   }
 ];
 
