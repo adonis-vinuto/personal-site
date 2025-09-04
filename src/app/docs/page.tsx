@@ -51,6 +51,18 @@ const documentationPages = [
       'Containers e seções',
       'Espaçamento fluido responsivo'
     ]
+  },
+  {
+    title: 'Estados e Feedback',
+    description: 'Sistema completo de estados visuais, animações e feedback de UI',
+    href: '/docs/states',
+    icon: '✨',
+    items: [
+      'Estados de loading e skeletons',
+      'Feedback de formulários',
+      'Animações e transições',
+      'Indicadores de status e badges'
+    ]
   }
 ];
 
