@@ -63,6 +63,20 @@ const documentationPages = [
       'Animações e transições',
       'Indicadores de status e badges'
     ]
+  },
+  {
+    title: 'Helpers & Utilities',
+    description: 'Classes utilitárias especiais para casos específicos e desenvolvimento',
+    href: '/docs/utilities',
+    icon: '🔧',
+    items: [
+      'Classes de acessibilidade',
+      'Aspect ratios especiais (golden, cinema, phone)',
+      'Safe areas para dispositivos com notch',
+      'Container queries e fluid spacing',
+      'Debug tools e desenvolvimento',
+      'Padrões de scroll e posicionamento'
+    ]
   }
 ];
 
