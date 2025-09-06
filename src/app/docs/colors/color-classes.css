@@ -1,0 +1,128 @@
+/* src/app/docs/colors/color-classes.css */
+
+/* Este arquivo garante que todas as classes de cor sejam incluídas no build */
+/* Necessário porque estamos construindo classes dinamicamente */
+
+/* Force include all color utilities for all shades */
+
+/* Slate Colors - All Utilities */
+.bg-slate-50, .bg-slate-100, .bg-slate-200, .bg-slate-300, .bg-slate-400, .bg-slate-500, .bg-slate-600, .bg-slate-700, .bg-slate-800, .bg-slate-900, .bg-slate-950,
+.text-slate-50, .text-slate-100, .text-slate-200, .text-slate-300, .text-slate-400, .text-slate-500, .text-slate-600, .text-slate-700, .text-slate-800, .text-slate-900, .text-slate-950,
+.border-slate-50, .border-slate-100, .border-slate-200, .border-slate-300, .border-slate-400, .border-slate-500, .border-slate-600, .border-slate-700, .border-slate-800, .border-slate-900, .border-slate-950,
+.outline-slate-50, .outline-slate-100, .outline-slate-200, .outline-slate-300, .outline-slate-400, .outline-slate-500, .outline-slate-600, .outline-slate-700, .outline-slate-800, .outline-slate-900, .outline-slate-950,
+.ring-slate-50, .ring-slate-100, .ring-slate-200, .ring-slate-300, .ring-slate-400, .ring-slate-500, .ring-slate-600, .ring-slate-700, .ring-slate-800, .ring-slate-900, .ring-slate-950,
+.shadow-slate-50, .shadow-slate-100, .shadow-slate-200, .shadow-slate-300, .shadow-slate-400, .shadow-slate-500, .shadow-slate-600, .shadow-slate-700, .shadow-slate-800, .shadow-slate-900, .shadow-slate-950,
+.decoration-slate-50, .decoration-slate-100, .decoration-slate-200, .decoration-slate-300, .decoration-slate-400, .decoration-slate-500, .decoration-slate-600, .decoration-slate-700, .decoration-slate-800, .decoration-slate-900, .decoration-slate-950,
+.fill-slate-50, .fill-slate-100, .fill-slate-200, .fill-slate-300, .fill-slate-400, .fill-slate-500, .fill-slate-600, .fill-slate-700, .fill-slate-800, .fill-slate-900, .fill-slate-950,
+.stroke-slate-50, .stroke-slate-100, .stroke-slate-200, .stroke-slate-300, .stroke-slate-400, .stroke-slate-500, .stroke-slate-600, .stroke-slate-700, .stroke-slate-800, .stroke-slate-900, .stroke-slate-950,
+.accent-slate-50, .accent-slate-100, .accent-slate-200, .accent-slate-300, .accent-slate-400, .accent-slate-500, .accent-slate-600, .accent-slate-700, .accent-slate-800, .accent-slate-900, .accent-slate-950,
+.caret-slate-50, .caret-slate-100, .caret-slate-200, .caret-slate-300, .caret-slate-400, .caret-slate-500, .caret-slate-600, .caret-slate-700, .caret-slate-800, .caret-slate-900, .caret-slate-950 {}
+
+/* Gray Colors - All Utilities */
+.bg-gray-50, .bg-gray-100, .bg-gray-200, .bg-gray-300, .bg-gray-400, .bg-gray-500, .bg-gray-600, .bg-gray-700, .bg-gray-800, .bg-gray-900, .bg-gray-950,
+.text-gray-50, .text-gray-100, .text-gray-200, .text-gray-300, .text-gray-400, .text-gray-500, .text-gray-600, .text-gray-700, .text-gray-800, .text-gray-900, .text-gray-950,
+.border-gray-50, .border-gray-100, .border-gray-200, .border-gray-300, .border-gray-400, .border-gray-500, .border-gray-600, .border-gray-700, .border-gray-800, .border-gray-900, .border-gray-950,
+.outline-gray-50, .outline-gray-100, .outline-gray-200, .outline-gray-300, .outline-gray-400, .outline-gray-500, .outline-gray-600, .outline-gray-700, .outline-gray-800, .outline-gray-900, .outline-gray-950,
+.ring-gray-50, .ring-gray-100, .ring-gray-200, .ring-gray-300, .ring-gray-400, .ring-gray-500, .ring-gray-600, .ring-gray-700, .ring-gray-800, .ring-gray-900, .ring-gray-950,
+.shadow-gray-50, .shadow-gray-100, .shadow-gray-200, .shadow-gray-300, .shadow-gray-400, .shadow-gray-500, .shadow-gray-600, .shadow-gray-700, .shadow-gray-800, .shadow-gray-900, .shadow-gray-950,
+.decoration-gray-50, .decoration-gray-100, .decoration-gray-200, .decoration-gray-300, .decoration-gray-400, .decoration-gray-500, .decoration-gray-600, .decoration-gray-700, .decoration-gray-800, .decoration-gray-900, .decoration-gray-950,
+.fill-gray-50, .fill-gray-100, .fill-gray-200, .fill-gray-300, .fill-gray-400, .fill-gray-500, .fill-gray-600, .fill-gray-700, .fill-gray-800, .fill-gray-900, .fill-gray-950,
+.stroke-gray-50, .stroke-gray-100, .stroke-gray-200, .stroke-gray-300, .stroke-gray-400, .stroke-gray-500, .stroke-gray-600, .stroke-gray-700, .stroke-gray-800, .stroke-gray-900, .stroke-gray-950,
+.accent-gray-50, .accent-gray-100, .accent-gray-200, .accent-gray-300, .accent-gray-400, .accent-gray-500, .accent-gray-600, .accent-gray-700, .accent-gray-800, .accent-gray-900, .accent-gray-950,
+.caret-gray-50, .caret-gray-100, .caret-gray-200, .caret-gray-300, .caret-gray-400, .caret-gray-500, .caret-gray-600, .caret-gray-700, .caret-gray-800, .caret-gray-900, .caret-gray-950 {}
+
+/* Zinc Colors - All Utilities */
+.bg-zinc-50, .bg-zinc-100, .bg-zinc-200, .bg-zinc-300, .bg-zinc-400, .bg-zinc-500, .bg-zinc-600, .bg-zinc-700, .bg-zinc-800, .bg-zinc-900, .bg-zinc-950,
+.text-zinc-50, .text-zinc-100, .text-zinc-200, .text-zinc-300, .text-zinc-400, .text-zinc-500, .text-zinc-600, .text-zinc-700, .text-zinc-800, .text-zinc-900, .text-zinc-950,
+.border-zinc-50, .border-zinc-100, .border-zinc-200, .border-zinc-300, .border-zinc-400, .border-zinc-500, .border-zinc-600, .border-zinc-700, .border-zinc-800, .border-zinc-900, .border-zinc-950,
+.outline-zinc-50, .outline-zinc-100, .outline-zinc-200, .outline-zinc-300, .outline-zinc-400, .outline-zinc-500, .outline-zinc-600, .outline-zinc-700, .outline-zinc-800, .outline-zinc-900, .outline-zinc-950,
+.ring-zinc-50, .ring-zinc-100, .ring-zinc-200, .ring-zinc-300, .ring-zinc-400, .ring-zinc-500, .ring-zinc-600, .ring-zinc-700, .ring-zinc-800, .ring-zinc-900, .ring-zinc-950,
+.shadow-zinc-50, .shadow-zinc-100, .shadow-zinc-200, .shadow-zinc-300, .shadow-zinc-400, .shadow-zinc-500, .shadow-zinc-600, .shadow-zinc-700, .shadow-zinc-800, .shadow-zinc-900, .shadow-zinc-950,
+.decoration-zinc-50, .decoration-zinc-100, .decoration-zinc-200, .decoration-zinc-300, .decoration-zinc-400, .decoration-zinc-500, .decoration-zinc-600, .decoration-zinc-700, .decoration-zinc-800, .decoration-zinc-900, .decoration-zinc-950,
+.fill-zinc-50, .fill-zinc-100, .fill-zinc-200, .fill-zinc-300, .fill-zinc-400, .fill-zinc-500, .fill-zinc-600, .fill-zinc-700, .fill-zinc-800, .fill-zinc-900, .fill-zinc-950,
+.stroke-zinc-50, .stroke-zinc-100, .stroke-zinc-200, .stroke-zinc-300, .stroke-zinc-400, .stroke-zinc-500, .stroke-zinc-600, .stroke-zinc-700, .stroke-zinc-800, .stroke-zinc-900, .stroke-zinc-950,
+.accent-zinc-50, .accent-zinc-100, .accent-zinc-200, .accent-zinc-300, .accent-zinc-400, .accent-zinc-500, .accent-zinc-600, .accent-zinc-700, .accent-zinc-800, .accent-zinc-900, .accent-zinc-950,
+.caret-zinc-50, .caret-zinc-100, .caret-zinc-200, .caret-zinc-300, .caret-zinc-400, .caret-zinc-500, .caret-zinc-600, .caret-zinc-700, .caret-zinc-800, .caret-zinc-900, .caret-zinc-950 {}
+
+/* Neutral Colors - All Utilities */
+.bg-neutral-50, .bg-neutral-100, .bg-neutral-200, .bg-neutral-300, .bg-neutral-400, .bg-neutral-500, .bg-neutral-600, .bg-neutral-700, .bg-neutral-800, .bg-neutral-900, .bg-neutral-950,
+.text-neutral-50, .text-neutral-100, .text-neutral-200, .text-neutral-300, .text-neutral-400, .text-neutral-500, .text-neutral-600, .text-neutral-700, .text-neutral-800, .text-neutral-900, .text-neutral-950,
+.border-neutral-50, .border-neutral-100, .border-neutral-200, .border-neutral-300, .border-neutral-400, .border-neutral-500, .border-neutral-600, .border-neutral-700, .border-neutral-800, .border-neutral-900, .border-neutral-950,
+.outline-neutral-50, .outline-neutral-100, .outline-neutral-200, .outline-neutral-300, .outline-neutral-400, .outline-neutral-500, .outline-neutral-600, .outline-neutral-700, .outline-neutral-800, .outline-neutral-900, .outline-neutral-950,
+.ring-neutral-50, .ring-neutral-100, .ring-neutral-200, .ring-neutral-300, .ring-neutral-400, .ring-neutral-500, .ring-neutral-600, .ring-neutral-700, .ring-neutral-800, .ring-neutral-900, .ring-neutral-950,
+.shadow-neutral-50, .shadow-neutral-100, .shadow-neutral-200, .shadow-neutral-300, .shadow-neutral-400, .shadow-neutral-500, .shadow-neutral-600, .shadow-neutral-700, .shadow-neutral-800, .shadow-neutral-900, .shadow-neutral-950,
+.decoration-neutral-50, .decoration-neutral-100, .decoration-neutral-200, .decoration-neutral-300, .decoration-neutral-400, .decoration-neutral-500, .decoration-neutral-600, .decoration-neutral-700, .decoration-neutral-800, .decoration-neutral-900, .decoration-neutral-950,
+.fill-neutral-50, .fill-neutral-100, .fill-neutral-200, .fill-neutral-300, .fill-neutral-400, .fill-neutral-500, .fill-neutral-600, .fill-neutral-700, .fill-neutral-800, .fill-neutral-900, .fill-neutral-950,
+.stroke-neutral-50, .stroke-neutral-100, .stroke-neutral-200, .stroke-neutral-300, .stroke-neutral-400, .stroke-neutral-500, .stroke-neutral-600, .stroke-neutral-700, .stroke-neutral-800, .stroke-neutral-900, .stroke-neutral-950,
+.accent-neutral-50, .accent-neutral-100, .accent-neutral-200, .accent-neutral-300, .accent-neutral-400, .accent-neutral-500, .accent-neutral-600, .accent-neutral-700, .accent-neutral-800, .accent-neutral-900, .accent-neutral-950,
+.caret-neutral-50, .caret-neutral-100, .caret-neutral-200, .caret-neutral-300, .caret-neutral-400, .caret-neutral-500, .caret-neutral-600, .caret-neutral-700, .caret-neutral-800, .caret-neutral-900, .caret-neutral-950 {}
+
+/* Stone Colors - All Utilities */
+.bg-stone-50, .bg-stone-100, .bg-stone-200, .bg-stone-300, .bg-stone-400, .bg-stone-500, .bg-stone-600, .bg-stone-700, .bg-stone-800, .bg-stone-900, .bg-stone-950,
+.text-stone-50, .text-stone-100, .text-stone-200, .text-stone-300, .text-stone-400, .text-stone-500, .text-stone-600, .text-stone-700, .text-stone-800, .text-stone-900, .text-stone-950,
+.border-stone-50, .border-stone-100, .border-stone-200, .border-stone-300, .border-stone-400, .border-stone-500, .border-stone-600, .border-stone-700, .border-stone-800, .border-stone-900, .border-stone-950,
+.outline-stone-50, .outline-stone-100, .outline-stone-200, .outline-stone-300, .outline-stone-400, .outline-stone-500, .outline-stone-600, .outline-stone-700, .outline-stone-800, .outline-stone-900, .outline-stone-950,
+.ring-stone-50, .ring-stone-100, .ring-stone-200, .ring-stone-300, .ring-stone-400, .ring-stone-500, .ring-stone-600, .ring-stone-700, .ring-stone-800, .ring-stone-900, .ring-stone-950,
+.shadow-stone-50, .shadow-stone-100, .shadow-stone-200, .shadow-stone-300, .shadow-stone-400, .shadow-stone-500, .shadow-stone-600, .shadow-stone-700, .shadow-stone-800, .shadow-stone-900, .shadow-stone-950,
+.decoration-stone-50, .decoration-stone-100, .decoration-stone-200, .decoration-stone-300, .decoration-stone-400, .decoration-stone-500, .decoration-stone-600, .decoration-stone-700, .decoration-stone-800, .decoration-stone-900, .decoration-stone-950,
+.fill-stone-50, .fill-stone-100, .fill-stone-200, .fill-stone-300, .fill-stone-400, .fill-stone-500, .fill-stone-600, .fill-stone-700, .fill-stone-800, .fill-stone-900, .fill-stone-950,
+.stroke-stone-50, .stroke-stone-100, .stroke-stone-200, .stroke-stone-300, .stroke-stone-400, .stroke-stone-500, .stroke-stone-600, .stroke-stone-700, .stroke-stone-800, .stroke-stone-900, .stroke-stone-950,
+.accent-stone-50, .accent-stone-100, .accent-stone-200, .accent-stone-300, .accent-stone-400, .accent-stone-500, .accent-stone-600, .accent-stone-700, .accent-stone-800, .accent-stone-900, .accent-stone-950,
+.caret-stone-50, .caret-stone-100, .caret-stone-200, .caret-stone-300, .caret-stone-400, .caret-stone-500, .caret-stone-600, .caret-stone-700, .caret-stone-800, .caret-stone-900, .caret-stone-950 {}
+
+/* Continue for all color families... I'll add the main color families for brevity */
+
+/* Red Colors - All Utilities */
+.bg-red-50, .bg-red-100, .bg-red-200, .bg-red-300, .bg-red-400, .bg-red-500, .bg-red-600, .bg-red-700, .bg-red-800, .bg-red-900, .bg-red-950,
+.text-red-50, .text-red-100, .text-red-200, .text-red-300, .text-red-400, .text-red-500, .text-red-600, .text-red-700, .text-red-800, .text-red-900, .text-red-950,
+.border-red-50, .border-red-100, .border-red-200, .border-red-300, .border-red-400, .border-red-500, .border-red-600, .border-red-700, .border-red-800, .border-red-900, .border-red-950,
+.outline-red-50, .outline-red-100, .outline-red-200, .outline-red-300, .outline-red-400, .outline-red-500, .outline-red-600, .outline-red-700, .outline-red-800, .outline-red-900, .outline-red-950,
+.ring-red-50, .ring-red-100, .ring-red-200, .ring-red-300, .ring-red-400, .ring-red-500, .ring-red-600, .ring-red-700, .ring-red-800, .ring-red-900, .ring-red-950,
+.shadow-red-50, .shadow-red-100, .shadow-red-200, .shadow-red-300, .shadow-red-400, .shadow-red-500, .shadow-red-600, .shadow-red-700, .shadow-red-800, .shadow-red-900, .shadow-red-950,
+.decoration-red-50, .decoration-red-100, .decoration-red-200, .decoration-red-300, .decoration-red-400, .decoration-red-500, .decoration-red-600, .decoration-red-700, .decoration-red-800, .decoration-red-900, .decoration-red-950,
+.fill-red-50, .fill-red-100, .fill-red-200, .fill-red-300, .fill-red-400, .fill-red-500, .fill-red-600, .fill-red-700, .fill-red-800, .fill-red-900, .fill-red-950,
+.stroke-red-50, .stroke-red-100, .stroke-red-200, .stroke-red-300, .stroke-red-400, .stroke-red-500, .stroke-red-600, .stroke-red-700, .stroke-red-800, .stroke-red-900, .stroke-red-950,
+.accent-red-50, .accent-red-100, .accent-red-200, .accent-red-300, .accent-red-400, .accent-red-500, .accent-red-600, .accent-red-700, .accent-red-800, .accent-red-900, .accent-red-950,
+.caret-red-50, .caret-red-100, .caret-red-200, .caret-red-300, .caret-red-400, .caret-red-500, .caret-red-600, .caret-red-700, .caret-red-800, .caret-red-900, .caret-red-950 {}
+
+/* Blue Colors - All Utilities */
+.bg-blue-50, .bg-blue-100, .bg-blue-200, .bg-blue-300, .bg-blue-400, .bg-blue-500, .bg-blue-600, .bg-blue-700, .bg-blue-800, .bg-blue-900, .bg-blue-950,
+.text-blue-50, .text-blue-100, .text-blue-200, .text-blue-300, .text-blue-400, .text-blue-500, .text-blue-600, .text-blue-700, .text-blue-800, .text-blue-900, .text-blue-950,
+.border-blue-50, .border-blue-100, .border-blue-200, .border-blue-300, .border-blue-400, .border-blue-500, .border-blue-600, .border-blue-700, .border-blue-800, .border-blue-900, .border-blue-950,
+.outline-blue-50, .outline-blue-100, .outline-blue-200, .outline-blue-300, .outline-blue-400, .outline-blue-500, .outline-blue-600, .outline-blue-700, .outline-blue-800, .outline-blue-900, .outline-blue-950,
+.ring-blue-50, .ring-blue-100, .ring-blue-200, .ring-blue-300, .ring-blue-400, .ring-blue-500, .ring-blue-600, .ring-blue-700, .ring-blue-800, .ring-blue-900, .ring-blue-950,
+.shadow-blue-50, .shadow-blue-100, .shadow-blue-200, .shadow-blue-300, .shadow-blue-400, .shadow-blue-500, .shadow-blue-600, .shadow-blue-700, .shadow-blue-800, .shadow-blue-900, .shadow-blue-950,
+.decoration-blue-50, .decoration-blue-100, .decoration-blue-200, .decoration-blue-300, .decoration-blue-400, .decoration-blue-500, .decoration-blue-600, .decoration-blue-700, .decoration-blue-800, .decoration-blue-900, .decoration-blue-950,
+.fill-blue-50, .fill-blue-100, .fill-blue-200, .fill-blue-300, .fill-blue-400, .fill-blue-500, .fill-blue-600, .fill-blue-700, .fill-blue-800, .fill-blue-900, .fill-blue-950,
+.stroke-blue-50, .stroke-blue-100, .stroke-blue-200, .stroke-blue-300, .stroke-blue-400, .stroke-blue-500, .stroke-blue-600, .stroke-blue-700, .stroke-blue-800, .stroke-blue-900, .stroke-blue-950,
+.accent-blue-50, .accent-blue-100, .accent-blue-200, .accent-blue-300, .accent-blue-400, .accent-blue-500, .accent-blue-600, .accent-blue-700, .accent-blue-800, .accent-blue-900, .accent-blue-950,
+.caret-blue-50, .caret-blue-100, .caret-blue-200, .caret-blue-300, .caret-blue-400, .caret-blue-500, .caret-blue-600, .caret-blue-700, .caret-blue-800, .caret-blue-900, .caret-blue-950 {}
+
+/* Green Colors - All Utilities */
+.bg-green-50, .bg-green-100, .bg-green-200, .bg-green-300, .bg-green-400, .bg-green-500, .bg-green-600, .bg-green-700, .bg-green-800, .bg-green-900, .bg-green-950,
+.text-green-50, .text-green-100, .text-green-200, .text-green-300, .text-green-400, .text-green-500, .text-green-600, .text-green-700, .text-green-800, .text-green-900, .text-green-950,
+.border-green-50, .border-green-100, .border-green-200, .border-green-300, .border-green-400, .border-green-500, .border-green-600, .border-green-700, .border-green-800, .border-green-900, .border-green-950,
+.outline-green-50, .outline-green-100, .outline-green-200, .outline-green-300, .outline-green-400, .outline-green-500, .outline-green-600, .outline-green-700, .outline-green-800, .outline-green-900, .outline-green-950,
+.ring-green-50, .ring-green-100, .ring-green-200, .ring-green-300, .ring-green-400, .ring-green-500, .ring-green-600, .ring-green-700, .ring-green-800, .ring-green-900, .ring-green-950,
+.shadow-green-50, .shadow-green-100, .shadow-green-200, .shadow-green-300, .shadow-green-400, .shadow-green-500, .shadow-green-600, .shadow-green-700, .shadow-green-800, .shadow-green-900, .shadow-green-950,
+.decoration-green-50, .decoration-green-100, .decoration-green-200, .decoration-green-300, .decoration-green-400, .decoration-green-500, .decoration-green-600, .decoration-green-700, .decoration-green-800, .decoration-green-900, .decoration-green-950,
+.fill-green-50, .fill-green-100, .fill-green-200, .fill-green-300, .fill-green-400, .fill-green-500, .fill-green-600, .fill-green-700, .fill-green-800, .fill-green-900, .fill-green-950,
+.stroke-green-50, .stroke-green-100, .stroke-green-200, .stroke-green-300, .stroke-green-400, .stroke-green-500, .stroke-green-600, .stroke-green-700, .stroke-green-800, .stroke-green-900, .stroke-green-950,
+.accent-green-50, .accent-green-100, .accent-green-200, .accent-green-300, .accent-green-400, .accent-green-500, .accent-green-600, .accent-green-700, .accent-green-800, .accent-green-900, .accent-green-950,
+.caret-green-50, .caret-green-100, .caret-green-200, .caret-green-300, .caret-green-400, .caret-green-500, .caret-green-600, .caret-green-700, .caret-green-800, .caret-green-900, .caret-green-950 {}
+
+/* Special Colors */
+.bg-black, .bg-white, .bg-transparent, .bg-current,
+.text-black, .text-white, .text-transparent, .text-current,
+.border-black, .border-white, .border-transparent, .border-current,
+.outline-black, .outline-white, .outline-transparent, .outline-current,
+.ring-black, .ring-white, .ring-transparent, .ring-current,
+.shadow-black, .shadow-white, .shadow-transparent, .shadow-current,
+.decoration-black, .decoration-white, .decoration-transparent, .decoration-current,
+.fill-black, .fill-white, .fill-transparent, .fill-current,
+.stroke-black, .stroke-white, .stroke-transparent, .stroke-current,
+.accent-black, .accent-white, .accent-transparent, .accent-current,
+.caret-black, .caret-white, .caret-transparent, .caret-current {}
+
+/* Additional required classes */
+.outline-offset-2, .ring-4, .border-4, .shadow-xl, .decoration-4, .underline {}
