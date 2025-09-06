@@ -80,7 +80,7 @@ const responsiveHelpers = {
 
 export default function LayoutDocumentation() {
   const [activeTab, setActiveTab] = useState<'layout' | 'responsive' | 'examples'>('layout');
-  const { copyToClipboard, copiedText } = useCopyToClipboard()
+  const { copyToClipboard, copiedText } = useCopyToClipboard();
   
 
   return (

@@ -172,7 +172,7 @@ const customTypography = {
 export default function TypographyDocumentation() {
   const [activeTab, setActiveTab] = useState<'sizes' | 'styles' | 'custom'>('sizes');
   const [sampleText, setSampleText] = useState('The quick brown fox jumps over the lazy dog');
-  const { copyToClipboard, copiedText } = useCopyToClipboard()
+  const { copyToClipboard, copiedText } = useCopyToClipboard();
 
   return (
     <div className="min-h-screen bg-zinc-50">

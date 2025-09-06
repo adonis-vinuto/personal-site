@@ -329,7 +329,7 @@ const customKeyframes = [
 export default function AnimationsDocumentation() {
   const [activeTab, setActiveTab] = useState<'custom' | 'tailwind' | 'keyframes'>('custom');
   const [triggerAnimation, setTriggerAnimation] = useState<string | null>(null);
-  const { copyToClipboard, copiedText } = useCopyToClipboard()
+  const { copyToClipboard, copiedText } = useCopyToClipboard();
   
 
   const restartAnimation = (className: string) => {

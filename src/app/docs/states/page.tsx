@@ -200,7 +200,7 @@ const animations = {
 export default function StatesDocumentation() {
   const [activeTab, setActiveTab] = useState<'states' | 'animations'>('states');
   const [triggerAnimation, setTriggerAnimation] = useState<string>('');
-  const { copyToClipboard, copiedText } = useCopyToClipboard()
+  const { copyToClipboard, copiedText } = useCopyToClipboard();
 
 
   const renderExample = (exampleType: string) => {

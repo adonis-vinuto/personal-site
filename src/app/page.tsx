@@ -1,7 +1,5 @@
 'use client';
 
-import { Button } from '@/components/button';
-
 export default function Home() {
   return (
     <main className="min-h-screen">
@@ -15,8 +13,16 @@ export default function Home() {
         </p>
         
         <div className="flex gap-4 flex-wrap">
-          <Button size="lg">Ver Projetos</Button>
-          <Button variant="outline" size="lg">Contato</Button>
+          {/* Substituindo Button size="lg" */}
+          <button className="h-12 px-6 text-base font-medium bg-black text-white hover:bg-gray-800 rounded transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50">
+            Ver Projetos
+          </button>
+          
+          {/* Substituindo Button variant="outline" size="lg" */}
+          <button className="h-12 px-6 text-base font-medium border-2 border-gray-300 bg-transparent hover:bg-gray-50 rounded transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-400 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50">
+            Contato
+          </button>
+          
           <a href="/docs" className="inline-flex items-center gap-2 px-6 h-12 text-base font-medium text-zinc-700 hover:text-zinc-900 transition-colors">
             📚 Ver Documentação CSS
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
