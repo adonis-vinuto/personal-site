@@ -1,8 +1,8 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useCopyToClipboard } from '@/hooks/useCopyToClipboard';
 
-// Categorias de animações disponíveis
 const animationCategories = {
   entrances: {
     title: 'Animações de Entrada',
@@ -328,40 +328,9 @@ const customKeyframes = [
 
 export default function AnimationsDocumentation() {
   const [activeTab, setActiveTab] = useState<'custom' | 'tailwind' | 'keyframes'>('custom');
-  const [copiedClass, setCopiedClass] = useState<string | null>(null);
   const [triggerAnimation, setTriggerAnimation] = useState<string | null>(null);
-
-  const copyToClipboard = async (text: string) => {
-    try {
-      if (navigator.clipboard && window.isSecureContext) {
-        await navigator.clipboard.writeText(text);
-      } else {
-        const textArea = document.createElement('textarea');
-        textArea.value = text;
-        textArea.style.position = 'fixed';
-        textArea.style.left = '-999999px';
-        textArea.style.top = '-999999px';
-        document.body.appendChild(textArea);
-        textArea.focus();
-        textArea.select();
-        
-        try {
-          document.execCommand('copy');
-        } catch (err) {
-          console.error('Fallback copy failed:', err);
-        } finally {
-          textArea.remove();
-        }
-      }
-      
-      setCopiedClass(text);
-      setTimeout(() => setCopiedClass(null), 2000);
-    } catch (err) {
-      console.error('Failed to copy:', err);
-      setCopiedClass(text);
-      setTimeout(() => setCopiedClass(null), 2000);
-    }
-  };
+  const { copyToClipboard, copiedText } = useCopyToClipboard()
+  
 
   const restartAnimation = (className: string) => {
     setTriggerAnimation(className);
@@ -545,7 +514,7 @@ export default function AnimationsDocumentation() {
                               <h3 className="font-semibold text-zinc-900">{item.label}</h3>
                               <p className="text-sm text-zinc-600 mt-1">{item.description}</p>
                             </div>
-                            {copiedClass === item.name && (
+                            {copiedText === item.name && (
                               <span className="text-sm text-green-600">Copiado!</span>
                             )}
                           </div>
@@ -614,7 +583,7 @@ export default function AnimationsDocumentation() {
                         {item.class}
                       </code>
                       <p className="text-xs text-zinc-500 mt-2">{item.value}</p>
-                      {copiedClass === item.class && (
+                      {copiedText === item.class && (
                         <p className="text-xs text-green-600 mt-1">Copiado!</p>
                       )}
                     </button>
@@ -641,7 +610,7 @@ export default function AnimationsDocumentation() {
                         {item.class}
                       </code>
                       <p className="text-xs text-zinc-500 mt-2">{item.value}</p>
-                      {copiedClass === item.class && (
+                      {copiedText === item.class && (
                         <p className="text-xs text-green-600 mt-1">Copiado!</p>
                       )}
                     </button>
@@ -668,7 +637,7 @@ export default function AnimationsDocumentation() {
                         {item.class}
                       </code>
                       <p className="text-xs text-zinc-500 mt-2">{item.value}</p>
-                      {copiedClass === item.class && (
+                      {copiedText === item.class && (
                         <p className="text-xs text-green-600 mt-1">Copiado!</p>
                       )}
                     </button>
@@ -691,7 +660,7 @@ export default function AnimationsDocumentation() {
                   >
                     <code className="text-sm font-mono bg-zinc-100 px-2 py-1 rounded">transition-all</code>
                     <p className="text-sm text-zinc-600 mt-2">Anima todas as propriedades</p>
-                    {copiedClass === 'transition-all' && (
+                    {copiedText === 'transition-all' && (
                       <p className="text-xs text-green-600 mt-1">Copiado!</p>
                     )}
                   </button>
@@ -702,7 +671,7 @@ export default function AnimationsDocumentation() {
                   >
                     <code className="text-sm font-mono bg-zinc-100 px-2 py-1 rounded">transition-colors</code>
                     <p className="text-sm text-zinc-600 mt-2">Anima cores (color, background, border)</p>
-                    {copiedClass === 'transition-colors' && (
+                    {copiedText === 'transition-colors' && (
                       <p className="text-xs text-green-600 mt-1">Copiado!</p>
                     )}
                   </button>
@@ -713,7 +682,7 @@ export default function AnimationsDocumentation() {
                   >
                     <code className="text-sm font-mono bg-zinc-100 px-2 py-1 rounded">transition-opacity</code>
                     <p className="text-sm text-zinc-600 mt-2">Anima apenas opacidade</p>
-                    {copiedClass === 'transition-opacity' && (
+                    {copiedText === 'transition-opacity' && (
                       <p className="text-xs text-green-600 mt-1">Copiado!</p>
                     )}
                   </button>
@@ -724,7 +693,7 @@ export default function AnimationsDocumentation() {
                   >
                     <code className="text-sm font-mono bg-zinc-100 px-2 py-1 rounded">transition-transform</code>
                     <p className="text-sm text-zinc-600 mt-2">Anima transform (scale, rotate, translate)</p>
-                    {copiedClass === 'transition-transform' && (
+                    {copiedText === 'transition-transform' && (
                       <p className="text-xs text-green-600 mt-1">Copiado!</p>
                     )}
                   </button>
@@ -735,7 +704,7 @@ export default function AnimationsDocumentation() {
                   >
                     <code className="text-sm font-mono bg-zinc-100 px-2 py-1 rounded">transition-none</code>
                     <p className="text-sm text-zinc-600 mt-2">Remove todas as transições</p>
-                    {copiedClass === 'transition-none' && (
+                    {copiedText === 'transition-none' && (
                       <p className="text-xs text-green-600 mt-1">Copiado!</p>
                     )}
                   </button>
@@ -746,7 +715,7 @@ export default function AnimationsDocumentation() {
                   >
                     <code className="text-sm font-mono bg-zinc-100 px-2 py-1 rounded">transition-shadow</code>
                     <p className="text-sm text-zinc-600 mt-2">Anima box-shadow</p>
-                    {copiedClass === 'transition-shadow' && (
+                    {copiedText === 'transition-shadow' && (
                       <p className="text-xs text-green-600 mt-1">Copiado!</p>
                     )}
                   </button>
@@ -778,7 +747,7 @@ export default function AnimationsDocumentation() {
                           <h3 className="font-semibold text-zinc-900 font-mono">@keyframes {keyframe.name}</h3>
                           <p className="text-sm text-zinc-600 mt-1">{keyframe.description}</p>
                         </div>
-                        {copiedClass === keyframe.css && (
+                        {copiedText === keyframe.css && (
                           <span className="text-sm text-green-600">Copiado!</span>
                         )}
                       </div>
@@ -807,19 +776,20 @@ export default function AnimationsDocumentation() {
                   
                   <pre className="p-4 bg-zinc-900 text-zinc-100 rounded overflow-x-auto">
                     <code>{`// Usando classes prontas
-<div className="animate-in">Fade scale in</div>
-<div className="animate-slide-up">Slide up</div>
-<div className="animate-shake">Shake</div>
+                      <div className="animate-in">Fade scale in</div>
+                      <div className="animate-slide-up">Slide up</div>
+                      <div className="animate-shake">Shake</div>
 
-// Criando nova animação com keyframe existente
-.minha-animacao {
-  animation: fadeScaleIn 0.5s ease-out;
-}
+                      // Criando nova animação com keyframe existente
+                      .minha-animacao {
+                        animation: fadeScaleIn 0.5s ease-out;
+                      }
 
-// Combinando com utilities do Tailwind
-<div className="animate-in duration-500 delay-200">
-  Animação customizada
-</div>`}</code>
+                      // Combinando com utilities do Tailwind
+                      <div className="animate-in duration-500 delay-200">
+                        Animação customizada
+                      </div>`}
+                    </code>
                   </pre>
 
                   <h3 className="text-lg font-semibold text-zinc-900 mt-6 mb-3">Classes com animações infinitas:</h3>

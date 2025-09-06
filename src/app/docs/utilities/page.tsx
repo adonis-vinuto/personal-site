@@ -1,8 +1,8 @@
 'use client';
 
 import { useState } from 'react';
+import { useCopyToClipboard } from '@/hooks/useCopyToClipboard';
 
-// Categorias de utilities
 const utilityCategories = {
   accessibility: {
     title: 'Acessibilidade',
@@ -366,40 +366,8 @@ const tailwindUtilities = {
 
 export default function UtilitiesDocumentation() {
   const [activeTab, setActiveTab] = useState<'custom' | 'tailwind'>('custom');
-  const [copiedClass, setCopiedClass] = useState<string | null>(null);
   const [expandedCode, setExpandedCode] = useState<string | null>(null);
-
-  const copyToClipboard = async (text: string) => {
-    try {
-      if (navigator.clipboard && window.isSecureContext) {
-        await navigator.clipboard.writeText(text);
-      } else {
-        const textArea = document.createElement('textarea');
-        textArea.value = text;
-        textArea.style.position = 'fixed';
-        textArea.style.left = '-999999px';
-        textArea.style.top = '-999999px';
-        document.body.appendChild(textArea);
-        textArea.focus();
-        textArea.select();
-        
-        try {
-          document.execCommand('copy');
-        } catch (err) {
-          console.error('Fallback copy failed:', err);
-        } finally {
-          textArea.remove();
-        }
-      }
-      
-      setCopiedClass(text);
-      setTimeout(() => setCopiedClass(null), 2000);
-    } catch (err) {
-      console.error('Failed to copy:', err);
-      setCopiedClass(text);
-      setTimeout(() => setCopiedClass(null), 2000);
-    }
-  };
+  const { copyToClipboard, copiedText } = useCopyToClipboard();
 
   const renderExample = (exampleType: string) => {
     switch (exampleType) {
@@ -725,7 +693,7 @@ export default function UtilitiesDocumentation() {
                                 .{utility.name}
                               </span>
                               <span className="text-sm text-zinc-600">{utility.description}</span>
-                              {copiedClass === utility.name && (
+                              {copiedText === utility.name && (
                                 <span className="text-sm text-green-600">Copiado!</span>
                               )}
                             </button>
@@ -795,7 +763,7 @@ export default function UtilitiesDocumentation() {
                         <span className="font-mono text-sm bg-zinc-100 px-2 py-1 rounded">
                           {utility.class}
                         </span>
-                        {copiedClass === utility.class && (
+                        {copiedText === utility.class && (
                           <span className="text-xs text-green-600">✓</span>
                         )}
                       </div>
@@ -823,7 +791,7 @@ export default function UtilitiesDocumentation() {
                         <span className="font-mono text-sm bg-zinc-100 px-2 py-1 rounded">
                           {utility.class}
                         </span>
-                        {copiedClass === utility.class && (
+                        {copiedText === utility.class && (
                           <span className="text-xs text-green-600">✓</span>
                         )}
                       </div>
@@ -851,7 +819,7 @@ export default function UtilitiesDocumentation() {
                         <span className="font-mono text-sm bg-zinc-100 px-2 py-1 rounded">
                           {utility.class}
                         </span>
-                        {copiedClass === utility.class && (
+                        {copiedText === utility.class && (
                           <span className="text-xs text-green-600">✓</span>
                         )}
                       </div>
@@ -879,7 +847,7 @@ export default function UtilitiesDocumentation() {
                         <span className="font-mono text-sm bg-zinc-100 px-2 py-1 rounded">
                           {utility.class}
                         </span>
-                        {copiedClass === utility.class && (
+                        {copiedText === utility.class && (
                           <span className="text-xs text-green-600">✓</span>
                         )}
                       </div>
@@ -907,7 +875,7 @@ export default function UtilitiesDocumentation() {
                         <span className="font-mono text-sm bg-zinc-100 px-2 py-1 rounded mb-1">
                           {utility.class}
                         </span>
-                        {copiedClass === utility.class && (
+                        {copiedText === utility.class && (
                           <span className="text-xs text-green-600">✓</span>
                         )}
                         <p className="text-xs text-zinc-500">{utility.description}</p>

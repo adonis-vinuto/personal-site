@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useCopyToClipboard } from '@/hooks/useCopyToClipboard';
 
 // Mapeamento completo das cores do Tailwind para evitar classes dinâmicas
 const colorClasses: Record<string, Record<string, string>> = {
@@ -453,44 +454,9 @@ const opacityModifiers = [
 
 export default function ColorsPage() {
   const [activeTab, setActiveTab] = useState<'tailwind' | 'utilities' | 'opacity' | 'custom'>('tailwind');
-  const [copiedColor, setCopiedColor] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedOpacity, setSelectedOpacity] = useState('50');
-
-  const copyToClipboard = async (text: string) => {
-    try {
-      // Tenta usar a API moderna primeiro
-      if (navigator.clipboard && window.isSecureContext) {
-        await navigator.clipboard.writeText(text);
-      } else {
-        // Fallback para método antigo
-        const textArea = document.createElement('textarea');
-        textArea.value = text;
-        textArea.style.position = 'fixed';
-        textArea.style.left = '-999999px';
-        textArea.style.top = '-999999px';
-        document.body.appendChild(textArea);
-        textArea.focus();
-        textArea.select();
-        
-        try {
-          document.execCommand('copy');
-        } catch (err) {
-          console.error('Fallback copy failed:', err);
-        } finally {
-          textArea.remove();
-        }
-      }
-      
-      setCopiedColor(text);
-      setTimeout(() => setCopiedColor(null), 2000);
-    } catch (err) {
-      console.error('Failed to copy:', err);
-      // Ainda mostra feedback visual mesmo se falhar
-      setCopiedColor(text);
-      setTimeout(() => setCopiedColor(null), 2000);
-    }
-  };
+  const { copyToClipboard, copiedText } = useCopyToClipboard(2000);
 
   const filteredColors = Object.entries(colorClasses).filter(([name]) =>
     name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -589,7 +555,7 @@ export default function ColorsPage() {
                           <div
                             className={`${className} h-20 rounded-lg shadow-sm group-hover:shadow-md transition-shadow relative overflow-hidden`}
                           >
-                            {copiedColor === className && (
+                            {copiedText === className && (
                               <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
                                 <span className="text-white text-sm font-medium">Copiado!</span>
                               </div>
@@ -664,7 +630,7 @@ export default function ColorsPage() {
                             className="font-mono text-sm text-zinc-900 hover:text-blue-600 transition-colors"
                           >
                             {utility.utility}
-                            {copiedColor === utility.utility && (
+                            {copiedText === utility.utility && (
                               <span className="ml-2 text-xs text-green-600">Copiado!</span>
                             )}
                           </button>
@@ -855,7 +821,7 @@ export default function ColorsPage() {
                             bg-blue-500/{selectedOpacity}
                           </p>
                         </div>
-                        {copiedColor === `bg-blue-500/${selectedOpacity}` && (
+                        {copiedText === `bg-blue-500/${selectedOpacity}` && (
                           <p className="text-sm text-green-600 mt-2">Copiado!</p>
                         )}
                       </button>
@@ -881,7 +847,7 @@ export default function ColorsPage() {
                             Texto com Opacidade
                           </p>
                         </div>
-                        {copiedColor === `text-blue-500/${selectedOpacity}` && (
+                        {copiedText === `text-blue-500/${selectedOpacity}` && (
                           <p className="text-sm text-green-600 mt-2">Copiado!</p>
                         )}
                       </button>
@@ -907,7 +873,7 @@ export default function ColorsPage() {
                             border-blue-500/{selectedOpacity}
                           </p>
                         </div>
-                        {copiedColor === `border-blue-500/${selectedOpacity}` && (
+                        {copiedText === `border-blue-500/${selectedOpacity}` && (
                           <p className="text-sm text-green-600 mt-2">Copiado!</p>
                         )}
                       </button>
@@ -935,7 +901,7 @@ export default function ColorsPage() {
                             shadow-blue-500/{selectedOpacity}
                           </p>
                         </div>
-                        {copiedColor === `shadow-blue-500/${selectedOpacity}` && (
+                        {copiedText === `shadow-blue-500/${selectedOpacity}` && (
                           <p className="text-sm text-green-600 mt-2">Copiado!</p>
                         )}
                       </button>
@@ -966,7 +932,7 @@ export default function ColorsPage() {
                         style={{ opacity: parseInt(mod.value) / 100 }}
                       />
                       <p className="text-sm font-medium text-zinc-900">/{mod.value}</p>
-                      {copiedColor === `/${mod.value}` && (
+                      {copiedText === `/${mod.value}` && (
                         <p className="text-xs text-green-600">Copiado!</p>
                       )}
                     </button>
@@ -1044,7 +1010,7 @@ export default function ColorsPage() {
                       <div className="text-left flex-1">
                         <p className="font-semibold text-zinc-900">{token.label}</p>
                         <p className="text-sm text-zinc-600 font-mono">{token.name}</p>
-                        {copiedColor === token.name && (
+                        {copiedText === token.name && (
                           <p className="text-sm text-green-600 mt-1">Copiado!</p>
                         )}
                       </div>
@@ -1073,7 +1039,7 @@ export default function ColorsPage() {
                       <div className="text-left flex-1">
                         <p className="font-semibold text-zinc-900">{token.label}</p>
                         <p className="text-sm text-zinc-600 font-mono">{token.name}</p>
-                        {copiedColor === token.name && (
+                        {copiedText === token.name && (
                           <p className="text-sm text-green-600 mt-1">Copiado!</p>
                         )}
                       </div>
@@ -1103,7 +1069,7 @@ export default function ColorsPage() {
                       <div className="text-left flex-1">
                         <p className="font-semibold text-zinc-900">{token.label}</p>
                         <p className="text-sm text-zinc-600 font-mono">{token.name}</p>
-                        {copiedColor === token.name && (
+                        {copiedText === token.name && (
                           <p className="text-sm text-green-600 mt-1">Copiado!</p>
                         )}
                       </div>
@@ -1133,7 +1099,7 @@ export default function ColorsPage() {
                       <div className="text-left flex-1">
                         <p className="font-semibold text-zinc-900">{token.label}</p>
                         <p className="text-sm text-zinc-600 font-mono">{token.name}</p>
-                        {copiedColor === token.name && (
+                        {copiedText === token.name && (
                           <p className="text-sm text-green-600 mt-1">Copiado!</p>
                         )}
                       </div>
@@ -1165,7 +1131,7 @@ export default function ColorsPage() {
                               className={`${item.class} h-16 rounded-lg shadow-sm group-hover:shadow-md transition-shadow`}
                             />
                             <p className="text-xs text-zinc-600 font-mono mt-2">{item.shade}</p>
-                            {copiedColor === varName && (
+                            {copiedText === varName && (
                               <p className="text-xs text-green-600">Copiado!</p>
                             )}
                           </button>

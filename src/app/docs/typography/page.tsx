@@ -1,8 +1,8 @@
 'use client';
 
 import { useState } from 'react';
+import { useCopyToClipboard } from '@/hooks/useCopyToClipboard';
 
-// Configurações de tipografia do Tailwind 4
 const fontSizes = {
   'text-xs': { size: '0.75rem', lineHeight: '1rem', label: 'Extra Small' },
   'text-sm': { size: '0.875rem', lineHeight: '1.25rem', label: 'Small' },
@@ -172,39 +172,7 @@ const customTypography = {
 export default function TypographyDocumentation() {
   const [activeTab, setActiveTab] = useState<'sizes' | 'styles' | 'custom'>('sizes');
   const [sampleText, setSampleText] = useState('The quick brown fox jumps over the lazy dog');
-  const [copiedClass, setCopiedClass] = useState<string | null>(null);
-
-  const copyToClipboard = async (text: string) => {
-    try {
-      if (navigator.clipboard && window.isSecureContext) {
-        await navigator.clipboard.writeText(text);
-      } else {
-        const textArea = document.createElement('textarea');
-        textArea.value = text;
-        textArea.style.position = 'fixed';
-        textArea.style.left = '-999999px';
-        textArea.style.top = '-999999px';
-        document.body.appendChild(textArea);
-        textArea.focus();
-        textArea.select();
-        
-        try {
-          document.execCommand('copy');
-        } catch (err) {
-          console.error('Fallback copy failed:', err);
-        } finally {
-          textArea.remove();
-        }
-      }
-      
-      setCopiedClass(text);
-      setTimeout(() => setCopiedClass(null), 2000);
-    } catch (err) {
-      console.error('Failed to copy:', err);
-      setCopiedClass(text);
-      setTimeout(() => setCopiedClass(null), 2000);
-    }
-  };
+  const { copyToClipboard, copiedText } = useCopyToClipboard()
 
   return (
     <div className="min-h-screen bg-zinc-50">
@@ -291,7 +259,7 @@ export default function TypographyDocumentation() {
                           <span className="font-mono text-sm bg-zinc-100 px-2 py-1 rounded">
                             {className}
                           </span>
-                          {copiedClass === className && (
+                          {copiedText === className && (
                             <span className="text-sm text-green-600">Copiado!</span>
                           )}
                         </div>
@@ -332,7 +300,7 @@ export default function TypographyDocumentation() {
                         <span className="text-xs text-zinc-500">
                           {config.label} ({config.weight})
                         </span>
-                        {copiedClass === className && (
+                        {copiedText === className && (
                           <span className="text-sm text-green-600">Copiado!</span>
                         )}
                       </div>
@@ -362,7 +330,7 @@ export default function TypographyDocumentation() {
                         {className}
                       </span>
                       <span className="text-xs text-zinc-500">{label}</span>
-                      {copiedClass === className && (
+                      {copiedText === className && (
                         <span className="text-sm text-green-600">Copiado!</span>
                       )}
                     </div>
@@ -393,7 +361,7 @@ export default function TypographyDocumentation() {
                       <span className="text-xs text-zinc-500">
                         {config.label} ({config.value})
                       </span>
-                      {copiedClass === className && (
+                      {copiedText === className && (
                         <span className="text-sm text-green-600">Copiado!</span>
                       )}
                     </div>
@@ -425,7 +393,7 @@ export default function TypographyDocumentation() {
                       <span className="text-xs text-zinc-500">
                         {config.label} ({config.value})
                       </span>
-                      {copiedClass === className && (
+                      {copiedText === className && (
                         <span className="text-sm text-green-600">Copiado!</span>
                       )}
                     </div>
@@ -453,7 +421,7 @@ export default function TypographyDocumentation() {
                       <span className="font-mono text-sm bg-zinc-100 px-2 py-1 rounded">
                         {className}
                       </span>
-                      {copiedClass === className && (
+                      {copiedText === className && (
                         <span className="text-sm text-green-600">Copiado!</span>
                       )}
                     </div>
@@ -482,7 +450,7 @@ export default function TypographyDocumentation() {
                       <span className="font-mono text-sm bg-zinc-100 px-2 py-1 rounded">
                         {className}
                       </span>
-                      {copiedClass === className && (
+                      {copiedText === className && (
                         <span className="text-sm text-green-600">Copiado!</span>
                       )}
                     </div>
@@ -515,7 +483,7 @@ export default function TypographyDocumentation() {
                             {className}
                           </span>
                           <span className="text-xs text-zinc-500">{label}</span>
-                          {copiedClass === className && (
+                          {copiedText === className && (
                             <span className="text-sm text-green-600">Copiado!</span>
                           )}
                         </div>
@@ -542,7 +510,7 @@ export default function TypographyDocumentation() {
                             {className}
                           </span>
                           <span className="text-xs text-zinc-500">{label}</span>
-                          {copiedClass === className && (
+                          {copiedText === className && (
                             <span className="text-sm text-green-600">Copiado!</span>
                           )}
                         </div>
@@ -568,7 +536,7 @@ export default function TypographyDocumentation() {
                           <span className="font-mono text-xs bg-zinc-100 px-1.5 py-0.5 rounded">
                             {className}
                           </span>
-                          {copiedClass === className && (
+                          {copiedText === className && (
                             <span className="text-xs text-green-600">✓</span>
                           )}
                         </div>
@@ -594,7 +562,7 @@ export default function TypographyDocumentation() {
                           <span className="font-mono text-xs bg-zinc-100 px-1.5 py-0.5 rounded">
                             {className}
                           </span>
-                          {copiedClass === className && (
+                          {copiedText === className && (
                             <span className="text-xs text-green-600">✓</span>
                           )}
                         </div>
@@ -627,7 +595,7 @@ export default function TypographyDocumentation() {
                             {className}
                           </span>
                           <span className="text-sm font-medium">{label}</span>
-                          {copiedClass === className && (
+                          {copiedText === className && (
                             <span className="text-sm text-green-600">Copiado!</span>
                           )}
                         </div>
@@ -666,7 +634,7 @@ export default function TypographyDocumentation() {
                           </span>
                           <span className="text-sm font-medium">{label}</span>
                           <span className="text-xs text-zinc-500">- {description}</span>
-                          {copiedClass === className && (
+                          {copiedText === className && (
                             <span className="text-sm text-green-600">Copiado!</span>
                           )}
                         </div>
@@ -697,7 +665,7 @@ export default function TypographyDocumentation() {
                           </span>
                           <span className="text-sm font-medium">{label}</span>
                           <span className="text-xs text-zinc-500">- {description}</span>
-                          {copiedClass === className && (
+                          {copiedText === className && (
                             <span className="text-sm text-green-600">Copiado!</span>
                           )}
                         </div>
@@ -734,7 +702,7 @@ export default function TypographyDocumentation() {
                             {className}
                           </span>
                           <span className="text-xs text-zinc-500">{label}</span>
-                          {copiedClass === className && (
+                          {copiedText === className && (
                             <span className="text-sm text-green-600">✓</span>
                           )}
                         </div>
@@ -763,7 +731,7 @@ export default function TypographyDocumentation() {
                             {className}
                           </span>
                           <span className="text-xs text-zinc-500">{label}</span>
-                          {copiedClass === className && (
+                          {copiedText === className && (
                             <span className="text-sm text-green-600">✓</span>
                           )}
                         </div>
@@ -797,7 +765,7 @@ export default function TypographyDocumentation() {
                         {className}
                       </span>
                       <span className="text-xs text-zinc-500">{label}</span>
-                      {copiedClass === className && (
+                      {copiedText === className && (
                         <span className="text-sm text-green-600">Copiado!</span>
                       )}
                     </div>
@@ -831,7 +799,7 @@ export default function TypographyDocumentation() {
                         {className}
                       </span>
                       <span className="text-sm text-zinc-600">{label}</span>
-                      {copiedClass === className && (
+                      {copiedText === className && (
                         <span className="text-sm text-green-600">Copiado!</span>
                       )}
                     </div>
@@ -915,7 +883,7 @@ export default function TypographyDocumentation() {
                           {className}
                         </span>
                         <span className="text-sm text-zinc-600">{label}</span>
-                        {copiedClass === className && (
+                        {copiedText === className && (
                           <span className="text-sm text-green-600">Copiado!</span>
                         )}
                       </div>
@@ -999,7 +967,7 @@ export default function TypographyDocumentation() {
                           {className}
                         </span>
                         <span className="text-sm text-zinc-600">{label}</span>
-                        {copiedClass === className && (
+                        {copiedText === className && (
                           <span className="text-sm text-green-600">Copiado!</span>
                         )}
                       </div>

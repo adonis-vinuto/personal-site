@@ -1,8 +1,8 @@
 'use client';
 
 import { useState } from 'react';
+import { useCopyToClipboard } from '@/hooks/useCopyToClipboard';
 
-// Categorias de estados
 const stateCategories = {
   loading: {
     title: 'Estados de Loading',
@@ -199,40 +199,9 @@ const animations = {
 
 export default function StatesDocumentation() {
   const [activeTab, setActiveTab] = useState<'states' | 'animations'>('states');
-  const [copiedClass, setCopiedClass] = useState<string | null>(null);
   const [triggerAnimation, setTriggerAnimation] = useState<string>('');
+  const { copyToClipboard, copiedText } = useCopyToClipboard()
 
-  const copyToClipboard = async (text: string) => {
-    try {
-      if (navigator.clipboard && window.isSecureContext) {
-        await navigator.clipboard.writeText(text);
-      } else {
-        const textArea = document.createElement('textarea');
-        textArea.value = text;
-        textArea.style.position = 'fixed';
-        textArea.style.left = '-999999px';
-        textArea.style.top = '-999999px';
-        document.body.appendChild(textArea);
-        textArea.focus();
-        textArea.select();
-        
-        try {
-          document.execCommand('copy');
-        } catch (err) {
-          console.error('Fallback copy failed:', err);
-        } finally {
-          textArea.remove();
-        }
-      }
-      
-      setCopiedClass(text);
-      setTimeout(() => setCopiedClass(null), 2000);
-    } catch (err) {
-      console.error('Failed to copy:', err);
-      setCopiedClass(text);
-      setTimeout(() => setCopiedClass(null), 2000);
-    }
-  };
 
   const renderExample = (exampleType: string) => {
     switch (exampleType) {
@@ -439,7 +408,7 @@ export default function StatesDocumentation() {
                           .{state.name}
                         </span>
                         <span className="text-sm text-zinc-600">{state.description}</span>
-                        {copiedClass === state.name && (
+                        {copiedText === state.name && (
                           <span className="text-sm text-green-600">Copiado!</span>
                         )}
                       </button>
@@ -472,7 +441,7 @@ export default function StatesDocumentation() {
                           </span>
                           <span className="text-sm text-zinc-600">{animation.description}</span>
                           <span className="text-xs text-zinc-500">({animation.duration})</span>
-                          {copiedClass === animation.name && (
+                          {copiedText === animation.name && (
                             <span className="text-sm text-green-600">Copiado!</span>
                           )}
                         </button>
@@ -520,7 +489,7 @@ export default function StatesDocumentation() {
                       .scroll-fade
                     </span>
                     <span className="text-sm text-zinc-600">Fade ativado por scroll</span>
-                    {copiedClass === 'scroll-fade' && (
+                    {copiedText === 'scroll-fade' && (
                       <span className="text-sm text-green-600">Copiado!</span>
                     )}
                   </button>

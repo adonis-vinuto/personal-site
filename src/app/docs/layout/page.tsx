@@ -1,8 +1,8 @@
 'use client';
 
 import { useState } from 'react';
+import { useCopyToClipboard } from '@/hooks/useCopyToClipboard';
 
-// Configurações de layout
 const layoutSystems = {
   sections: {
     title: 'Sistema de Seções',
@@ -80,29 +80,8 @@ const responsiveHelpers = {
 
 export default function LayoutDocumentation() {
   const [activeTab, setActiveTab] = useState<'layout' | 'responsive' | 'examples'>('layout');
-  const [copiedClass, setCopiedClass] = useState<string | null>(null);
-
-  const copyToClipboard = async (text: string) => {
-    try {
-      if (navigator.clipboard && window.isSecureContext) {
-        await navigator.clipboard.writeText(text);
-      } else {
-        const textArea = document.createElement('textarea');
-        textArea.value = text;
-        textArea.style.position = 'fixed';
-        textArea.style.left = '-999999px';
-        document.body.appendChild(textArea);
-        textArea.focus();
-        textArea.select();
-        document.execCommand('copy');
-        textArea.remove();
-      }
-      setCopiedClass(text);
-      setTimeout(() => setCopiedClass(null), 2000);
-    } catch (err) {
-      console.error('Failed to copy:', err);
-    }
-  };
+  const { copyToClipboard, copiedText } = useCopyToClipboard()
+  
 
   return (
     <div className="min-h-screen bg-zinc-50">
@@ -175,7 +154,7 @@ export default function LayoutDocumentation() {
                           .{item.class}
                         </span>
                         <span className="text-sm text-zinc-600">{item.label}</span>
-                        {copiedClass === item.class && (
+                        {copiedText === item.class && (
                           <span className="text-sm text-green-600">Copiado!</span>
                         )}
                       </div>
@@ -209,7 +188,7 @@ export default function LayoutDocumentation() {
                         .{item.class}
                       </span>
                       <span className="text-sm text-zinc-600">{item.label} - {item.spacing}</span>
-                      {copiedClass === item.class && (
+                      {copiedText === item.class && (
                         <span className="text-sm text-green-600">Copiado!</span>
                       )}
                     </div>
@@ -243,7 +222,7 @@ export default function LayoutDocumentation() {
                       <span className="text-sm text-zinc-600">
                         {item.label} - {item.spacing}
                       </span>
-                      {copiedClass === item.class && (
+                      {copiedText === item.class && (
                         <span className="text-sm text-green-600">Copiado!</span>
                       )}
                     </div>
@@ -278,7 +257,7 @@ export default function LayoutDocumentation() {
                       <span className="text-sm text-zinc-600">
                         {item.label} - Min: {item.minWidth}
                       </span>
-                      {copiedClass === item.class && (
+                      {copiedText === item.class && (
                         <span className="text-sm text-green-600">Copiado!</span>
                       )}
                     </div>
@@ -314,7 +293,7 @@ export default function LayoutDocumentation() {
                           .{item.class}
                         </span>
                         <span className="text-sm text-zinc-600">{item.label}</span>
-                        {copiedClass === item.class && (
+                        {copiedText === item.class && (
                           <span className="text-sm text-green-600">Copiado!</span>
                         )}
                       </div>
@@ -356,7 +335,7 @@ export default function LayoutDocumentation() {
                           .{item.class}
                         </span>
                         <span className="text-sm text-zinc-600">{item.label}</span>
-                        {copiedClass === item.class && (
+                        {copiedText === item.class && (
                           <span className="text-sm text-green-600">Copiado!</span>
                         )}
                       </div>
@@ -385,7 +364,7 @@ export default function LayoutDocumentation() {
                             .{item.class}
                           </span>
                           <span className="text-sm text-zinc-600">{item.label}</span>
-                          {copiedClass === item.class && (
+                          {copiedText === item.class && (
                             <span className="text-sm text-green-600">Copiado!</span>
                           )}
                         </div>
@@ -423,7 +402,7 @@ export default function LayoutDocumentation() {
                             .{item.class}
                           </span>
                           <span className="text-sm font-medium text-zinc-900">{item.label}</span>
-                          {copiedClass === item.class && (
+                          {copiedText === item.class && (
                             <span className="text-sm text-green-600">Copiado!</span>
                           )}
                         </div>
@@ -456,7 +435,7 @@ export default function LayoutDocumentation() {
                           .{item.class}
                         </span>
                         <span className="text-sm font-medium text-zinc-900">{item.label}</span>
-                        {copiedClass === item.class && (
+                        {copiedText === item.class && (
                           <span className="text-sm text-green-600">Copiado!</span>
                         )}
                       </div>
@@ -494,7 +473,7 @@ export default function LayoutDocumentation() {
                             .{item.class}
                           </span>
                           <span className="text-sm font-medium text-zinc-900">{item.label}</span>
-                          {copiedClass === item.class && (
+                          {copiedText === item.class && (
                             <span className="text-sm text-green-600">Copiado!</span>
                           )}
                         </div>
