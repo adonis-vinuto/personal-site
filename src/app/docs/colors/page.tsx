@@ -2,15 +2,22 @@
 
 'use client';
 
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { useCopyToClipboard } from '@/hooks/useCopyToClipboard';
 import { ColorGrid } from './components/ColorGrid';
 import { SpecialColors } from './components/SpecialColors';
+import { OpacityFilter } from './components/OpacityFilter';
 import { utilities, getColorsForUtility } from './data';
+import { 
+  filterColorsByOpacity, 
+  filterSpecialColorsByOpacity, 
+  getOpacityStats 
+} from './utils/opacityUtils';
 
 export default function ColorsPage() {
   const [selectedUtility, setSelectedUtility] = useState('bg');
   const [searchTerm, setSearchTerm] = useState('');
+  const [selectedOpacities, setSelectedOpacities] = useState<string[]>([]);
   const [activeTab, setActiveTab] = useState<'tailwind' | 'custom'>('tailwind');
   const { copyToClipboard, copiedText } = useCopyToClipboard();
 
@@ -20,11 +27,37 @@ export default function ColorsPage() {
   // Pega as cores para a utility atual
   const { colors, specials } = getColorsForUtility(selectedUtility);
   
-  // Filtra cores por busca
-  const filteredColors = colors.filter(colorGroup => 
-    colorGroup.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    colorGroup.label.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  // Aplica filtros de forma otimizada usando useMemo
+  const filteredData = useMemo(() => {
+    // Primeiro filtra por busca
+    let filteredColors = colors.filter(colorGroup => 
+      colorGroup.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      colorGroup.label.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    
+    // Depois filtra por opacidade
+    filteredColors = filterColorsByOpacity(filteredColors, selectedOpacities);
+    
+    // Filtra cores especiais por opacidade
+    const filteredSpecials = filterSpecialColorsByOpacity(specials, selectedOpacities);
+    
+    return {
+      colors: filteredColors,
+      specials: filteredSpecials
+    };
+  }, [colors, specials, searchTerm, selectedOpacities]);
+
+  // Estatísticas de opacidade para mostrar contadores
+  const opacityStats = useMemo(() => {
+    return getOpacityStats(colors);
+  }, [colors]);
+
+  // Total de cores após filtros
+  const totalFilteredColors = useMemo(() => {
+    return filteredData.colors.reduce((total, group) => total + group.shades.length, 0);
+  }, [filteredData.colors]);
+
+  const hasActiveFilters = searchTerm || selectedOpacities.length > 0;
 
   return (
     <div className="min-h-screen bg-zinc-50">
@@ -116,6 +149,44 @@ export default function ColorsPage() {
                   ))}
                 </div>
               </div>
+
+              {/* Filtro de Opacidade */}
+              <OpacityFilter
+                selectedOpacities={selectedOpacities}
+                onOpacityChange={setSelectedOpacities}
+              />
+
+              {/* Resumo dos filtros */}
+              {hasActiveFilters && (
+                <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="text-sm font-medium text-blue-900">
+                        Filtros Ativos
+                      </p>
+                      <div className="text-sm text-blue-700 mt-1 space-y-1">
+                        {searchTerm && (
+                          <div>Busca: <span className="font-mono bg-blue-100 px-1 rounded">"{searchTerm}"</span></div>
+                        )}
+                        {selectedOpacities.length > 0 && (
+                          <div>
+                            Opacidade: {selectedOpacities.map(op => op === 'none' ? 'Sólida' : `${op}%`).join(', ')}
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                    <button
+                      onClick={() => {
+                        setSearchTerm('');
+                        setSelectedOpacities([]);
+                      }}
+                      className="text-sm text-blue-600 hover:text-blue-800 font-medium"
+                    >
+                      Limpar Todos
+                    </button>
+                  </div>
+                </div>
+              )}
             </div>
 
             {/* Info Box */}
@@ -133,34 +204,75 @@ export default function ColorsPage() {
             </div>
 
             {/* Contador de resultados */}
-            {searchTerm && (
-              <div className="text-sm text-zinc-600">
-                Mostrando {filteredColors.length} {filteredColors.length === 1 ? 'cor' : 'cores'}
+            <div className="flex items-center justify-between text-sm text-zinc-600">
+              <div>
+                Mostrando <span className="font-semibold">{totalFilteredColors}</span> {totalFilteredColors === 1 ? 'cor' : 'cores'}
+                {hasActiveFilters && ` (filtrado de ${colors.reduce((total, group) => total + group.shades.length, 0)})`}
                 {searchTerm && ` para "${searchTerm}"`}
               </div>
-            )}
+              
+              {colors.length > 0 && (
+                <div className="hidden sm:flex items-center gap-4 text-xs">
+                  <span>Disponível:</span>
+                  {Object.entries(opacityStats).map(([opacity, count]) => (
+                    count > 0 && (
+                      <span key={opacity} className="bg-zinc-100 px-2 py-1 rounded">
+                        {opacity === 'none' ? 'Sólida' : `${opacity}%`}: {count}
+                      </span>
+                    )
+                  ))}
+                </div>
+              )}
+            </div>
 
             {/* Grid de cores */}
             {colors.length > 0 ? (
               <div className="space-y-8">
-                {filteredColors.map((colorGroup) => (
-                  <ColorGrid
-                    key={colorGroup.name}
-                    colorGroup={colorGroup}
-                    utility={currentUtility}
-                    onCopy={copyToClipboard}
-                    copiedText={copiedText}
-                  />
-                ))}
+                {filteredData.colors.length > 0 ? (
+                  <>
+                    {filteredData.colors.map((colorGroup) => (
+                      <ColorGrid
+                        key={colorGroup.name}
+                        colorGroup={colorGroup}
+                        utility={currentUtility}
+                        onCopy={copyToClipboard}
+                        copiedText={copiedText}
+                      />
+                    ))}
 
-                {/* Cores especiais */}
-                {!searchTerm && specials.length > 0 && (
-                  <SpecialColors
-                    specialColors={specials}
-                    utility={currentUtility}
-                    onCopy={copyToClipboard}
-                    copiedText={copiedText}
-                  />
+                    {/* Cores especiais */}
+                    {!searchTerm && filteredData.specials.length > 0 && (
+                      <SpecialColors
+                        specialColors={filteredData.specials}
+                        utility={currentUtility}
+                        onCopy={copyToClipboard}
+                        copiedText={copiedText}
+                      />
+                    )}
+                  </>
+                ) : (
+                  <div className="bg-white rounded-xl shadow-sm border border-zinc-200 p-12">
+                    <div className="text-center">
+                      <svg className="w-12 h-12 text-zinc-400 mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                      </svg>
+                      <h3 className="text-lg font-medium text-zinc-900 mb-2">
+                        Nenhuma cor encontrada
+                      </h3>
+                      <p className="text-zinc-600 mb-4">
+                        Nenhuma cor corresponde aos filtros selecionados. Tente ajustar os critérios de busca.
+                      </p>
+                      <button
+                        onClick={() => {
+                          setSearchTerm('');
+                          setSelectedOpacities([]);
+                        }}
+                        className="px-4 py-2 bg-zinc-900 text-white rounded-lg hover:bg-zinc-800 transition-colors"
+                      >
+                        Limpar Filtros
+                      </button>
+                    </div>
+                  </div>
                 )}
               </div>
             ) : (
@@ -170,38 +282,26 @@ export default function ColorsPage() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                   <h3 className="text-lg font-medium text-zinc-900 mb-2">
-                    {searchTerm ? 'Nenhuma cor encontrada' : 'Utility não implementada'}
+                    Utility não implementada
                   </h3>
                   <p className="text-zinc-600">
-                    {searchTerm 
-                      ? `Não encontramos cores que correspondam a "${searchTerm}"`
-                      : `Crie o arquivo de dados para a utility "${selectedUtility}" para ver as cores`
-                    }
+                    Crie o arquivo de dados para a utility "{selectedUtility}" para ver as cores
                   </p>
-                  {searchTerm ? (
-                    <button
-                      onClick={() => setSearchTerm('')}
-                      className="mt-4 px-4 py-2 bg-zinc-900 text-white rounded-lg hover:bg-zinc-800 transition-colors"
-                    >
-                      Limpar busca
-                    </button>
-                  ) : (
-                    <div className="mt-4 p-3 bg-zinc-50 rounded-lg text-left">
-                      <p className="text-sm font-medium text-zinc-900 mb-1">Como implementar:</p>
-                      <ol className="text-sm text-zinc-600 space-y-1">
-                        <li>1. Crie <code className="bg-white px-1 rounded">src/app/docs/colors/data/{selectedUtility}.ts</code></li>
-                        <li>2. Siga o padrão dos arquivos existentes (backgrounds.ts, text.ts)</li>
-                        <li>3. Adicione no index.ts</li>
-                      </ol>
-                    </div>
-                  )}
+                  <div className="mt-4 p-3 bg-zinc-50 rounded-lg text-left">
+                    <p className="text-sm font-medium text-zinc-900 mb-1">Como implementar:</p>
+                    <ol className="text-sm text-zinc-600 space-y-1">
+                      <li>1. Crie <code className="bg-white px-1 rounded">src/app/docs/colors/data/{selectedUtility}.ts</code></li>
+                      <li>2. Siga o padrão dos arquivos existentes (backgrounds.ts, text.ts)</li>
+                      <li>3. Adicione no index.ts</li>
+                    </ol>
+                  </div>
                 </div>
               </div>
             )}
           </div>
         ) : (
           <div className="space-y-8">
-            {/* Tokens Customizados */}
+            {/* Tokens Customizados - implementação existente */}
             <div className="bg-white rounded-xl shadow-sm border border-zinc-200 overflow-hidden">
               <div className="px-6 py-4 border-b border-zinc-200 bg-zinc-50">
                 <h2 className="text-xl font-semibold text-zinc-900">Tokens Customizados</h2>
@@ -222,43 +322,18 @@ export default function ColorsPage() {
                         <button
                           key={token.var}
                           onClick={() => copyToClipboard(token.var)}
-                          className="flex items-center gap-4 p-4 rounded-lg border border-zinc-200 hover:bg-zinc-50 transition-colors"
+                          className="group flex items-center gap-4 p-3 rounded-lg border border-zinc-200 hover:border-zinc-300 transition-colors text-left w-full"
                         >
-                          <div className="w-20 h-20 rounded-lg border-2 border-zinc-300" style={{ backgroundColor: token.var }} />
-                          <div className="text-left">
+                          <div 
+                            className="w-12 h-12 rounded-lg border border-zinc-200" 
+                            style={{ background: token.var }}
+                          />
+                          <div className="flex-1">
                             <p className="font-medium text-zinc-900">{token.label}</p>
-                            <code className="text-sm text-zinc-600 font-mono">{token.var}</code>
+                            <p className="text-sm text-zinc-500 font-mono">{token.var}</p>
                           </div>
                           {copiedText === token.var && (
-                            <span className="ml-auto text-sm text-green-600">Copiado!</span>
-                          )}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div>
-                    <h3 className="text-lg font-medium text-zinc-900 mb-4">Cores de Texto</h3>
-                    <div className="grid gap-4">
-                      {[
-                        { var: 'var(--cor-text)', label: 'Texto Principal' },
-                        { var: 'var(--cor-text-muted)', label: 'Texto Secundário' },
-                        { var: 'var(--cor-text-subtle)', label: 'Texto Sutil' }
-                      ].map((token) => (
-                        <button
-                          key={token.var}
-                          onClick={() => copyToClipboard(token.var)}
-                          className="flex items-center gap-4 p-4 rounded-lg border border-zinc-200 hover:bg-zinc-50 transition-colors"
-                        >
-                          <div className="w-20 h-20 bg-white rounded-lg border-2 border-zinc-300 flex items-center justify-center">
-                            <span className="text-2xl font-bold" style={{ color: token.var }}>Aa</span>
-                          </div>
-                          <div className="text-left">
-                            <p className="font-medium text-zinc-900">{token.label}</p>
-                            <code className="text-sm text-zinc-600 font-mono">{token.var}</code>
-                          </div>
-                          {copiedText === token.var && (
-                            <span className="ml-auto text-sm text-green-600">Copiado!</span>
+                            <span className="text-sm text-green-600 font-medium">Copiado!</span>
                           )}
                         </button>
                       ))}
