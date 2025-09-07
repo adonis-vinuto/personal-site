@@ -55,11 +55,11 @@ export function countColorsByOpacity(
 export function getOpacityStats(colorGroups: ColorGroup[]) {
   const stats = {
     none: 0,
-    '0': 0,
+    '10': 0,
     '25': 0,
     '50': 0,
     '75': 0,
-    '100': 0,
+    '90': 0,
   };
 
   colorGroups.forEach(group => {

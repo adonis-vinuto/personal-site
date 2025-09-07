@@ -8,12 +8,12 @@ interface OpacityFilterProps {
 }
 
 const opacityOptions = [
-  { value: 'none', label: 'Sólida', description: 'Cores sólidas' },
-  { value: '0', label: '0%', description: 'Transparente' },
-  { value: '25', label: '25%', description: 'Muito transparente' },
+  { value: '10', label: '10%', description: 'Muito transparente' },
+  { value: '25', label: '25%', description: 'Transparente' },
   { value: '50', label: '50%', description: 'Semi-transparente' },
   { value: '75', label: '75%', description: 'Pouco transparente' },
-  { value: '100', label: '100%', description: 'Opaco' },
+  { value: '90', label: '90%', description: 'Quase opaco' },
+  { value: 'none', label: 'Sólida', description: 'Cores sólidas' },
 ];
 
 export function OpacityFilter({ selectedOpacities, onOpacityChange }: OpacityFilterProps) {

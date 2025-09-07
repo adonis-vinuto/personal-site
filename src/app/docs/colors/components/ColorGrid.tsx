@@ -31,7 +31,7 @@ export function ColorGrid({ colorGroup, utility, onCopy, copiedText }: ColorGrid
     });
 
     // Ordena as opacidades: none, 0, 25, 50, 75, 100
-    const order = ['none', '0', '25', '50', '75', '100'];
+    const order = ['10', '25', '50', '75', '90', 'none'];
     return order.map(op => {
       if (groups[op]) {
         return {
